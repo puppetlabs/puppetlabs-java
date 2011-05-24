@@ -11,11 +11,15 @@
 # Sample Usage:
 #
 class java::jre_package (
-  $version='1.6.0_25-fcs'
+  $version
 ) {
-  # statements
+
+  # JJM FIXME Validation!
+  $version_real = $version
+
   package { 'jre':
     ensure => $version_real,
     alias  => 'java',
   }
+
 }
