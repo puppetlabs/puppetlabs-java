@@ -19,7 +19,7 @@ class java(
 
   class { 'java::jre_package':
     version => $version_real,
-    stage   => 'deploy',
+    stage   => 'runtime',
   }
 
 }

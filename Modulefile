@@ -1,11 +1,11 @@
 name    'puppetlabs-java'
 version '0.0.1'
-source 'UNKNOWN'
+source 'git://github.com/puppetlabs/puppetlabs-java'
 author 'puppetlabs'
-license 'UNKNOWN'
-summary 'UNKNOWN'
-description 'UNKNOWN'
-project_page 'UNKNOWN'
+license 'Apache'
+summary 'Manage the official Java runtime'
+description 'Manage the official Java runtime'
+project_page 'https://github.com/puppetlabs/puppetlabs-java'
 
 ## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'
+dependency 'puppetlabs/stdlib', '>= 0.1.2'
