@@ -17,6 +17,10 @@ class java(
   $version='1.6.0_25-fcs'
 ) {
 
+  validate_re($jre, [ '^true$', '^false$' ])
+  validate_re($jdk, [ '^true$', '^false$' ])
+  validate_re($version, '^[._0-9a-zA-Z:-]+$')
+
   $jre_real     = $jre
   $jdk_real     = $jdk
   $version_real = $version
