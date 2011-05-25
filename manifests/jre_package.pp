@@ -14,7 +14,8 @@ class java::jre_package (
   $version
 ) {
 
-  # JJM FIXME Validation!
+  validate_re($version, '^[._0-9a-zA-Z:-]+$')
+
   $version_real = $version
 
   package { 'jre':
