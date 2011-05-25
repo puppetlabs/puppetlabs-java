@@ -1,5 +1,5 @@
 name    'puppetlabs-java'
-version '1.0.1'
+version '0.1.1'
 source 'git://github.com/puppetlabs/puppetlabs-java'
 author 'puppetlabs'
 license 'Apache'
