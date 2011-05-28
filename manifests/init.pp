@@ -29,13 +29,11 @@ class java(
     jre: {
       class { 'java::jre_package':
         version => $version_real,
-        stage   => 'runtime',
       }
     }
     jdk: {
       class { 'java::jdk_package':
         version => $version_real,
-        stage   => 'runtime',
       }
     }
   }
