@@ -25,17 +25,9 @@ class java(
   $version_real      = $version
   $distribution_real = $distribution
 
-  case $distribution_real {
-    jre: {
-      class { 'java::jre_package':
-        version => $version_real,
-      }
-    }
-    jdk: {
-      class { 'java::jdk_package':
-        version => $version_real,
-      }
-    }
+  package { 'java':
+    ensure => $version_real,
+    name   => "${distribution_real}",
   }
 
 }
