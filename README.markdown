@@ -6,8 +6,8 @@ Currently this simply deploys the package on Enterprise Linux based systems and 
 
 Tested on:
 
-  * Centos 5.6
-  * Ubuntu 10.04 Lucid
+ * Centos 5.6
+ * Ubuntu 10.04 Lucid
 
 # RedHat Support #
 
