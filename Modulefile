@@ -8,4 +8,4 @@ description 'Manage the official Java runtime'
 project_page 'https://github.com/puppetlabs/puppetlabs-java'
 
 ## Add dependencies, if any:
-dependency 'puppetlabs/stdlib', '>= 0.1.3'
+dependency 'puppetlabs/stdlib', '>= 0.1.6'
