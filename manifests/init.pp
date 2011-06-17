@@ -16,18 +16,44 @@ class java(
   $version      = 'installed'
 ) {
 
-  # Cannot pass anonymous arrays to functions in 2.6.8
-  $v_distribution = [ '^jre$', '^jdk$' ]
-  # Must compare string values, not booleans.
-  validate_re($version, '^[._0-9a-zA-Z:-]+$')
-  validate_re($distribution, $v_distribution)
+  validate_re($distribution, '^jdk$|^jre$')
+  validate_re($version, 'installed|^[._0-9a-zA-Z:-]+$')
 
-  $version_real      = $version
-  $distribution_real = $distribution
+  anchor { 'java::begin': }
+  anchor { 'java::end': }
 
-  package { 'java':
-    ensure => $version_real,
-    name   => "${distribution_real}",
+  case $operatingsystem {
+
+    centos, redhat, oel: {
+
+      class { 'java::package_redhat':
+        version      => $version,
+        distribution => $distribution,
+        require      => Anchor['java::begin'],
+        before       => Anchor['java::end'],
+      }
+
+    }
+
+    debian, ubuntu: {
+
+      $distribution_debian = $distribution ? {
+        jdk => 'sun-java6-jdk',
+        jre => 'sun-java6-jre',
+      }
+      class { 'java::package_debian':
+        version      => $version,
+        distribution => $distribution_debian,
+        require      => Anchor['java::begin'],
+        before       => Anchor['java::end'],
+      }
+
+    }
+
+    default: {
+      fail("operatingsystem $operatingsystem is not supported")
+    }
+
   }
 
 }
