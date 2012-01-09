@@ -20,9 +20,16 @@ class java::package_debian(
   $distribution
 ) {
 
+  exec { "partner-repo" :
+    command => "/usr/bin/add-apt-repository \"deb http://archive.canonical.com/ubuntu ${lsbdistcodename} partner\" && /usr/bin/apt-get update",
+    unless => "/usr/bin/apt-cache policy | grep ${lsbdistcodename}/partner",
+    before => Package["java"],
+  }
+
   file { "/var/local/sun-java6.preseed":
     content => template("${module_name}/sun-java6.preseed"),
   }
+
   package { 'java':
     ensure => $version,
     name   => $distribution,
