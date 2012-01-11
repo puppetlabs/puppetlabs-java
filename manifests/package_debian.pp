@@ -20,10 +20,10 @@ class java::package_debian(
   $distribution
 ) {
 
-  exec { "partner-repo" :
-    command => "/usr/bin/add-apt-repository \"deb http://archive.canonical.com/ubuntu ${lsbdistcodename} partner\" && /usr/bin/apt-get update",
-    unless => "/usr/bin/apt-cache policy | grep ${lsbdistcodename}/partner",
-    before => Package["java"],
+  apt::source { "ubuntu-lucid-partner":
+    location => "http://archive.canonical.com/ubuntu/",
+    release  => $lsbdistcodename,
+    repos    => "partner",
   }
 
   file { "/var/local/sun-java6.preseed":
@@ -35,6 +35,14 @@ class java::package_debian(
     name   => $distribution,
     responsefile => "/var/local/sun-java6.preseed",
     require => File["/var/local/sun-java6.preseed"],
+  }
+
+  exec { "sun-java-alternative":
+    path    => "/bin:/usr/bin:/usr/sbin",
+    command => "update-java-alternatives -s java-6-sun",
+    unless  => "java -version 2>&1 | grep \"Java(TM) SE Runtime Environment\"",
+    require => Package["java"],
+    returns => [0, 2],
   }
 
 }
