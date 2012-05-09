@@ -13,7 +13,7 @@
 # [Remember: No empty lines between comments and class definition]
 class java(
   $distribution = 'jdk',
-  $version      = 'installed'
+  $version      = 'present'
 ) {
 
   validate_re($distribution, '^jdk$|^jre$|^java.*$')
@@ -51,7 +51,7 @@ class java(
           }
         }
         default: {
-          fail("operatingsystem distribution $lsbdistcodename is not supported")
+          fail("operatingsystem distribution ${lsbdistcodename} is not supported")
         }
       }
 
@@ -65,7 +65,7 @@ class java(
     }
 
     default: {
-      fail("operatingsystem $operatingsystem is not supported")
+      fail("operatingsystem ${operatingsystem} is not supported")
     }
 
   }
