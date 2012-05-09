@@ -13,7 +13,7 @@
 # [Remember: No empty lines between comments and class definition]
 class java(
   $distribution = 'jdk',
-  $version      = 'installed'
+  $version      = 'present'
 ) {
 
   validate_re($distribution, '^jdk$|^jre$|^java.*$')
@@ -37,10 +37,24 @@ class java(
 
     debian, ubuntu: {
 
-      $distribution_debian = $distribution ? {
-        jdk => 'sun-java6-jdk',
-        jre => 'sun-java6-jre',
+      case $lsbdistcodename {
+        squeeze, lucid: {
+          $distribution_debian = $distribution ? {
+            jdk => 'openjdk-6-jdk',
+            jre => 'openjdk-6-jre-headless',
+          }
+        }
+        wheezy, precise: {
+          $distribution_debian = $distribution ? {
+            jdk => 'openjdk-7-jdk',
+            jre => 'openjdk-7-jre-headless',
+          }
+        }
+        default: {
+          fail("operatingsystem distribution ${lsbdistcodename} is not supported")
+        }
       }
+
       class { 'java::package_debian':
         version      => $version,
         distribution => $distribution_debian,
@@ -51,7 +65,7 @@ class java(
     }
 
     default: {
-      fail("operatingsystem $operatingsystem is not supported")
+      fail("operatingsystem ${operatingsystem} is not supported")
     }
 
   }
