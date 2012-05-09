@@ -20,14 +20,8 @@ class java::package_debian(
   $distribution
 ) {
 
-  file { "/var/local/sun-java6.preseed":
-    content => template("${module_name}/sun-java6.preseed"),
-  }
   package { 'java':
     ensure => $version,
     name   => $distribution,
-    responsefile => "/var/local/sun-java6.preseed",
-    require => File["/var/local/sun-java6.preseed"],
   }
-
 }
