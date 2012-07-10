@@ -22,9 +22,9 @@ class java(
   anchor { 'java::begin': }
   anchor { 'java::end': }
 
-  case $operatingsystem {
+  case $::osfamily {
 
-    centos, redhat, oel: {
+    'RedHat': {
 
       class { 'java::package_redhat':
         version      => $version,
@@ -35,9 +35,9 @@ class java(
 
     }
 
-    debian, ubuntu: {
+    'Debian': {
 
-      case $lsbdistcodename {
+      case $::lsbdistcodename {
         squeeze, lucid: {
           $distribution_debian = $distribution ? {
             jdk => 'openjdk-6-jdk',
@@ -51,7 +51,7 @@ class java(
           }
         }
         default: {
-          fail("operatingsystem distribution ${lsbdistcodename} is not supported")
+          fail("operatingsystem distribution ${::lsbdistcodename} is not supported")
         }
       }
 
@@ -65,7 +65,7 @@ class java(
     }
 
     default: {
-      fail("operatingsystem ${operatingsystem} is not supported")
+      fail("osfamily ${::osfamily} is not supported")
     }
 
   }
