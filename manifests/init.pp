@@ -24,7 +24,7 @@ class java(
 
   case $operatingsystem {
 
-    centos, redhat, oel: {
+    centos, redhat, oel, amazon: {
 
       class { 'java::package_redhat':
         version      => $version,
