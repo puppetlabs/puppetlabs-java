@@ -1,3 +1,6 @@
+2012-11-15 Scott Schneider <sschneider@puppetlabs.com> - 0.2.0
+* Add Solaris support
+
 2011-06-16 Jeff McCune <jeff@puppetlabs.com> - 0.1.5
 * Add Debian based distro (Lucid) support
 
