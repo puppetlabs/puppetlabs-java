@@ -64,6 +64,22 @@ class java(
 
     }
 
+    'Solaris': {
+
+      $distribution_solaris = $distribution ? {
+        jdk => 'developer/java/jdk-7',
+        jre => 'runtime/java/jre-7',
+      }
+
+      class { 'java::package_solaris':
+        version      => $version,
+        distribution => $distribution_solaris,
+        require      => Anchor['java::begin'],
+        before       => Anchor['java::end'],
+      }
+
+    }
+
     default: {
       fail("osfamily ${::osfamily} is not supported")
     }
