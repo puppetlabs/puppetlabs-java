@@ -9,4 +9,3 @@ project_page 'https://github.com/puppetlabs/puppetlabs-java'
 
 ## Add dependencies, if any:
 dependency 'puppetlabs/stdlib', '>= 0.1.6'
-dependency 'puppetlabs/apt', '>= 0.0.1'
