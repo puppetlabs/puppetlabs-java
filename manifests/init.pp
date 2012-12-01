@@ -44,7 +44,7 @@ class java(
             jre => 'openjdk-6-jre-headless',
           }
         }
-        wheezy, precise: {
+        wheezy, precise, quantal: {
           $distribution_debian = $distribution ? {
             jdk => 'openjdk-7-jdk',
             jre => 'openjdk-7-jre-headless',
