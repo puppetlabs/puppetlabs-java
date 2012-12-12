@@ -81,7 +81,7 @@ class java(
           }
         }
         default: {
-          fail("operatingsystemrelease ${::operatingsystemrelease} is not supported")
+          notice("operatingsystemrelease ${::operatingsystemrelease} is not supported")
         }
       }
     }
