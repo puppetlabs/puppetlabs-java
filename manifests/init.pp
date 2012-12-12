@@ -83,6 +83,7 @@ class java(
         default: {
           fail("operatingsystemrelease ${::operatingsystemrelease} is not supported")
         }
+      }
     }
 
     default: {
