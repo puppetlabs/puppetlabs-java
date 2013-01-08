@@ -80,6 +80,22 @@ class java(
 
     }
 
+    'Suse': {
+
+      $distribution_suse = $distribution ? {
+        jdk => 'java-1_6_0-ibm-devel',
+        jre => 'java-1_6_0-ibm',
+      }
+
+      class { 'java::package_suse':
+        version      => $version,
+        distribution => $distribution_suse,
+        require      => Anchor['java::begin'],
+        before       => Anchor['java::end'],
+      }
+
+    }
+
     default: {
       fail("osfamily ${::osfamily} is not supported")
     }
