@@ -26,11 +26,20 @@ class java(
 
     'RedHat': {
 
-      class { 'java::package_redhat':
-        version      => $version,
-        distribution => $distribution,
-        require      => Anchor['java::begin'],
-        before       => Anchor['java::end'],
+      if ($operatingsystem == 'Fedora') {
+        class { 'java::package_redhat':
+          version      => $version,
+          distribution => 'java',
+          require      => Anchor['java::begin'],
+          before       => Anchor['java::end'],
+        }
+      } else {
+        class { 'java::package_redhat':
+          version      => $version,
+          distribution => $distribution,
+          require      => Anchor['java::begin'],
+          before       => Anchor['java::end'],
+        }
       }
 
     }
