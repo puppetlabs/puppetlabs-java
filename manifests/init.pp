@@ -75,18 +75,24 @@ class java(
 
     'Solaris': {
 
-      $distribution_solaris = $distribution ? {
-        jdk => 'developer/java/jdk-7',
-        jre => 'runtime/java/jre-7',
-      }
+      case $::operatingsystemrelease {
+        '5.11': {
+          $distribution_solaris = $distribution ? {
+            jdk => 'developer/java/jdk-7',
+            jre => 'runtime/java/jre-7',
+          }
 
-      class { 'java::package_solaris':
-        version      => $version,
-        distribution => $distribution_solaris,
-        require      => Anchor['java::begin'],
-        before       => Anchor['java::end'],
+          class { 'java::package_solaris':
+            version      => $version,
+            distribution => $distribution_solaris,
+            require      => Anchor['java::begin'],
+            before       => Anchor['java::end'],
+          }
+        }
+        default: {
+          notice("operatingsystemrelease ${::operatingsystemrelease} is not supported")
+        }
       }
-
     }
 
     'Suse': {
