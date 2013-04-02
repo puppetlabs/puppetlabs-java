@@ -10,7 +10,6 @@
 #
 # Sample Usage:
 #
-# [Remember: No empty lines between comments and class definition]
 class java(
   $distribution = 'jdk',
   $version      = 'present'
@@ -26,20 +25,23 @@ class java(
 
     'RedHat': {
 
-      if ($operatingsystem == 'Fedora') {
-        class { 'java::package_redhat':
-          version      => $version,
-          distribution => 'java',
-          require      => Anchor['java::begin'],
-          before       => Anchor['java::end'],
+      if ($::operatingsystem == 'Fedora') {
+        $distribution_redhat = 'java'
+      } elsif ($::operatingsystem == 'Centos') {
+        case $::operatingsystemrelease {
+          '5.8': { $distribution_redhat = 'java-1.7.0-openjdk' }
+          '6.3': { $distribution_redhat = 'java-1.7.0-openjdk' }
+          default: { $distribution_redhat = $distribution }
         }
       } else {
-        class { 'java::package_redhat':
-          version      => $version,
-          distribution => $distribution,
-          require      => Anchor['java::begin'],
-          before       => Anchor['java::end'],
-        }
+        $distribution_redhat = $distribution
+      }
+
+      class { 'java::package_redhat':
+        version      => $version,
+        distribution => $distribution_redhat,
+        require      => Anchor['java::begin'],
+        before       => Anchor['java::end'],
       }
 
     }

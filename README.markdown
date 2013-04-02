@@ -7,7 +7,10 @@ Currently this simply deploys the package on Enterprise Linux based systems and 
 Tested on:
 
  * Centos 5.6
+ * Centos 5.8
+ * Centos 6.3
  * Ubuntu 10.04 Lucid
+ * Ubuntu 12.04 Precise
 
 # RedHat Support #
 
