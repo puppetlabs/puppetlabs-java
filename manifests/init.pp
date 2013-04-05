@@ -11,6 +11,10 @@
 #    The version of java to install. By default, this module simply ensures
 #    that java is present, and does not require a specific version.
 #
+#  [*package*]
+#    The name of the java package. This is configurable in case a non-standard
+#    java package is desired.
+#
 # Actions:
 #
 # Requires:
@@ -19,7 +23,8 @@
 #
 class java(
   $distribution = 'jdk',
-  $version      = 'present'
+  $version      = 'present',
+  $package      = undef,
 ) {
   include java::params
 
@@ -28,16 +33,21 @@ class java(
   case $distribution {
     default: { fail('distribution must be one of jdk, jre') }
     'jdk': {
-      $java_package_name = $java::params::jdk_package
+      $default_package_name = $java::params::jdk_package
     }
     'jre': {
-      $java_package_name = $java::params::jre_package
+      $default_package_name = $java::params::jre_package
     }
+  }
+
+  $use_java_package_name = $package ? {
+    default => $package,
+    undef   => $default_package_name,
   }
 
   package { 'java':
     ensure => $version,
-    name   => $java_package_name,
+    name   => $use_java_package_name,
   }
 
 }
