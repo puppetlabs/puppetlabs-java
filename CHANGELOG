@@ -1,3 +1,6 @@
+2013-04-04 Reid Vandewiele <reid@puppetlabs.com> - 0.3.0
+* Refactor, introduce params pattern
+
 2012-11-15 Scott Schneider <sschneider@puppetlabs.com> - 0.2.0
 * Add Solaris support
 
