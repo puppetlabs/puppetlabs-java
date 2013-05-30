@@ -7,10 +7,10 @@ class java::params {
 
   case $::osfamily {
     default: { fail("unsupported platform ${::osfamily}") }
-    'RedHat': {
+    /RedHat|Linux/: {
       case $::operatingsystem {
         default: { fail("unsupported os ${::operatingsystem}") }
-        'RedHat', 'CentOS': {
+        'RedHat', 'CentOS', 'Amazon': {
           $jdk_package = 'java-1.7.0-openjdk-devel'
           $jre_package = 'java-1.7.0-openjdk'
         }
