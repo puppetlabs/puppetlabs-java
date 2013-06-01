@@ -27,7 +27,7 @@ class java::params {
           $jdk_package = 'openjdk-6-jdk'
           $jre_package = 'openjdk-6-jre-headless'
         }
-        'wheezy', 'precise': {
+        'wheezy', 'precise','quantal','raring': {
           $jdk_package = 'openjdk-7-jdk'
           $jre_package = 'openjdk-7-jre-headless'
         }
