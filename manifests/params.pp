@@ -44,8 +44,17 @@ class java::params {
       $jre_package = 'runtime/java/jre-7'
     }
     'Suse': {
-      $jdk_package = 'java-1_6_0-ibm-devel'
-      $jre_package = 'java-1_6_0-ibm'
+      case $::operatingsystem {
+        default: {
+          $jdk_package = 'java-1_6_0-ibm-devel'
+          $jre_package = 'java-1_6_0-ibm'
+        }
+
+        'OpenSuSE': {
+          $jdk_package = 'java-1_7_0-openjdk-devel'
+          $jre_package = 'java-1_7_0-openjdk'
+        }
+      }
     }
   }
 
