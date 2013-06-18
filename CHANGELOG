@@ -1,3 +1,6 @@
+2013-06-18 Sharif Nassar <sharif@mediatemple.net> - 0.4.0
+* Add support for Debian alternatives, and more than one JDK/JRE per platform.
+
 2013-04-04 Reid Vandewiele <reid@puppetlabs.com> - 0.3.0
 * Refactor, introduce params pattern
 
