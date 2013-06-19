@@ -1,3 +1,13 @@
+0.4.0
+
+Gareth Rushgrove <gareth@morethanseven.net>
+Brett Porter <brett@apache.org>
+* Fixes for older versions of CentOS
+* Improvements to module build and tests
+
+Nathan R Valentine <nrvale0@gmail.com>
+* Add support for Ubuntu quantal and raring
+
 2013-04-04 Reid Vandewiele <reid@puppetlabs.com> - 0.3.0
 * Refactor, introduce params pattern
 
