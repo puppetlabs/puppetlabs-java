@@ -1,5 +1,8 @@
 0.4.0
 
+Martin Jackson <martin@uncommonsense-uk.com>
+* Added support Amazon Linux using facter >= 1.7.x
+
 Gareth Rushgrove <gareth@morethanseven.net>
 Brett Porter <brett@apache.org>
 * Fixes for older versions of CentOS
