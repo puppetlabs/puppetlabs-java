@@ -8,6 +8,9 @@ Brett Porter <brett@apache.org>
 Nathan R Valentine <nrvale0@gmail.com>
 * Add support for Ubuntu quantal and raring
 
+Sharif Nassar <sharif@mediatemple.net>
+* Add support for Debian alternatives, and more than one JDK/JRE per platform.
+
 2013-04-04 Reid Vandewiele <reid@puppetlabs.com> - 0.3.0
 * Refactor, introduce params pattern
 
