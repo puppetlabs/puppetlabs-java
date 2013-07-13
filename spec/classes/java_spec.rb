@@ -63,4 +63,15 @@ describe 'java', :type => :class do
     it { should contain_exec('update-java-alternatives').with_command('update-java-alternatives --set bananafish --jre') }
   end
 
+  context 'select openjdk for Amazon Linux' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Amazon', :operatingsystemrelease => '3.4.43-43.43.amzn1.x86_64'} }
+    it { should contain_package('java').with_name('java-1.7.0-openjdk-devel') }
+  end
+
+  context 'select passed value for Amazon Linux' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Amazon', :operatingsystemrelease => '5.3.4.43-43.43.amzn1.x86_64'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { should contain_package('java').with_name('java-1.7.0-openjdk') }
+  end
+
 end
