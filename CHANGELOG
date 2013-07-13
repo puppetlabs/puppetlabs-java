@@ -1,5 +1,8 @@
 0.4.0
 
+Robert Munteanu <rmuntean@adobe.com>
+* Add support for OpenSUSE
+
 Martin Jackson <martin@uncommonsense-uk.com>
 * Added support Amazon Linux using facter >= 1.7.x
 
