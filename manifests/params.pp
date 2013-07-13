@@ -35,6 +35,10 @@ class java::params {
           $jdk_package = 'java'
           $jre_package = 'java'
         }
+        'Amazon': {
+          $jdk_package = 'java-1.7.0-openjdk-devel'
+          $jre_package = 'java-1.7.0-openjdk'
+        }
       }
       $java = {
         'jdk' => { 'package' => $jdk_package, },
