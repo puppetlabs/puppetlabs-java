@@ -48,7 +48,7 @@ class java::params {
     'Debian': {
       case $::lsbdistcodename {
         default: { fail("unsupported release ${::lsbdistcodename}") }
-        'lenny', 'squeeze', 'lucid': {
+        'lenny', 'squeeze', 'lucid', 'natty': {
           $java  = {
             'jdk' => {
               'package'          => 'openjdk-6-jdk',
