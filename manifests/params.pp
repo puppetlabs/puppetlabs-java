@@ -17,7 +17,7 @@ class java::params {
     'RedHat': {
       case $::operatingsystem {
         default: { fail("unsupported os ${::operatingsystem}") }
-        'RedHat', 'CentOS': {
+        'RedHat', 'CentOS', 'OracleLinux': {
           if (versioncmp($::operatingsystemrelease, '5.0') < 0) {
             $jdk_package = 'java-1.6.0-sun-devel'
             $jre_package = 'java-1.6.0-sun'

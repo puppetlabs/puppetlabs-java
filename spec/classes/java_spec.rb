@@ -74,6 +74,22 @@ describe 'java', :type => :class do
     it { should contain_package('java').with_name('java-1.7.0-openjdk') }
   end
 
+  context 'select openjdk for Oracle Linux' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'OracleLinux', :operatingsystemrelease => '6.4'} }
+    it { should contain_package('java').with_name('java-1.7.0-openjdk-devel') }
+  end
+
+  context 'select openjdk for Oracle Linux 6.2' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'OracleLinux', :operatingsystemrelease => '6.2'} }
+    it { should contain_package('java').with_name('java-1.6.0-openjdk-devel') }
+  end
+
+  context 'select passed value for Oracle Linux' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'OracleLinux', :operatingsystemrelease => '6.3'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { should contain_package('java').with_name('java-1.7.0-openjdk') }
+  end
+
   context 'select default for OpenSUSE 12.3' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'OpenSUSE', :operatingsystemrelease => '12.3'}}
     it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
