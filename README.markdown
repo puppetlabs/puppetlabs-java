@@ -1,4 +1,4 @@
-# Java #
+#Java
 
 Manage the Java runtime for use with other application software.
 
