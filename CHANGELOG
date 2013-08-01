@@ -1,4 +1,9 @@
-1.0.0
+1.0.1 (2013-08-01)
+
+Matthaus Owens <matthaus@puppetlabs.com>
+* Update java packages for Fedora systems
+
+1.0.0 (2013-07-29)
 
 Krzysztof Suszyński <krzysztof.suszynski@coi.gov.pl>
 * Adding support for Oracle Enterprise Linux
