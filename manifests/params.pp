@@ -31,6 +31,7 @@ class java::params {
       'oracle-jdk' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-i586.tar.gz",
                         'checksum' => "23176d0ebf9dedd21e3150b4bb0ee776"
                       }
+      }
     }
   }
   case $::osfamily {
