@@ -12,6 +12,21 @@
 # for the config class to test if it is enabled.
 class java::params {
 
+  $bins = ["appletviewer", "apt", "ControlPanel", "extcheck", "HtmlConverter", "idlj", "jar", "jarsigner",
+    "java", "javac", "javadoc", "javah", "javap", "javaws", "jconsole", "jcontrol", "jdb", "jhat",
+    "jinfo", "jmap", "jps", "jrunscript", "jsadebugd", "jstack", "jstat", "jstatd", "jvisualvm",
+    "keytool", "native2ascii", "orbd", "pack200", "policytool", "rmic", "rmid", "rmiregistry",
+    "schemagen", "serialver", "servertool", "tnameserv", "unpack200", "wsgen", "wsimport", "xjc" ]
+
+  $oracle_urls = { 
+    'oracle-jdk' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz",
+                      'checksum' => "7164bd8619d731a2e8c01d0c60110f80"
+                    },
+    'oracle-jre' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/server-jre-7u25-linux-x64.tar.gz",
+                      'checksum' => "83ba05e260813f7a9140b76e3d37ea33"
+                    }
+  }
+
   case $::osfamily {
     default: { fail("unsupported platform ${::osfamily}") }
     'RedHat': {
@@ -41,11 +56,27 @@ class java::params {
         }
       }
       $java = {
-        'jdk' => { 'package' => $jdk_package, },
-        'jre' => { 'package' => $jre_package, },
+        'jdk' => { 
+          'package' => $jdk_package, 
+          'alternative_path' => '/usr/lib/jvm/jdk-1.7.0-openjdk.${architecture}/bin/java'
+        },
+        'jre' => {
+          'package' => $jre_package,
+          'alternative_path' => '/usr/lib/jvm/jre-1.7.0-openjdk.${architecture}/bin/java'
+        },
+        "oracle-jdk" => merge({
+          'alternative_path' => "/usr/lib/jvm/jdk-1.7.0/bin/java",
+        }, $oracle_urls["oracle-jdk"]),
+        "oracle-jre" => merge({
+          'alternative_path' => "/usr/lib/jvm/jre-1.7.0/bin/java"
+        }, $oracle_urls["oracle-jre"])
       }
+      $java_dir = "/usr/lib/jvm"
+      $java_home = "${java_dir}/jre"
     }
     'Debian': {
+      $java_dir = "/usr/lib/jvm"
+      $java_home = "${java_dir}/default-java"
       case $::lsbdistcodename {
         default: { fail("unsupported release ${::lsbdistcodename}") }
         'lenny', 'squeeze', 'lucid', 'natty': {
@@ -128,6 +159,7 @@ class java::params {
         'jdk' => { 'package' => $jdk_package, },
         'jre' => { 'package' => $jre_package, },
       }
+      $java_dir = "/usr/java"
     }
   }
 }

@@ -42,7 +42,8 @@ class java(
   $version               = 'present',
   $package               = undef,
   $java_alternative      = undef,
-  $java_alternative_path = undef
+  $java_alternative_path = undef,
+  $url                   = undef,
 ) {
   include java::params
 
@@ -53,6 +54,7 @@ class java(
     $default_alternative      = $java::params::java[$distribution]['alternative']
     $default_alternative_path = $java::params::java[$distribution]['alternative_path']
     $java_home                = $java::params::java[$distribution]['java_home']
+    $default_url              = $java::params::java[$distribution]['url']
   } else {
     fail("Java distribution ${distribution} is not supported.")
   }
@@ -62,6 +64,10 @@ class java(
     undef   => $default_package_name,
   }
 
+  $use_java_url = $url ? {
+    default => $url,
+    undef   => $default_url
+  }
   ## If $java_alternative is set, use that.
   ## Elsif the DEFAULT package is being used, then use $default_alternative.
   ## Else undef
@@ -83,12 +89,23 @@ class java(
   }
 
   anchor { 'java::begin:': }
-  ->
-  package { 'java':
-    ensure => $version,
-    name   => $use_java_package_name,
+ 
+  if $use_java_package_name {
+    package { 'java':
+      ensure => $version,
+      name   => $use_java_package_name,
+      require => Anchor['java::begin:'],
+      before => Class[java::config]
+    }
+  } elsif $distribution =~ /^oracle/ and $use_java_url {
+    class{java::oracle: 
+      version => $version, 
+      distribution => $distribution,
+      require => Anchor['java::begin:'],
+      before => Class[java::config]
+    }
   }
-  ->
+
   class { 'java::config': }
   -> anchor { 'java::end': }
 
