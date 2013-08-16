@@ -17,16 +17,22 @@ class java::params {
     "jinfo", "jmap", "jps", "jrunscript", "jsadebugd", "jstack", "jstat", "jstatd", "jvisualvm",
     "keytool", "native2ascii", "orbd", "pack200", "policytool", "rmic", "rmid", "rmiregistry",
     "schemagen", "serialver", "servertool", "tnameserv", "unpack200", "wsgen", "wsimport", "xjc" ]
-
-  $oracle_urls = { 
-    'oracle-jdk' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz",
-                      'checksum' => "7164bd8619d731a2e8c01d0c60110f80"
-                    },
-    'oracle-jre' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/server-jre-7u25-linux-x64.tar.gz",
-                      'checksum' => "83ba05e260813f7a9140b76e3d37ea33"
-                    }
+  case $architecture { 
+    'x86_64' : { $oracle_urls = {
+      'oracle-jdk' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz",
+                        'checksum' => "7164bd8619d731a2e8c01d0c60110f80"
+                      },
+      'oracle-jre' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/server-jre-7u25-linux-x64.tar.gz",
+                        'checksum' => "83ba05e260813f7a9140b76e3d37ea33"
+                      }
+      }
+    }
+    'i386', 'i586' : { $oracle_urls = {
+      'oracle-jdk' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-i586.tar.gz",
+                        'checksum' => "23176d0ebf9dedd21e3150b4bb0ee776"
+                      }
+    }
   }
-
   case $::osfamily {
     default: { fail("unsupported platform ${::osfamily}") }
     'RedHat': {

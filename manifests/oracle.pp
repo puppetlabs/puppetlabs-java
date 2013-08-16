@@ -33,7 +33,7 @@ class java::oracle(
 		require => Package[curl],
 		provider => shell,
 		command => "curl -L -s -b '$oracle_cookies' -o $tmp_file $java_url",
-		unless => "echo '$java_checksum $tmp_file' | md5sum -c --strict -"
+		unless => "echo '$java_checksum  $tmp_file' | md5sum -c --strict -"
 	}
 	->
 	exec{"/bin/tar -xzf $tmp_file -C $java_dir":
