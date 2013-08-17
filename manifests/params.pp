@@ -20,10 +20,10 @@ class java::params {
   case $architecture { 
     'x86_64' : { $oracle_urls = {
       'oracle-jdk' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz",
-                        'checksum' => "7164bd8619d731a2e8c01d0c60110f80"
+                        'checksum' => "83ba05e260813f7a9140b76e3d37ea33"
                       },
       'oracle-jre' => { 'url' => "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/server-jre-7u25-linux-x64.tar.gz",
-                        'checksum' => "83ba05e260813f7a9140b76e3d37ea33"
+                        'checksum' => "7164bd8619d731a2e8c01d0c60110f80"
                       }
       }
     }
