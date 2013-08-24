@@ -28,16 +28,26 @@ class java::oracle(
 	$java_real_home = "${java_dir}/${java_dirname}"
 	$oracle_cookies = "gpw_e24=http://edelivery.oracle.com; oraclelicense=accept-securebackup-cookie; oraclelicense${java_type}-${java_patch_version}-oth-JPR=accept-securebackup-cookie"
 
-	file{$java_dir: ensure => directory, mode => 644 } ->
-	exec{"download java from oracle":
-		require => Package[curl],
-		provider => shell,
-		command => "curl -L -s -b '$oracle_cookies' -o $tmp_file $java_url",
-		unless => "echo '$java_checksum  $tmp_file' | md5sum -c -w -"
+	file{$java_dir: ensure => directory, mode => 644 }
+
+	if $java_url =~ /puppet:\/\// {
+		file{$tmp_file:
+			source => $java_url,
+			before => Exec["extract $tmp_file"]
+		}
+	} else {
+		exec{"download java from oracle":
+			require => Package[curl],
+			provider => shell,
+			command => "curl -L -s -b '$oracle_cookies' -o $tmp_file $java_url",
+			unless => "echo '$java_checksum  $tmp_file' | md5sum -c -w -",
+			before => Exec["extract $tmp_file"]
+		}
 	}
-	->
-	exec{"/bin/tar -xzf $tmp_file -C $java_dir":
-		creates => "${java_real_home}/bin/java"
+	exec{"extract $tmp_file":
+		command => "/bin/tar -xzf $tmp_file -C $java_dir",
+		creates => "${java_real_home}/bin/java",
+		require => File[$java_dir]
 	}
 	->
 	file{$java_link_dirname:
