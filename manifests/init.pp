@@ -101,6 +101,7 @@ class java(
     class{java::oracle: 
       version => $version, 
       distribution => $distribution,
+      use_java_url => $use_java_url,
       require => Anchor['java::begin:'],
       before => Class[java::config]
     }

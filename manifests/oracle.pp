@@ -2,6 +2,7 @@ class java::oracle(
 	$distribution,
 	$version,
 	$accept_license=true,
+	$use_java_url=undef
 	) {
 	include java::params
 
@@ -12,7 +13,10 @@ class java::oracle(
 	if ! defined(Package[curl]) { package { "curl":	ensure => installed, }}
 	$java_type = regsubst($distribution, "^oracle-(jdk|jre)$", '\1')
 
-	$java_url = $java::params::java[$distribution]['url']
+	$java_url = $use_java_url ? {
+		undef => $java::params::java[$distribution]['url'],
+		default => $use_java_url
+	}
 	$java_checksum = $java::params::java[$distribution]['checksum']
 
 	$tmp_dir = "/var/cache/puppet"
