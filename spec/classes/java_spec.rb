@@ -101,6 +101,12 @@ describe 'java', :type => :class do
     it { should contain_package('java').with_name('java-1.7.0-openjdk') }
   end
 
+  context 'select passed value for Scientific Linux' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Scientific', :operatingsystemrelease => '6.4'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { should contain_package('java').with_name('java-1.7.0-openjdk') }
+  end
+
   context 'select default for OpenSUSE 12.3' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'OpenSUSE', :operatingsystemrelease => '12.3'}}
     it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
