@@ -12,7 +12,7 @@
 #
 #  [*version*]
 #    The version of java to install. By default, this module simply ensures
-#    that java is present, and does not require a specific version.
+#    the latest version (1.7) and applies it.
 #
 #  [*package*]
 #    The name of the java package. This is configurable in case a non-standard
@@ -39,7 +39,7 @@
 #
 class java(
   $distribution          = 'jdk',
-  $version               = 'present',
+  $version               = 'latest',
   $package               = undef,
   $java_alternative      = undef,
   $java_alternative_path = undef
@@ -84,7 +84,7 @@ class java(
   anchor { 'java::begin:': }
   ->
   package { 'java':
-    ensure => $version,
+    ensure => present,
     name   => $use_java_package_name,
   }
   ->

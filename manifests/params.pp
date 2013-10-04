@@ -22,13 +22,15 @@ class java::params {
             $jdk_package = 'java-1.6.0-sun-devel'
             $jre_package = 'java-1.6.0-sun'
           }
-          elsif (versioncmp($::operatingsystemrelease, '6.3') < 0) {
-            $jdk_package = 'java-1.6.0-openjdk-devel'
-            $jre_package = 'java-1.6.0-openjdk'
-          }
           else {
-            $jdk_package = 'java-1.7.0-openjdk-devel'
-            $jre_package = 'java-1.7.0-openjdk'
+            if ($java::version == '1.6'){
+              $jdk_package = 'java-1.6.0-openjdk-devel'
+              $jre_package = 'java-1.6.0-openjdk'
+            }
+            else {
+              $jdk_package = 'java-1.7.0-openjdk-devel'
+              $jre_package = 'java-1.7.0-openjdk'
+            }
           }
         }
         'Fedora': {
