@@ -1,0 +1,1 @@
+class {java:	distribution => oracle-jdk,	version => latest	# alternatively, have puppet download the tarball from the master	# url => "puppet:///files/jdk-7u45-linux-x64.tar.gz"}
