@@ -46,7 +46,7 @@ class java(
 ) {
   include java::params
 
-  validate_re($version, 'present|installed|latest|^[._0-9a-zA-Z:-]+$')
+  validate_re($version, 'present|installed|latest|^[.+_0-9a-zA-Z:-]+$')
 
   if has_key($java::params::java, $distribution) {
     $default_package_name     = $java::params::java[$distribution]['package']
