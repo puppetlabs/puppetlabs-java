@@ -1,3 +1,18 @@
+2014-01-06 - Version 1.1.0
+
+Summary:
+
+Primarily a release for Ubuntu users!
+
+Features:
+- Add support for Ubuntu Saucy (13.10)
+- Add `java_home` parameter for centralized setting of JAVA_HOME.
+
+Bugfixes:
+- Plus signs are valid in debian/ubuntu package names.
+
+
+
 1.0.2 ()
 
 Brett Porter <brett@apache.org>
