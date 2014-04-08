@@ -76,7 +76,7 @@ class java::params {
             },
           }
         }
-        'wheezy', 'precise','quantal','raring','saucy', 'trusty': {
+        'wheezy', 'jessie', 'precise','quantal','raring','saucy', 'trusty': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-7-jdk',
