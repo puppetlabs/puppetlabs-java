@@ -1,3 +1,13 @@
+2014-05-02 - Version 1.1.1
+
+Summary:
+
+Add support for new versions of Debian and Ubuntu!
+
+Features:
+- Add support for Ubuntu Trusty (14.04)
+- Add support for Debian Jessie (8.x)
+
 2014-01-06 - Version 1.1.0
 
 Summary:
