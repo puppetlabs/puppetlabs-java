@@ -7,4 +7,4 @@ summary      'Manage the official Java runtime'
 description  'Manage the official Java runtime'
 project_page 'https://github.com/puppetlabs/puppetlabs-java'
 
-dependency   'puppetlabs/stdlib', '>= 0.1.6'
+dependency   'puppetlabs/stdlib', '>= 2.4.0'
