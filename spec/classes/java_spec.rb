@@ -55,9 +55,9 @@ describe 'java', :type => :class do
   end
 
   context 'select default for Debian Squeeze' do
-    let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Debian', :lsbdistcodename => 'squeeze', :operatingsystemrelease => '6.0.5'} }
+    let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Debian', :lsbdistcodename => 'squeeze', :operatingsystemrelease => '6.0.5', :architecture => 'amd64',} }
     it { should contain_package('java').with_name('openjdk-6-jdk') }
-    it { should contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-6-openjdk --jre') }
+    it { should contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-6-openjdk-amd64 --jre') }
   end
 
   context 'select Oracle JRE for Debian Squeeze' do
