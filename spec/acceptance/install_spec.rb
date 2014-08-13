@@ -173,28 +173,4 @@ describe 'failure cases' do
 
     apply_manifest(pp, :expect_failures => true)
   end
-
-  # C14716
-  it 'should fail to install java with a blank package' do
-    pp = <<-EOS
-      class { 'java':
-        package => '',
-      }
-    EOS
-
-    apply_manifest(pp, :expect_failures => true)
-  end
-
-  context 'non-debian systems', :if => fact('osfamily') != 'Debian' do
-    # C14717
-    it 'should fail to install java with a blank package' do
-      pp = <<-EOS
-        class { 'java':
-          package => '',
-        }
-      EOS
-
-      apply_manifest(pp, :expect_failures => true)
-    end
-  end
 end
