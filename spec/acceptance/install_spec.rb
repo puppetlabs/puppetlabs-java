@@ -24,23 +24,6 @@ require 'spec_helper_acceptance'
 # C14722
 describe "installing java", :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   describe "jre" do
-    #case "#{fact('osfamily')} #{fact('operatingsystemrelease')}"
-    #when /RedHat 4/
-    #  # How does it work? yum is not present...
-    #when /RedHat 5/
-    #  java_version = 'java version "1.6.0'
-    #when /RedHat (6|7)/
-    #  java_version = 'java version "1.7.0'
-    #when /Debian (5|6|10|11)/
-    #  java_version = 'java version "1.6.0'
-    #when /Debian (7|jesse|12|14)6/
-    #  java_version = 'java version "1.7.0'
-    #when /Solaris /
-    #  java_version = 
-    #when /Suse/
-    #  java_version = 
-    #end
-
     it 'should install jre' do
       pp = <<-EOS
         class { 'java':
@@ -125,7 +108,90 @@ describe 'oracle', :if => (fact('operatingsystem') == 'Debian' and fact('operati
   describe 'jdk' do
     it 'should install oracle-jdk' do
       pp = <<-EOS
-        class { 'java': }
+        class { 'java':
+          distribution => 'oracle-jdk',
+        }
+      EOS
+
+      apply_manifest(pp, :expect_failures => true)
+    end
+  end
+end
+
+describe 'failure cases' do
+  # C14711
+  it 'should fail to install java with an incorrect version' do
+    pp = <<-EOS
+      class { 'java':
+        version => '14.5',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+
+  # C14712
+  it 'should fail to install java with a blank version' do
+    pp = <<-EOS
+      class { 'java':
+        version => '',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+
+  # C14713
+  it 'should fail to install java with an incorrect distribution' do
+    pp = <<-EOS
+      class { 'java':
+        distribution => 'xyz',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+
+  # C14714
+  it 'should fail to install java with a blank distribution' do
+    pp = <<-EOS
+      class { 'java':
+        distribution => '',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+
+  # C14715
+  it 'should fail to install java with an incorrect package' do
+    pp = <<-EOS
+      class { 'java':
+        package => 'xyz',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+
+  # C14716
+  it 'should fail to install java with a blank package' do
+    pp = <<-EOS
+      class { 'java':
+        package => '',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+
+  context 'non-debian systems', :if => fact('osfamily') != 'Debian' do
+    # C14717
+    it 'should fail to install java with a blank package' do
+      pp = <<-EOS
+        class { 'java':
+          package => '',
+        }
       EOS
 
       apply_manifest(pp, :expect_failures => true)
