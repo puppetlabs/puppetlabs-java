@@ -17,7 +17,7 @@ Installs the correct Java package on various platforms.
 
 ##Module Description
 
-The java module can automatically install Java JDK or JRE on a wide variety of systems. Java is a base component for many software platforms, but Java system packages don't always follow packaging conventions. The java module simplifies the Java installation process.
+The java module can automatically install Java jdk or jre on a wide variety of systems. Java is a base component for many software platforms, but Java system packages don't always follow packaging conventions. The java module simplifies the Java installation process.
 
 ##Setup
 
@@ -26,8 +26,7 @@ To install the correct Java package on your system, include the `java` class: `i
 
 ##Usage
 
-The java module installs the correct jdk or jre package on a wide variety of systems. 
-Set your class parameters as needed. For example, the module installs jdk by default. If you wanted to install jre instead, you would set the distribution parameter:
+The java module installs the correct jdk or jre package on a wide variety of systems. By default, the module will install the jdk package, but you can set different installation parameters as needed. For example, to install jre instead of jdk, you would set the distribution parameter:
 
 ```
 class { 'java':
@@ -43,7 +42,7 @@ class { 'java':
 
 * `java`: This is the module's main class, which installs and manages the Java package.
 
-###Private classes
+####Private classes
 
 * `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems. 
 
@@ -69,9 +68,7 @@ This module cannot guarantee installation of Java versions that are not availabl
 
 Oracle Java packages are not included in Debian 7 and Ubuntu 12.04/14.04 repositories. To install Java on those systems, you'll need to package Oracle JDK/JRE, and then the module will be able to install the package. For more information on how to package Oracle JDK/JRE, see the [Debian wiki](http://wiki.debian.org/JavaPackage).
 
-This module can install the specified versions of Java on the following systems. Other platform
-
-This module is officially [supported](https://forge.puppetlabs.com/supported) for the following platforms and Java versions:
+This module is officially [supported](https://forge.puppetlabs.com/supported) for the following Java versions and platforms:
 
 OpenJDK is supported on:
 * Red Hat Enterprise Linux (RHEL) 5, 6, 7
