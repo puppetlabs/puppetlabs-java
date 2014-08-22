@@ -58,28 +58,28 @@ class java(
   }
 
   $use_java_package_name = $package ? {
-    default => $package,
     undef   => $default_package_name,
+    default => $package,
   }
 
   ## If $java_alternative is set, use that.
   ## Elsif the DEFAULT package is being used, then use $default_alternative.
   ## Else undef
   $use_java_alternative = $java_alternative ? {
-    default => $java_alternative,
     undef   => $use_java_package_name ? {
       $default_package_name => $default_alternative,
       default               => undef,
-    }
+    },
+    default => $java_alternative,
   }
 
   ## Same logic as $java_alternative above.
   $use_java_alternative_path = $java_alternative_path ? {
-    default => $java_alternative_path,
     undef   => $use_java_package_name ? {
       $default_package_name => $default_alternative_path,
       default               => undef,
-    }
+    },
+    default => $java_alternative_path,
   }
 
   anchor { 'java::begin:': }
