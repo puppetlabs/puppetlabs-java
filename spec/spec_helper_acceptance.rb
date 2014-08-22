@@ -17,7 +17,7 @@ unless ENV["RS_PROVISION"] == "no" or ENV["BEAKER_provision"] == "no"
   end
   hosts.each do |host|
     if host["platform"] =~ /solaris/
-      on host, "echo 'export PATH=/opt/puppet/bin:${PATH}' >> ~/.bashrc"
+      on host, "echo 'export PATH=/opt/puppet/bin:/var/ruby/1.8/gem_home/bin:${PATH}' >> ~/.bashrc"
     end
     on host, "mkdir -p #{host["distmoduledir"]}"
     on host, "puppet module install puppetlabs-stdlib", :acceptable_exit_codes => [0,1]

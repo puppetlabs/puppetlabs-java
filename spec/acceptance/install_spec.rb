@@ -16,12 +16,16 @@ require 'spec_helper_acceptance'
 # C14681
 # C14682
 # C14684
-# C14690
+# C14687
 # C14692
 # C14696
 # C14697
+# C14700 check on solaris 11
+# C14701 check on sles 11
 # C14703
-# C14722
+# C14723 Where is oracle linux 5?
+# C14724 Where is oracle linux 5?
+# C14771 Where is redhat 7? Centos 7?
 describe "installing java", :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   describe "jre" do
     it 'should install jre' do
@@ -31,7 +35,7 @@ describe "installing java", :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfa
         }
       EOS
 
-      apply_manifest(pp, :expect_changes => true)
+      apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes => true)
     end
   end
@@ -41,7 +45,7 @@ describe "installing java", :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfa
         class { 'java': }
       EOS
 
-      apply_manifest(pp, :expect_changes => true)
+      apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes => true)
     end
   end
@@ -69,7 +73,7 @@ describe 'sun', :if => (fact('operatingsystem') == 'Debian' and fact('operatings
         }
       EOS
 
-      apply_manifest(pp, :expect_changes => true)
+      apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes => true)
     end
   end
@@ -81,7 +85,7 @@ describe 'sun', :if => (fact('operatingsystem') == 'Debian' and fact('operatings
         }
       EOS
 
-      apply_manifest(pp, :expect_changes => true)
+      apply_manifest(pp, :catch_failures => true)
       apply_manifest(pp, :catch_changes => true)
     end
   end
@@ -172,5 +176,27 @@ describe 'failure cases' do
     EOS
 
     apply_manifest(pp, :expect_failures => true)
+  end
+  # C14715
+  it 'should fail to install java with an incorrect package' do
+    pp = <<-EOS
+      class { 'java':
+        package => 'xyz',
+      }
+    EOS
+
+    apply_manifest(pp, :expect_failures => true)
+  end
+  # C14717
+  # C14719
+  it 'should work as normal when passed java_alternative and path' do
+    pp = <<-EOS
+      class { 'java':
+        java_alternative      => 'whatever',
+        java_alternative_path => '/whatever',
+      }
+    EOS
+
+    apply_manifest(pp, :catch_failures => true)
   end
 end
