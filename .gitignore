@@ -1,6 +1,5 @@
 pkg/
 .DS_Store
-metadata.json
 spec/fixtures
 *.idea
 *.swp

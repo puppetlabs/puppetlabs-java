@@ -1,0 +1,16 @@
+{
+  "name": "puppetlabs-java",
+  "version": "1.1.1",
+  "author": "puppetlabs",
+  "summary": "Manage the official Java runtime",
+  "license": "Apache",
+  "source": "git://github.com/puppetlabs/puppetlabs-java",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-java",
+  "issues_url": "https://tickets.puppetlabs.com/browse/MODULES",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 2.4.0"
+    }
+  ]
+}
