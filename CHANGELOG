@@ -1,3 +1,13 @@
+2014-08-25 - Supported Version 1.1.2
+
+Summary: This release begins the support coverage of the puppetlabs-java
+module.
+
+Bugfixes:
+- Update java alternative values from deprecated names
+- Readme updated
+- Testing updated
+
 2014-05-02 - Version 1.1.1
 
 Summary:
