@@ -92,12 +92,17 @@ describe 'sun', :if => (fact('operatingsystem') == 'Debian' and fact('operatings
 end
 
 # C14704
-describe 'oracle', :if => (fact('operatingsystem') == 'Debian' and fact('operatingsystemrelease').match(/^7/)) do
+# C14705
+# C15006
+describe 'oracle', :if => (
+  (fact('operatingsystem') == 'Debian' and fact('operatingsystemrelease').match(/^7/))
+  or (fact('operatingsystem') == 'Ubuntu' and fact('operatingsystemrelease').match(/^12\.04/))
+  or (fact('operatingsystem') == 'Ubuntu' and fact('operatingsystemrelease').match(/^14\.04/))
+) do
   # not supported
   # The package is not available from any sources, but if a customer
   # custom-builds the package using java-package and adds it to a local
   # repository, that is the intention of this version ability
-  # C14704
   describe 'jre' do
     it 'should install oracle-jre' do
       pp = <<-EOS
@@ -189,6 +194,7 @@ describe 'failure cases' do
   end
   # C14717
   # C14719
+  # C14725
   it 'should fail on debian when passed fake java_alternative and path' do
     pp = <<-EOS
       class { 'java':

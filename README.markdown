@@ -74,7 +74,7 @@ OpenJDK is supported on:
 * Red Hat Enterprise Linux (RHEL) 5, 6, 7
 * CentOS 5, 6, 7
 * Oracle Linux 5, 6, 7
-* Scientific Linux 5, 6, 7
+* Scientific Linux 5, 6
 * Debian 6, 7
 * Ubuntu 10.04, 12.04, 14.04
 * Solaris 11
