@@ -3,21 +3,19 @@ require 'beaker-rspec'
 UNSUPPORTED_PLATFORMS = [ "Darwin", "windows" ]
 
 unless ENV["RS_PROVISION"] == "no" or ENV["BEAKER_provision"] == "no"
-  if hosts.first.is_pe?
-    install_pe
-  else
-    install_puppet({ :version        => "3.6.2",
-                     :facter_version => "2.1.0",
-                     :hiera_version  => "1.3.4",
-                     :default_action => "gem_install" })
-    hosts.each do |h|
-      on h, "/bin/mkdir -p #{h["puppetpath"]}"
-      on h, "/bin/echo '' > #{h["hieraconf"]}"
-    end
-  end
+  # This will install the latest available package on el and deb based
+  # systems fail on windows and osx, and install via gem on other *nixes
+  foss_opts = { :default_action => 'gem_install' }
+
+  if default.is_pe?; then install_pe; else install_puppet( foss_opts ); end
+
   hosts.each do |host|
     if host["platform"] =~ /solaris/
       on host, "echo 'export PATH=/opt/puppet/bin:/var/ruby/1.8/gem_home/bin:${PATH}' >> ~/.bashrc"
+    end
+    unless host.is_pe?
+      on host, "/bin/mkdir -p #{host["puppetpath"]}"
+      on host, "/bin/echo '' > #{host["hieraconf"]}"
     end
     on host, "mkdir -p #{host["distmoduledir"]}"
     on host, "puppet module install puppetlabs-stdlib", :acceptable_exit_codes => [0,1]
