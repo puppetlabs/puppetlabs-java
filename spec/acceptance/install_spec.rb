@@ -95,9 +95,9 @@ end
 # C14705
 # C15006
 describe 'oracle', :if =>
-  (fact('operatingsystem') == 'Debian' and fact('operatingsystemrelease').match(/^7/))
-  or (fact('operatingsystem') == 'Ubuntu' and fact('operatingsystemrelease').match(/^12\.04/))
-  or (fact('operatingsystem') == 'Ubuntu' and fact('operatingsystemrelease').match(/^14\.04/))
+  fact('operatingsystem') == 'Debian' && fact('operatingsystemrelease').match(/^7/)
+  || fact('operatingsystem') == 'Ubuntu' && fact('operatingsystemrelease').match(/^12\.04/)
+  || fact('operatingsystem') == 'Ubuntu' && fact('operatingsystemrelease').match(/^14\.04/)
 do
   # not supported
   # The package is not available from any sources, but if a customer
