@@ -94,11 +94,11 @@ end
 # C14704
 # C14705
 # C15006
-describe 'oracle', :if => (
+describe 'oracle', :if =>
   (fact('operatingsystem') == 'Debian' and fact('operatingsystemrelease').match(/^7/))
   or (fact('operatingsystem') == 'Ubuntu' and fact('operatingsystemrelease').match(/^12\.04/))
   or (fact('operatingsystem') == 'Ubuntu' and fact('operatingsystemrelease').match(/^14\.04/))
-) do
+do
   # not supported
   # The package is not available from any sources, but if a customer
   # custom-builds the package using java-package and adds it to a local
