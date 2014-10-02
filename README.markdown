@@ -54,7 +54,7 @@ The following parameters are available in the java module:
 
 * `distribution`: The Java distribution to install. Can be 'jdk','jre', or, where the platform supports alternative packages, 'sun-jdk', 'sun-jre', 'oracle-jdk', 'oracle-jre'. Defaults to 'jdk'.
 
-*`version`: The version of Java to install, if you want to ensure a particular version. By default, the module ensures that Java is present but does not require a specific version.
+* `version`: The version of Java to install, if you want to ensure a particular version. By default, the module ensures that Java is present but does not require a specific version.
 
 * `package`: The name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module will install the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter will do nothing. 
 
