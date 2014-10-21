@@ -10,6 +10,16 @@ class java::config ( ) {
         }
       }
     }
+    #On Redhat, verify and set alternatives
+    'RedHat': {
+      if $java::use_java_alternative_path != undef {
+        exec { 'alternatives':
+          path    => '/usr/bin:/usr/sbin:/bin:/sbin',
+          command => "alternatives --set java ${java::use_java_alternative_path}",
+          unless  => "test /etc/alternatives/java -ef '${java::use_java_alternative_path}'",
+        }
+      }
+    }
     default: {
       # Do nothing.
     }
