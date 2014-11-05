@@ -18,9 +18,22 @@ unless ENV["RS_PROVISION"] == "no" or ENV["BEAKER_provision"] == "no"
       on host, "/bin/echo '' > #{host["hieraconf"]}"
     end
     on host, "mkdir -p #{host["distmoduledir"]}"
-    on host, "puppet module install puppetlabs-stdlib", :acceptable_exit_codes => [0,1]
-    # For test support
-    on host, "puppet module install puppetlabs-apt", :acceptable_exit_codes => [0,1]
+    if host['platform'] =~ /sles-1/i ||  host['platform'] =~ /solaris-1/i
+      get_stdlib = <<-stdlib
+      package{'wget':}
+      exec{'download':
+        command => "wget -P /root/ https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.3.2.tar.gz --no-check-certificate",
+        path => ['/opt/csw/bin/','/usr/bin/']
+      }
+      stdlib
+      apply_manifest_on(host, get_stdlib)
+      # have to use force otherwise it checks ssl cert even though it is a local file
+      on host, puppet('module install /root/puppetlabs-stdlib-4.3.2.tar.gz --force')
+    else
+      on host, puppet("module install puppetlabs-stdlib")
+      # For test support
+      on host, puppet("module install puppetlabs-apt")
+    end
   end
 end
 
