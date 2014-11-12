@@ -13,10 +13,8 @@
 class java::params {
 
   case $::osfamily {
-    default: { fail("unsupported platform ${::osfamily}") }
     'RedHat': {
       case $::operatingsystem {
-        default: { fail("unsupported os ${::operatingsystem}") }
         'RedHat', 'CentOS', 'OracleLinux', 'Scientific': {
           if (versioncmp($::operatingsystemrelease, '5.0') < 0) {
             $jdk_package = 'java-1.6.0-sun-devel'
@@ -39,6 +37,7 @@ class java::params {
           $jdk_package = 'java-1.7.0-openjdk-devel'
           $jre_package = 'java-1.7.0-openjdk'
         }
+        default: { fail("unsupported os ${::operatingsystem}") }
       }
       $java = {
         'jdk' => { 'package' => $jdk_package, },
@@ -142,5 +141,6 @@ class java::params {
         'jre' => { 'package' => $jre_package, },
       }
     }
+    default: { fail("unsupported platform ${::osfamily}") }
   }
 }
