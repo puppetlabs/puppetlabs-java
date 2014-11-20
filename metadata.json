@@ -2,7 +2,7 @@
   "name": "puppetlabs-java",
   "version": "1.2.0",
   "author": "puppetlabs",
-  "summary": "Manage the official Java runtime",
+  "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache",
   "source": "git://github.com/puppetlabs/puppetlabs-java",
   "project_page": "https://github.com/puppetlabs/puppetlabs-java",
