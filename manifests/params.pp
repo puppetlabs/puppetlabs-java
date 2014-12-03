@@ -51,13 +51,13 @@ class java::params {
           $java  = {
             'jdk' => {
               'package'          => 'openjdk-6-jdk',
-              'alternative'      => "java-6-openjdk-${architecture}",
+              'alternative'      => "java-6-openjdk-${::architecture}",
               'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
             },
             'jre' => {
               'package'          => 'openjdk-6-jre-headless',
-              'alternative'      => "java-6-openjdk-${architecture}",
+              'alternative'      => "java-6-openjdk-${::architecture}",
               'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
             },
