@@ -13,7 +13,7 @@
 #   None
 Facter.add(:java_version) do
   setcode do
-    t_java = Facter::Util::Resolution.exec("java -version 2>&1")
-    java_version = t_java.to_s.lines.first.strip.split(/version/)[1].gsub(/"/, "").strip
+    java_version = Facter::Util::Resolution.exec("java -version 2>&1")
+    java_version = java_version.to_s.lines.first.strip.split(/version/)[1].gsub(/"/, "").strip
   end
 end
