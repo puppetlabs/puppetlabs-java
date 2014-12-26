@@ -1,6 +1,7 @@
 pkg/
-.DS_Store
-spec/fixtures
-*.idea
-*.swp
-*.tmp
+Gemfile.lock
+vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
