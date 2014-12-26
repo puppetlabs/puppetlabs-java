@@ -46,7 +46,7 @@ class { 'java':
 
 * `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems. 
 
-* `java::config`: Configures the Java alternatives on Debian systems.
+* `java::config`: Configures the Java alternatives.
 
 ###Parameters:
 
@@ -58,9 +58,9 @@ The following parameters are available in the java module:
 
 * `package`: The name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module will install the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter will do nothing. 
 
-* `java_alternative`: The name of the Java alternative to use on Debian systems. The command 'update-java-alternatives -l' will show which choices are available. If you specify a particular package, you will usually want to specify which Java alternative to use. If you set this parameter, you also need to set the `java_alternative_path`.
+* `java_alternative`: The name of the Java alternative to use. The command 'update-java-alternatives -l' will show which choices are available. If you specify a particular package, you will usually want to specify which Java alternative to use. If you set this parameter, you also need to set the `java_alternative_path`.
 
-* `java_alternative_path`: The path to the 'java' command on Debian systems. Since the alternatives system makes it difficult to verify which alternative is actually enabled, this is required to ensure the correct JVM is enabled.
+* `java_alternative_path`: The path to the 'java' command. Since the alternatives system makes it difficult to verify which alternative is actually enabled, this is required to ensure the correct JVM is enabled.
 
 ##Limitations
 
