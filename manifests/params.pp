@@ -118,7 +118,7 @@ class java::params {
           $jre_package = 'java-1_6_0-ibm'
         }
 
-        "SLES": {
+        'SLES': {
           case $::operatingsystemmajrelease{
             default: {
               $jdk_package = 'java-1_6_0-ibm-devel'
