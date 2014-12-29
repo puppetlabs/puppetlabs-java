@@ -195,7 +195,7 @@ describe 'failure cases' do
   # C14717
   # C14719
   # C14725
-  it 'should fail on debian when passed fake java_alternative and path' do
+  it 'should fail on debian or RHEL when passed fake java_alternative and path' do
     pp = <<-EOS
       class { 'java':
         java_alternative      => 'whatever',
@@ -203,7 +203,7 @@ describe 'failure cases' do
       }
     EOS
 
-    if fact('osfamily') == 'Debian'
+    if fact('osfamily') == 'Debian' or fact('osfamily') == 'RedHat'
       apply_manifest(pp, :expect_failures => true)
     else
       apply_manifest(pp, :catch_failures => true)
