@@ -23,7 +23,7 @@ describe Facter::Util::Fact do
           Facter.fact(:java_version).stubs(:value).returns(nil)
         end
         it do
-          Facter.fact(:java_patch_level).value.should == "JAVA_NOT_INSTALLED"
+          Facter.fact(:java_patch_level).value.should be_nil
         end
       end
     end

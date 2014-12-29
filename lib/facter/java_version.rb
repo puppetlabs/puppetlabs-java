@@ -1,6 +1,6 @@
 # Fact: java_version
 #
-# Purpose: store java versions in the config DB
+# Purpose: get full java version string
 #
 # Resolution:
 #   Tests for presence of java, returns nil if not present
@@ -11,9 +11,10 @@
 #
 # Notes:
 #   None
-Facter.add(:java_version) do
-  setcode do
-    java_version = Facter::Util::Resolution.exec("java -version 2>&1")
-    java_version = java_version.to_s.lines.first.strip.split(/version/)[1].gsub(/"/, "").strip
+if Facter::Util::Resolution.which('java')
+  Facter.add(:java_version) do
+    setcode do
+      Facter::Util::Resolution.exec('java -version 2>&1').lines.first.split(/"/)[1].strip
+    end
   end
 end

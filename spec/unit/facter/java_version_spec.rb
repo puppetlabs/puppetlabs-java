@@ -13,6 +13,7 @@ java version "1.7.0_71"
 Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         EOS
+        Facter::Util::Resolution.expects(:which).with("java").returns(true)
         Facter::Util::Resolution.expects(:exec).with("java -version 2>&1").returns(java_version_output)
         Facter.fact(:java_version).value.should == "1.7.0_71"
       end
@@ -20,9 +21,8 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
 
     context 'returns nil when java not present' do
       it do
-        java_version_output = "bash: java: command not found"
-        Facter::Util::Resolution.expects(:exec).with("java -version 2>&1").returns(java_version_output)
-        Facter.fact(:java_version).value.should be_nil
+        Facter::Util::Resolution.expects(:which).with("java").returns(false)
+        Facter.fact(:java_version).should be_nil
       end
     end
   end
