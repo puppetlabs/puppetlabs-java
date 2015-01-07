@@ -82,6 +82,11 @@ class java(
     default => $java_alternative_path,
   }
 
+  $jre_flag = $use_java_package_name ? {
+    /headless/ => '--jre-headless',
+    default    => '--jre'
+  }
+
   anchor { 'java::begin:': }
   ->
   package { 'java':
