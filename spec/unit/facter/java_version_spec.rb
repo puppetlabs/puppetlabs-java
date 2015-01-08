@@ -21,6 +21,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
 
     context 'returns nil when java not present' do
       it do
+        Facter::Util::Resolution.stubs(:exec)
         Facter::Util::Resolution.expects(:which).with("java").returns(false)
         Facter.fact(:java_version).should be_nil
       end
