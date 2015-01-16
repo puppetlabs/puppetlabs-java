@@ -1,3 +1,18 @@
+##2015-01-20 - Supported Release 1.3.0
+###Summary
+This release adds 3 new facts for determining Java version, adds RHEL alternatives support, adds utopic support, and fixes the flag for `update-java-alternatives` when installed from a headless pacakge.
+
+####Features
+- Added RHEL support for alternatives
+- New facts
+  - java_major_version
+  - java_patch_level
+  - java_version
+- Add support for utopic
+
+####Bugfixes
+- Use `--jre-headless` in the `update-java-alternatives` command when installed from a `headless` package
+
 ##2014-11-11 - Supported Version 1.2.0
 
 ###Summary: 
