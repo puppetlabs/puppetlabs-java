@@ -30,8 +30,14 @@ class java::params {
           }
         }
         'Fedora': {
-          $jdk_package = 'java-1.7.0-openjdk-devel'
-          $jre_package = 'java-1.7.0-openjdk'
+          if (versioncmp($::operatingsystemrelease, '21') < 0) {
+            $jdk_package = 'java-1.7.0-openjdk-devel'
+            $jre_package = 'java-1.7.0-openjdk'
+          }
+          else {
+            $jdk_package = 'java-1.8.0-openjdk-devel'
+            $jre_package = 'java-1.8.0-openjdk'
+          }
         }
         'Amazon': {
           $jdk_package = 'java-1.7.0-openjdk-devel'
