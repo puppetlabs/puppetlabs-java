@@ -14,7 +14,7 @@
 if Facter::Util::Resolution.which('java')
   Facter.add(:java_version) do
     setcode do
-      Facter::Util::Resolution.exec('java -Xmx512m -version 2>&1').lines.first.split(/"/)[1].strip
+      Facter::Util::Resolution.exec('java -Xmx8m -version 2>&1').lines.first.split(/"/)[1].strip
     end
   end
 end
