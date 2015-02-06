@@ -26,15 +26,26 @@ describe 'java', :type => :class do
     it { should contain_exec('update-java-alternatives').with_command('alternatives --set java /usr/java/jre1.7.0_67/bin/java') }
   end
 
-  context 'select openjdk for Fedora' do
-    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora'} }
+  context 'select openjdk for Fedora 20' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '20'} }
     it { should contain_package('java').with_name('java-1.7.0-openjdk-devel') }
   end
 
-  context 'select passed value for Fedora' do
-    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora'} }
+  context 'select openjdk for Fedora 21' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '21'} }
+    it { should contain_package('java').with_name('java-1.8.0-openjdk-devel') }
+  end
+
+  context 'select passed value for Fedora 20' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '20'} }
     let(:params) { { 'distribution' => 'jre' } }
     it { should contain_package('java').with_name('java-1.7.0-openjdk') }
+  end
+
+  context 'select passed value for Fedora 21' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '21'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { should contain_package('java').with_name('java-1.8.0-openjdk') }
   end
 
   context 'select passed value for Centos 5.3' do
