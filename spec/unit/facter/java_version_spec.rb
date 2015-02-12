@@ -15,7 +15,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         EOS
         Facter::Util::Resolution.expects(:which).with("java").returns(true)
         Facter::Util::Resolution.expects(:exec).with("java -Xmx8m -version 2>&1").returns(java_version_output)
-        Facter.fact(:java_version).value.should == "1.7.0_71"
+        Facter.value(:java_version).should == "1.7.0_71"
       end
     end
 
@@ -23,7 +23,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
       it do
         Facter::Util::Resolution.stubs(:exec)
         Facter::Util::Resolution.expects(:which).with("java").returns(false)
-        Facter.fact(:java_version).should be_nil
+        Facter.value(:java_version).should be_nil
       end
     end
   end
