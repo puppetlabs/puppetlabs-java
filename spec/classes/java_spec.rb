@@ -158,6 +158,17 @@ describe 'java', :type => :class do
     it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
   end
 
+  context 'select jdk for OpenBSD' do
+    let(:facts) { {:osfamily => 'OpenBSD'} }
+    it { should contain_package('java').with_name('jdk') }
+  end
+
+  context 'select jre for OpenBSD' do
+    let(:facts) { {:osfamily => 'OpenBSD'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { should contain_package('java').with_name('jre') }
+  end
+
   describe 'incompatible OSs' do
     [
       {
