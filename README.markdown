@@ -76,6 +76,8 @@ The java module includes a few facts to describe the version of Java installed o
 
 This module cannot guarantee installation of Java versions that are not available on  platform repositories. 
 
+This module only manages a singular installation of Java, meaning it is not possible to manage e.g. OpenJDK 7, Oracle Java 7 and Oracle Java 8 in parallel on the same system.
+
 Oracle Java packages are not included in Debian 7 and Ubuntu 12.04/14.04 repositories. To install Java on those systems, you'll need to package Oracle JDK/JRE, and then the module will be able to install the package. For more information on how to package Oracle JDK/JRE, see the [Debian wiki](http://wiki.debian.org/JavaPackage).
 
 This module is officially [supported](https://forge.puppetlabs.com/supported) for the following Java versions and platforms:
