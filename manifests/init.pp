@@ -50,9 +50,15 @@ class java(
 
   if has_key($java::params::java, $distribution) {
     $default_package_name     = $java::params::java[$distribution]['package']
-    $default_alternative      = $java::params::java[$distribution]['alternative']
-    $default_alternative_path = $java::params::java[$distribution]['alternative_path']
-    $java_home                = $java::params::java[$distribution]['java_home']
+    if has_key($java::params::java[$distribution], 'alternative') {
+      $default_alternative = $java::params::java[$distribution]['alternative']
+    }
+    if has_key($java::params::java[$distribution], 'alternative_path') {
+      $default_alternative_path = $java::params::java[$distribution]['alternative_path']
+    }
+    if has_key($java::params::java[$distribution], 'java_home') {
+      $java_home = $java::params::java[$distribution]['java_home']
+    }
   } else {
     fail("Java distribution ${distribution} is not supported.")
   }
