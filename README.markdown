@@ -28,11 +28,11 @@ To install the correct Java package on your system, include the `java` class: `i
 
 The java module installs the correct jdk or jre package on a wide variety of systems. By default, the module will install the jdk package, but you can set different installation parameters as needed. For example, to install jre instead of jdk, you would set the distribution parameter:
 
-```
+~~~
 class { 'java':
   distribution => 'jre',
 }
-```
+~~~
 
 ##Reference
 
@@ -40,27 +40,37 @@ class { 'java':
 
 ####Public classes
 
-* `java`: This is the module's main class, which installs and manages the Java package.
+* `java`: Installs and manages the Java package.
 
 ####Private classes
 
-* `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems. 
-
 * `java::config`: Configures the Java alternatives.
 
-###Parameters:
+* `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems. 
 
-The following parameters are available in the java module:
+####Parameters
+The following parameters are available in `java`:
 
-* `distribution`: The Java distribution to install. Can be 'jdk','jre', or, where the platform supports alternative packages, 'sun-jdk', 'sun-jre', 'oracle-jdk', 'oracle-jre'. Defaults to 'jdk'.
+##### `distribution`
+Specifies the Java distribution to install.  
+Valid options:  'jdk', 'jre', or, where the platform supports alternative packages, 'sun-jdk', 'sun-jre', 'oracle-jdk', 'oracle-jre'. Default: 'jdk'.
 
-* `version`: The version of Java to install, if you want to ensure a particular version. By default, the module ensures that Java is present but does not require a specific version.
+#####`java_alternative`
+Specifies the name of the Java alternative to use. If you set this parameter, *you must also set the `java_alternative_path`.*  
+Valid options: Run command `update-java-alternatives -l` for a list of available choices. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
-* `package`: The name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module will install the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter will do nothing. 
+#####`java_alternative_path`  
+*Required when `java_alternative` is specified.* Defines the path to the `java` command.  
+Valid option: String. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
-* `java_alternative`: The name of the Java alternative to use. The command 'update-java-alternatives -l' will show which choices are available. If you specify a particular package, you will usually want to specify which Java alternative to use. If you set this parameter, you also need to set the `java_alternative_path`.
+#####`package`
+Specifies the name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module will install the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter will do nothing.  
+Valid option: String. Default: undef. 
 
-* `java_alternative_path`: The path to the 'java' command. Since the alternatives system makes it difficult to verify which alternative is actually enabled, this is required to ensure the correct JVM is enabled.
+#####`version`
+Sets the version of Java to install, if you want to ensure a particular version.  
+Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9a-zA-Z:-]+$/`. Default: 'present'.
+
 
 ###Facts
 
@@ -80,7 +90,8 @@ Oracle Java packages are not included in Debian 7 and Ubuntu 12.04/14.04 reposit
 
 This module is officially [supported](https://forge.puppetlabs.com/supported) for the following Java versions and platforms:
 
-OpenJDK is supported on:
+OpenJDK is supported on:  
+
 * Red Hat Enterprise Linux (RHEL) 5, 6, 7
 * CentOS 5, 6, 7
 * Oracle Linux 6, 7
@@ -90,16 +101,13 @@ OpenJDK is supported on:
 * Solaris 11
 * SLES 11 SP1, 12 
 
-Sun Java is supported on:
+Sun Java is supported on:  
+
 * Debian 6
 
 ##Development
 
-Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad of hardware, software, and deployment configurations that Puppet is intended to serve.
-
-We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
-
-You can read the complete module contribution guide on the [Puppet Labs wiki](http://projects.puppetlabs.com/projects/module-site/wiki/Module_contributing).
+Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide.](https://docs.puppetlabs.com/forge/contributing.html)
 
 ##Contributors
 
