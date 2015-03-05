@@ -109,6 +109,22 @@ class java::params {
             },
           }
         }
+        'vivid': {
+          $java =  {
+            'jdk' => {
+              'package'          => 'openjdk-8-jdk',
+              'alternative'      => "java-1.8.0-openjdk-${::architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+            },
+            'jre' => {
+              'package'          => 'openjdk-8-jre-headless',
+              'alternative'      => "java-1.8.0-openjdk-${::architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+            }
+          }
+        }
       }
     }
     'Solaris': {
