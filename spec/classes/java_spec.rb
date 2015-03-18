@@ -181,7 +181,7 @@ describe 'java', :type => :class do
     ].each do |facts|
       let(:facts) { facts }
       it "should fail on #{facts[:operatingsystem]} #{facts[:operatingsystemrelease]}" do
-        expect { subject }.to raise_error Puppet::Error, /unsupported platform/
+        expect { catalogue }.to raise_error Puppet::Error, /unsupported platform/
       end
     end
   end
