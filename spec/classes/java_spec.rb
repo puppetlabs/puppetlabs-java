@@ -108,6 +108,18 @@ describe 'java', :type => :class do
     it { should contain_exec('update-java-alternatives').with_command('update-java-alternatives --set bananafish --jre') }
   end
 
+  context 'select jdk for Ubuntu Vivid (15.04)' do
+    let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Ubuntu', :lsbdistcodename => 'vivid', :operatingsystemrelease => '15.04', :architecture => 'amd64',} }
+    let(:params) { { 'distribution' => 'jdk' } }
+    it { should contain_package('java').with_name('openjdk-8-jdk') }
+  end
+
+  context 'select jre for Ubuntu Vivid (15.04)' do
+    let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Ubuntu', :lsbdistcodename => 'vivid', :operatingsystemrelease => '15.04', :architecture => 'amd64',} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { should contain_package('java').with_name('openjdk-8-jre-headless') }
+  end
+
   context 'select openjdk for Amazon Linux' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Amazon', :operatingsystemrelease => '3.4.43-43.43.amzn1.x86_64'} }
     it { should contain_package('java').with_name('java-1.7.0-openjdk-devel') }
