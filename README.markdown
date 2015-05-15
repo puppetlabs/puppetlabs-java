@@ -46,7 +46,7 @@ class { 'java':
 
 * `java::config`: Configures the Java alternatives.
 
-* `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems. 
+* `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems.
 
 ####Parameters
 The following parameters are available in `java`:
@@ -102,10 +102,17 @@ OpenJDK is supported on:
 * Ubuntu 10.04, 12.04, 14.04
 * Solaris 11
 * SLES 11 SP1, 12 
+* OpenBSD 5.6, 5.7
 
 Sun Java is supported on:  
 
 * Debian 6
+
+### A note to OpenBSD
+OpenBSD packages install Java JRE/JDK in a unique directory structure, not linking
+the binaries to a standard directory. Because of that, the path to this location
+is hardcoded in the java_version fact. Whenever a Java upgrade to a newer
+version/path will be done on OpenBSD, it has to be adapted there.
 
 ##Development
 

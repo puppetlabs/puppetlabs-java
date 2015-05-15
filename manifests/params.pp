@@ -127,6 +127,12 @@ class java::params {
         }
       }
     }
+    'OpenBSD': {
+      $java = {
+        'jdk' => { 'package' => 'jdk', },
+        'jre' => { 'package' => 'jre', },
+      }
+    }
     'Solaris': {
       $java = {
         'jdk' => { 'package' => 'developer/java/jdk-7', },

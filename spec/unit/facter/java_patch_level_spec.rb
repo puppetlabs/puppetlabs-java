@@ -17,8 +17,8 @@ describe Facter::Util::Fact do
       end
     end
 
-    context "if java is installed" do
-      context 'returns java patch version extracted from java_version fact' do
+    context "if java is not installed" do
+      context 'returns nil' do
         before :each do
           Facter.fact(:java_version).stubs(:value).returns(nil)
         end
