@@ -70,9 +70,12 @@ class java(
     fail("Java distribution ${distribution} is not supported.")
   }
 
-  $use_java_package_name = $package ? {
-    undef   => $default_package_name,
-    default => $package,
+  ## Ignores package when provider and source are specified.
+  if !($provider and $source) {
+    $use_java_package_name = $package ? {
+      undef   => $default_package_name,
+      default => $package,
+    }
   }
 
   ## If $java_alternative is set, use that.
