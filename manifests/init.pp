@@ -31,6 +31,17 @@
 #    alternative is actually enabled, this is required to ensure the
 #    correct JVM is enabled.
 #
+#  [*provider*]
+#    The name of the package provider (e.g. rpm) to be used for a manual
+#    package installation.
+#    Requires a source (path) for a compatible package file.
+#
+#  [*source*]
+#    The path to the package file (e.g. /mypath/jdk-7u79-linux-x64.rpm).
+#    Must be compatible with the specified provider.
+#    Don't forget to set java_alternative and java_alternative_path, since
+#    manually installed packages usually do not provide them.
+#
 # Actions:
 #
 # Requires:
@@ -42,7 +53,9 @@ class java(
   $version               = 'present',
   $package               = undef,
   $java_alternative      = undef,
-  $java_alternative_path = undef
+  $java_alternative_path = undef,
+  $provider              = undef,
+  $source                = undef,
 ) {
   include java::params
 
@@ -90,8 +103,10 @@ class java(
   anchor { 'java::begin:': }
   ->
   package { 'java':
-    ensure => $version,
-    name   => $use_java_package_name,
+    ensure   => $version,
+    name     => $use_java_package_name,
+    provider => $provider,
+    source   => $source,
   }
   ->
   class { 'java::config': }
