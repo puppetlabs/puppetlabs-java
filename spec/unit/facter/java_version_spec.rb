@@ -57,7 +57,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         end
         let(:facts) { {:operatingsystem => 'MyOS'} }
         it do
-          Facter::Util::Resolution.expects(:which).with("java").returns(false)
+          Facter::Util::Resolution.expects(:which).at_least(1).with("java").returns(false)
           Facter.value(:java_version).should be_nil
         end
       end
