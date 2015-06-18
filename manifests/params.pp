@@ -51,6 +51,10 @@ class java::params {
       }
     }
     'Debian': {
+      $java8_architecture = $::architecture? {
+        'amd64' => 'x64',
+        default => 'x32',
+      }
       case $::lsbdistcodename {
         default: { fail("unsupported release ${::lsbdistcodename}") }
         'lenny', 'squeeze', 'lucid', 'natty': {
@@ -107,6 +111,12 @@ class java::params {
               'alternative_path' => '/usr/lib/jvm/j2sdk1.7-oracle/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/j2sdk1.7-oracle/jre/',
             },
+            'oracle-java8-jre' => {
+              'package'          => 'oracle-java8-jre',
+              'alternative'      => "jre-8-oracle-${java8_architecture}",
+              'alternative_path' => "/usr/lib/jvm/jre-8-oracle-${java8_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/jre-8-oracle-${java8_architecture}/",
+            }
           }
         }
         'vivid': {
