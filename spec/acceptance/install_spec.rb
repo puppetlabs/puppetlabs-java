@@ -121,6 +121,17 @@ describe 'oracle', :if => (
       apply_manifest(pp, :expect_failures => true)
     end
   end
+  describe 'jre' do
+    it 'should install oracle-java8-jre' do
+      pp = <<-EOS
+        class { 'java':
+          distribution => 'oracle-java8-jre',
+        }
+      EOS
+
+      apply_manifest(pp, :expect_failures => true)
+    end
+  end
   describe 'jdk' do
     it 'should install oracle-jdk' do
       pp = <<-EOS

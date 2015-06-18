@@ -87,6 +87,14 @@ class java(
     default    => '--jre'
   }
 
+  if $::osfamily == 'Debian' {
+    # Needed for update-java-alternatives
+    package { 'java-common':
+      ensure => present,
+      before => Class['java::config'],
+    }
+  }
+
   anchor { 'java::begin:': }
   ->
   package { 'java':
