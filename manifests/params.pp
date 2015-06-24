@@ -52,7 +52,6 @@ class java::params {
     }
     'Debian': {
       case $::lsbdistcodename {
-        default: { fail("unsupported release ${::lsbdistcodename}") }
         'lenny', 'squeeze', 'lucid', 'natty': {
           $java  = {
             'jdk' => {
@@ -125,6 +124,7 @@ class java::params {
             }
           }
         }
+        default: { fail("unsupported release ${::lsbdistcodename}") }
       }
     }
     'OpenBSD': {
@@ -141,11 +141,6 @@ class java::params {
     }
     'Suse': {
       case $::operatingsystem {
-        default: {
-          $jdk_package = 'java-1_6_0-ibm-devel'
-          $jre_package = 'java-1_6_0-ibm'
-        }
-
         'SLES': {
           case $::operatingsystemmajrelease{
             default: {
@@ -158,10 +153,13 @@ class java::params {
             }
           }
         }
-
         'OpenSuSE': {
           $jdk_package = 'java-1_7_0-openjdk-devel'
           $jre_package = 'java-1_7_0-openjdk'
+        }
+        default: {
+          $jdk_package = 'java-1_6_0-ibm-devel'
+          $jre_package = 'java-1_6_0-ibm'
         }
       }
       $java = {
