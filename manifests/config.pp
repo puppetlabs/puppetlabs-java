@@ -17,7 +17,7 @@ class java::config ( ) {
         if $java::use_java_package_name != $java::default_package_name {
           exec { 'create-java-alternatives':
             path    => '/usr/bin:/usr/sbin:/bin:/sbin',
-            command => "alternatives --install ${java::use_java_alternative} java ${$java::use_java_alternative_path} 20000" ,
+            command => "alternatives --install /usr/bin/java java ${$java::use_java_alternative_path} 20000" ,
             unless  => "alternatives --display java | grep -q ${$java::use_java_alternative_path}",
             before  => Exec['update-java-alternatives']
           }
