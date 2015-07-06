@@ -1,3 +1,22 @@
+##2015-07-07 - Supported Release 1.4.0
+###Summary
+This release adds several new features, bugfixes, documentation updates, and test improvements.
+
+####Features:
+- Puppet 4 support and testing
+- Adds support for several Operating Systems
+  - Ubuntu 15.04
+  - OpenBSD 5.6, 5.7
+  - Fedora 20, 21, 22
+
+####Bugfixes:
+- Fixes java_version fact to work on large systems. (MODULES-1749)
+- Improves maintainability of java_version fact.
+- Fixes java package names on Fedora 21+.
+- Fixes java install problems on Puppet 3.7.5 - 3.8.1 (PUP-4520)
+- Fixes create-java-alternatives commands on RedHat distros.
+- Fixes bug with Debian systems missing java-common package.
+
 ##2015-01-20 - Supported Release 1.3.0
 ###Summary
 This release adds 3 new facts for determining Java version, adds RHEL alternatives support, adds utopic support, and fixes the flag for `update-java-alternatives` when installed from a headless pacakge.
