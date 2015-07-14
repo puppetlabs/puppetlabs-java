@@ -15,7 +15,7 @@ class java::params {
   case $::osfamily {
     'RedHat': {
       case $::operatingsystem {
-        'RedHat', 'CentOS', 'OracleLinux', 'Scientific': {
+        'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL': {
           if (versioncmp($::operatingsystemrelease, '5.0') < 0) {
             $jdk_package = 'java-1.6.0-sun-devel'
             $jre_package = 'java-1.6.0-sun'
