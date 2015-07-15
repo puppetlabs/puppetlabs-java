@@ -1,3 +1,10 @@
+## 2015-07-16 - Supported Release 1.4.1
+### Summary
+This release updates the metadata for the upcoming release of PE and update params for OEL to match metadata
+
+#### Bugfixes:
+- Add missing OEL to params
+
 ##2015-07-07 - Supported Release 1.4.0
 ###Summary
 This release adds several new features, bugfixes, documentation updates, and test improvements.
