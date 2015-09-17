@@ -1,5 +1,6 @@
 fixtures:
   repositories:
     stdlib: http://github.com/puppetlabs/puppetlabs-stdlib.git
+    wget: https://github.com/maestrodev/puppet-wget.git
   symlinks:
     java: "#{source_dir}"
