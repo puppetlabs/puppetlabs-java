@@ -34,6 +34,14 @@ class { 'java':
 }
 ~~~
 
+If you want to install Oracle's version of Java SE call the class java::oracle with the javaSE parameter:
+
+~~~
+class { 'java::oracle' :
+  javaSE => 'jre',
+}
+~~~
+
 ##Reference
 
 ###Classes
@@ -41,6 +49,7 @@ class { 'java':
 ####Public classes
 
 * `java`: Installs and manages the Java package.
+* `java::oracle`: Installs and manages the official Oracle Java packages.
 
 ####Private classes
 
