@@ -1,8 +1,10 @@
-# Class java::oracle
+# Defined Type java::oracle
 #
 # Description
 # Installs Oracle Java. By using this module you agree to the Oracle licensing
 # agreement.
+#
+# Install one or more versions of Oracle Java.
 #
 # uses the following to download the package and automatically accept
 # the licensing terms.
@@ -11,7 +13,7 @@
 # "http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jre-8u25-linux-x64.tar.gz"
 #
 # Parameters
-# [*javaVersion*]
+# [*version*]
 # Version of Java to install
 #
 # [*javaSE*]
@@ -20,14 +22,57 @@
 # [*ensure*]
 # Install or remove the package.
 #
-# Variables
+# [*baseUrl*]
+# Official Oracle URL to download binaries from.
 #
-# Author
+# Variables
+# [*releaseMajor*]
+# Major version release number for JavaSE. Used to construct download URL.
+#
+# [*releaseMinor*]
+# Minor version release number for JavaSE. Used to construct download URL.
+#
+# [*installPath*]
+# Base install path for specified version of JavaSE. Used to determine if JavaSE
+# has already been installed.
+#
+# [*packageType*]
+# Type of installation package for specified version of JavaSE. JavaSE 6 comes
+# in a few installation package flavors and we need to account for them.
+#
+# [*os*]
+# Oracle JavaSE OS type.
+#
+# [*destinationDir*]
+# Destination directory to save JavaSE installer to.  Usually /tmp on Linux and
+# C:\TEMP on Windows.
+#
+# [*createsPath*]
+# Fully qualified path to JavaSE after it is installed. Used to determine if
+# JavaSE is already installed.
+#
+# [*arch*]
+# Oracle JavaSE architecture type.
+#
+# [*packageName*]
+# Name of the JavaSE installation package to download from Oracle's website.
+#
+# [*installCommand*]
+# Installation command used to install Oracle JavaSE. Installation commands
+# differ by packageType. 'bin' types are installed via shell command. 'rpmbin'
+# types have the rpms extracted and then foricibly installed. 'rpm' types are
+# foricibly installed.
+#
+# [*url*]
+# Full URL, including baseUrl, releaseMajor, releaseMinor and packageName, to
+# download the Oracle JavaSE installer.
+#
+# ### Author
 # mike@marseglia.org
 #
-class java::oracle (
+define java::oracle (
   $ensure       = 'present',
-  $javaVersion  = '7',
+  $version      = '7',
   $javaSE       = 'jdk',
   $baseUrl      = 'http://download.oracle.com/otn-pub/java/jdk/',
 ) {
@@ -42,7 +87,7 @@ class java::oracle (
   }
 
   # determine oracle Java major and minor version
-  case $javaVersion {
+  case $version {
     '6' : {
       $releaseMajor = '6u45'
       $releaseMinor = 'b06'
@@ -70,7 +115,7 @@ class java::oracle (
     'linux' : {
       case downcase($::osfamily) {
         'redhat', 'centos' : {
-          if $javaVersion == '6' {
+          if $version == '6' {
             $packageType = 'rpmbin'
           } else {
             $packageType = 'rpm'
@@ -143,7 +188,7 @@ class java::oracle (
 
   case $ensure {
     'present' : {
-      wget::fetch { "Oracle Java ${javaSE} ${javaVersion}" :
+      wget::fetch { "Oracle Java ${javaSE} ${version}" :
         source             => $url,
         no_cookies         => true,
         nocheckcertificate => true,
@@ -152,7 +197,7 @@ class java::oracle (
       }->
       case downcase($::kernel) {
         'linux' : {
-          exec { "Install Oracle JavaSE ${javaSE} ${javaVersion}" :
+          exec { "Install Oracle JavaSE ${javaSE} ${version}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $installCommand,
             creates => $createsPath,

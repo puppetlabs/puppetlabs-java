@@ -1,5 +1,5 @@
-class { 'java::oracle' :
+'java::oracle' { 'jdk6' :
   ensure      => 'present',
-  javaVersion => '6',
+  version     => '6',
   javaSE      => 'jdk',
 }
