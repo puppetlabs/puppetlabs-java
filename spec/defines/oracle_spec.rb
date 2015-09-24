@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'java::oracle', :type => :define do
     context 'On RedHat 64-bit' do
-      let(:facts) { {:kernel => 'Linux', :osfamily => 'RedHat', :architecture => 'x86_64', :operatingsystemrelease => '6.6'} }
+      let(:facts) { {:kernel => 'Linux', :architecture => 'x86_64', :osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '6.6'} }
 
       context 'Oracle Java SE 6 JDK' do
       let(:params) { {:ensure => 'present', :version => '6', :javaSE => 'jdk'} }
@@ -49,7 +49,8 @@ describe 'java::oracle', :type => :define do
   end
 
   context 'On RedHat 32-bit' do
-    let(:facts) { {:kernel => 'Linux', :osfamily => 'RedHat', :architecture => 'i386', :operatingsystemrelease => '6.6'} }
+    let(:facts) { {:kernel => 'Linux', :architecture => 'i386', :osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '6.6'} }
+
     context 'select Oracle Java SE 6 JDK on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '6', :javaSE => 'jdk'} }
       let :title do 'jdk6' end
