@@ -78,7 +78,7 @@ define java::oracle (
 ) {
 
   include ::archive
-  
+
   ensure_resource('class', 'stdlib')
 
   # validate java Standard Edition to download
@@ -192,7 +192,7 @@ define java::oracle (
         ensure  => present,
         source  => $url,
         cleanup => false,
-        cookie  => "gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie",
+        cookie  => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
       }->
       case downcase($::kernel) {
         'linux' : {
