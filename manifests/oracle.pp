@@ -77,8 +77,8 @@ define java::oracle (
   $baseUrl      = 'http://download.oracle.com/otn-pub/java/jdk/',
 ) {
 
-  include ::wget
-
+  include ::archive
+  
   ensure_resource('class', 'stdlib')
 
   # validate java Standard Edition to download
@@ -188,12 +188,11 @@ define java::oracle (
 
   case $ensure {
     'present' : {
-      wget::fetch { "Oracle Java ${javaSE} ${version}" :
-        source             => $url,
-        no_cookies         => true,
-        nocheckcertificate => true,
-        headers            => [ 'Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie' ],
-        destination        => $destination,
+      archive { $destination :
+        ensure  => present,
+        source  => $url,
+        cleanup => false,
+        cookie  => "gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie",
       }->
       case downcase($::kernel) {
         'linux' : {
