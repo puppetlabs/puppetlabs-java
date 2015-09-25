@@ -13,7 +13,7 @@
 
 ##Overview
 
-Installs the correct Java package on various platforms. 
+Installs the correct Java package on various platforms.
 
 ##Module Description
 
@@ -34,6 +34,32 @@ class { 'java':
 }
 ~~~
 
+The type java::oracle will install one or more versions of Oracle JavaSE.
+
+If you want to install Oracle's version of Java SE call on the type java::oracle
+with the javaSE and version parameters:
+
+~~~
+java::oracle { 'jdk7' :
+  version => '7'
+  javaSE  => 'jdk'
+}
+~~~
+
+You can install another version of Oracle JavaSE calling java::oracle a second
+time.
+
+~~~
+java::oracle { 'jdk8' :
+  version => '8'
+  javaSE  => 'jdk'
+}
+~~~
+
+Calling java::oracle will not set JAVA_HOME or set a default JavaSE for the
+system.  You must be aware of which JavaSE is the default or set JAVA_HOME for
+your applications.
+
 ##Reference
 
 ###Classes
@@ -41,6 +67,7 @@ class { 'java':
 ####Public classes
 
 * `java`: Installs and manages the Java package.
+* `java::oracle`: Installs and manages the official Oracle Java packages.
 
 ####Private classes
 
@@ -65,7 +92,7 @@ Valid option: String. Default: OS and distribution dependent defaults on *deb sy
 
 #####`package`
 Specifies the name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module will install the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter will do nothing.  
-Valid option: String. Default: undef. 
+Valid option: String. Default: undef.
 
 #####`version`
 Sets the version of Java to install, if you want to ensure a particular version.  
@@ -84,7 +111,7 @@ The java module includes a few facts to describe the version of Java installed o
 
 ##Limitations
 
-This module cannot guarantee installation of Java versions that are not available on  platform repositories. 
+This module cannot guarantee installation of Java versions that are not available on  platform repositories.
 
 This module only manages a singular installation of Java, meaning it is not possible to manage e.g. OpenJDK 7, Oracle Java 7 and Oracle Java 8 in parallel on the same system.
 
@@ -101,7 +128,7 @@ OpenJDK is supported on:
 * Debian 6, 7
 * Ubuntu 10.04, 12.04, 14.04
 * Solaris 11
-* SLES 11 SP1, 12 
+* SLES 11 SP1, 12
 * OpenBSD 5.6, 5.7
 
 Sun Java is supported on:  
