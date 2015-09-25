@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'java::oracle', :type => :define do
     context 'On RedHat 64-bit' do
-      let(:facts) { {:kernel => 'Linux', :architecture => 'x86_64', :osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => '6.6'} }
+      let(:facts) { {:kernel => 'Linux', :architecture => 'x86_64', :osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => '6.6', :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)'} }
 
       context 'Oracle Java SE 6 JDK' do
       let(:params) { {:ensure => 'present', :version => '6', :javaSE => 'jdk'} }
@@ -49,7 +49,7 @@ describe 'java::oracle', :type => :define do
   end
 
   context 'On RedHat 32-bit' do
-    let(:facts) { {:kernel => 'Linux', :architecture => 'i386', :osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => '6.6'} }
+    let(:facts) { {:kernel => 'Linux', :architecture => 'i386', :osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => '6.6', :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)'} }
 
     context 'select Oracle Java SE 6 JDK on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '6', :javaSE => 'jdk'} }
@@ -101,30 +101,35 @@ describe 'java::oracle', :type => :define do
         :osfamily               => 'windows',
         :operatingsystem        => 'windows',
         :operatingsystemrelease => '8.1',
+        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14707
         :osfamily               => 'Darwin',
         :operatingsystem        => 'Darwin',
         :operatingsystemrelease => '13.3.0',
+        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14708
         :osfamily               => 'AIX',
         :operatingsystem        => 'AIX',
         :operatingsystemrelease => '7100-02-00-000',
+        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14708
         :osfamily               => 'AIX',
         :operatingsystem        => 'AIX',
         :operatingsystemrelease => '6100-07-04-1216',
+        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14708
         :osfamily               => 'AIX',
         :operatingsystem        => 'AIX',
         :operatingsystemrelease => '5300-12-01-1016',
+        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
     ].each do |facts|
       let(:facts) { facts }
