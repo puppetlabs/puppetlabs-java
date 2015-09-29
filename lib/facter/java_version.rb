@@ -29,3 +29,12 @@ Facter.add(:java_version) do
     end
   end
 end
+Facter.add(:java_version) do
+  confine :operatingsystem => 'Darwin'
+  has_weight 100
+  setcode do
+    unless /Unable to find any JVMs matching version/ =~ Facter::Util::Resolution.exec('/usr/libexec/java_home --failfast 2>&1')
+      Facter::Util::Resolution.exec('java -Xmx8m -version 2>&1').lines.first.split(/"/)[1].strip
+    end
+  end
+end
