@@ -20,7 +20,7 @@ OpenJDK 64-Bit Server VM (build 24.71-b01, mixed mode)
           EOS
           Facter::Util::Resolution.expects(:which).with("java").returns('/usr/local/jdk-1.7.0/jre/bin/java')
           Facter::Util::Resolution.expects(:exec).with("java -Xmx8m -version 2>&1").returns(java_version_output)
-          Facter.value(:java_version).should == "1.7.0_71"
+          expect(Facter.value(:java_version)).to eq("1.7.0_71")
         end
       end
       context 'on other systems' do
@@ -35,7 +35,7 @@ Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
           EOS
           Facter::Util::Resolution.expects(:exec).with("java -Xmx8m -version 2>&1").returns(java_version_output)
-          Facter.value(:java_version).should == "1.7.0_71"
+          expect(Facter.value(:java_version)).to eq("1.7.0_71")
         end
       end
     end
@@ -48,7 +48,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         let(:facts) { {:operatingsystem => 'OpenBSD'} }
         it do
           Facter::Util::Resolution.stubs(:exec)
-          Facter.value(:java_version).should be_nil
+          expect(Facter.value(:java_version)).to be_nil
         end
       end
       context 'on other systems' do
@@ -58,7 +58,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         let(:facts) { {:operatingsystem => 'MyOS'} }
         it do
           Facter::Util::Resolution.expects(:which).at_least(1).with("java").returns(false)
-          Facter.value(:java_version).should be_nil
+          expect(Facter.value(:java_version)).to be_nil
         end
       end
     end
