@@ -7,7 +7,7 @@ describe Facter::Util::Fact do
 
   describe "java_version" do
     context 'returns java version when java present' do
-      context 'on OpenBSD' do
+      context 'on OpenBSD', :with_env => true do
         before do
           Facter.fact(:operatingsystem).stubs(:value).returns("OpenBSD")
         end
@@ -41,7 +41,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
     end
 
     context 'returns nil when java not present' do
-      context 'on OpenBSD' do
+      context 'on OpenBSD', :with_env => true do
         before do
           Facter.fact(:operatingsystem).stubs(:value).returns("OpenBSD")
         end
