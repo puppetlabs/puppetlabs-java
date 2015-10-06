@@ -1,3 +1,10 @@
+## 2015-10-07 - Supported Release 1.4.2
+### Summary
+This release fixes the fact to not trigger java every time on OS X when it is not available.
+
+#### Bugfixes
+- Causes java\_version fact to not run `java` when java is not installed on OS X
+
 ## 2015-07-16 - Supported Release 1.4.1
 ### Summary
 This release updates the metadata for the upcoming release of PE and update params for OEL to match metadata
