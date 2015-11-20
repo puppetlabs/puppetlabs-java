@@ -1,3 +1,8 @@
+## Supported Release 1.4.3
+###Summary
+
+Small release for support of newer PE versions. This increments the version of PE in the metadata.json file.
+
 ## 2015-10-07 - Supported Release 1.4.2
 ### Summary
 This release fixes the fact to not trigger java every time on OS X when it is not available.
