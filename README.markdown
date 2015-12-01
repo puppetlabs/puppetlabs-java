@@ -79,6 +79,8 @@ The java module includes a few facts to describe the version of Java installed o
 * `java_major_version`: The major version of Java.
 * `java_patch_level`: The patch level of Java.
 * `java_version`: The full Java version string.
+* `java_default_home`: The absolute path to the java system home directory (only available on Linux). For instance, the `java` executable's path would be `${::java_default_home}/jre/bin/java`. This is slightly different from the "standard" JAVA_HOME environment variable.
+* `java_libjvm_path`: The absolute path to the directory containing the shared library `libjvm.so` (only available on Linux). Useful for setting `LD_LIBRARY_PATH` or configuring the dynamic linker.
 
 **Note:** The facts return `nil` if Java is not installed on the system.
 
