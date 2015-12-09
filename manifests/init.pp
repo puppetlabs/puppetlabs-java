@@ -52,7 +52,6 @@ class java(
     $default_package_name     = $java::params::java[$distribution]['package']
     $default_alternative      = $java::params::java[$distribution]['alternative']
     $default_alternative_path = $java::params::java[$distribution]['alternative_path']
-    $java_home                = $java::params::java[$distribution]['java_home']
   } else {
     fail("Java distribution ${distribution} is not supported.")
   }
