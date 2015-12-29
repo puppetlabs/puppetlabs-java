@@ -145,6 +145,12 @@ class java::params {
         'jre' => { 'package' => 'jre', },
       }
     }
+    'FreeBSD': {
+      $java = {
+        'jdk' => { 'package' => 'openjdk', },
+        'jre' => { 'package' => 'openjdk-jre', },
+      }
+    }
     'Solaris': {
       $java = {
         'jdk' => { 'package' => 'developer/java/jdk-7', },
