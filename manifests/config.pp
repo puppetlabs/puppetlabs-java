@@ -30,6 +30,26 @@ class java::config ( ) {
         }
       }
     }
+    'Linux', 'Amazon': {
+      if $java::use_java_alternative != undef and $java::use_java_alternative_path != undef {
+        # The standard packages install alternatives, custom packages do not
+        # For the stanard packages java::params needs these added.
+        if $java::use_java_package_name != $java::default_package_name {
+          exec { 'create-java-alternatives':
+            path    => '/usr/bin:/usr/sbin:/bin:/sbin',
+            command => "update-alternatives --install /usr/bin/java java ${$java::use_java_alternative_path} 20000" ,
+            unless  => "update-alternatives --display java | grep -q ${$java::use_java_alternative_path}",
+            before  => Exec['update-java-alternatives']
+          }
+        }
+
+        exec { 'update-java-alternatives':
+          path    => '/usr/bin:/usr/sbin',
+          command => "update-alternatives --set java ${$java::use_java_alternative_path}" ,
+          unless  => "test /etc/alternatives/java -ef '${java::use_java_alternative_path}'",
+        }
+      }
+    }
     default: {
       # Do nothing.
     }
