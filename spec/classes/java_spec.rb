@@ -47,6 +47,13 @@ describe 'java', :type => :class do
     let(:params) { { 'distribution' => 'jre' } }
     it { should contain_package('java').with_name('java-1.8.0-openjdk') }
   end
+  
+  context 'select passed value for Fedora 21 with yum option' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '21'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    let(:params) { { 'package_options'  => ['--skip-broken'] } }
+    it { should contain_package('java') }
+  end
 
   context 'select passed value for Centos 5.3' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '5.3'} }
