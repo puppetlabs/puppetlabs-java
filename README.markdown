@@ -79,6 +79,8 @@ The java module includes a few facts to describe the version of Java installed o
 * `java_major_version`: The major version of Java.
 * `java_patch_level`: The patch level of Java.
 * `java_version`: The full Java version string.
+* `java_default_home`: The absolute path to the java system home directory (only available on Linux). For instance, the `java` executable's path would be `${::java_default_home}/jre/bin/java`. This is slightly different from the "standard" JAVA_HOME environment variable.
+* `java_libjvm_path`: The absolute path to the directory containing the shared library `libjvm.so` (only available on Linux). Useful for setting `LD_LIBRARY_PATH` or configuring the dynamic linker.
 
 **Note:** The facts return `nil` if Java is not installed on the system.
 
@@ -113,6 +115,16 @@ OpenBSD packages install Java JRE/JDK in a unique directory structure, not linki
 the binaries to a standard directory. Because of that, the path to this location
 is hardcoded in the java_version fact. Whenever a Java upgrade to a newer
 version/path will be done on OpenBSD, it has to be adapted there.
+
+### A note to FreeBSD
+By default on FreeBSD Puppet < 4.0, you will see an error as `pkgng` is not the default provider. To fix this, you can install the [zleslie/pkgng module](https://forge.puppetlabs.com/zleslie/pkgng) and set it as the default package provider like so:
+
+```puppet
+Package {
+  provider => 'pkgng',
+}
+
+On Puppet > 4.0 (ie. using the sysutils/puppet4 port), `pkgng` is included within Puppet and it's the default package provider.
 
 ##Development
 
