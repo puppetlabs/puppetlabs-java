@@ -12,6 +12,11 @@ describe 'java', :type => :class do
     it { should contain_package('java').with_name('java-1.7.0-openjdk-devel') }
   end
 
+  context 'select openjdk for Centos 7.1.1503' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '7.1.1503'} }
+    it { should contain_package('java').with_name('java-1.8.0-openjdk-devel') }
+  end
+
   context 'select openjdk for Centos 6.2' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '6.2'} }
     it { should contain_package('java').with_name('java-1.6.0-openjdk-devel') }
