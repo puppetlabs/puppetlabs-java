@@ -24,9 +24,13 @@ class java::params {
             $jdk_package = 'java-1.6.0-openjdk-devel'
             $jre_package = 'java-1.6.0-openjdk'
           }
-          else {
+          elsif (versioncmp($::operatingsystemrelease, '7.1') < 0) {
             $jdk_package = 'java-1.7.0-openjdk-devel'
             $jre_package = 'java-1.7.0-openjdk'
+          }
+          else {
+            $jdk_package = 'java-1.8.0-openjdk-devel'
+            $jre_package = 'java-1.8.0-openjdk'
           }
         }
         'Fedora': {
