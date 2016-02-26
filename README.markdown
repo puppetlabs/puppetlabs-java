@@ -34,6 +34,22 @@ class { 'java':
 }
 ~~~
 
+The defined type `java::oracle` installs one or more versions of Oracle Java SE. `java::oracle` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).  By using `java::oracle` you agree to Oracle's licensing terms for Java SE.
+
+~~~
+java::oracle { 'jdk6' :
+  ensure  => 'present',
+  version => '6',
+  java_se => 'jdk',
+}
+
+java::oracle { 'jdk8' :
+  ensure  => 'present',
+  version => '8',
+  java_se => 'jdk',
+}
+~~~
+
 ##Reference
 
 ###Classes
@@ -47,6 +63,7 @@ class { 'java':
 * `java::config`: Configures the Java alternatives.
 
 * `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems.
+
 
 ####Parameters
 The following parameters are available in `java`:
@@ -71,6 +88,25 @@ Valid option: String. Default: undef.
 Sets the version of Java to install, if you want to ensure a particular version.  
 Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9a-zA-Z:-]+$/`. Default: 'present'.
 
+####Public defined types
+
+* `java::oracle`: Installs specified version of Oracle Java SE.  You may install multiple versions of Oracle Jave SE on the same node using this defined type.
+
+####Parameters
+
+The following parameters are available in `java::oracle`:
+
+######`version`
+Version of Java Standard Edition (SE) to install. 6, 7 or 8.
+
+#####`java_se`
+Type of Java SE to install, jdk or jre.
+
+#####`ensure`
+Install or remove the package.
+
+#####`oracle_url`
+Official Oracle URL to download the binaries from.
 
 ###Facts
 
@@ -109,6 +145,9 @@ OpenJDK is supported on:
 Sun Java is supported on:  
 
 * Debian 6
+
+Oracle Java is supported on:
+* CentOS 6
 
 ### A note to OpenBSD
 OpenBSD packages install Java JRE/JDK in a unique directory structure, not linking
