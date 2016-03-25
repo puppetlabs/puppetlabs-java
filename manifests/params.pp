@@ -166,8 +166,13 @@ class java::params {
         'SLES': {
           case $::operatingsystemmajrelease{
             default: {
-              $jdk_package = 'java-1_6_0-ibm-devel'
-              $jre_package = 'java-1_6_0-ibm'
+              if (versioncmp($::operatingsystemrelease, '11.4') < 0) {
+                $jdk_package = 'java-1_6_0-ibm-devel'
+                $jre_package = 'java-1_6_0-ibm'
+              } else {
+                $jdk_package = 'java-1_7_0-ibm-devel'
+                $jre_package = 'java-1_7_0-ibm'
+              }
             }
             '12': {
               $jdk_package = 'java-1_7_0-openjdk-devel'

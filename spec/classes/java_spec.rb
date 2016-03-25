@@ -170,6 +170,21 @@ describe 'java', :type => :class do
     it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
   end
 
+  context 'select default for SLES 11.3' do
+    let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '11.3'}}
+    it { should contain_package('java').with_name('java-1_6_0-ibm-devel')}
+  end
+
+  context 'select default for SLES 11.4' do
+    let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '11.4'}}
+    it { should contain_package('java').with_name('java-1_7_0-ibm-devel')}
+  end
+
+  context 'select default for SLES 12.1' do
+    let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '12.1', :operatingsystemmajrelease => '12'}}
+    it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
+  end
+
   context 'select jdk for OpenBSD' do
     let(:facts) { {:osfamily => 'OpenBSD'} }
     it { should contain_package('java').with_name('jdk') }
