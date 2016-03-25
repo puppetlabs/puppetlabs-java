@@ -164,20 +164,15 @@ class java::params {
     'Suse': {
       case $::operatingsystem {
         'SLES': {
-          case $::operatingsystemmajrelease{
-            default: {
-              if (versioncmp($::operatingsystemrelease, '11.4') < 0) {
-                $jdk_package = 'java-1_6_0-ibm-devel'
-                $jre_package = 'java-1_6_0-ibm'
-              } else {
-                $jdk_package = 'java-1_7_0-ibm-devel'
-                $jre_package = 'java-1_7_0-ibm'
-              }
-            }
-            '12': {
-              $jdk_package = 'java-1_7_0-openjdk-devel'
-              $jre_package = 'java-1_7_0-openjdk'
-            }
+          if (versioncmp($::operatingsystemrelease, '12') >= 0) {
+            $jdk_package = 'java-1_7_0-openjdk-devel'
+            $jre_package = 'java-1_7_0-openjdk'
+          } elsif (versioncmp($::operatingsystemrelease, '11.4') >= 0) {
+            $jdk_package = 'java-1_7_0-ibm-devel'
+            $jre_package = 'java-1_7_0-ibm'
+          } else {
+            $jdk_package = 'java-1_6_0-ibm-devel'
+            $jre_package = 'java-1_6_0-ibm'
           }
         }
         'OpenSuSE': {
