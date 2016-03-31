@@ -1,3 +1,23 @@
+## Supported Release 1.5.0
+### Summary
+
+A release which has several support additions for different OSes. Also a couple of additional features and a few bug fixes.
+
+#### Features
+- Added Ubuntu 15.10 compatibility.
+- Addition of two facts: java_libjvm_path and java_default_home.
+- Added support for oracle-j2re1.8 and oracle-j2sdk1.8.
+- Adds FreeBSD Support.
+- Exposed the Puppet package resources install_options parameter via a new class parameter named package_options.
+- Debian 8 support.
+- Add support for official Oracle Java SE jdk and jre packages for CentOS.
+- Use java 8 as the default on RHEL > 7.0.
+
+#### Bugfixes
+- Updated fixtures.yml to use git instead of http for stdlib.
+- Updates to current msync configs.
+- Small README updates and syntax error fixes.
+
 ## Supported Release 1.4.3
 ###Summary
 
