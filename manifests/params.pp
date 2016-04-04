@@ -124,7 +124,7 @@ class java::params {
               },
           }
         }
-        'vivid', 'wily': {
+        'vivid', 'wily', 'xenial': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
