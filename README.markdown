@@ -34,6 +34,14 @@ class { 'java':
 }
 ~~~
 
+Example installing the latest patch version of java 8 on Centos 
+
+~~~
+class { 'java' :
+  package => 'java-1.8.0-openjdk-devel',
+}
+~~~
+
 The defined type `java::oracle` installs one or more versions of Oracle Java SE. `java::oracle` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).  By using `java::oracle` you agree to Oracle's licensing terms for Java SE.
 
 ~~~
