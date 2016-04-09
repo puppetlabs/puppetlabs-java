@@ -170,6 +170,7 @@ By default on FreeBSD Puppet < 4.0, you will see an error as `pkgng` is not the 
 Package {
   provider => 'pkgng',
 }
+```
 
 On Puppet > 4.0 (ie. using the sysutils/puppet4 port), `pkgng` is included within Puppet and it's the default package provider.
 
