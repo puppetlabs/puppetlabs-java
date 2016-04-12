@@ -54,6 +54,19 @@ class java::params {
         'jre' => { 'package' => $jre_package, },
       }
     }
+    'Linux': {
+      case $::operatingsystem {
+        'Linux', 'Amazon': {
+          $jdk_package = 'java-1.7.0-openjdk-devel'
+          $jre_package = 'java-1.7.0-openjdk'
+        }
+        default: { fail("unsupported os ${::operatingsystem}") }
+      }
+      $java = {
+        'jdk' => { 'package' => $jdk_package, },
+        'jre' => { 'package' => $jre_package, },
+      }
+    }
     'Debian': {
       case $::lsbdistcodename {
         'lenny', 'squeeze', 'lucid', 'natty': {
