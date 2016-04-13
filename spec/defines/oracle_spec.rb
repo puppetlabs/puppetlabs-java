@@ -98,38 +98,43 @@ describe 'java::oracle', :type => :define do
     [
       {
         # C14706
+        :kernel                 => 'windows',
         :osfamily               => 'windows',
         :operatingsystem        => 'windows',
         :operatingsystemrelease => '8.1',
-        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14707
+        :kernel                 => 'Darwin',
         :osfamily               => 'Darwin',
         :operatingsystem        => 'Darwin',
         :operatingsystemrelease => '13.3.0',
-        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14708
+        :kernel                 => 'AIX',
         :osfamily               => 'AIX',
         :operatingsystem        => 'AIX',
         :operatingsystemrelease => '7100-02-00-000',
-        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14708
+        :kernel                 => 'AIX',
         :osfamily               => 'AIX',
         :operatingsystem        => 'AIX',
         :operatingsystemrelease => '6100-07-04-1216',
-        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
       {
         # C14708
+        :kernel                 => 'AIX',
         :osfamily               => 'AIX',
         :operatingsystem        => 'AIX',
         :operatingsystemrelease => '5300-12-01-1016',
-        :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
       },
     ].each do |facts|
       let(:facts) { facts }
