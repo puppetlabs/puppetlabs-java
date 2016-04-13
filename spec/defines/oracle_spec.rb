@@ -7,43 +7,43 @@ describe 'java::oracle', :type => :define do
       context 'Oracle Java SE 6 JDK' do
       let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jdk'} }
       let :title do 'jdk6' end
-        it { should contain_archive('/tmp/jdk-6u45-linux-x64-rpm.bin')}
-        it { should contain_exec('Install Oracle java_se jdk 6').with_command('sh /tmp/jdk-6u45-linux-x64-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jdk*.rpm') }
+        it { is_expected.to contain_archive('/tmp/jdk-6u45-linux-x64-rpm.bin')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('sh /tmp/jdk-6u45-linux-x64-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jdk*.rpm') }
       end
 
       context 'Oracle Java SE 7 JDK' do
         let(:params) { {:ensure => 'present', :version => '7', :java_se => 'jdk'} }
         let :title do 'jdk7' end
-          it { should contain_archive('/tmp/jdk-7u80-linux-x64.rpm')}
-          it { should contain_exec('Install Oracle java_se jdk 7').with_command('rpm --force -iv /tmp/jdk-7u80-linux-x64.rpm') }
+          it { is_expected.to contain_archive('/tmp/jdk-7u80-linux-x64.rpm')}
+          it { is_expected.to contain_exec('Install Oracle java_se jdk 7').with_command('rpm --force -iv /tmp/jdk-7u80-linux-x64.rpm') }
       end
 
     context 'Oracle Java SE 8 JDK' do
       let(:params) { {:ensure => 'present', :version => '8', :java_se => 'jdk'} }
       let :title do 'jdk8' end
-        it { should contain_archive('/tmp/jdk-8u51-linux-x64.rpm')}
-        it { should contain_exec('Install Oracle java_se jdk 8').with_command('rpm --force -iv /tmp/jdk-8u51-linux-x64.rpm') }
+        it { is_expected.to contain_archive('/tmp/jdk-8u51-linux-x64.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 8').with_command('rpm --force -iv /tmp/jdk-8u51-linux-x64.rpm') }
     end
 
     context 'Oracle Java SE 6 JRE' do
       let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jre'} }
       let :title do 'jre6' end
-        it { should contain_archive('/tmp/jre-6u45-linux-x64-rpm.bin')}
-        it { should contain_exec('Install Oracle java_se jre 6').with_command('sh /tmp/jre-6u45-linux-x64-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jre*.rpm') }
+        it { is_expected.to contain_archive('/tmp/jre-6u45-linux-x64-rpm.bin')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 6').with_command('sh /tmp/jre-6u45-linux-x64-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jre*.rpm') }
     end
 
     context 'Oracle Java SE 7 JRE' do
       let(:params) { {:ensure => 'present', :version => '7', :java_se => 'jre'} }
       let :title do 'jre7' end
-        it { should contain_archive('/tmp/jre-7u80-linux-x64.rpm')}
-        it { should contain_exec('Install Oracle java_se jre 7').with_command('rpm --force -iv /tmp/jre-7u80-linux-x64.rpm') }
+        it { is_expected.to contain_archive('/tmp/jre-7u80-linux-x64.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 7').with_command('rpm --force -iv /tmp/jre-7u80-linux-x64.rpm') }
     end
 
     context 'select Oracle Java SE 8 JRE' do
       let(:params) { {:ensure => 'present', :version => '8', :java_se => 'jre'} }
       let :title do 'jre8' end
-        it { should contain_archive('/tmp/jre-8u51-linux-x64.rpm')}
-        it { should contain_exec('Install Oracle java_se jre 8').with_command('rpm --force -iv /tmp/jre-8u51-linux-x64.rpm') }
+        it { is_expected.to contain_archive('/tmp/jre-8u51-linux-x64.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 8').with_command('rpm --force -iv /tmp/jre-8u51-linux-x64.rpm') }
     end
 
   end
@@ -54,43 +54,43 @@ describe 'java::oracle', :type => :define do
     context 'select Oracle Java SE 6 JDK on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jdk'} }
       let :title do 'jdk6' end
-        it { should contain_archive('/tmp/jdk-6u45-linux-i586-rpm.bin')}
-        it { should contain_exec('Install Oracle java_se jdk 6').with_command('sh /tmp/jdk-6u45-linux-i586-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jdk*.rpm') }
+        it { is_expected.to contain_archive('/tmp/jdk-6u45-linux-i586-rpm.bin')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('sh /tmp/jdk-6u45-linux-i586-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jdk*.rpm') }
     end
 
     context 'select Oracle Java SE 7 JDK on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '7', :java_se => 'jdk'} }
       let :title do 'jdk7' end
-        it { should contain_archive('/tmp/jdk-7u80-linux-i586.rpm')}
-        it { should contain_exec('Install Oracle java_se jdk 7').with_command('rpm --force -iv /tmp/jdk-7u80-linux-i586.rpm') }
+        it { is_expected.to contain_archive('/tmp/jdk-7u80-linux-i586.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 7').with_command('rpm --force -iv /tmp/jdk-7u80-linux-i586.rpm') }
     end
 
     context 'select Oracle Java SE 8 JDK on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '8', :java_se => 'jdk'} }
       let :title do 'jdk8' end
-        it { should contain_archive('/tmp/jdk-8u51-linux-i586.rpm')}
-        it { should contain_exec('Install Oracle java_se jdk 8').with_command('rpm --force -iv /tmp/jdk-8u51-linux-i586.rpm') }
+        it { is_expected.to contain_archive('/tmp/jdk-8u51-linux-i586.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 8').with_command('rpm --force -iv /tmp/jdk-8u51-linux-i586.rpm') }
     end
 
     context 'select Oracle Java SE 6 JRE on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jre'} }
       let :title do 'jdk6' end
-        it { should contain_archive('/tmp/jre-6u45-linux-i586-rpm.bin')}
-        it { should contain_exec('Install Oracle java_se jre 6').with_command('sh /tmp/jre-6u45-linux-i586-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jre*.rpm') }
+        it { is_expected.to contain_archive('/tmp/jre-6u45-linux-i586-rpm.bin')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 6').with_command('sh /tmp/jre-6u45-linux-i586-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jre*.rpm') }
     end
 
     context 'select Oracle Java SE 7 JRE on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '7', :java_se => 'jre'} }
       let :title do 'jdk7' end
-        it { should contain_archive('/tmp/jre-7u80-linux-i586.rpm')}
-        it { should contain_exec('Install Oracle java_se jre 7').with_command('rpm --force -iv /tmp/jre-7u80-linux-i586.rpm') }
+        it { is_expected.to contain_archive('/tmp/jre-7u80-linux-i586.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 7').with_command('rpm --force -iv /tmp/jre-7u80-linux-i586.rpm') }
     end
 
     context 'select Oracle Java SE 8 JRE on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '8', :java_se => 'jre'} }
       let :title do 'jdk8' end
-        it { should contain_archive('/tmp/jre-8u51-linux-i586.rpm')}
-        it { should contain_exec('Install Oracle java_se jre 8').with_command('rpm --force -iv /tmp/jre-8u51-linux-i586.rpm') }
+        it { is_expected.to contain_archive('/tmp/jre-8u51-linux-i586.rpm')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 8').with_command('rpm --force -iv /tmp/jre-8u51-linux-i586.rpm') }
     end
   end
 
@@ -134,7 +134,7 @@ describe 'java::oracle', :type => :define do
     ].each do |facts|
       let(:facts) { facts }
       let :title do 'jdk' end
-      it "should fail on #{facts[:operatingsystem]} #{facts[:operatingsystemrelease]}" do
+      it "is_expected.to fail on #{facts[:operatingsystem]} #{facts[:operatingsystemrelease]}" do
         expect { catalogue }.to raise_error Puppet::Error, /unsupported platform/
       end
     end

@@ -36,7 +36,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
           EOS
           Facter::Util::Resolution.expects(:exec).with("/usr/libexec/java_home --failfast 2>&1").returns("/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home")
           Facter::Util::Resolution.expects(:exec).with("java -Xmx8m -version 2>&1").returns(java_version_output)
-          Facter.value(:java_version).should == "1.7.0_71"
+          expect(Facter.value(:java_version)).to eql "1.7.0_71"
         end
       end
       context 'on other systems' do
@@ -74,7 +74,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         let(:facts) { {:operatingsystem => 'Darwin'} }
         it do
           Facter::Util::Resolution.expects(:exec).at_least(1).with("/usr/libexec/java_home --failfast 2>&1").returns('Unable to find any JVMs matching version "(null)".')
-          Facter.value(:java_version).should be_nil
+          expect(Facter.value(:java_version)).to be_nil
         end
       end
       context 'on other systems' do
