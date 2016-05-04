@@ -60,8 +60,8 @@
 # [*install_command*]
 # Installation command used to install Oracle java_se. Installation commands
 # differ by package_type. 'bin' types are installed via shell command. 'rpmbin'
-# types have the rpms extracted and then foricibly installed. 'rpm' types are
-# foricibly installed.
+# types have the rpms extracted and then forcibly installed. 'rpm' types are
+# forcibly installed.
 #
 # [*url*]
 # Full URL, including oracle_url, release_major, release_minor and package_name, to
