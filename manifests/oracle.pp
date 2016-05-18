@@ -25,13 +25,13 @@
 # [*oracle_url*]
 # Official Oracle URL to download binaries from.
 #
-# Variables
 # [*release_major*]
 # Major version release number for java_se. Used to construct download URL.
 #
 # [*release_minor*]
 # Minor version release number for java_se. Used to construct download URL.
 #
+# Variables
 # [*install_path*]
 # Base install path for specified version of java_se. Used to determine if java_se
 # has already been installed.
@@ -71,10 +71,12 @@
 # mike@marseglia.org
 #
 define java::oracle (
-  $ensure       = 'present',
-  $version      = '8',
-  $java_se      = 'jdk',
-  $oracle_url   = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $ensure        = 'present',
+  $version       = '8',
+  $java_se       = 'jdk',
+  $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $release_major = undef,
+  $release_minor = undef,
 ) {
 
   # archive module is used to download the java package
@@ -90,24 +92,24 @@ define java::oracle (
   # determine oracle Java major and minor version, and installation path
   case $version {
     '6' : {
-      $release_major = '6u45'
-      $release_minor = 'b06'
-      $install_path = "${java_se}1.6.0_45"
+      $_release_major = pick($release_major, '6u45')
+      $_release_minor = pick($release_minor, 'b06')
+      $install_path   = "${java_se}1.${_release_major[0]}.0_${_release_major[2,3]}"
     }
     '7' : {
-      $release_major = '7u80'
-      $release_minor = 'b15'
-      $install_path = "${java_se}1.7.0_80"
+      $_release_major = pick($release_major, '7u80')
+      $_release_minor = pick($release_minor, 'b15')
+      $install_path   = "${java_se}1.${_release_major[0]}.0_${_release_major[2,3]}"
     }
     '8' : {
-      $release_major = '8u51'
-      $release_minor = 'b16'
-      $install_path = "${java_se}1.8.0_51"
+      $_release_major = pick($release_major, '8u51')
+      $_release_minor = pick($release_minor, 'b16')
+      $install_path   = "${java_se}1.${_release_major[0]}.0_${_release_major[2,3]}"
     }
     default : {
-      $release_major = '8u51'
-      $release_minor = 'b16'
-      $install_path = "${java_se}1.8.0_51"
+      $_release_major = pick($release_major, '8u51')
+      $_release_minor = pick($release_minor, 'b16')
+      $install_path   = "${java_se}1.${_release_major[0]}.0_${_release_major[2,3]}"
     }
   }
 
@@ -153,16 +155,16 @@ define java::oracle (
   # package name to download from Oracle's website
   case $package_type {
     'bin' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.bin"
+      $package_name = "${java_se}-${_release_major}-${os}-${arch}.bin"
     }
     'rpmbin' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}-rpm.bin"
+      $package_name = "${java_se}-${_release_major}-${os}-${arch}-rpm.bin"
     }
     'rpm' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
+      $package_name = "${java_se}-${_release_major}-${os}-${arch}.rpm"
     }
     default : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
+      $package_name = "${java_se}-${_release_major}-${os}-${arch}.rpm"
     }
   }
 
@@ -189,7 +191,7 @@ define java::oracle (
     'present' : {
       archive { $destination :
         ensure  => present,
-        source  => "${oracle_url}${release_major}-${release_minor}/${package_name}",
+        source  => "${oracle_url}${_release_major}-${_release_minor}/${package_name}",
         cleanup => false,
         cookie  => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
       }->
