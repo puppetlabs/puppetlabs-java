@@ -188,10 +188,11 @@ define java::oracle (
   case $ensure {
     'present' : {
       archive { $destination :
-        ensure  => present,
-        source  => "${oracle_url}${release_major}-${release_minor}/${package_name}",
-        cleanup => false,
-        cookie  => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
+        ensure       => present,
+        source       => "${oracle_url}${release_major}-${release_minor}/${package_name}",
+        cleanup      => false,
+        extract_path => '/tmp',
+        cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
       }->
       case $::kernel {
         'Linux' : {
