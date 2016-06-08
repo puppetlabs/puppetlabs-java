@@ -1,3 +1,21 @@
+## Supported Release 1.6.0
+### Summary
+
+Addition of a new supported OS, along with several other features and bugfixes.
+
+#### Features
+- Ubuntu 16.04 support.
+- Addition example for installing Java 8.
+- Update to newest modulesync_configs.
+- Addition of RedHat for Oracle Java.
+
+#### Bugfixes
+- Custom archive type now given extract_path.
+- Fix for rspec deprectation warnings.
+- Typo fixes for readme.
+- Fixed tests to run under strict variables.
+- Updated Java package for SLES 11.4.
+
 ## Supported Release 1.5.0
 ### Summary
 
