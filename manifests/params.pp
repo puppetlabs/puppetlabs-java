@@ -168,8 +168,8 @@ class java::params {
             $jdk_package = 'java-1_7_0-openjdk-devel'
             $jre_package = 'java-1_7_0-openjdk'
           } elsif (versioncmp($::operatingsystemrelease, '11.4') >= 0) {
-            $jdk_package = 'java-1_7_0-ibm-devel'
-            $jre_package = 'java-1_7_0-ibm'
+            $jdk_package = 'java-1_7_1-ibm-devel'
+            $jre_package = 'java-1_7_1-ibm'
           } else {
             $jdk_package = 'java-1_6_0-ibm-devel'
             $jre_package = 'java-1_6_0-ibm'

@@ -177,7 +177,7 @@ describe 'java', :type => :class do
 
   context 'select default for SLES 11.4' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '11.4'}}
-    it { should contain_package('java').with_name('java-1_7_0-ibm-devel')}
+    it { should contain_package('java').with_name('java-1_7_1-ibm-devel')}
   end
 
   context 'select default for SLES 12.1' do
