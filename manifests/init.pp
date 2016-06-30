@@ -52,7 +52,7 @@ class java(
   include java::params
 
   validate_re($version, 'present|installed|latest|^[.+_0-9a-zA-Z:~-]+$')
-  
+
   if $package_options != undef {
     validate_array($package_options)
   }
