@@ -115,7 +115,7 @@ define java::oracle (
   case $::kernel {
     'Linux' : {
       case $::operatingsystem {
-        'CentOS', 'RedHat' : {
+        'CentOS', 'RedHat', 'OracleLinux' : {
           # Oracle Java 6 comes in a special rpmbin format
           if $version == '6' {
             $package_type = 'rpmbin'
