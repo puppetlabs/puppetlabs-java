@@ -133,6 +133,12 @@ Install or remove the package.
 #####`oracle_url`
 Official Oracle URL to download the binaries from.
 
+#####`proxy_server`
+Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
+
+#####`proxy_type`
+Proxy server type (none|http|https|ftp). (passed to archive)
+
 ###Facts
 
 The java module includes a few facts to describe the version of Java installed on the system:
