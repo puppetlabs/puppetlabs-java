@@ -9,6 +9,11 @@ class java::config ( ) {
           unless  => "test /etc/alternatives/java -ef '${java::use_java_alternative_path}'",
         }
       }
+      if $java::use_java_home != undef {
+        file { '/etc/environment':
+          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        }
+      }
     }
     'RedHat': {
       if $java::use_java_alternative != undef and $java::use_java_alternative_path != undef {
@@ -27,6 +32,39 @@ class java::config ( ) {
           path    => '/usr/bin:/usr/sbin',
           command => "alternatives --set java ${$java::use_java_alternative_path}" ,
           unless  => "test /etc/alternatives/java -ef '${java::use_java_alternative_path}'",
+        }
+      }
+      if $java::use_java_home != undef {
+        file { '/etc/environment':
+          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        }
+      }
+    }
+    'OpenBSD': {
+      if $java::use_java_home != undef {
+        file { '/etc/environment':
+          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        }
+      }
+    }
+    'FreeBSD': {
+      if $java::use_java_home != undef {
+        file { '/etc/environment':
+          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        }
+      }
+    }
+    'Suse': {
+      if $java::use_java_home != undef {
+        file { '/etc/environment':
+          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        }
+      }
+    }
+    'Solaris': {
+      if $java::use_java_home != undef {
+        file { '/etc/environment':
+          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
         }
       }
     }
