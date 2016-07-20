@@ -114,8 +114,8 @@ define java::oracle (
   # determine package type (exe/tar/rpm), destination directory based on OS
   case $::kernel {
     'Linux' : {
-      case $::operatingsystem {
-        'CentOS', 'RedHat' : {
+      case $::osfamily {
+        'RedHat' : {
           # Oracle Java 6 comes in a special rpmbin format
           if $version == '6' {
             $package_type = 'rpmbin'
