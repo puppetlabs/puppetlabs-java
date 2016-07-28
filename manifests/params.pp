@@ -55,6 +55,10 @@ class java::params {
       }
     }
     'Debian': {
+      $oracle_architecture = $::architecture ? {
+        'amd64' => 'x64',
+        default => $::architecture
+      }
       case $::lsbdistcodename {
         'lenny', 'squeeze', 'lucid', 'natty': {
           $java  = {
@@ -84,7 +88,7 @@ class java::params {
             },
           }
         }
-        'wheezy', 'jessie', 'precise','quantal','raring','saucy', 'trusty', 'utopic': {
+        'wheezy', 'jessie', 'precise', 'quantal', 'raring', 'saucy', 'trusty', 'utopic': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-7-jdk',
@@ -121,7 +125,19 @@ class java::params {
               'alternative'      => 'j2sdk1.8-oracle',
               'alternative_path' => '/usr/lib/jvm/j2sdk1.8-oracle/bin/java',
               'java_home'        => '/usr/lib/jvm/j2sdk1.8-oracle/',
-              },
+            },
+            'oracle-java8-jre' => {
+              'package'          => 'oracle-java8-jre',
+              'alternative'      => "jre-8-oracle-${oracle_architecture}",
+              'alternative_path' => "/usr/lib/jvm/jre-8-oracle-${oracle_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/jre-8-oracle-${oracle_architecture}/",
+            },
+            'oracle-java8-jdk' => {
+              'package'          => 'oracle-java8-jdk',
+              'alternative'      => "jdk-8-oracle-${oracle_architecture}",
+              'alternative_path' => "/usr/lib/jvm/jdk-8-oracle-${oracle_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/jdk-8-oracle-${oracle_architecture}/",
+            },
           }
         }
         'vivid', 'wily', 'xenial': {
