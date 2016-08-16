@@ -104,17 +104,27 @@ Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9
 
 The following parameters are available in `java::oracle`:
 
+#####`ensure`
+Install or remove the package.
+
 ######`version`
 Version of Java Standard Edition (SE) to install. 6, 7 or 8.
 
 #####`java_se`
 Type of Java SE to install, jdk or jre.
 
-#####`ensure`
-Install or remove the package.
-
 #####`oracle_url`
 Official Oracle URL to download the binaries from.
+
+#####`release_major`
+Major version release number for java_se. Used to construct download URL.
+
+#####`release_minor`
+Minor version release number for java_se. Used to construct download URL.
+
+#####`install_path`
+Base install path for specified version of java_se. Used to determine if java_se
+has already been installed.
 
 ###Facts
 
