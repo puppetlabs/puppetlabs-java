@@ -10,8 +10,10 @@ class java::config ( ) {
         }
       }
       if $java::use_java_home != undef {
-        file { '/etc/environment':
-          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        exec { 'java-home-environment':
+          path    => '/bin',
+          user    => 'root',
+          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
         }
       }
     }
@@ -35,36 +37,46 @@ class java::config ( ) {
         }
       }
       if $java::use_java_home != undef {
-        file { '/etc/environment':
-          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        exec { 'java-home-environment':
+          path    => '/bin',
+          user    => 'root',
+          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
         }
       }
     }
     'OpenBSD': {
       if $java::use_java_home != undef {
-        file { '/etc/environment':
-          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        exec { 'java-home-environment':
+          path    => '/bin',
+          user    => 'root',
+          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
         }
       }
     }
     'FreeBSD': {
       if $java::use_java_home != undef {
-        file { '/etc/environment':
-          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        exec { 'java-home-environment':
+          path    => '/bin',
+          user    => 'root',
+          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
         }
       }
     }
     'Suse': {
       if $java::use_java_home != undef {
-        file { '/etc/environment':
-          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        exec { 'java-home-environment':
+          path    => '/bin',
+          user    => 'root',
+          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
         }
       }
     }
     'Solaris': {
       if $java::use_java_home != undef {
-        file { '/etc/environment':
-          content => inline_template("JAVA_HOME=${$java::use_java_home}"),
+        exec { 'java-home-environment':
+          path    => '/bin',
+          user    => 'root',
+          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
         }
       }
     }
