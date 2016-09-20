@@ -14,6 +14,7 @@ class java::config ( ) {
           path    => '/bin',
           user    => 'root',
           command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
+          unless => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
         }
       }
     }
@@ -41,6 +42,7 @@ class java::config ( ) {
           path    => '/bin',
           user    => 'root',
           command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
+          unless => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
         }
       }
     }
@@ -50,6 +52,7 @@ class java::config ( ) {
           path    => '/bin',
           user    => 'root',
           command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
+          unless => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
         }
       }
     }
@@ -59,6 +62,7 @@ class java::config ( ) {
           path    => '/bin',
           user    => 'root',
           command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
+          unless => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
         }
       }
     }
@@ -68,6 +72,7 @@ class java::config ( ) {
           path    => '/bin',
           user    => 'root',
           command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
+          unless => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
         }
       }
     }
@@ -77,6 +82,7 @@ class java::config ( ) {
           path    => '/bin',
           user    => 'root',
           command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
+          unless => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
         }
       }
     }
