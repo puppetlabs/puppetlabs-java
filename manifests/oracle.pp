@@ -14,8 +14,17 @@
 #
 # Parameters
 # [*version*]
-# Version of Java to install
+# Version of Java to install, e.g. '7' or '8'. Default values for major and minor 
+# versions will be used.
 #
+# [*major_version*]
+# Major version which should be installed, e.g. '8u101'. Must be used together with
+# minor_version.
+#
+# [*minor_version*]
+# Minor version which should be installed, e.g. 'b12'. Must be used together with
+# major_version.
+# 
 # [*java_se*]
 # Type of Java Standard Edition to install, jdk or jre.
 #
@@ -71,10 +80,12 @@
 # mike@marseglia.org
 #
 define java::oracle (
-  $ensure       = 'present',
-  $version      = '8',
-  $java_se      = 'jdk',
-  $oracle_url   = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $ensure        = 'present',
+  $version       = '8',
+  $version_major = undef,
+  $version_minor = undef,
+  $java_se       = 'jdk',
+  $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
 ) {
 
   # archive module is used to download the java package
@@ -87,27 +98,38 @@ define java::oracle (
     fail('Java SE must be either jre or jdk.')
   }
 
-  # determine oracle Java major and minor version, and installation path
-  case $version {
-    '6' : {
-      $release_major = '6u45'
-      $release_minor = 'b06'
-      $install_path = "${java_se}1.6.0_45"
+  # determine Oracle Java major and minor version, and installation path
+  if $version_major and $version_minor {
+    $release_major = $version_major
+    $release_minor = $version_minor
+    if $release_major =~ /(\d+)u(\d+)/ {
+      $install_path = "${java_se}1.$1.0_$2"
+    } else {
+      $install_path = "${java_se}${release_major}${release_minor}"
     }
-    '7' : {
-      $release_major = '7u80'
-      $release_minor = 'b15'
-      $install_path = "${java_se}1.7.0_80"
-    }
-    '8' : {
-      $release_major = '8u51'
-      $release_minor = 'b16'
-      $install_path = "${java_se}1.8.0_51"
-    }
-    default : {
-      $release_major = '8u51'
-      $release_minor = 'b16'
-      $install_path = "${java_se}1.8.0_51"
+  } else {
+    # use default versions if no specific major and minor version parameters are provided
+    case $version {
+      '6' : {
+        $release_major = '6u45'
+        $release_minor = 'b06'
+        $install_path = "${java_se}1.6.0_45"
+      }
+      '7' : {
+        $release_major = '7u80'
+        $release_minor = 'b15'
+        $install_path = "${java_se}1.7.0_80"
+      }
+      '8' : {
+        $release_major = '8u51'
+        $release_minor = 'b16'
+        $install_path = "${java_se}1.8.0_51"
+      }
+      default : {
+        $release_major = '8u51'
+        $release_minor = 'b16'
+        $install_path = "${java_se}1.8.0_51"
+      }
     }
   }
 
