@@ -103,7 +103,7 @@ define java::oracle (
     $release_major = $version_major
     $release_minor = $version_minor
     if $release_major =~ /(\d+)u(\d+)/ {
-      $install_path = "${java_se}1.$1.0_$2"
+      $install_path = "${java_se}1.${1}.0_${2}"
     } else {
       $install_path = "${java_se}${release_major}${release_minor}"
     }
