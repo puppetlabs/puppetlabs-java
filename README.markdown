@@ -58,6 +58,17 @@ java::oracle { 'jdk8' :
 }
 ~~~
 
+To install a specific release of a Java version, e.g. 8u101-b13, provide both parameters `major_version` and `minor_version` as follows:
+
+~~~
+java::oracle { 'jdk8' :
+  ensure  => 'present',
+  major_version => '8u101',
+  minor_version => 'b13',
+  java_se => 'jdk',
+}
+~~~
+
 ##Reference
 
 ###Classes
@@ -104,8 +115,14 @@ Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9
 
 The following parameters are available in `java::oracle`:
 
-######`version`
+#####`version`
 Version of Java Standard Edition (SE) to install. 6, 7 or 8.
+
+#####`major_version`
+Major version of the Java Standard Edition (SE) to install. Must be used together with `minor_version`. For example, '8u101'.
+
+#####`minor_version`
+Minor version (or build version) of the Java Standard Edition (SE) to install. Must be used together with `major_version`. For example, 'b13'.
 
 #####`java_se`
 Type of Java SE to install, jdk or jre.
