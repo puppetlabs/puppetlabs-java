@@ -10,11 +10,10 @@ class java::config ( ) {
         }
       }
       if $java::use_java_home != undef {
-        exec { 'java-home-environment':
-          path    => '/bin',
-          user    => 'root',
-          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
-          unless  => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }
@@ -38,51 +37,46 @@ class java::config ( ) {
         }
       }
       if $java::use_java_home != undef {
-        exec { 'java-home-environment':
-          path    => '/bin',
-          user    => 'root',
-          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
-          unless  => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }
     'OpenBSD': {
       if $java::use_java_home != undef {
-        exec { 'java-home-environment':
-          path    => '/bin',
-          user    => 'root',
-          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
-          unless  => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }
     'FreeBSD': {
       if $java::use_java_home != undef {
-        exec { 'java-home-environment':
-          path    => '/bin',
-          user    => 'root',
-          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
-          unless  => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }
     'Suse': {
       if $java::use_java_home != undef {
-        exec { 'java-home-environment':
-          path    => '/bin',
-          user    => 'root',
-          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
-          unless  => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }
     'Solaris': {
       if $java::use_java_home != undef {
-        exec { 'java-home-environment':
-          path    => '/bin',
-          user    => 'root',
-          command => "echo JAVA_HOME=${$java::use_java_home} >> /etc/environment",
-          unless  => "grep -Fx \"JAVA_HOME=${$java::use_java_home}\" \"/etc/environment\"",
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }

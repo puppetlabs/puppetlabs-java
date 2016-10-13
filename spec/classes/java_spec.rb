@@ -5,19 +5,19 @@ describe 'java', :type => :class do
   context 'select openjdk for Centos 5.8' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '5.8', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('java-1.6.0-openjdk-devel') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-x86_64/') }
   end
 
   context 'select openjdk for Centos 6.3' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '6.3', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
   end
 
   context 'select openjdk for Centos 7.1.1503' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Centos', :operatingsystemrelease => '7.1.1503', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('java-1.8.0-openjdk-devel') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-x86_64/') }
   end
 
   context 'select openjdk for Centos 6.2' do
@@ -37,27 +37,27 @@ describe 'java', :type => :class do
   context 'select openjdk for Fedora 20' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '20', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
   end
 
   context 'select openjdk for Fedora 21' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '21', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('java-1.8.0-openjdk-devel') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-x86_64/') }
   end
 
   context 'select passed value for Fedora 20' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '20', :architecture => 'x86_64'} }
     let(:params) { { 'distribution' => 'jre', 'java_home' => '/usr/local/lib/jre/' } }
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/local/lib/jre/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/local/lib/jre/') }
   end
 
   context 'select passed value for Fedora 21' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Fedora', :operatingsystemrelease => '21', :architecture => 'x86_64'} }
     let(:params) { { 'distribution' => 'jre', 'java_home' => '/usr/local/lib/jre/' } }
     it { is_expected.to contain_package('java').with_name('java-1.8.0-openjdk') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/local/lib/jre/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/local/lib/jre/') }
   end
   
   context 'select passed value for Fedora 21 with yum option' do
@@ -84,7 +84,7 @@ describe 'java', :type => :class do
     let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Debian', :lsbdistcodename => 'wheezy', :operatingsystemrelease => '7.1', :architecture => 'amd64',} }
     it { is_expected.to contain_package('java').with_name('openjdk-7-jdk') }
     it { is_expected.to contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-1.7.0-openjdk-amd64 --jre') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/') }
   end
 
   context 'select Oracle JRE for Debian Wheezy' do
@@ -92,7 +92,7 @@ describe 'java', :type => :class do
     let(:params) { { 'distribution' => 'oracle-jre' } }
     it { is_expected.to contain_package('java').with_name('oracle-j2re1.7') }
     it { is_expected.to contain_exec('update-java-alternatives').with_command('update-java-alternatives --set j2re1.7-oracle --jre') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/j2re1.7-oracle/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/j2re1.7-oracle/') }
   end
 
   context 'select OpenJDK JRE for Debian Wheezy' do
@@ -100,7 +100,7 @@ describe 'java', :type => :class do
     let(:params) { { 'distribution' => 'jre' } }
     it { is_expected.to contain_package('java').with_name('openjdk-7-jre-headless') }
     it { is_expected.to contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-1.7.0-openjdk-amd64 --jre-headless') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/') }
   end
 
   context 'select default for Debian Squeeze' do
@@ -114,7 +114,7 @@ describe 'java', :type => :class do
     let(:params) { { 'distribution' => 'sun-jre', } }
     it { is_expected.to contain_package('java').with_name('sun-java6-jre') }
     it { is_expected.to contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-6-sun --jre') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-6-sun/jre/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-6-sun/jre/') }
   end
 
   context 'select OpenJDK JRE for Debian Squeeze' do
@@ -122,7 +122,7 @@ describe 'java', :type => :class do
     let(:params) { { 'distribution' => 'jre', } }
     it { is_expected.to contain_package('java').with_name('openjdk-6-jre-headless') }
     it { is_expected.to contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-6-openjdk-amd64 --jre-headless') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-6-openjdk/jre/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-6-openjdk/jre/') }
   end
 
   context 'select random alternative for Debian Wheezy' do
@@ -136,20 +136,20 @@ describe 'java', :type => :class do
     let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Ubuntu', :lsbdistcodename => 'vivid', :operatingsystemrelease => '15.04', :architecture => 'amd64',} }
     let(:params) { { 'distribution' => 'jdk' } }
     it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/') }
   end
 
   context 'select jre for Ubuntu Vivid (15.04)' do
     let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Ubuntu', :lsbdistcodename => 'vivid', :operatingsystemrelease => '15.04', :architecture => 'amd64',} }
     let(:params) { { 'distribution' => 'jre' } }
     it { is_expected.to contain_package('java').with_name('openjdk-8-jre-headless') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/') }
   end
 
   context 'select openjdk for Amazon Linux' do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Amazon', :operatingsystemrelease => '3.4.43-43.43.amzn1.x86_64', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
   end
 
   context 'select passed value for Amazon Linux' do
@@ -178,37 +178,37 @@ describe 'java', :type => :class do
     let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'Scientific', :operatingsystemrelease => '6.4', :architecture => 'x86_64'} }
     let(:params) { { 'distribution' => 'jre' } }
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
   end
 
   context 'select default for OpenSUSE 12.3' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'OpenSUSE', :operatingsystemrelease => '12.3', :architecture => 'x86_64'}}
     it { is_expected.to contain_package('java').with_name('java-1_7_0-openjdk-devel')}
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/') }
   end
 
   context 'select default for SLES 11.3' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '11.3', :architecture => 'x86_64'}}
     it { should contain_package('java').with_name('java-1_6_0-ibm-devel')}
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib64/jvm/java-1.6.0-ibm-1.6.0/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.6.0-ibm-1.6.0/') }
   end
 
   context 'select default for SLES 11.4' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '11.4', :architecture => 'x86_64'}}
     it { should contain_package('java').with_name('java-1_7_0-ibm-devel')}
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib64/jvm/java-1.7.0-ibm-1.7.0/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-ibm-1.7.0/') }
   end
 
   context 'select default for SLES 12.1' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '12.1', :operatingsystemmajrelease => '12', :architecture => 'x86_64'}}
     it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/') }
   end
 
   context 'select jdk for OpenBSD' do
     let(:facts) { {:osfamily => 'OpenBSD', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('jdk') }
-    it { is_expected.to contain_exec('java-home-environment').with_command('echo JAVA_HOME=/usr/local/jdk/ >> /etc/environment') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/local/jdk/') }
   end
 
   context 'select jre for OpenBSD' do
