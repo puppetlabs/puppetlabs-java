@@ -136,14 +136,17 @@ end
 
 describe 'failure cases' do
   # C14711
-  it 'should fail to install java with an incorrect version' do
-    pp = <<-EOS
+  # SLES 10 returns an exit code of 0 on zypper failure
+  unless fact('operatingsystem') == 'SLES' and fact('operatingsystemrelease') < '11'
+    it 'should fail to install java with an incorrect version' do
+      pp = <<-EOS
       class { 'java':
         version => '14.5',
       }
     EOS
 
     apply_manifest(pp, :expect_failures => true)
+    end
   end
 
   # C14712
