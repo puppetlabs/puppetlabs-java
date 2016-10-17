@@ -9,6 +9,13 @@ class java::config ( ) {
           unless  => "test /etc/alternatives/java -ef '${java::use_java_alternative_path}'",
         }
       }
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
+        }
+      }
     }
     'RedHat': {
       if $java::use_java_alternative != undef and $java::use_java_alternative_path != undef {
@@ -27,6 +34,49 @@ class java::config ( ) {
           path    => '/usr/bin:/usr/sbin',
           command => "alternatives --set java ${$java::use_java_alternative_path}" ,
           unless  => "test /etc/alternatives/java -ef '${java::use_java_alternative_path}'",
+        }
+      }
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
+        }
+      }
+    }
+    'OpenBSD': {
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
+        }
+      }
+    }
+    'FreeBSD': {
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
+        }
+      }
+    }
+    'Suse': {
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
+        }
+      }
+    }
+    'Solaris': {
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/environment',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
         }
       }
     }

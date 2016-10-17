@@ -35,6 +35,10 @@
 #    alternative is actually enabled, this is required to ensure the
 #    correct JVM is enabled.
 #
+#  [*java_home*]
+#   The path to where the JRE is installed. This will be set as an
+#   environment variable.
+#
 # Actions:
 #
 # Requires:
@@ -47,7 +51,8 @@ class java(
   $package               = undef,
   $package_options       = undef,
   $java_alternative      = undef,
-  $java_alternative_path = undef
+  $java_alternative_path = undef,
+  $java_home             = undef
 ) {
   include java::params
 
@@ -61,7 +66,7 @@ class java(
     $default_package_name     = $java::params::java[$distribution]['package']
     $default_alternative      = $java::params::java[$distribution]['alternative']
     $default_alternative_path = $java::params::java[$distribution]['alternative_path']
-    $java_home                = $java::params::java[$distribution]['java_home']
+    $default_java_home        = $java::params::java[$distribution]['java_home']
   } else {
     fail("Java distribution ${distribution} is not supported.")
   }
@@ -89,6 +94,14 @@ class java(
       default               => undef,
     },
     default => $java_alternative_path,
+  }
+
+  $use_java_home = $java_home ? {
+    undef   => $use_java_package_name ? {
+      $default_package_name => $default_java_home,
+      default               => undef,
+    },
+    default => $java_home,
   }
 
   $jre_flag = $use_java_package_name ? {
