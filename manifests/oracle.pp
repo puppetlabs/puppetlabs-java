@@ -17,13 +17,13 @@
 # Version of Java to install, e.g. '7' or '8'. Default values for major and minor 
 # versions will be used.
 #
-# [*major_version*]
+# [*version_major*]
 # Major version which should be installed, e.g. '8u101'. Must be used together with
-# minor_version.
+# version_minor.
 #
-# [*minor_version*]
+# [*version_minor*]
 # Minor version which should be installed, e.g. 'b12'. Must be used together with
-# major_version.
+# version_major.
 # 
 # [*java_se*]
 # Type of Java Standard Edition to install, jdk or jre.
