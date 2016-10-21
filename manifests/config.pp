@@ -46,10 +46,17 @@ class java::config ( ) {
     }
     'OpenBSD': {
       if $java::use_java_home != undef {
+        file { '/etc/environment':
+          ensure => 'file',
+          owner  => 'root',
+          group  => '0',
+          mode   => '0644',
+        }
         file_line { 'java-home-environment':
-          path  => '/etc/environment',
-          line  => "JAVA_HOME=${$java::use_java_home}",
-          match => 'JAVA_HOME=',
+          path    => '/etc/environment',
+          line    => "JAVA_HOME=${$java::use_java_home}",
+          match   => 'JAVA_HOME=',
+          require => File['/etc/environment'],
         }
       }
     }
