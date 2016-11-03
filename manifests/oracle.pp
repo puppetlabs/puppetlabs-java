@@ -14,7 +14,7 @@
 #
 # Parameters
 # [*version*]
-# Version of Java to install, e.g. '7' or '8'. Default values for major and minor 
+# Version of Java to install, e.g. '7' or '8'. Default values for major and minor
 # versions will be used.
 #
 # [*version_major*]
@@ -24,7 +24,7 @@
 # [*version_minor*]
 # Minor version which should be installed, e.g. 'b12'. Must be used together with
 # version_major.
-# 
+#
 # [*java_se*]
 # Type of Java Standard Edition to install, jdk or jre.
 #
@@ -212,9 +212,10 @@ define java::oracle (
       archive { $destination :
         ensure       => present,
         source       => "${oracle_url}${release_major}-${release_minor}/${package_name}",
-        cleanup      => false,
-        extract_path => '/tmp',
         cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
+        extract_path => '/tmp',
+        cleanup      => false,
+        creates      => $creates_path,
       }->
       case $::kernel {
         'Linux' : {
