@@ -44,25 +44,7 @@ class java::config ( ) {
         }
       }
     }
-    'OpenBSD': {
-      if $java::use_java_home != undef {
-        file_line { 'java-home-environment':
-          path  => '/etc/environment',
-          line  => "JAVA_HOME=${$java::use_java_home}",
-          match => 'JAVA_HOME=',
-        }
-      }
-    }
-    'FreeBSD': {
-      if $java::use_java_home != undef {
-        file_line { 'java-home-environment':
-          path  => '/etc/environment',
-          line  => "JAVA_HOME=${$java::use_java_home}",
-          match => 'JAVA_HOME=',
-        }
-      }
-    }
-    'Suse': {
+    'OpenBSD', 'FreeBSD', 'Suse': {
       if $java::use_java_home != undef {
         file_line { 'java-home-environment':
           path  => '/etc/environment',
@@ -74,7 +56,7 @@ class java::config ( ) {
     'Solaris': {
       if $java::use_java_home != undef {
         file_line { 'java-home-environment':
-          path  => '/etc/environment',
+          path  => '/etc/profile',
           line  => "JAVA_HOME=${$java::use_java_home}",
           match => 'JAVA_HOME=',
         }
