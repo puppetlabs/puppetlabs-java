@@ -34,6 +34,12 @@
 # [*oracle_url*]
 # Official Oracle URL to download binaries from.
 #
+# [*proxy_server*]
+# Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
+#
+# [*proxy_type*]
+# Proxy server type (none|http|https|ftp). (passed to archive)
+#
 # Variables
 # [*release_major*]
 # Major version release number for java_se. Used to construct download URL.
@@ -86,6 +92,8 @@ define java::oracle (
   $version_minor = undef,
   $java_se       = 'jdk',
   $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $proxy_server  = undef,
+  $proxy_type    = undef,
 ) {
 
   # archive module is used to download the java package
@@ -216,6 +224,8 @@ define java::oracle (
         extract_path => '/tmp',
         cleanup      => false,
         creates      => $creates_path,
+        proxy_server => $proxy_server,
+        proxy_type   => $proxy_type,
       }->
       case $::kernel {
         'Linux' : {
