@@ -14,7 +14,16 @@
 #
 # Parameters
 # [*version*]
-# Version of Java to install
+# Version of Java to install, e.g. '7' or '8'. Default values for major and minor
+# versions will be used.
+#
+# [*version_major*]
+# Major version which should be installed, e.g. '8u101'. Must be used together with
+# version_minor.
+#
+# [*version_minor*]
+# Minor version which should be installed, e.g. 'b12'. Must be used together with
+# version_major.
 #
 # [*java_se*]
 # Type of Java Standard Edition to install, jdk or jre.
@@ -24,6 +33,12 @@
 #
 # [*oracle_url*]
 # Official Oracle URL to download binaries from.
+#
+# [*proxy_server*]
+# Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
+#
+# [*proxy_type*]
+# Proxy server type (none|http|https|ftp). (passed to archive)
 #
 # Variables
 # [*release_major*]
@@ -71,10 +86,14 @@
 # mike@marseglia.org
 #
 define java::oracle (
-  $ensure       = 'present',
-  $version      = '8',
-  $java_se      = 'jdk',
-  $oracle_url   = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $ensure        = 'present',
+  $version       = '8',
+  $version_major = undef,
+  $version_minor = undef,
+  $java_se       = 'jdk',
+  $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $proxy_server  = undef,
+  $proxy_type    = undef,
 ) {
 
   # archive module is used to download the java package
@@ -87,35 +106,46 @@ define java::oracle (
     fail('Java SE must be either jre or jdk.')
   }
 
-  # determine oracle Java major and minor version, and installation path
-  case $version {
-    '6' : {
-      $release_major = '6u45'
-      $release_minor = 'b06'
-      $install_path = "${java_se}1.6.0_45"
+  # determine Oracle Java major and minor version, and installation path
+  if $version_major and $version_minor {
+    $release_major = $version_major
+    $release_minor = $version_minor
+    if $release_major =~ /(\d+)u(\d+)/ {
+      $install_path = "${java_se}1.${1}.0_${2}"
+    } else {
+      $install_path = "${java_se}${release_major}${release_minor}"
     }
-    '7' : {
-      $release_major = '7u80'
-      $release_minor = 'b15'
-      $install_path = "${java_se}1.7.0_80"
-    }
-    '8' : {
-      $release_major = '8u51'
-      $release_minor = 'b16'
-      $install_path = "${java_se}1.8.0_51"
-    }
-    default : {
-      $release_major = '8u51'
-      $release_minor = 'b16'
-      $install_path = "${java_se}1.8.0_51"
+  } else {
+    # use default versions if no specific major and minor version parameters are provided
+    case $version {
+      '6' : {
+        $release_major = '6u45'
+        $release_minor = 'b06'
+        $install_path = "${java_se}1.6.0_45"
+      }
+      '7' : {
+        $release_major = '7u80'
+        $release_minor = 'b15'
+        $install_path = "${java_se}1.7.0_80"
+      }
+      '8' : {
+        $release_major = '8u51'
+        $release_minor = 'b16'
+        $install_path = "${java_se}1.8.0_51"
+      }
+      default : {
+        $release_major = '8u51'
+        $release_minor = 'b16'
+        $install_path = "${java_se}1.8.0_51"
+      }
     }
   }
 
   # determine package type (exe/tar/rpm), destination directory based on OS
   case $::kernel {
     'Linux' : {
-      case $::operatingsystem {
-        'CentOS', 'RedHat' : {
+      case $::osfamily {
+        'RedHat' : {
           # Oracle Java 6 comes in a special rpmbin format
           if $version == '6' {
             $package_type = 'rpmbin'
@@ -190,9 +220,12 @@ define java::oracle (
       archive { $destination :
         ensure       => present,
         source       => "${oracle_url}${release_major}-${release_minor}/${package_name}",
-        cleanup      => false,
-        extract_path => '/tmp',
         cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
+        extract_path => '/tmp',
+        cleanup      => false,
+        creates      => $creates_path,
+        proxy_server => $proxy_server,
+        proxy_type   => $proxy_type,
       }->
       case $::kernel {
         'Linux' : {

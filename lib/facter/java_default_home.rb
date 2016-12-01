@@ -15,7 +15,11 @@ Facter.add(:java_default_home) do
   setcode do
     if Facter::Util::Resolution.which('readlink')
       java_bin = Facter::Util::Resolution.exec('readlink -e /usr/bin/java').strip
-      java_default_home = File.dirname(File.dirname(File.dirname(java_bin)))
+      if java_bin =~ %r(/jre/)
+        java_default_home = File.dirname(File.dirname(File.dirname(java_bin)))
+      else
+        java_default_home = File.dirname(File.dirname(java_bin))
+      end
     end
   end
 end
