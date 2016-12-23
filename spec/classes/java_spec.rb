@@ -210,7 +210,7 @@ describe 'java', :type => :class do
 
   context 'select default for SLES 11.4' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '11.4', :architecture => 'x86_64'}}
-    it { should contain_package('java').with_name('java-1_7_0-ibm-devel')}
+    it { should contain_package('java').with_name('java-1_7_1-ibm-devel')}
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-ibm-1.7.0/') }
   end
 
