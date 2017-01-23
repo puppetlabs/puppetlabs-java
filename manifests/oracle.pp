@@ -153,6 +153,11 @@ define java::oracle (
             $package_type = 'rpm'
           }
         }
+
+        'Debian': {
+            $package_type = 'tgz'
+        }
+
         default : {
           fail ("unsupported platform ${::operatingsystem}") }
       }
@@ -168,7 +173,7 @@ define java::oracle (
   # set java architecture nomenclature
   case $::architecture {
     'i386' : { $arch = 'i586' }
-    'x86_64' : { $arch = 'x64' }
+    'amd64', 'x86_64' : { $arch = 'x64' }
     default : {
       fail ("unsupported platform ${::architecture}")
     }
