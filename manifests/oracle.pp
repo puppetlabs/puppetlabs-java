@@ -10,7 +10,7 @@
 # the licensing terms.
 # wget --no-cookies --no-check-certificate --header \
 # "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-# "http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jre-8u25-linux-x64.tar.gz"
+# "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz"
 #
 # Parameters
 # [*version*]
@@ -77,6 +77,10 @@
 # download the Oracle java_se installer. Originally present but not used, activated
 # to workaround MODULES-5058
 #
+# [*url_hash*]
+# Directory hash used by the download.oracle.com site.  This value is a 32 character string
+# which is part of the file URL returned by the JDK download site.
+#
 # ### Author
 # mike@marseglia.org
 #
@@ -88,6 +92,7 @@ define java::oracle (
   $java_se       = 'jdk',
   $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
   $url           = undef,
+  $url_hash      = undef,
 ) {
 
   # archive module is used to download the java package
@@ -102,8 +107,11 @@ define java::oracle (
 
   # determine Oracle Java major and minor version, and installation path
   if $version_major and $version_minor {
+
     $release_major = $version_major
     $release_minor = $version_minor
+    $release_hash  = $url_hash
+
     if $release_major =~ /(\d+)u(\d+)/ {
       $install_path = "${java_se}1.${1}.0_${2}"
     } else {
@@ -116,21 +124,25 @@ define java::oracle (
         $release_major = '6u45'
         $release_minor = 'b06'
         $install_path = "${java_se}1.6.0_45"
+        $release_hash  = undef
       }
       '7' : {
         $release_major = '7u80'
         $release_minor = 'b15'
         $install_path = "${java_se}1.7.0_80"
+        $release_hash  = undef
       }
       '8' : {
-        $release_major = '8u51'
-        $release_minor = 'b16'
-        $install_path = "${java_se}1.8.0_51"
+        $release_major = '8u131'
+        $release_minor = 'b11'
+        $install_path = "${java_se}1.8.0_131"
+        $release_hash  = 'd54c1d3a095b4ff2b6607d096fa80163'
       }
       default : {
-        $release_major = '8u51'
-        $release_minor = 'b16'
-        $install_path = "${java_se}1.8.0_51"
+        $release_major = '8u131'
+        $release_minor = 'b11'
+        $install_path = "${java_se}1.8.0_131"
+        $release_hash  = 'd54c1d3a095b4ff2b6607d096fa80163'
       }
     }
   }
@@ -169,11 +181,11 @@ define java::oracle (
   }
 
   # following are based on this example:
-  # http://download.oracle.com/otn/java/jdk/7u80-b15/jre-7u80-linux-i586.rpm
+  # http://download.oracle.com/otn-pub/java/jdk/7u80-b15/jre-7u80-linux-i586.rpm
   #
   # JaveSE 6 distributed in .bin format
-  # http://download.oracle.com/otn/java/jdk/6u45-b06/jdk-6u45-linux-i586-rpm.bin
-  # http://download.oracle.com/otn/java/jdk/6u45-b06/jdk-6u45-linux-i586.bin
+  # http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-i586-rpm.bin
+  # http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-i586.bin
   # package name to download from Oracle's website
   case $package_type {
     'bin' : {
@@ -193,8 +205,12 @@ define java::oracle (
   # if complete URL is provided, use this value for source in archive resource
   if $url {
     $source = $url
-  } else {
-    $source = "${oracle_url}${release_major}-${release_minor}/${package_name}"
+  }
+  elsif $release_hash != undef {
+    $source = "${oracle_url}/${release_major}-${release_minor}/${release_hash}/${package_name}"
+  }
+  else {
+    $source = "${oracle_url}/${release_major}-${release_minor}/${package_name}"
   }
 
   # full path to the installer
