@@ -191,6 +191,9 @@ define java::oracle (
     'rpm' : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
     }
+    'tgz' : {
+      $package_name = "${java_se}-${release_major}-${os}-${arch}.tar.gz"
+    }
     default : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
     }
@@ -210,6 +213,10 @@ define java::oracle (
     'rpm' : {
       $install_command = "rpm --force -iv ${destination}"
     }
+    'tgz': {
+      $install_command = "mv ${install_path} /usr/java/"
+    }
+
     default : {
       $install_command = "rpm -iv ${destination}"
     }
@@ -217,20 +224,31 @@ define java::oracle (
 
   case $ensure {
     'present' : {
+      if $package_type == 'tgz' {
+        $extract = true
+      }
+
+      else {
+        $extract = false
+      }
+
       archive { $destination :
         ensure       => present,
         source       => "${oracle_url}${release_major}-${release_minor}/${package_name}",
         cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
+        extract      => $extract,
         extract_path => '/tmp',
         cleanup      => false,
         creates      => $creates_path,
         proxy_server => $proxy_server,
         proxy_type   => $proxy_type,
       }->
+
       case $::kernel {
         'Linux' : {
           exec { "Install Oracle java_se ${java_se} ${version}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
+            cwd     => '/tmp',
             command => $install_command,
             creates => $creates_path,
           }
