@@ -196,6 +196,13 @@ describe 'java', :type => :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
   end
 
+  context 'select passed value for Scientific Linux CERN (SLC)' do
+    let(:facts) { {:osfamily => 'RedHat', :operatingsystem => 'SLC', :operatingsystemrelease => '6.4', :architecture => 'x86_64'} }
+    let(:params) { { 'distribution' => 'jre' } }
+    it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
+  end
+
   context 'select default for OpenSUSE 12.3' do
     let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'OpenSUSE', :operatingsystemrelease => '12.3', :architecture => 'x86_64'}}
     it { is_expected.to contain_package('java').with_name('java-1_7_0-openjdk-devel')}
