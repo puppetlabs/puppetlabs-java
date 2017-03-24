@@ -5,6 +5,7 @@ require 'spec_helper_acceptance'
 #RedHat, CentOS, Scientific, Oracle after 6.3     : OpenJDK Java JDK/JRE 1.7
 #Debian 5/6 & Ubuntu 10.04/11.04                  : OpenJDK Java JDK/JRE 1.6 or Sun Java JDK/JRE 1.6
 #Debian 7/Jesse & Ubuntu 12.04 - 14.04            : OpenJDK Java JDK/JRE 1.7 or Oracle Java JDK/JRE 1.6
+#Debian 8 & Ubuntu 16.04                          : OpenJDK Java JDK/JRE 1.8 or Oracle Java JDK/JRE 1.8
 #Solaris (what versions?)                         : Java JDK/JRE 1.7
 #OpenSuSE                                         : OpenJDK Java JDK/JRE 1.7
 #SLES                                             : IBM Java JDK/JRE 1.6
@@ -104,7 +105,8 @@ end
 describe 'oracle', :if => (
   (fact('operatingsystem') == 'Debian') and (fact('operatingsystemrelease').match(/^7/)) or
   (fact('operatingsystem') == 'Ubuntu') and (fact('operatingsystemrelease').match(/^12\.04/)) or
-  (fact('operatingsystem') == 'Ubuntu') and (fact('operatingsystemrelease').match(/^14\.04/))
+  (fact('operatingsystem') == 'Ubuntu') and (fact('operatingsystemrelease').match(/^14\.04/)) or
+  (fact('operatingsystem') == 'Ubuntu') and (fact('operatingsystemrelease').match(/^16\.04/))
 ) do
   # not supported
   # The package is not available from any sources, but if a customer
