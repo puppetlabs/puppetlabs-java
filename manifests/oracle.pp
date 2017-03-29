@@ -226,13 +226,14 @@ define java::oracle (
         creates      => $creates_path,
         proxy_server => $proxy_server,
         proxy_type   => $proxy_type,
-      }->
+      }
       case $::kernel {
         'Linux' : {
           exec { "Install Oracle java_se ${java_se} ${version}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $install_command,
             creates => $creates_path,
+            before  => Archive[$destination]
           }
         }
         default : {
