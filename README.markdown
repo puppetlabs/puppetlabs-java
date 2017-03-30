@@ -28,23 +28,23 @@ To install the correct Java package on your system, include the `java` class: `i
 
 The java module installs the correct jdk or jre package on a wide variety of systems. By default, the module installs the jdk package, but you can set different installation parameters as needed. For example, to install jre instead of jdk, you would set the distribution parameter:
 
-~~~
+```puppet
 class { 'java':
   distribution => 'jre',
 }
-~~~
+```
 
 To install the latest patch version of Java 8 on CentOS
 
-~~~
+```puppet
 class { 'java' :
   package => 'java-1.8.0-openjdk-devel',
 }
-~~~
+```
 
 The defined type `java::oracle` installs one or more versions of Oracle Java SE. `java::oracle` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).  By using `java::oracle` you agree to Oracle's licensing terms for Java SE.
 
-~~~
+```puppet
 java::oracle { 'jdk6' :
   ensure  => 'present',
   version => '6',
@@ -56,18 +56,18 @@ java::oracle { 'jdk8' :
   version => '8',
   java_se => 'jdk',
 }
-~~~
+```
 
 To install a specific release of a Java version, e.g. 8u101-b13, provide both parameters `version_major` and `version_minor` as follows:
 
-~~~
+```puppet
 java::oracle { 'jdk8' :
   ensure  => 'present',
   version_major => '8u101',
   version_minor => 'b13',
   java_se => 'jdk',
 }
-~~~
+```
 
 ## Reference
 
