@@ -118,14 +118,12 @@ class java(
   }
 
   anchor { 'java::begin:': }
-  ->
-  package { 'java':
+  -> package { 'java':
     ensure          => $version,
     install_options => $package_options,
     name            => $use_java_package_name,
   }
-  ->
-  class { 'java::config': }
+  -> class { 'java::config': }
   -> anchor { 'java::end': }
 
 }
