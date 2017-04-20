@@ -9,6 +9,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk6' end
         it { is_expected.to contain_archive('/tmp/jdk-6u45-linux-x64-rpm.bin')}
         it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('sh /tmp/jdk-6u45-linux-x64-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jdk*.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-x64-rpm.bin]') }
       end
 
       context 'Oracle Java SE 7 JDK' do
@@ -16,6 +17,7 @@ describe 'java::oracle', :type => :define do
         let :title do 'jdk7' end
           it { is_expected.to contain_archive('/tmp/jdk-7u80-linux-x64.rpm')}
           it { is_expected.to contain_exec('Install Oracle java_se jdk 7').with_command('rpm --force -iv /tmp/jdk-7u80-linux-x64.rpm') }
+          it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[/tmp/jdk-7u80-linux-x64.rpm]') }
       end
 
     context 'Oracle Java SE 8 JDK' do
@@ -23,6 +25,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk8' end
         it { is_expected.to contain_archive('/tmp/jdk-8u51-linux-x64.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jdk 8').with_command('rpm --force -iv /tmp/jdk-8u51-linux-x64.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[/tmp/jdk-8u51-linux-x64.rpm]') }
     end
 
     context 'Oracle Java SE 6 JRE' do
@@ -30,6 +33,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jre6' end
         it { is_expected.to contain_archive('/tmp/jre-6u45-linux-x64-rpm.bin')}
         it { is_expected.to contain_exec('Install Oracle java_se jre 6').with_command('sh /tmp/jre-6u45-linux-x64-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jre*.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[/tmp/jre-6u45-linux-x64-rpm.bin]') }
     end
 
     context 'Oracle Java SE 7 JRE' do
@@ -37,6 +41,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jre7' end
         it { is_expected.to contain_archive('/tmp/jre-7u80-linux-x64.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jre 7').with_command('rpm --force -iv /tmp/jre-7u80-linux-x64.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[/tmp/jre-7u80-linux-x64.rpm]') }
     end
 
     context 'select Oracle Java SE 8 JRE' do
@@ -44,6 +49,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jre8' end
         it { is_expected.to contain_archive('/tmp/jre-8u51-linux-x64.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jre 8').with_command('rpm --force -iv /tmp/jre-8u51-linux-x64.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[/tmp/jre-8u51-linux-x64.rpm]') }
     end
 
   end
@@ -56,6 +62,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk6' end
         it { is_expected.to contain_archive('/tmp/jdk-6u45-linux-i586-rpm.bin')}
         it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('sh /tmp/jdk-6u45-linux-i586-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jdk*.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-i586-rpm.bin]') }
     end
 
     context 'select Oracle Java SE 7 JDK on RedHat family, 32-bit' do
@@ -63,6 +70,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk7' end
         it { is_expected.to contain_archive('/tmp/jdk-7u80-linux-i586.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jdk 7').with_command('rpm --force -iv /tmp/jdk-7u80-linux-i586.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[/tmp/jdk-7u80-linux-i586.rpm]') }
     end
 
     context 'select Oracle Java SE 8 JDK on RedHat family, 32-bit' do
@@ -70,6 +78,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk8' end
         it { is_expected.to contain_archive('/tmp/jdk-8u51-linux-i586.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jdk 8').with_command('rpm --force -iv /tmp/jdk-8u51-linux-i586.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[/tmp/jdk-8u51-linux-i586.rpm]') }
     end
 
     context 'select Oracle Java SE 6 JRE on RedHat family, 32-bit' do
@@ -77,6 +86,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk6' end
         it { is_expected.to contain_archive('/tmp/jre-6u45-linux-i586-rpm.bin')}
         it { is_expected.to contain_exec('Install Oracle java_se jre 6').with_command('sh /tmp/jre-6u45-linux-i586-rpm.bin -x; rpm --force -iv sun*.rpm; rpm --force -iv jre*.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[/tmp/jre-6u45-linux-i586-rpm.bin]') }
     end
 
     context 'select Oracle Java SE 7 JRE on RedHat family, 32-bit' do
@@ -84,6 +94,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk7' end
         it { is_expected.to contain_archive('/tmp/jre-7u80-linux-i586.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jre 7').with_command('rpm --force -iv /tmp/jre-7u80-linux-i586.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[/tmp/jre-7u80-linux-i586.rpm]') }
     end
 
     context 'select Oracle Java SE 8 JRE on RedHat family, 32-bit' do
@@ -91,6 +102,7 @@ describe 'java::oracle', :type => :define do
       let :title do 'jdk8' end
         it { is_expected.to contain_archive('/tmp/jre-8u51-linux-i586.rpm')}
         it { is_expected.to contain_exec('Install Oracle java_se jre 8').with_command('rpm --force -iv /tmp/jre-8u51-linux-i586.rpm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[/tmp/jre-8u51-linux-i586.rpm]') }
     end
   end
 

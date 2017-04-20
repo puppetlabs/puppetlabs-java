@@ -233,7 +233,7 @@ define java::oracle (
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $install_command,
             creates => $creates_path,
-            before  => Archive[$destination]
+            require => Archive[$destination]
           }
         }
         default : {
