@@ -170,7 +170,7 @@ OpenJDK is supported on:
 * Debian 6, 7
 * Ubuntu 10.04, 12.04, 14.04
 * Solaris 11
-* SLES 11 SP1, 12 
+* SLES 11 SP1, SP2, SP3, SP4; SLES 12, SP1, SP2
 * OpenBSD 5.6, 5.7
 
 Sun Java is supported on:  

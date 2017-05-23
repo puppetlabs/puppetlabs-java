@@ -211,7 +211,11 @@ class java::params {
     'Suse': {
       case $::operatingsystem {
         'SLES': {
-          if (versioncmp($::operatingsystemrelease, '12') >= 0) {
+          if (versioncmp($::operatingsystemrelease, '12.1') >= 0) {
+            $jdk_package = 'java-1_8_0-openjdk-devel'
+            $jre_package = 'java-1_8_0-openjdk'
+            $java_home   = '/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/'
+          } elsif (versioncmp($::operatingsystemrelease, '12') >= 0) {
             $jdk_package = 'java-1_7_0-openjdk-devel'
             $jre_package = 'java-1_7_0-openjdk'
             $java_home   = '/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/'

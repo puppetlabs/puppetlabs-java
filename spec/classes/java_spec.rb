@@ -221,10 +221,16 @@ describe 'java', :type => :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-ibm-1.7.0/') }
   end
 
-  context 'select default for SLES 12.1' do
-    let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '12.1', :operatingsystemmajrelease => '12', :architecture => 'x86_64'}}
+  context 'select default for SLES 12.0' do
+    let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '12.0', :operatingsystemmajrelease => '12', :architecture => 'x86_64'}}
     it { should contain_package('java').with_name('java-1_7_0-openjdk-devel')}
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/') }
+  end
+
+  context 'select default for SLES 12.1' do
+    let(:facts) { {:osfamily => 'Suse', :operatingsystem => 'SLES', :operatingsystemrelease => '12.1', :operatingsystemmajrelease => '12', :architecture => 'x86_64'}}
+    it { should contain_package('java').with_name('java-1_8_0-openjdk-devel')}
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/') }
   end
 
   context 'select jdk for OpenBSD' do
