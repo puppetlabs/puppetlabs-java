@@ -3,6 +3,5 @@ fixtures:
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
     archive:
       repo: "git://github.com/voxpupuli/puppet-archive.git"
-      ref: "v1.2.0"
   symlinks:
     java: "#{source_dir}"
