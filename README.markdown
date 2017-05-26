@@ -180,14 +180,18 @@ Sun Java is supported on:
 Oracle Java is supported on:
 * CentOS 6
 
-### A note about OpenBSD
+### Known issues
+
+#### OpenBSD
+
 OpenBSD packages install Java JRE/JDK in a unique directory structure, not linking
 the binaries to a standard directory. Because of that, the path to this location
-is hardcoded in the java_version fact. Whenever a Java upgrade to a newer
-version/path will be done on OpenBSD, it has to be adapted there.
+is hardcoded in the `java_version` fact. Whenever you upgrade Java to a newer
+version, you have to update the path in this fact.
 
-### A note about FreeBSD
-By default on FreeBSD Puppet < 4.0, you will see an error as `pkgng` is not the default provider. To fix this, you can install the [zleslie/pkgng module](https://forge.puppetlabs.com/zleslie/pkgng) and set it as the default package provider like so:
+#### FreeBSD
+
+By default on FreeBSD, Puppet versions prior to 4.0 throw an error saying `pkgng` is not the default provider. To fix this, install the [zleslie/pkgng module](https://forge.puppetlabs.com/zleslie/pkgng) and set it as the default package provider:
 
 ```puppet
 Package {
@@ -195,12 +199,12 @@ Package {
 }
 ```
 
-On Puppet > 4.0 (ie. using the sysutils/puppet4 port), `pkgng` is included within Puppet and it's the default package provider.
+On Puppet 4.0 and later, `pkgng` is included within Puppet and is the default package provider.
 
-##Development
+## Development
 
-Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide.](https://docs.puppetlabs.com/forge/contributing.html)
+Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. To contribute to Puppet projects, see our [module contribution guide.](https://docs.puppetlabs.com/forge/contributing.html)
 
-##Contributors
+## Contributors
 
-The list of contributors can be found at: [https://github.com/puppetlabs/puppetlabs-java/graphs/contributors](https://github.com/puppetlabs/puppetlabs-java/graphs/contributors).
+The list of contributors can be found at [https://github.com/puppetlabs/puppetlabs-java/graphs/contributors](https://github.com/puppetlabs/puppetlabs-java/graphs/contributors).
