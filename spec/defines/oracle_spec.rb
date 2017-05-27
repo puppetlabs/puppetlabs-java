@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'java::oracle', :type => :define do
     context 'On CentOS 64-bit' do
-      let(:facts) { {:kernel => 'Linux', :architecture => 'x86_64', :osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => '6.6', :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)'} }
+      let(:facts) { { :kernel => 'Linux', :os => {:family => 'RedHat', :architecture => 'x86_64', :name => 'CentOS', :release => {:full => '6.0'}}}}
 
       context 'Oracle Java SE 6 JDK' do
       let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jdk'} }
@@ -55,7 +55,7 @@ describe 'java::oracle', :type => :define do
   end
 
   context 'On CentOS 32-bit' do
-    let(:facts) { {:kernel => 'Linux', :architecture => 'i386', :osfamily => 'RedHat', :operatingsystem => 'CentOS', :operatingsystemrelease => '6.6', :puppetversion => '3.4.3 (Puppet Enterprise 3.2.3)'} }
+    let(:facts) { {:kernel => 'Linux',  :os => { :family => 'RedHat', :architecture => 'i386', :name => 'CentOS', :release => { :full => '6.6' } } } }
 
     context 'select Oracle Java SE 6 JDK on RedHat family, 32-bit' do
       let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jdk'} }
@@ -106,52 +106,67 @@ describe 'java::oracle', :type => :define do
     end
   end
 
-  describe 'incompatible OSs' do
+  describe 'incompatible OSes' do
     [
       {
         # C14706
-        :kernel                 => 'windows',
-        :osfamily               => 'windows',
-        :operatingsystem        => 'windows',
-        :operatingsystemrelease => '8.1',
-        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :kernel => 'Windows',
+        :os => {
+          :family => 'Windows',
+          :name => 'Windows',
+          :release => {
+            :full => '8.1'
+          }
+        },
       },
       {
         # C14707
-        :kernel                 => 'Darwin',
-        :osfamily               => 'Darwin',
-        :operatingsystem        => 'Darwin',
-        :operatingsystemrelease => '13.3.0',
-        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :kernel => 'Darwin',
+        :os => {
+          :family => 'Darwin',
+          :name => 'Darwin',
+          :release => {
+            :full => '13.3.0'
+          }
+        },
       },
       {
         # C14708
-        :kernel                 => 'AIX',
-        :osfamily               => 'AIX',
-        :operatingsystem        => 'AIX',
-        :operatingsystemrelease => '7100-02-00-000',
-        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
+        :kernel => 'AIX',
+        :os => {
+          :family => 'AIX',
+          :name => 'AIX',
+          :release => {
+            :full => '7100-02-00-000'
+          }
+        },
       },
       {
-        # C14708
-        :kernel                 => 'AIX',
-        :osfamily               => 'AIX',
-        :operatingsystem        => 'AIX',
-        :operatingsystemrelease => '6100-07-04-1216',
-        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
+        # C14709
+        :kernel => 'AIX',
+        :os => {
+          :family => 'AIX',
+          :name => 'AIX',
+          :release => {
+            :full => '6100-07-04-1216'
+          }
+        },
       },
       {
-        # C14708
-        :kernel                 => 'AIX',
-        :osfamily               => 'AIX',
-        :operatingsystem        => 'AIX',
-        :operatingsystemrelease => '5300-12-01-1016',
-        :puppetversion          => '3.4.3 (Puppet Enterprise 3.2.3)',
-      },
+        # C14710
+        :kernel => 'AIX',
+        :os => {
+          :family => 'AIX',
+          :name => 'AIX',
+          :release => {
+            :full => '5300-12-01-1016'
+          }
+        },
+      }
     ].each do |facts|
       let(:facts) { facts }
       let :title do 'jdk' end
-      it "is_expected.to fail on #{facts[:operatingsystem]} #{facts[:operatingsystemrelease]}" do
+      it "is_expected.to fail on #{facts[:os][:name]} #{facts[:os][:release][:full]}" do
         expect { catalogue }.to raise_error Puppet::Error, /unsupported platform/
       end
     end
