@@ -142,9 +142,9 @@ define java::oracle (
   }
 
   # determine package type (exe/tar/rpm), destination directory based on OS
-  case $::kernel {
+  case $facts['kernel'] {
     'Linux' : {
-      case $::osfamily {
+      case $facts['os']['family'] {
         'RedHat', 'Amazon' : {
           # Oracle Java 6 comes in a special rpmbin format
           if $version == '6' {
@@ -154,7 +154,7 @@ define java::oracle (
           }
         }
         default : {
-          fail ("unsupported platform ${::operatingsystem}") }
+          fail ("unsupported platform ${$facts['os']['name']}") }
       }
 
       $os = 'linux'
@@ -162,15 +162,15 @@ define java::oracle (
       $creates_path = "/usr/java/${install_path}"
     }
     default : {
-      fail ( "unsupported platform ${::kernel}" ) }
+      fail ( "unsupported platform ${$facts['kernel']}" ) }
   }
 
   # set java architecture nomenclature
-  case $::architecture {
+  case $facts['os']['architecture'] {
     'i386' : { $arch = 'i586' }
     'x86_64' : { $arch = 'x64' }
     default : {
-      fail ("unsupported platform ${::architecture}")
+      fail ("unsupported platform ${$facts['os']['architecture']}")
     }
   }
 
@@ -227,7 +227,7 @@ define java::oracle (
         proxy_server => $proxy_server,
         proxy_type   => $proxy_type,
       }
-      case $::kernel {
+      case $facts['kernel'] {
         'Linux' : {
           exec { "Install Oracle java_se ${java_se} ${version}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
@@ -237,7 +237,7 @@ define java::oracle (
           }
         }
         default : {
-          fail ("unsupported platform ${::kernel}")
+          fail ("unsupported platform ${$facts['kernel']}")
         }
       }
     }
