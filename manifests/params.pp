@@ -12,49 +12,49 @@
 # for the config class to test if it is enabled.
 class java::params {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
-      case $::operatingsystem {
+      case $facts['os']['name'] {
         'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC': {
-          if (versioncmp($::operatingsystemrelease, '5.0') < 0) {
+          if (versioncmp($facts['os']['release']['full'], '5.0') < 0) {
             $jdk_package = 'java-1.6.0-sun-devel'
             $jre_package = 'java-1.6.0-sun'
             $java_home   = '/usr/lib/jvm/java-1.6.0-sun/jre/'
           }
-          elsif (versioncmp($::operatingsystemrelease, '6.3') < 0) {
+          elsif (versioncmp($facts['os']['release']['full'], '6.3') < 0) {
             $jdk_package = 'java-1.6.0-openjdk-devel'
             $jre_package = 'java-1.6.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.6.0-openjdk-${::architecture}/"
+            $java_home   = "/usr/lib/jvm/java-1.6.0-openjdk-${$facts['os']['architecture']}/"
           }
-          elsif (versioncmp($::operatingsystemrelease, '7.1') < 0) {
+          elsif (versioncmp($facts['os']['release']['full'], '7.1') < 0) {
             $jdk_package = 'java-1.7.0-openjdk-devel'
             $jre_package = 'java-1.7.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/"
+            $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/"
           }
           else {
             $jdk_package = 'java-1.8.0-openjdk-devel'
             $jre_package = 'java-1.8.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/"
+            $java_home   = "/usr/lib/jvm/java-1.8.0-openjdk-${$facts['os']['architecture']}/"
           }
         }
         'Fedora': {
-          if (versioncmp($::operatingsystemrelease, '21') < 0) {
+          if (versioncmp($facts['os']['release']['full'], '21') < 0) {
             $jdk_package = 'java-1.7.0-openjdk-devel'
             $jre_package = 'java-1.7.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/"
+            $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/"
           }
           else {
             $jdk_package = 'java-1.8.0-openjdk-devel'
             $jre_package = 'java-1.8.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/"
+            $java_home   = "/usr/lib/jvm/java-1.8.0-openjdk-${$facts['os']['architecture']}/"
           }
         }
         'Amazon': {
           $jdk_package = 'java-1.7.0-openjdk-devel'
           $jre_package = 'java-1.7.0-openjdk'
-          $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/"
+          $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/"
         }
-        default: { fail("unsupported os ${::operatingsystem}") }
+        default: { fail("unsupported os ${$facts['os']['name']}") }
       }
       $java = {
         'jdk' => {
@@ -68,22 +68,22 @@ class java::params {
       }
     }
     'Debian': {
-      $oracle_architecture = $::architecture ? {
+      $oracle_architecture = $facts['os']['architecture'] ? {
         'amd64' => 'x64',
-        default => $::architecture
+        default => $facts['os']['architecture']
       }
-      case $::lsbdistcodename {
+      case $facts['os']['distro']['codename'] {
         'lenny', 'squeeze', 'lucid', 'natty': {
           $java  = {
             'jdk' => {
               'package'          => 'openjdk-6-jdk',
-              'alternative'      => "java-6-openjdk-${::architecture}",
+              'alternative'      => "java-6-openjdk-${$facts['os']['architecture']}",
               'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
             },
             'jre' => {
               'package'          => 'openjdk-6-jre-headless',
-              'alternative'      => "java-6-openjdk-${::architecture}",
+              'alternative'      => "java-6-openjdk-${$facts['os']['architecture']}",
               'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
             },
@@ -105,15 +105,15 @@ class java::params {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-7-jdk',
-              'alternative'      => "java-1.7.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.7.0-openjdk-${$facts['os']['architecture']}",
+              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/",
             },
             'jre' => {
               'package'          => 'openjdk-7-jre-headless',
-              'alternative'      => "java-1.7.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.7.0-openjdk-${$facts['os']['architecture']}",
+              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${$facts['os']['architecture']}/",
             },
             'oracle-jre' => {
               'package'          => 'oracle-j2re1.7',
@@ -157,19 +157,19 @@ class java::params {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
-              'alternative'      => "java-1.8.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.8.0-openjdk-${$facts['os']['architecture']}",
+              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${$facts['os']['architecture']}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${$facts['os']['architecture']}/",
             },
             'jre' => {
               'package'          => 'openjdk-8-jre-headless',
-              'alternative'      => "java-1.8.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.8.0-openjdk-${$facts['os']['architecture']}",
+              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${$facts['os']['architecture']}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${$facts['os']['architecture']}/",
             }
           }
         }
-        default: { fail("unsupported release ${::lsbdistcodename}") }
+        default: { fail("unsupported release ${$facts['distro']['codename']}") }
       }
     }
     'OpenBSD': {
@@ -209,17 +209,17 @@ class java::params {
       }
     }
     'Suse': {
-      case $::operatingsystem {
+      case $facts['os']['name'] {
         'SLES': {
-          if (versioncmp($::operatingsystemrelease, '12.1') >= 0) {
+          if (versioncmp($facts['os']['release']['full'], '12.1') >= 0) {
             $jdk_package = 'java-1_8_0-openjdk-devel'
             $jre_package = 'java-1_8_0-openjdk'
             $java_home   = '/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/'
-          } elsif (versioncmp($::operatingsystemrelease, '12') >= 0) {
+          } elsif (versioncmp($facts['os']['release']['full'], '12') >= 0) {
             $jdk_package = 'java-1_7_0-openjdk-devel'
             $jre_package = 'java-1_7_0-openjdk'
             $java_home   = '/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/'
-          } elsif (versioncmp($::operatingsystemrelease, '11.4') >= 0) {
+          } elsif (versioncmp($facts['os']['release']['full'], '11.4') >= 0) {
             $jdk_package = 'java-1_7_1-ibm-devel'
             $jre_package = 'java-1_7_1-ibm'
             $java_home   = '/usr/lib64/jvm/java-1.7.0-ibm-1.7.0/'
@@ -251,6 +251,6 @@ class java::params {
         },
       }
     }
-    default: { fail("unsupported platform ${::osfamily}") }
+    default: { fail("unsupported platform ${$facts['os']['family']}") }
   }
 }

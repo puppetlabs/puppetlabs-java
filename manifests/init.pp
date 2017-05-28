@@ -109,7 +109,7 @@ class java(
     default    => '--jre'
   }
 
-  if $::osfamily == 'Debian' {
+  if $facts['os']['family'] == 'Debian' {
     # Needed for update-java-alternatives
     package { 'java-common':
       ensure => present,
