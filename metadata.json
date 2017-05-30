@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-java",
-  "version": "1.7.0",
+  "version": "2.0.0",
   "author": "puppetlabs",
   "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache-2.0",
@@ -90,6 +90,6 @@
   ],
   "dependencies": [
     {"name":"puppetlabs/stdlib","version_requirement":">= 2.4.0 < 5.0.0"},
-    {"name":"puppet/archive","version_requirement":">= 1.1.0 < 1.2.0"}
+    {"name":"puppet/archive","version_requirement":">= 1.1.0 < 2.0.0"}
   ]
 }
