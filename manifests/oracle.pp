@@ -141,6 +141,8 @@ define java::oracle (
     }
   }
 
+  $foo = inline_template("<% require 'pry'; binding.pry %>")
+
   # determine package type (exe/tar/rpm), destination directory based on OS
   case $facts['kernel'] {
     'Linux' : {
