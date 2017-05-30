@@ -1,6 +1,6 @@
-#java
+# java
 
-####Table of Contents
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
@@ -11,20 +11,20 @@
 6. [Limitations - OS compatibility, etc.](#limitations)
 7. [Development - Guide for contributing to the module](#development)
 
-##Overview
+## Overview
 
 Installs the correct Java package on various platforms. 
 
-##Module Description
+## Module Description
 
 The java module can automatically install Java jdk or jre on a wide variety of systems. Java is a base component for many software platforms, but Java system packages don't always follow packaging conventions. The java module simplifies the Java installation process.
 
-##Setup
+## Setup
 
 ###Beginning with the java module
 To install the correct Java package on your system, include the `java` class: `include java`.
 
-##Usage
+## Usage
 
 The java module installs the correct jdk or jre package on a wide variety of systems. By default, the module installs the jdk package, but you can set different installation parameters as needed. For example, to install jre instead of jdk, you would set the distribution parameter:
 
@@ -69,77 +69,77 @@ java::oracle { 'jdk8' :
 }
 ~~~
 
-##Reference
+## Reference
 
-###Classes
+### Classes
 
-####Public classes
+#### Public classes
 
 * `java`: Installs and manages the Java package.
 
-####Private classes
+#### Private classes
 
 * `java::config`: Configures the Java alternatives.
 
 * `java::params`: Builds a hash of jdk/jre packages for all compatible operating systems.
 
 
-####Parameters
+#### Parameters
 The following parameters are available in `java`:
 
 ##### `distribution`
 Specifies the Java distribution to install.  
 Valid options:  'jdk', 'jre', or, where the platform supports alternative packages, 'sun-jdk', 'sun-jre', 'oracle-jdk', 'oracle-jre'. Default: 'jdk'.
 
-#####`java_alternative`
+##### `java_alternative`
 Specifies the name of the Java alternative to use. If you set this parameter, *you must also set the `java_alternative_path`.*  
 Valid options: Run command `update-java-alternatives -l` for a list of available choices. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
-#####`java_alternative_path`  
+##### `java_alternative_path`  
 *Required when `java_alternative` is specified.* Defines the path to the `java` command.  
 Valid option: String. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
-#####`package`
+##### `package`
 Specifies the name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module installs the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter does nothing.  
 Valid option: String. Default: undef. 
 
-#####`version`
+##### `version`
 Sets the version of Java to install, if you want to ensure a particular version.  
 Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9a-zA-Z:-]+$/`. Default: 'present'.
 
-####Public defined types
+#### Public defined types
 
 * `java::oracle`: Installs specified version of Oracle Java SE.  You may install multiple versions of Oracle Jave SE on the same node using this defined type.
 
-####Parameters
+#### Parameters
 
 The following parameters are available in `java::oracle`:
 
-#####`version`
+##### `version`
 Version of Java Standard Edition (SE) to install. 6, 7 or 8.
 
-#####`version_major`
+##### `version_major`
 Major version of the Java Standard Edition (SE) to install. Must be used together with `version_minor`. For example, '8u101'.
 
-#####`version_minor`
+##### `version_minor`
 Minor version (or build version) of the Java Standard Edition (SE) to install. Must be used together with `version_major`. For example, 'b13'.
 
-#####`java_se`
+##### `java_se`
 Type of Java SE to install, jdk or jre.
 
-#####`ensure`
+##### `ensure`
 Install or remove the package.
 
-#####`oracle_url`
+##### `oracle_url`
 Official Oracle URL to download the binaries from.
 
-#####`proxy_server`
+##### `proxy_server`
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
-#####`proxy_type`
+##### `proxy_type`
 Proxy server type (none|http|https|ftp). (passed to archive)
 
-###Facts
+### Facts
 
 The java module includes a few facts to describe the version of Java installed on the system:
 
@@ -151,7 +151,7 @@ The java module includes a few facts to describe the version of Java installed o
 
 **Note:** The facts return `nil` if Java is not installed on the system.
 
-##Limitations
+## Limitations
 
 This module cannot guarantee installation of Java versions that are not available on  platform repositories. 
 
@@ -197,10 +197,10 @@ Package {
 
 On Puppet > 4.0 (ie. using the sysutils/puppet4 port), `pkgng` is included within Puppet and it's the default package provider.
 
-##Development
+## Development
 
 Puppet Labs modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. We can’t access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve. We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things. For more information, see our [module contribution guide.](https://docs.puppetlabs.com/forge/contributing.html)
 
-##Contributors
+## Contributors
 
 The list of contributors can be found at: [https://github.com/puppetlabs/puppetlabs-java/graphs/contributors](https://github.com/puppetlabs/puppetlabs-java/graphs/contributors).
