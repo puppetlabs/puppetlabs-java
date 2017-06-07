@@ -1,6 +1,6 @@
 # java
 
-## Table of Contents
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
@@ -22,6 +22,7 @@ The java module can automatically install Java jdk or jre on a wide variety of s
 ## Setup
 
 ### Beginning with the java module
+
 To install the correct Java package on your system, include the `java` class: `include java`.
 
 ## Usage
@@ -85,25 +86,31 @@ java::oracle { 'jdk8' :
 
 
 #### Parameters
+
 The following parameters are available in `java`:
 
 ##### `distribution`
+
 Specifies the Java distribution to install.
 Valid options:  'jdk', 'jre', or, where the platform supports alternative packages, 'sun-jdk', 'sun-jre', 'oracle-jdk', 'oracle-jre'. Default: 'jdk'.
 
 ##### `java_alternative`
+
 Specifies the name of the Java alternative to use. If you set this parameter, *you must also set the `java_alternative_path`.*
 Valid options: Run command `update-java-alternatives -l` for a list of available choices. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
 ##### `java_alternative_path`
+
 *Required when `java_alternative` is specified.* Defines the path to the `java` command.
 Valid option: String. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
 ##### `package`
+
 Specifies the name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module installs the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter does nothing.
 Valid option: String. Default: undef.
 
 ##### `version`
+
 Sets the version of Java to install, if you want to ensure a particular version.
 Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9a-zA-Z:-]+$/`. Default: 'present'.
 
@@ -119,24 +126,31 @@ The following parameters are available in `java::oracle`:
 Version of Java Standard Edition (SE) to install. 6, 7 or 8.
 
 ##### `version_major`
+
 Major version of the Java Standard Edition (SE) to install. Must be used together with `version_minor`. For example, '8u101'.
 
 ##### `version_minor`
+
 Minor version (or build version) of the Java Standard Edition (SE) to install. Must be used together with `version_major`. For example, 'b13'.
 
 ##### `java_se`
+
 Type of Java SE to install, jdk or jre.
 
 ##### `ensure`
+
 Install or remove the package.
 
 ##### `oracle_url`
+
 Official Oracle URL to download the binaries from.
 
 ##### `proxy_server`
+
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
 ##### `proxy_type`
+
 Proxy server type (none|http|https|ftp). (passed to archive)
 
 ### Facts
@@ -178,6 +192,7 @@ Sun Java is supported on:
 * Debian 6
 
 Oracle Java is supported on:
+
 * CentOS 6
 
 ### Known issues
