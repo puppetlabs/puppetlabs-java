@@ -52,6 +52,11 @@ describe 'java::oracle', :type => :define do
         it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[/tmp/jre-8u51-linux-x64.rpm]') }
     end
 
+    context 'Pass URL to url parameter' do
+      let(:params) { {:ensure => 'present', :version_major => '8u131', :version_minor => 'b11', :java_se => 'jdk', :url => 'http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm'} }
+      let :title do 'jdk8' end
+        it { is_expected.to contain_archive('/tmp/jdk-8u131-linux-x64.rpm')}
+      end
   end
 
   context 'On CentOS 32-bit' do

@@ -153,6 +153,10 @@ Specify a proxy server, with port number if needed. ie: https://example.com:8080
 
 Proxy server type (none|http|https|ftp). (passed to archive)
 
+##### `url`
+
+Pass an entire URL to download the installer from rather than building the complete URL from other parameters. This will allow the module to be used even if the URLs are changed by Oracle. If this parameter is used, matching `version_major` and `version_minor` parameters must also be passed to the class.
+
 ### Facts
 
 The java module includes a few facts to describe the version of Java installed on the system:
@@ -196,6 +200,8 @@ Oracle Java is supported on:
 * CentOS 6
 
 ### Known issues
+
+Where Oracle change the format of the URLs to different installer packages, the curl to fetch the package may fail with a HTTP/404 error. In this case, passing a full known good URL using the `url` parameter will allow the module to still be able to install specific versions of the JRE/JDK. Note the `version_major` and `version_minor` parameters must be passed and must match the version downloaded using the known URL in the `url` parameter. 
 
 #### OpenBSD
 
