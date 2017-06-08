@@ -14,7 +14,7 @@
 #
 # Parameters
 # [*version*]
-# Version of Java to install, e.g. '7' or '8'. Default values for major and minor 
+# Version of Java to install, e.g. '7' or '8'. Default values for major and minor
 # versions will be used.
 #
 # [*version_major*]
@@ -74,7 +74,8 @@
 #
 # [*url*]
 # Full URL, including oracle_url, release_major, release_minor and package_name, to
-# download the Oracle java_se installer.
+# download the Oracle java_se installer. Originally present but not used, activated
+# to workaround MODULES-5058
 #
 # ### Author
 # mike@marseglia.org
@@ -86,6 +87,7 @@ define java::oracle (
   $version_minor = undef,
   $java_se       = 'jdk',
   $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $url           = undef,
 ) {
 
   # archive module is used to download the java package
@@ -188,6 +190,13 @@ define java::oracle (
     }
   }
 
+  # if complete URL is provided, use this value for source in archive resource
+  if $url {
+    $source = $url
+  } else {
+    $source = "${oracle_url}${release_major}-${release_minor}/${package_name}"
+  }
+
   # full path to the installer
   $destination = "${destination_dir}${package_name}"
   notice ("Destination is ${destination}")
@@ -211,11 +220,12 @@ define java::oracle (
     'present' : {
       archive { $destination :
         ensure       => present,
-        source       => "${oracle_url}${release_major}-${release_minor}/${package_name}",
-        cleanup      => false,
-        extract_path => '/tmp',
+        source       => $source,
         cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
-      }->
+        extract_path => '/tmp',
+        cleanup      => false,
+        creates      => $creates_path,
+      }
       case $::kernel {
         'Linux' : {
           exec { "Install Oracle java_se ${java_se} ${version}" :
