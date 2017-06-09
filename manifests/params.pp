@@ -21,20 +21,22 @@ class java::params {
             $jre_package = 'java-1.6.0-sun'
             $java_home   = '/usr/lib/jvm/java-1.6.0-sun/jre/'
           }
+          # See cde7046 for why >= 5.0 < 6.3
           elsif (versioncmp($::operatingsystemrelease, '6.3') < 0) {
             $jdk_package = 'java-1.6.0-openjdk-devel'
             $jre_package = 'java-1.6.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.6.0-openjdk-${::architecture}/"
+            $java_home   = '/usr/lib/jvm/java-1.6.0/'
           }
+          # See PR#160 / c8e46b5 for why >= 6.3 < 7.1
           elsif (versioncmp($::operatingsystemrelease, '7.1') < 0) {
             $jdk_package = 'java-1.7.0-openjdk-devel'
             $jre_package = 'java-1.7.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/"
+            $java_home   = '/usr/lib/jvm/java-1.7.0/'
           }
           else {
             $jdk_package = 'java-1.8.0-openjdk-devel'
             $jre_package = 'java-1.8.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/"
+            $java_home   = '/usr/lib/jvm/java-1.8.0/'
           }
         }
         'Fedora': {
