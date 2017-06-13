@@ -157,6 +157,10 @@ Proxy server type (none|http|https|ftp). (passed to archive)
 
 Pass an entire URL to download the installer from rather than building the complete URL from other parameters. This will allow the module to be used even if the URLs are changed by Oracle. If this parameter is used, matching `version_major` and `version_minor` parameters must also be passed to the class.
 
+##### `url_hash`
+
+Directory hash used by the download.oracle.com site. This value is a 32 character string which is part of the file URL returned by the JDK download site.
+
 ### Facts
 
 The java module includes a few facts to describe the version of Java installed on the system:
