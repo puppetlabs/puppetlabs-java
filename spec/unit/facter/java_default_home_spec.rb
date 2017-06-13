@@ -29,6 +29,14 @@ describe Facter::Util::Fact do
         end
       end
     end
+    context 'returns nil when readlink is present but java is not' do
+      it do
+        java_path_output = ""
+        Facter::Util::Resolution.expects(:which).with("readlink").returns(true)
+        Facter::Util::Resolution.expects(:exec).with("readlink -e /usr/bin/java").returns(java_path_output)
+        expect(Facter.value(:java_default_home)).to be_nil
+      end
+    end
 
     context 'returns nil when readlink not present' do
       it do

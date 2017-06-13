@@ -1,3 +1,17 @@
+## Supported Release 2.1.0
+### Summary
+This release adds fixes to restore the ability to install Oracle Java. It also
+fixes the paths for the latest RHEL 7 1.7.0 and 1.8.0 OpenJDKs.
+
+### Added
+- java::oracle parameter `url`
+- java::oracle parameter `url_hash`
+
+### Fixed
+- Let `java_default_home` fact work when /usr/bin/java doesn't exist
+- Add puppet 4 parameter types
+- Use `/usr/lib/jvm/java-1.x.0` symlinks for `java_home` defaults.
+
 ## Supported Release 2.0.0
 ### Summary
 

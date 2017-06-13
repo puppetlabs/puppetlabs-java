@@ -13,7 +13,7 @@
 
 ## Overview
 
-Installs the correct Java package on various platforms. 
+Installs the correct Java package on various platforms.
 
 ## Module Description
 
@@ -22,29 +22,30 @@ The java module can automatically install Java jdk or jre on a wide variety of s
 ## Setup
 
 ### Beginning with the java module
+
 To install the correct Java package on your system, include the `java` class: `include java`.
 
 ## Usage
 
 The java module installs the correct jdk or jre package on a wide variety of systems. By default, the module installs the jdk package, but you can set different installation parameters as needed. For example, to install jre instead of jdk, you would set the distribution parameter:
 
-~~~
+```puppet
 class { 'java':
   distribution => 'jre',
 }
-~~~
+```
 
-To install the latest patch version of Java 8 on CentOS 
+To install the latest patch version of Java 8 on CentOS
 
-~~~
+```puppet
 class { 'java' :
   package => 'java-1.8.0-openjdk-devel',
 }
-~~~
+```
 
 The defined type `java::oracle` installs one or more versions of Oracle Java SE. `java::oracle` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).  By using `java::oracle` you agree to Oracle's licensing terms for Java SE.
 
-~~~
+```puppet
 java::oracle { 'jdk6' :
   ensure  => 'present',
   version => '6',
@@ -56,18 +57,18 @@ java::oracle { 'jdk8' :
   version => '8',
   java_se => 'jdk',
 }
-~~~
+```
 
 To install a specific release of a Java version, e.g. 8u101-b13, provide both parameters `version_major` and `version_minor` as follows:
 
-~~~
+```puppet
 java::oracle { 'jdk8' :
   ensure  => 'present',
   version_major => '8u101',
   version_minor => 'b13',
   java_se => 'jdk',
 }
-~~~
+```
 
 ## Reference
 
@@ -85,26 +86,32 @@ java::oracle { 'jdk8' :
 
 
 #### Parameters
+
 The following parameters are available in `java`:
 
 ##### `distribution`
-Specifies the Java distribution to install.  
+
+Specifies the Java distribution to install.
 Valid options:  'jdk', 'jre', or, where the platform supports alternative packages, 'sun-jdk', 'sun-jre', 'oracle-jdk', 'oracle-jre'. Default: 'jdk'.
 
 ##### `java_alternative`
-Specifies the name of the Java alternative to use. If you set this parameter, *you must also set the `java_alternative_path`.*  
+
+Specifies the name of the Java alternative to use. If you set this parameter, *you must also set the `java_alternative_path`.*
 Valid options: Run command `update-java-alternatives -l` for a list of available choices. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
-##### `java_alternative_path`  
-*Required when `java_alternative` is specified.* Defines the path to the `java` command.  
+##### `java_alternative_path`
+
+*Required when `java_alternative` is specified.* Defines the path to the `java` command.
 Valid option: String. Default: OS and distribution dependent defaults on *deb systems, undef on others.
 
 ##### `package`
-Specifies the name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module installs the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter does nothing.  
-Valid option: String. Default: undef. 
+
+Specifies the name of the Java package. This is configurable in case you want to install a non-standard Java package. If not set, the module installs the appropriate package for the `distribution` parameter and target platform. If you set `package`, the `distribution` parameter does nothing.
+Valid option: String. Default: undef.
 
 ##### `version`
-Sets the version of Java to install, if you want to ensure a particular version.  
+
+Sets the version of Java to install, if you want to ensure a particular version.
 Valid options: 'present', 'installed', 'latest', or a string matching `/^[.+_0-9a-zA-Z:-]+$/`. Default: 'present'.
 
 #### Public defined types
@@ -119,25 +126,40 @@ The following parameters are available in `java::oracle`:
 Version of Java Standard Edition (SE) to install. 6, 7 or 8.
 
 ##### `version_major`
+
 Major version of the Java Standard Edition (SE) to install. Must be used together with `version_minor`. For example, '8u101'.
 
 ##### `version_minor`
+
 Minor version (or build version) of the Java Standard Edition (SE) to install. Must be used together with `version_major`. For example, 'b13'.
 
 ##### `java_se`
+
 Type of Java SE to install, jdk or jre.
 
 ##### `ensure`
+
 Install or remove the package.
 
 ##### `oracle_url`
+
 Official Oracle URL to download the binaries from.
 
 ##### `proxy_server`
+
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
 ##### `proxy_type`
+
 Proxy server type (none|http|https|ftp). (passed to archive)
+
+##### `url`
+
+Pass an entire URL to download the installer from rather than building the complete URL from other parameters. This will allow the module to be used even if the URLs are changed by Oracle. If this parameter is used, matching `version_major` and `version_minor` parameters must also be passed to the class.
+
+##### `url_hash`
+
+Directory hash used by the download.oracle.com site. This value is a 32 character string which is part of the file URL returned by the JDK download site.
 
 ### Facts
 
@@ -153,7 +175,7 @@ The java module includes a few facts to describe the version of Java installed o
 
 ## Limitations
 
-This module cannot guarantee installation of Java versions that are not available on  platform repositories. 
+This module cannot guarantee installation of Java versions that are not available on  platform repositories.
 
 This module only manages a singular installation of Java, meaning it is not possible to manage e.g. OpenJDK 7, Oracle Java 7 and Oracle Java 8 in parallel on the same system.
 
@@ -161,7 +183,7 @@ Oracle Java packages are not included in Debian 7 and Ubuntu 12.04/14.04 reposit
 
 This module is officially [supported](https://forge.puppetlabs.com/supported) for the following Java versions and platforms:
 
-OpenJDK is supported on:  
+OpenJDK is supported on:
 
 * Red Hat Enterprise Linux (RHEL) 5, 6, 7
 * CentOS 5, 6, 7
@@ -173,14 +195,17 @@ OpenJDK is supported on:
 * SLES 11 SP1, SP2, SP3, SP4; SLES 12, SP1, SP2
 * OpenBSD 5.6, 5.7
 
-Sun Java is supported on:  
+Sun Java is supported on:
 
 * Debian 6
 
 Oracle Java is supported on:
+
 * CentOS 6
 
 ### Known issues
+
+Where Oracle change the format of the URLs to different installer packages, the curl to fetch the package may fail with a HTTP/404 error. In this case, passing a full known good URL using the `url` parameter will allow the module to still be able to install specific versions of the JRE/JDK. Note the `version_major` and `version_minor` parameters must be passed and must match the version downloaded using the known URL in the `url` parameter. 
 
 #### OpenBSD
 
