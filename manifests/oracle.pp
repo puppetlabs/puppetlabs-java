@@ -213,11 +213,9 @@ define java::oracle (
   # if complete URL is provided, use this value for source in archive resource
   if $url {
     $source = $url
-  }
-  elsif $release_hash != undef {
+  } elsif $release_hash != undef {
     $source = "${oracle_url}/${release_major}-${release_minor}/${release_hash}/${package_name}"
-  }
-  else {
+  } else {
     $source = "${oracle_url}/${release_major}-${release_minor}/${package_name}"
   }
 
@@ -258,7 +256,7 @@ define java::oracle (
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $install_command,
             creates => $creates_path,
-            require => Archive[$destination]
+            require => Archive[$destination],
           }
         }
         default : {
