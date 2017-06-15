@@ -1,15 +1,16 @@
-## Supported Release 2.1.0
+## Supported Release 3.0.0
 ### Summary
-This release adds fixes to restore the ability to install Oracle Java. It also
-fixes the paths for the latest RHEL 7 1.7.0 and 1.8.0 OpenJDKs.
+This release sees the addition of an upgrade to Puppet 4. It also adds fixes to restore the ability to install Oracle Java and fixes the paths for the latest RHEL 7 1.7.0 and 1.8.0 OpenJDKs.
 
-### Added
-- java::oracle parameter `url`
-- java::oracle parameter `url_hash`
+#### Features
+- Addition of multiple Puppet 4 language features including data types, removal of validate_* function calls
 
-### Fixed
-- Let `java_default_home` fact work when /usr/bin/java doesn't exist
-- Add puppet 4 parameter types
+#### Bugfixes
+- Allow a complete URL to be passed to the java::oracle class - [MODULES-5058](https://tickets.puppetlabs.com/browse/MODULES-5058)
+- Update java::oracle class to work with new download URLs - [MODULES-5047](https://tickets.puppetlabs.com/browse/MODULES-5047)
+- No returns nil if java_bin is not found - [MODULES-4368](https://tickets.puppetlabs.com/browse/MODULES-4368)
+- Puppet linting fixes
+- Let `java_default_home` fact work when /usr/bin/java doesn't exist - [MODULES-4368](https://tickets.puppetlabs.com/browse/MODULES-4368)
 - Use `/usr/lib/jvm/java-1.x.0` symlinks for `java_home` defaults.
 
 ## Supported Release 2.0.0
