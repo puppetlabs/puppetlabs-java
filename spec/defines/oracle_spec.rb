@@ -53,10 +53,29 @@ describe 'java::oracle', :type => :define do
     end
 
     context 'Pass URL to url parameter' do
-      let(:params) { {:ensure => 'present', :version_major => '8u131', :version_minor => 'b11', :java_se => 'jdk', :url => 'http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm'} }
+      let(:params) { {
+        :ensure => 'present',
+        :version_major => '8u131',
+        :version_minor => 'b11',
+        :java_se => 'jdk',
+        :url => 'http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm',
+        :url_hash => 'ignored',
+      } }
       let :title do 'jdk8' end
-        it { is_expected.to contain_archive('/tmp/jdk-8u131-linux-x64.rpm')}
-      end
+      it { is_expected.to contain_archive('/tmp/jdk-8u131-linux-x64.rpm').with_source('http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm') }
+    end
+
+    context 'Pass a hash to url_hash parameter' do
+      let(:params) { {
+        :ensure => 'present',
+        :version_major => '8u131',
+        :version_minor => 'b11',
+        :java_se => 'jdk',
+        :url_hash => 'abcdef01234567890',
+      } }
+      let :title do 'jdk8' end
+      it { is_expected.to contain_archive('/tmp/jdk-8u131-linux-x64.rpm').with_source('http://download.oracle.com/otn-pub/java/jdk//8u131-b11/abcdef01234567890/jdk-8u131-linux-x64.rpm') }
+    end
   end
 
   context 'On CentOS 32-bit' do
