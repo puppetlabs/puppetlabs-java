@@ -62,6 +62,15 @@ class java::config ( ) {
         }
       }
     }
+    'Archlinux': {
+      if $java::use_java_home != undef {
+        file_line { 'java-home-environment':
+          path  => '/etc/profile',
+          line  => "JAVA_HOME=${$java::use_java_home}",
+          match => 'JAVA_HOME=',
+        }
+      }
+    }
     default: {
       # Do nothing.
     }
