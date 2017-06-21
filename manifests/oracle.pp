@@ -186,6 +186,7 @@ define java::oracle (
   case $facts['os']['architecture'] {
     'i386' : { $arch = 'i586' }
     'x86_64' : { $arch = 'x64' }
+    'amd64' : { $arch = 'x64' }
     default : {
       fail ("unsupported platform ${$facts['os']['architecture']}")
     }
