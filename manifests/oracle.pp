@@ -167,6 +167,9 @@ define java::oracle (
             $package_type = 'rpm'
           }
         }
+        'Debian' : {
+            $package_type = 'tar.gz'
+        }
         default : {
           fail ("unsupported platform ${$facts['os']['name']}") }
       }
@@ -205,6 +208,9 @@ define java::oracle (
     'rpm' : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
     }
+    'tar.gz' : {
+      $package_name = "${java_se}-${release_major}-${os}-${arch}.tar.gz"
+    }
     default : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
     }
@@ -235,6 +241,9 @@ define java::oracle (
     'rpm' : {
       $install_command = "rpm --force -iv ${destination}"
     }
+    'tar.gz' : {
+      $install_command = "tar -zxf ${destination} -C /usr/lib/jvm"
+    }
     default : {
       $install_command = "rpm -iv ${destination}"
     }
@@ -259,6 +268,14 @@ define java::oracle (
             command => $install_command,
             creates => $creates_path,
             require => Archive[$destination]
+          }
+          case $facts['os']['family'] {
+            'Debian' : {
+              file{'/usr/lib/jvm':
+                ensure => directory,
+                before => Exec["Install Oracle java_se ${java_se} ${version}"]
+              }
+            }
           }
         }
         default : {
