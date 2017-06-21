@@ -253,6 +253,21 @@ class java::params {
         },
       }
     }
+    'Archlinux': {
+      $jdk_package = 'jdk8-openjdk'
+      $jre_package = 'jre8-openjdk'
+      $java_home   = '/usr/lib/jvm/java-8-openjdk/jre/'
+      $java = {
+        'jdk' => {
+          'package'   => $jdk_package,
+          'java_home' => $java_home,
+        },
+        'jre' => {
+          'package'   => $jre_package,
+          'java_home' => $java_home,
+        },
+      }
+    }
     default: { fail("unsupported platform ${::osfamily}") }
   }
 }

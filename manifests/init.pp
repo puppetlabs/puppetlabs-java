@@ -9,7 +9,6 @@
 #    or other platform-specific options where there are multiple
 #    implementations available (eg: OpenJDK vs Oracle JDK).
 #
-#
 #  [*version*]
 #    The version of java to install. By default, this module simply ensures
 #    that java is present, and does not require a specific version.
@@ -36,8 +35,8 @@
 #    correct JVM is enabled.
 #
 #  [*java_home*]
-#   The path to where the JRE is installed. This will be set as an
-#   environment variable.
+#    The path to where the JRE is installed. This will be set as an
+#    environment variable.
 #
 # Actions:
 #
