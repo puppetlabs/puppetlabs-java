@@ -277,6 +277,7 @@ define java::oracle (
                 before => Exec["Install Oracle java_se ${java_se} ${version}"]
               }
             }
+            default : { }
           }
         }
         default : {
