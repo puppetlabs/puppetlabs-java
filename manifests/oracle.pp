@@ -166,9 +166,11 @@ define java::oracle (
           } else {
             $package_type = 'rpm'
           }
+          $creates_path = "/usr/java/${install_path}"
         }
         'Debian' : {
             $package_type = 'tar.gz'
+            $creates_path = "/usr/lib/jvm/${install_path}"
         }
         default : {
           fail ("unsupported platform ${$facts['os']['name']}") }
@@ -176,7 +178,6 @@ define java::oracle (
 
       $os = 'linux'
       $destination_dir = '/tmp/'
-      $creates_path = "/usr/java/${install_path}"
     }
     default : {
       fail ( "unsupported platform ${$facts['kernel']}" ) }
