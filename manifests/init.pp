@@ -45,13 +45,13 @@
 # Sample Usage:
 #
 class java(
-  String $distribution                                              = 'jdk',
-  Pattern[/present|installed|latest|^[.+_0-9a-zA-Z:~-]+$/] $version = 'present',
-  Optional[String] $package                                         = undef,
-  Optional[Array] $package_options                                  = undef,
-  Optional[String] $java_alternative                                = undef,
-  Optional[String] $java_alternative_path                           = undef,
-  Optional[String] $java_home                                       = undef
+  $distribution           = 'jdk',
+  $version                = 'present',
+  $package                = undef,
+  $package_options        = undef,
+  $java_alternative       = undef,
+  $java_alternative_path  = undef,
+  $java_home              = undef
 ) {
   include java::params
 
