@@ -155,7 +155,7 @@ class java::params {
             },
           }
         }
-        'stretch', 'vivid', 'wily', 'xenial', 'yakkety': {
+        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
