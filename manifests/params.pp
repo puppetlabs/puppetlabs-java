@@ -15,26 +15,28 @@ class java::params {
   case $::osfamily {
     'RedHat': {
       case $::operatingsystem {
-        'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC': {
+        'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC', 'CloudLinux': {
           if (versioncmp($::operatingsystemrelease, '5.0') < 0) {
             $jdk_package = 'java-1.6.0-sun-devel'
             $jre_package = 'java-1.6.0-sun'
             $java_home   = '/usr/lib/jvm/java-1.6.0-sun/jre/'
           }
+          # See cde7046 for why >= 5.0 < 6.3
           elsif (versioncmp($::operatingsystemrelease, '6.3') < 0) {
             $jdk_package = 'java-1.6.0-openjdk-devel'
             $jre_package = 'java-1.6.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.6.0-openjdk-${::architecture}/"
+            $java_home   = '/usr/lib/jvm/java-1.6.0/'
           }
+          # See PR#160 / c8e46b5 for why >= 6.3 < 7.1
           elsif (versioncmp($::operatingsystemrelease, '7.1') < 0) {
             $jdk_package = 'java-1.7.0-openjdk-devel'
             $jre_package = 'java-1.7.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/"
+            $java_home   = '/usr/lib/jvm/java-1.7.0/'
           }
           else {
             $jdk_package = 'java-1.8.0-openjdk-devel'
             $jre_package = 'java-1.8.0-openjdk'
-            $java_home   = "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/"
+            $java_home   = '/usr/lib/jvm/java-1.8.0/'
           }
         }
         'Fedora': {
@@ -153,7 +155,7 @@ class java::params {
             },
           }
         }
-        'stretch', 'vivid', 'wily', 'xenial': {
+        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
@@ -211,7 +213,11 @@ class java::params {
     'Suse': {
       case $::operatingsystem {
         'SLES': {
-          if (versioncmp($::operatingsystemrelease, '12') >= 0) {
+          if (versioncmp($::operatingsystemrelease, '12.1') >= 0) {
+            $jdk_package = 'java-1_8_0-openjdk-devel'
+            $jre_package = 'java-1_8_0-openjdk'
+            $java_home   = '/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/'
+          } elsif (versioncmp($::operatingsystemrelease, '12') >= 0) {
             $jdk_package = 'java-1_7_0-openjdk-devel'
             $jre_package = 'java-1_7_0-openjdk'
             $java_home   = '/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/'
@@ -236,6 +242,21 @@ class java::params {
           $java_home   = '/usr/lib64/jvm/java-1.6.0-ibd-1.6.0/'
         }
       }
+      $java = {
+        'jdk' => {
+          'package'   => $jdk_package,
+          'java_home' => $java_home,
+        },
+        'jre' => {
+          'package'   => $jre_package,
+          'java_home' => $java_home,
+        },
+      }
+    }
+    'Archlinux': {
+      $jdk_package = 'jdk8-openjdk'
+      $jre_package = 'jre8-openjdk'
+      $java_home   = '/usr/lib/jvm/java-8-openjdk/jre/'
       $java = {
         'jdk' => {
           'package'   => $jdk_package,

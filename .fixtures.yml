@@ -1,8 +1,6 @@
 fixtures:
   repositories:
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
-    archive:
-      repo: "git://github.com/voxpupuli/puppet-archive.git"
-      ref: "v1.2.0"
+    archive: "git://github.com/voxpupuli/puppet-archive.git"
   symlinks:
     java: "#{source_dir}"

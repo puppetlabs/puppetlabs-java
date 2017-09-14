@@ -9,7 +9,6 @@
 #    or other platform-specific options where there are multiple
 #    implementations available (eg: OpenJDK vs Oracle JDK).
 #
-#
 #  [*version*]
 #    The version of java to install. By default, this module simply ensures
 #    that java is present, and does not require a specific version.
@@ -36,8 +35,8 @@
 #    correct JVM is enabled.
 #
 #  [*java_home*]
-#   The path to where the JRE is installed. This will be set as an
-#   environment variable.
+#    The path to where the JRE is installed. This will be set as an
+#    environment variable.
 #
 # Actions:
 #
@@ -46,21 +45,15 @@
 # Sample Usage:
 #
 class java(
-  $distribution          = 'jdk',
-  $version               = 'present',
-  $package               = undef,
-  $package_options       = undef,
-  $java_alternative      = undef,
-  $java_alternative_path = undef,
-  $java_home             = undef
+  String $distribution                                              = 'jdk',
+  Pattern[/present|installed|latest|^[.+_0-9a-zA-Z:~-]+$/] $version = 'present',
+  Optional[String] $package                                         = undef,
+  Optional[Array] $package_options                                  = undef,
+  Optional[String] $java_alternative                                = undef,
+  Optional[String] $java_alternative_path                           = undef,
+  Optional[String] $java_home                                       = undef
 ) {
   include java::params
-
-  validate_re($version, 'present|installed|latest|^[.+_0-9a-zA-Z:~-]+$')
-
-  if $package_options != undef {
-    validate_array($package_options)
-  }
 
   if has_key($java::params::java, $distribution) {
     $default_package_name     = $java::params::java[$distribution]['package']
@@ -118,14 +111,12 @@ class java(
   }
 
   anchor { 'java::begin:': }
-  ->
-  package { 'java':
+  -> package { 'java':
     ensure          => $version,
     install_options => $package_options,
     name            => $use_java_package_name,
   }
-  ->
-  class { 'java::config': }
+  -> class { 'java::config': }
   -> anchor { 'java::end': }
 
 }
