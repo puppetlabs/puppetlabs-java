@@ -50,6 +50,7 @@ java version "1.7.0_71"
 Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
           EOS
+          Facter::Util::Resolution.expects(:which).with("java").returns('/path/to/java')
           Facter::Util::Resolution.expects(:exec).with("java -Xmx12m -version 2>&1").returns(java_version_output)
           expect(Facter.value(:java_version)).to eq("1.7.0_71")
         end
