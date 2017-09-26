@@ -245,6 +245,34 @@ describe 'java', :type => :class do
     it { is_expected.to contain_package('java').with_name('jre') }
   end
 
+  describe 'custom java package' do
+    let(:facts) { {:osfamily => 'Debian', :operatingsystem => 'Debian', :lsbdistcodename => 'jessie', :operatingsystemrelease => '8.6', :architecture => 'amd64',} }
+    context 'all params provided' do
+      let(:params) { {
+        'distribution'          => 'custom',
+        'package'               => 'custom_jdk',
+        'java_alternative'      => 'java-custom_jdk',
+        'java_alternative_path' => '/opt/custom_jdk/bin/java',
+        'java_home'             => '/opt/custom_jdk',
+      } }
+
+      it { is_expected.to contain_package('java').with_name('custom_jdk') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/opt/custom_jdk') }
+      it { is_expected.to contain_exec('update-java-alternatives').with_command('update-java-alternatives --set java-custom_jdk --jre') }
+
+    end
+    context 'missing parameters' do
+      let(:params) { {
+        'distribution' => 'custom',
+        'package' => 'custom_jdk',
+      } }
+      it do
+        expect { catalogue }.to raise_error Puppet::Error, /is not supported. Missing default values/
+      end
+    end
+  end
+
+
   describe 'incompatible OSs' do
     [
       {
