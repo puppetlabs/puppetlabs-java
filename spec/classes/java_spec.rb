@@ -236,7 +236,7 @@ describe 'java', :type => :class do
   context 'select jdk for OpenBSD' do
     let(:facts) { {:osfamily => 'OpenBSD', :architecture => 'x86_64'} }
     it { is_expected.to contain_package('java').with_name('jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/local/jdk/') }
+    it { is_expected.to_not contain_file_line('java-home-environment') }
   end
 
   context 'select jre for OpenBSD' do
