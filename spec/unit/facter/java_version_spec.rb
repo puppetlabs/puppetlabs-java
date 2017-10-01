@@ -14,6 +14,7 @@ describe Facter::Util::Fact do
         let(:facts) { {:operatingsystem => 'OpenBSD'} }
         it do
           java_version_output = <<-EOS
+Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true
 openjdk version "1.7.0_71"
 OpenJDK Runtime Environment (build 1.7.0_71-b14)
 OpenJDK 64-Bit Server VM (build 24.71-b01, mixed mode)
@@ -30,6 +31,7 @@ OpenJDK 64-Bit Server VM (build 24.71-b01, mixed mode)
         let(:facts) { {:operatingsystem => 'Darwin'} }
         it do
           java_version_output = <<-EOS
+Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true
 java version "1.7.0_71"
 Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
@@ -46,6 +48,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
         let(:facts) { {:operatingsystem => 'MyOS'} }
         it do
           java_version_output = <<-EOS
+Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true
 java version "1.7.0_71"
 Java(TM) SE Runtime Environment (build 1.7.0_71-b14)
 Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)
