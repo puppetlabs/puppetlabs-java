@@ -1,3 +1,32 @@
+## Supported Release 2.1.1
+### Summary
+This release is a maintenance release that includes a roll up of minor changes.
+
+#### Added
+- Basic Arch Linux, Cloud Linux and Ubuntu 17.04 compatibility.
+- Metadata bump for Puppet 5.
+- Search for matching line with java version.
+- ([MODULES-4069](https://tickets.puppet.com/browse/MODULES-4069)) Fail when required params are not available in params.
+- A test for java version when java not installed.
+- Allow latest archive version as dependency.
+
+#### Changed
+- CONTRIBUTING.md document includes updates.
+- Removal of Ubuntu 10.04 ad 12.04, Debian 6 in supported versions.
+
+## Supported Release 2.1.0
+### Summary
+This release adds fixes to restore the ability to install Oracle Java. It also fixes the paths for the latest RHEL 7 1.7.0 and 1.8.0 OpenJDKs.
+
+### Added
+- java::oracle parameter `url`
+- java::oracle parameter `url_hash`
+
+### Fixed
+- Let `java_default_home` fact work when /usr/bin/java does not exist
+- Add puppet 4 parameter types
+- Use `/usr/lib/jvm/java-1.x.0` symlinks for `java_home` defaults.
+
 ## Supported Release 2.0.0
 ### Summary
 
@@ -113,7 +142,7 @@ This release adds 3 new facts for determining Java version, adds RHEL alternativ
 
 ## 2014-11-11 - Supported Version 1.2.0
 
-### Summary: 
+### Summary:
 This release adds SLES 12 support and is tested for Future Parser Support
 
 #### Bugfixes:
@@ -127,7 +156,7 @@ This release adds SLES 12 support and is tested for Future Parser Support
 
 ## 2014-08-25 - Supported Version 1.1.2
 
-### Summary: 
+### Summary:
 This release begins the support coverage of the puppetlabs-java module.
 
 ### Bugfixes:
@@ -200,11 +229,11 @@ Scott Schneider <sschneider@puppetlabs.com>
 * Add Solaris support
 
 ## 2011-06-16 - Version 0.1.5
-Jeff McCune <jeff@puppetlabs.com> 
+Jeff McCune <jeff@puppetlabs.com>
 * Add Debian based distro (Lucid) support
 
 ## 2011-06-02 - Version 0.1.4
-Jeff McCune <jeff@puppetlabs.com> 
+Jeff McCune <jeff@puppetlabs.com>
 * Fix class composition ordering problems
 
 ## 2011-05-28 - Version 0.1.3
@@ -221,9 +250,9 @@ Jeff McCune <jeff@puppetlabs.com>
 * Add validation of class parameters
 
 ## 2011-05-24 - Version 0.1.0
-Jeff McCune <jeff@puppetlabs.com> 
+Jeff McCune <jeff@puppetlabs.com>
 * Default to JDK version 6u25
 
 ## 2011-05-24 - Version 0.0.1
-Jeff McCune <jeff@puppetlabs.com> 
+Jeff McCune <jeff@puppetlabs.com>
 * Initial release
