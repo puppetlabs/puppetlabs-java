@@ -17,12 +17,11 @@ Facter.add(:java_default_home) do
     if java_bin.empty?
       nil
     else
-      # We might have found a symlink instead of the real binary
-      java_bin = File.realpath(java_bin)
-      if java_bin =~ %r(/jre/)
-        java_default_home = File.dirname(File.dirname(File.dirname(java_bin)))
+      java_path = File.realpath(java_bin)
+      if java_path =~ %r(/jre/)
+        java_default_home = File.dirname(File.dirname(File.dirname(java_path)))
       else
-        java_default_home = File.dirname(File.dirname(java_bin))
+        java_default_home = File.dirname(File.dirname(java_path))
       end
     end
   end
