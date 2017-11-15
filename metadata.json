@@ -77,6 +77,13 @@
       "operatingsystemrelease": [
         "11"
       ]
+    },
+    {
+      "operatingsystem": "OpenBSD",
+      "operatingsystemrelease": [
+        "6.1",
+        "6.2"
+      ]
     }
   ],
   "requirements": [
