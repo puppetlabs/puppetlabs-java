@@ -166,6 +166,11 @@ define java::oracle (
           } else {
             $package_type = 'rpm'
           }
+          $creates_path = "/usr/java/${install_path}"
+        }
+        'Debian' : {
+            $package_type = 'tar.gz'
+            $creates_path = "/usr/lib/jvm/${install_path}"
         }
         default : {
           fail ("unsupported platform ${$facts['os']['name']}") }
@@ -173,7 +178,6 @@ define java::oracle (
 
       $os = 'linux'
       $destination_dir = '/tmp/'
-      $creates_path = "/usr/java/${install_path}"
     }
     default : {
       fail ( "unsupported platform ${$facts['kernel']}" ) }
@@ -183,6 +187,7 @@ define java::oracle (
   case $facts['os']['architecture'] {
     'i386' : { $arch = 'i586' }
     'x86_64' : { $arch = 'x64' }
+    'amd64' : { $arch = 'x64' }
     default : {
       fail ("unsupported platform ${$facts['os']['architecture']}")
     }
@@ -204,6 +209,9 @@ define java::oracle (
     }
     'rpm' : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
+    }
+    'tar.gz' : {
+      $package_name = "${java_se}-${release_major}-${os}-${arch}.tar.gz"
     }
     default : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
@@ -235,6 +243,9 @@ define java::oracle (
     'rpm' : {
       $install_command = "rpm --force -iv ${destination}"
     }
+    'tar.gz' : {
+      $install_command = "tar -zxf ${destination} -C /usr/lib/jvm"
+    }
     default : {
       $install_command = "rpm -iv ${destination}"
     }
@@ -259,6 +270,15 @@ define java::oracle (
             command => $install_command,
             creates => $creates_path,
             require => Archive[$destination]
+          }
+          case $facts['os']['family'] {
+            'Debian' : {
+              file{'/usr/lib/jvm':
+                ensure => directory,
+                before => Exec["Install Oracle java_se ${java_se} ${version}"]
+              }
+            }
+            default : { }
           }
         }
         default : {

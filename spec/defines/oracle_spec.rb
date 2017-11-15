@@ -130,6 +130,63 @@ describe 'java::oracle', :type => :define do
     end
   end
 
+  context 'On Ubuntu 64-bit' do
+    let(:facts) { {:kernel => 'Linux',  :os => { :family => 'Debian', :architecture => 'amd64', :name => 'Ubuntu', :release => { :full => '16.04' } } } }
+
+      context 'Oracle Java SE 6 JDK' do
+      let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jdk'} }
+      let :title do 'jdk6' end
+        it { is_expected.to contain_archive('/tmp/jdk-6u45-linux-x64.tar.gz')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('tar -zxf /tmp/jdk-6u45-linux-x64.tar.gz -C /usr/lib/jvm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-x64.tar.gz]') }
+      end
+
+      context 'Oracle Java SE 7 JDK' do
+        let(:params) { {:ensure => 'present', :version => '7', :java_se => 'jdk'} }
+        let :title do 'jdk7' end
+          it { is_expected.to contain_archive('/tmp/jdk-7u80-linux-x64.tar.gz')}
+          it { is_expected.to contain_exec('Install Oracle java_se jdk 7').with_command('tar -zxf /tmp/jdk-7u80-linux-x64.tar.gz -C /usr/lib/jvm') }
+          it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[/tmp/jdk-7u80-linux-x64.tar.gz]') }
+      end
+
+    context 'Oracle Java SE 8 JDK' do
+      let(:params) { {:ensure => 'present', :version => '8', :java_se => 'jdk'} }
+      let :title do 'jdk8' end
+        it { is_expected.to contain_archive('/tmp/jdk-8u131-linux-x64.tar.gz')}
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 8').with_command('tar -zxf /tmp/jdk-8u131-linux-x64.tar.gz -C /usr/lib/jvm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[/tmp/jdk-8u131-linux-x64.tar.gz]') }
+    end
+
+    context 'Oracle Java SE 6 JRE' do
+      let(:params) { {:ensure => 'present', :version => '6', :java_se => 'jre'} }
+      let :title do 'jre6' end
+        it { is_expected.to contain_archive('/tmp/jre-6u45-linux-x64.tar.gz')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 6').with_command('tar -zxf /tmp/jre-6u45-linux-x64.tar.gz -C /usr/lib/jvm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[/tmp/jre-6u45-linux-x64.tar.gz]') }
+    end
+
+    context 'Oracle Java SE 7 JRE' do
+      let(:params) { {:ensure => 'present', :version => '7', :java_se => 'jre'} }
+      let :title do 'jre7' end
+        it { is_expected.to contain_archive('/tmp/jre-7u80-linux-x64.tar.gz')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 7').with_command('tar -zxf /tmp/jre-7u80-linux-x64.tar.gz -C /usr/lib/jvm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[/tmp/jre-7u80-linux-x64.tar.gz]') }
+    end
+
+    context 'select Oracle Java SE 8 JRE' do
+      let(:params) { {:ensure => 'present', :version => '8', :java_se => 'jre'} }
+      let :title do 'jre8' end
+        it { is_expected.to contain_archive('/tmp/jre-8u131-linux-x64.tar.gz')}
+        it { is_expected.to contain_exec('Install Oracle java_se jre 8').with_command('tar -zxf /tmp/jre-8u131-linux-x64.tar.gz -C /usr/lib/jvm') }
+        it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[/tmp/jre-8u131-linux-x64.tar.gz]') }
+    end
+
+    context 'Pass URL to url parameter' do
+      let(:params) { {:ensure => 'present', :version_major => '8u131', :version_minor => 'b11', :java_se => 'jdk', :url => 'http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz'} }
+      let :title do 'jdk8' end
+        it { is_expected.to contain_archive('/tmp/jdk-8u131-linux-x64.tar.gz')}
+      end
+  end
   describe 'incompatible OSes' do
     [
       {
