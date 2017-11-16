@@ -44,7 +44,7 @@ class java::config ( ) {
         }
       }
     }
-    'OpenBSD', 'FreeBSD', 'Suse': {
+    'FreeBSD', 'Suse': {
       if $java::use_java_home != undef {
         file_line { 'java-home-environment':
           path  => '/etc/environment',

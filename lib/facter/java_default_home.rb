@@ -3,24 +3,25 @@
 # Purpose: get absolute path of java system home
 #
 # Resolution:
-#   Uses `readlink` to resolve the path of `/usr/bin/java` then returns subsubdir
+#   Find the real java binary, and return the subsubdir
 #
 # Caveats:
-#   Requires readlink
+#   java binary has to be found in $PATH
 #
 # Notes:
 #   None
 Facter.add(:java_default_home) do
-  confine :kernel => 'Linux'
+  confine :kernel => [ 'Linux', 'OpenBSD' ]
   setcode do
-    if Facter::Util::Resolution.which('readlink')
-      java_bin = Facter::Util::Resolution.exec('readlink -e /usr/bin/java').strip
-      if java_bin.empty?
-        nil
-      elsif java_bin =~ %r(/jre/)
-        java_default_home = File.dirname(File.dirname(File.dirname(java_bin)))
+    java_bin = Facter::Util::Resolution.which('java').to_s.strip
+    if java_bin.empty?
+      nil
+    else
+      java_path = File.realpath(java_bin)
+      if java_path =~ %r(/jre/)
+        java_default_home = File.dirname(File.dirname(File.dirname(java_path)))
       else
-        java_default_home = File.dirname(File.dirname(java_bin))
+        java_default_home = File.dirname(File.dirname(java_path))
       end
     end
   end
