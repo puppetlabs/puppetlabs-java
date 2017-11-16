@@ -1,3 +1,15 @@
+## Supported Release [2.2.0]
+### Summary
+This release is a maintenance release that includes a roll up of minor changes.
+
+#### Added
+- Addition of Ubuntu for Oracle Java.
+- Addition of Debian 9 in supported versions.
+- Addition of OpenBSD case and use `realpath` rather than `readlink` in Java Default Home Facter fact.
+
+#### Removed
+- Removal of OpenBSD as a special case and deprecated `with_env` in Java Version Facter Facter fact.
+
 ## Supported Release 2.1.1
 ### Summary
 This release is a maintenance release that includes a roll up of minor changes.
@@ -256,3 +268,5 @@ Jeff McCune <jeff@puppetlabs.com>
 ## 2011-05-24 - Version 0.0.1
 Jeff McCune <jeff@puppetlabs.com>
 * Initial release
+
+[2.2.0]:https://github.com/puppetlabs/puppetlabs-java/compare/2.1.1...2.2.0
