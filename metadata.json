@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-java",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "author": "puppetlabs",
   "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache-2.0",
@@ -50,7 +50,8 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
