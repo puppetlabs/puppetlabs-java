@@ -202,6 +202,8 @@ Sun Java is supported on:
 Oracle Java is supported on:
 
 * CentOS 6
+* CentOS 7
+* Red Hat Enterprise Linux (RHEL) 7
 
 ### Known issues
 
