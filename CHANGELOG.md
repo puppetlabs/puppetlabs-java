@@ -1,3 +1,15 @@
+## Supported Release [2.3.0]
+### Summary
+This release is in order to implement Rubocop changes into the module.
+
+#### Added
+- Several Modulesync changes have been made.
+- Rubocop has been implemented in the module.
+- CentOS 7 is now supported.
+- Red Hat Enterprise Linux (RHEL) 7 is now supported.
+- Ubuntu artful 1710 now supported.
+- Bionic 1804 now supported.
+
 ## Supported Release [2.2.0]
 ### Summary
 This release is a maintenance release that includes a roll up of minor changes.
@@ -269,4 +281,5 @@ Jeff McCune <jeff@puppetlabs.com>
 Jeff McCune <jeff@puppetlabs.com>
 * Initial release
 
+[2.3.0]:https://github.com/puppetlabs/puppetlabs-java/compare/2.2.0...2.3.0
 [2.2.0]:https://github.com/puppetlabs/puppetlabs-java/compare/2.1.1...2.2.0
