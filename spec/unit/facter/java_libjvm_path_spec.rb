@@ -9,7 +9,7 @@ describe 'java_libjvm_path' do
     Dir.stubs(:glob).with("#{java_default_home}/jre/lib/**/libjvm.so").returns(['/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so'])
   end
 
-  context 'returns libjvm path on Linux' do
+  context 'when on Linux, return libjvm path' do
     it do
       expect(Facter.value(:java_libjvm_path)).to eql '/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server'
     end

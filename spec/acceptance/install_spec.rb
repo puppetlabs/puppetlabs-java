@@ -151,7 +151,7 @@ context 'oracle', if: (
   end
 end
 
-context 'failure cases' do
+context 'with failure cases' do
   # C14711
   # SLES 10 returns an exit code of 0 on zypper failure
   unless fact('operatingsystem') == 'SLES' && fact('operatingsystemrelease') < '11'

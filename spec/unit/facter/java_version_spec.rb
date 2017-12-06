@@ -15,7 +15,7 @@ describe 'java_version' do
     Facter.clear
   end
 
-  context 'returns java version when java present' do
+  context 'when java present, returns java version' do
     context 'on OpenBSD', with_env: true do
       before(:each) do
         Facter.fact(:operatingsystem).stubs(:value).returns('OpenBSD')
@@ -28,7 +28,7 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to eq('1.7.0_71')
       end
     end
-    context 'on Darwin' do
+    context 'when on Darwin' do
       before(:each) do
         Facter.fact(:operatingsystem).stubs(:value).returns('Darwin')
       end
@@ -40,7 +40,7 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to eql '1.7.0_71'
       end
     end
-    context 'on other systems' do
+    context 'when on other systems' do
       before(:each) do
         Facter.fact(:operatingsystem).stubs(:value).returns('MyOS')
       end
@@ -54,7 +54,7 @@ describe 'java_version' do
     end
   end
 
-  context 'returns nil when java not present' do
+  context 'when java not present, returns nil' do
     context 'on OpenBSD', with_env: true do
       before(:each) do
         Facter.fact(:operatingsystem).stubs(:value).returns('OpenBSD')
@@ -66,7 +66,7 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to be_nil
       end
     end
-    context 'on Darwin' do
+    context 'when on Darwin' do
       before(:each) do
         Facter.fact(:operatingsystem).stubs(:value).returns('Darwin')
       end
@@ -77,7 +77,7 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to be_nil
       end
     end
-    context 'on other systems' do
+    context 'when on other systems' do
       before(:each) do
         Facter.fact(:operatingsystem).stubs(:value).returns('MyOS')
       end

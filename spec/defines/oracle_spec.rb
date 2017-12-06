@@ -3,10 +3,10 @@ require 'spec_helper'
 oracle_url = 'http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz'
 
 describe 'java::oracle', type: :define do
-  context 'On CentOS 64-bit' do
+  context 'with CentOS 64-bit' do
     let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '6.0' } } } }
 
-    context 'Oracle Java SE 6 JDK' do
+    context 'when Oracle Java SE 6 JDK' do
       let(:params) { { ensure: 'present', version: '6', java_se: 'jdk' } }
       let(:title) { 'jdk6' }
 
@@ -15,7 +15,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-x64-rpm.bin]') }
     end
 
-    context 'Oracle Java SE 7 JDK' do
+    context 'when Oracle Java SE 7 JDK' do
       let(:params) { { ensure: 'present', version: '7', java_se: 'jdk' } }
       let(:title) { 'jdk7' }
 
@@ -24,7 +24,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[/tmp/jdk-7u80-linux-x64.rpm]') }
     end
 
-    context 'Oracle Java SE 8 JDK' do
+    context 'when Oracle Java SE 8 JDK' do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
       let(:title) { 'jdk8' }
 
@@ -33,7 +33,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[/tmp/jdk-8u131-linux-x64.rpm]') }
     end
 
-    context 'Oracle Java SE 6 JRE' do
+    context 'when Oracle Java SE 6 JRE' do
       let(:params) { { ensure: 'present', version: '6', java_se: 'jre' } }
       let(:title) { 'jre6' }
 
@@ -42,7 +42,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[/tmp/jre-6u45-linux-x64-rpm.bin]') }
     end
 
-    context 'Oracle Java SE 7 JRE' do
+    context 'when Oracle Java SE 7 JRE' do
       let(:params) { { ensure: 'present', version: '7', java_se: 'jre' } }
       let(:title) { 'jre7' }
 
@@ -51,7 +51,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[/tmp/jre-7u80-linux-x64.rpm]') }
     end
 
-    context 'select Oracle Java SE 8 JRE' do
+    context 'when select Oracle Java SE 8 JRE' do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
       let(:title) { 'jre8' }
 
@@ -60,7 +60,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[/tmp/jre-8u131-linux-x64.rpm]') }
     end
 
-    context 'Pass URL to url parameter' do
+    context 'when passing URL to url parameter' do
       let(:params) do
         {
           ensure: 'present',
@@ -79,7 +79,7 @@ describe 'java::oracle', type: :define do
       }
     end
 
-    context 'Pass a hash to url_hash parameter' do
+    context 'when passing a hash to url_hash parameter' do
       let(:params) do
         {
           ensure: 'present',
@@ -95,10 +95,10 @@ describe 'java::oracle', type: :define do
     end
   end
 
-  context 'On CentOS 32-bit' do
+  context 'when on CentOS 32-bit' do
     let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'i386', name: 'CentOS', release: { full: '6.6' } } } }
 
-    context 'select Oracle Java SE 6 JDK on RedHat family, 32-bit' do
+    context 'when selecting Oracle Java SE 6 JDK on RedHat family, 32-bit' do
       let(:params) { { ensure: 'present', version: '6', java_se: 'jdk' } }
       let(:title) { 'jdk6' }
 
@@ -107,7 +107,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-i586-rpm.bin]') }
     end
 
-    context 'select Oracle Java SE 7 JDK on RedHat family, 32-bit' do
+    context 'when selecting Oracle Java SE 7 JDK on RedHat family, 32-bit' do
       let(:params) { { ensure: 'present', version: '7', java_se: 'jdk' } }
       let(:title) { 'jdk7' }
 
@@ -116,7 +116,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[/tmp/jdk-7u80-linux-i586.rpm]') }
     end
 
-    context 'select Oracle Java SE 8 JDK on RedHat family, 32-bit' do
+    context 'when selecting Oracle Java SE 8 JDK on RedHat family, 32-bit' do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
       let(:title) { 'jdk8' }
 
@@ -125,7 +125,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[/tmp/jdk-8u131-linux-i586.rpm]') }
     end
 
-    context 'select Oracle Java SE 6 JRE on RedHat family, 32-bit' do
+    context 'when selecting Oracle Java SE 6 JRE on RedHat family, 32-bit' do
       let(:params) { { ensure: 'present', version: '6', java_se: 'jre' } }
       let(:title) { 'jdk6' }
 
@@ -134,7 +134,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[/tmp/jre-6u45-linux-i586-rpm.bin]') }
     end
 
-    context 'select Oracle Java SE 7 JRE on RedHat family, 32-bit' do
+    context 'when select Oracle Java SE 7 JRE on RedHat family, 32-bit' do
       let(:params) { { ensure: 'present', version: '7', java_se: 'jre' } }
       let(:title) { 'jdk7' }
 
@@ -143,7 +143,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[/tmp/jre-7u80-linux-i586.rpm]') }
     end
 
-    context 'select Oracle Java SE 8 JRE on RedHat family, 32-bit' do
+    context 'when select Oracle Java SE 8 JRE on RedHat family, 32-bit' do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
       let(:title) { 'jdk8' }
 
@@ -153,10 +153,10 @@ describe 'java::oracle', type: :define do
     end
   end
 
-  context 'On Ubuntu 64-bit' do
+  context 'with Ubuntu 64-bit' do
     let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '16.04' } } } }
 
-    context 'Oracle Java SE 6 JDK' do
+    context 'when Oracle Java SE 6 JDK' do
       let(:params) { { ensure: 'present', version: '6', java_se: 'jdk' } }
       let(:title) { 'jdk6' }
 
@@ -165,7 +165,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-x64.tar.gz]') }
     end
 
-    context 'Oracle Java SE 7 JDK' do
+    context 'with Oracle Java SE 7 JDK' do
       let(:params) { { ensure: 'present', version: '7', java_se: 'jdk' } }
       let(:title) { 'jdk7' }
 
@@ -174,7 +174,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[/tmp/jdk-7u80-linux-x64.tar.gz]') }
     end
 
-    context 'Oracle Java SE 8 JDK' do
+    context 'with Oracle Java SE 8 JDK' do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
       let(:title) { 'jdk8' }
 
@@ -183,7 +183,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[/tmp/jdk-8u131-linux-x64.tar.gz]') }
     end
 
-    context 'Oracle Java SE 6 JRE' do
+    context 'with Oracle Java SE 6 JRE' do
       let(:params) { { ensure: 'present', version: '6', java_se: 'jre' } }
       let(:title) { 'jre6' }
 
@@ -192,7 +192,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[/tmp/jre-6u45-linux-x64.tar.gz]') }
     end
 
-    context 'Oracle Java SE 7 JRE' do
+    context 'when Oracle Java SE 7 JRE' do
       let(:params) { { ensure: 'present', version: '7', java_se: 'jre' } }
       let(:title) { 'jre7' }
 
@@ -201,7 +201,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[/tmp/jre-7u80-linux-x64.tar.gz]') }
     end
 
-    context 'select Oracle Java SE 8 JRE' do
+    context 'when Oracle Java SE 8 JRE' do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
       let(:title) { 'jre8' }
 
@@ -210,7 +210,7 @@ describe 'java::oracle', type: :define do
       it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[/tmp/jre-8u131-linux-x64.tar.gz]') }
     end
 
-    context 'Pass URL to url parameter' do
+    context 'when passing URL to url parameter' do
       let(:params) { { ensure: 'present', version_major: '8u131', version_minor: 'b11', java_se: 'jdk', url: oracle_url.to_s } }
       let(:title) { 'jdk8' }
 

@@ -26,7 +26,7 @@ describe 'java_default_home' do
     Facter.fact(:kernel).stubs(:value).returns('Linux')
   end
 
-  context 'returns java home path when java found in PATH' do
+  context 'when java found in PATH' do
     context 'when java is in /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java' do
       it do
         unlink_and_delete('./java_test')
@@ -44,7 +44,7 @@ describe 'java_default_home' do
     end
   end
 
-  context 'returns nil when java not present' do
+  context 'when java not present, return nil' do
     it do
       Facter::Util::Resolution.stubs(:exec)
       Facter::Util::Resolution.expects(:which).with('java').at_least(1).returns(false)
