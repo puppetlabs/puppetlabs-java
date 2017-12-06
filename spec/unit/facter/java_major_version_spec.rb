@@ -5,7 +5,7 @@ describe 'java_major_version' do
     Facter.clear
   end
 
-  context 'returns major version when java_version fact present' do
+  context 'when java_version fact present, returns major version' do
     before :each do
       Facter.fact(:java_version).stubs(:value).returns('1.7.0_71')
     end
@@ -14,7 +14,7 @@ describe 'java_major_version' do
     end
   end
 
-  context 'returns nil when java not present' do
+  context 'when java not present, returns nil' do
     before :each do
       Facter.fact(:java_version).stubs(:value).returns(nil)
     end
