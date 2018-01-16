@@ -224,7 +224,7 @@ class java::params {
           } elsif (versioncmp($::operatingsystemrelease, '11.4') >= 0) {
             $jdk_package = 'java-1_7_1-ibm-devel'
             $jre_package = 'java-1_7_1-ibm'
-            $java_home   = '/usr/lib64/jvm/java-1.7.0-ibm-1.7.0/'
+            $java_home   = '/usr/lib64/jvm/java-1.7.1-ibm-1.7.1/'
           } else {
             $jdk_package = 'java-1_6_0-ibm-devel'
             $jre_package = 'java-1_6_0-ibm'
