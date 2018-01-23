@@ -7,6 +7,16 @@
   "source": "git://github.com/puppetlabs/puppetlabs-java",
   "project_page": "https://github.com/puppetlabs/puppetlabs-java",
   "issues_url": "https://tickets.puppet.com/CreateIssueDetails!init.jspa?pid=10707&issuetype=1&team=Modules&customfield_14200=14302&labels=triage&customfield_10005=2147&summary=Issue+found+with+module%3A+puppetlabs-java",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.13.1 < 5.0.0"
+    },
+    {
+      "name": "puppet/archive",
+      "version_requirement": ">= 1.1.0 < 3.0.0"
+    }
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -86,14 +96,6 @@
       "version_requirement": ">= 4.7.0 < 6.0.0"
     }
   ],
-  "dependencies": [
-    {
-      "name":"puppetlabs/stdlib",
-      "version_requirement": ">= 4.13.1 < 5.0.0"
-    },
-    {
-      "name":"puppet/archive",
-      "version_requirement": ">= 1.1.0 < 3.0.0"
-    }
-  ]
+  "template-url": "https://github.com/puppetlabs/pdk-templates",
+  "template-ref": "1.3.2-0-g07678c8"
 }
