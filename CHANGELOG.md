@@ -1,3 +1,14 @@
+## Supported Release [2.4.0]
+### Summary
+This release uses the PDK convert functionality which in return makes the module PDK compliant. Also includes a clean up from Rubocop.
+
+#### Changed
+- 1.3.2 PDK convert has been applied [MODULES-6456](https://tickets.puppetlabs.com/browse/MODULES-6456)
+- The modules has undergone a Rubocop cleanup.
+
+#### Fixed
+- $java_home for SLES 11.4 has been updated to the correct location.
+
 ## Supported Release [2.3.0]
 ### Summary
 This release is in order to implement Rubocop changes into the module.
