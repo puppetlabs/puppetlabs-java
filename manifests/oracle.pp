@@ -106,8 +106,6 @@ define java::oracle (
   # archive module is used to download the java package
   include ::archive
 
-  ensure_resource('class', 'stdlib')
-
   # validate java Standard Edition to download
   if $java_se !~ /(jre|jdk)/ {
     fail('Java SE must be either jre or jdk.')
