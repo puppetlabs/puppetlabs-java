@@ -34,5 +34,5 @@ Gemfile:
 appveyor.yml:
   delete: true
 
-gitlab-ci.yml:
+.gitlab-ci.yml:
   unmanaged: true
