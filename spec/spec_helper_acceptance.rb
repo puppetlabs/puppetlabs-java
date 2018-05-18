@@ -6,7 +6,7 @@ run_puppet_install_helper
 install_module_on(hosts)
 install_module_dependencies_on(hosts)
 
-UNSUPPORTED_PLATFORMS = %w[Darwin windows].freeze
+UNSUPPORTED_PLATFORMS = ['Darwin', 'windows'].freeze
 
 unless ENV['RS_PROVISION'] == 'no' || ENV['BEAKER_provision'] == 'no'
   hosts.each do |host|
