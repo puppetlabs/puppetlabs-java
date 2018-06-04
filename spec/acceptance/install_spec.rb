@@ -3,8 +3,7 @@ require 'spec_helper_acceptance'
 # RedHat, CentOS, Scientific, Oracle prior to 5.0  : Sun Java JDK/JRE 1.6
 # RedHat, CentOS, Scientific, Oracle 5.0 < x < 6.3 : OpenJDK Java JDK/JRE 1.6
 # RedHat, CentOS, Scientific, Oracle after 6.3     : OpenJDK Java JDK/JRE 1.7
-# Debian 5/6 & Ubuntu 10.04/11.04                  : OpenJDK Java JDK/JRE 1.6 or Sun Java JDK/JRE 1.6
-# Debian 7/Jesse & Ubuntu 12.04 - 14.04            : OpenJDK Java JDK/JRE 1.7 or Oracle Java JDK/JRE 1.6
+# Debian Jesse & Ubuntu 14.04                      : OpenJDK Java JDK/JRE 1.7 or Oracle Java JDK/JRE 1.6
 # Solaris (what versions?)                         : Java JDK/JRE 1.7
 # OpenSuSE                                         : OpenJDK Java JDK/JRE 1.7
 # SLES                                             : IBM Java JDK/JRE 1.6
@@ -33,17 +32,17 @@ java_class_jre = "class { 'java':\n"\
 
 java_class = "class { 'java': }"
 
-sources = "file_line { 'non-free source':\n"\
+_sources = "file_line { 'non-free source':\n"\
           "  path  => '/etc/apt/sources.list',\n"\
           "  match => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main\",\n"\
           "  line  => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main non-free\",\n"\
           '}'
 
-sun_jre = "class { 'java':\n"\
+_sun_jre = "class { 'java':\n"\
           "  distribution => 'sun-jre',\n"\
           '}'
 
-sun_jdk = "class { 'java':\n"\
+_sun_jdk = "class { 'java':\n"\
           "  distribution => 'sun-jdk',\n"\
           '}'
 
@@ -80,20 +79,9 @@ bogus_alternative = "class { 'java':\n"\
                     "  java_alternative_path => '/whatever',\n"\
                     '}'
 
-def apply_manifest_wheezy_case(pp)
-  # With the version of java that ships with pe on debian wheezy, update-alternatives
-  # throws an error on the first run due to missing alternative for policytool. It still
-  # updates the alternatives for java
-  if fact('operatingsystem') == 'Debian' && fact('lsbdistcodename') == 'wheezy'
-    apply_manifest(pp)
-  else
-    apply_manifest(pp, catch_failures: true)
-  end
-end
-
 context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   it 'installs jre' do
-    apply_manifest_wheezy_case(java_class_jre)
+    apply_manifest(java_class_jre, catch_failures: true)
     apply_manifest(java_class_jre, catch_changes: true)
   end
 end
@@ -105,34 +93,10 @@ context 'installing java jdk', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfa
   end
 end
 
-# C14686
-context 'sun', if: (fact('operatingsystem') == 'Debian' && fact('operatingsystemrelease').match(%r{(5|6)})) do
-  before :all do
-    apply_manifest(sources)
-    shell('apt-get update')
-    shell('echo "sun-java6-jdk shared/accepted-sun-dlj-v1-1 select true" | debconf-set-selections')
-    shell('echo "sun-java6-jre shared/accepted-sun-dlj-v1-1 select true" | debconf-set-selections')
-  end
-  describe 'jre' do
-    it 'installs sun-jre' do
-      apply_manifest(sun_jre, catch_failures: true)
-      apply_manifest(sun_jre, catch_changes: true)
-    end
-  end
-  describe 'jdk' do
-    it 'installs sun-jdk' do
-      apply_manifest(sun_jdk, catch_failures: true)
-      apply_manifest(sun_jdk, catch_changes: true)
-    end
-  end
-end
-
 # C14704
 # C14705
 # C15006
 context 'oracle', if: (
-  (fact('operatingsystem') == 'Debian') && fact('operatingsystemrelease').match(%r{^7}) ||
-  (fact('operatingsystem') == 'Ubuntu') && fact('operatingsystemrelease').match(%r{^12\.04}) ||
   (fact('operatingsystem') == 'Ubuntu') && fact('operatingsystemrelease').match(%r{^14\.04})
 ) do
   # not supported
