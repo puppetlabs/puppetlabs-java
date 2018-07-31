@@ -188,12 +188,11 @@ OpenJDK is supported on:
 * Red Hat Enterprise Linux (RHEL) 5, 6, 7
 * CentOS 5, 6, 7
 * Oracle Linux 6, 7
-* Scientific Linux 5, 6
-* Debian 6, 7
-* Ubuntu 10.04, 12.04, 14.04
+* Scientific Linux 6
+* Debian 8, 9
+* Ubuntu 14.04, 16.04, 18.04
 * Solaris 11
 * SLES 11 SP1, SP2, SP3, SP4; SLES 12, SP1, SP2
-* OpenBSD 5.6, 5.7
 
 Sun Java is supported on:
 
