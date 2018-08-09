@@ -175,7 +175,9 @@ The java module includes a few facts to describe the version of Java installed o
 
 ## Limitations
 
-This module cannot guarantee installation of Java versions that are not available on  platform repositories.
+For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-java/blob/master/metadata.json)
+
+This module cannot guarantee installation of Java versions that are not available on platform repositories.
 
 This module only manages a singular installation of Java, meaning it is not possible to manage e.g. OpenJDK 7, Oracle Java 7 and Oracle Java 8 in parallel on the same system.
 
@@ -192,7 +194,7 @@ OpenJDK is supported on:
 * Debian 8, 9
 * Ubuntu 14.04, 16.04, 18.04
 * Solaris 11
-* SLES 11 SP1, SP2, SP3, SP4; SLES 12, SP1, SP2
+* SLES 11, 12
 
 Sun Java is supported on:
 
