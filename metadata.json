@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-java",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "author": "puppetlabs",
   "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache-2.0",
@@ -88,6 +88,6 @@
     }
   ],
   "template-url": "https://github.com/puppetlabs/pdk-templates",
-  "template-ref": "heads/master-0-g34e3266",
-  "pdk-version": "1.5.0"
+  "template-ref": "1.6.1-0-g6b0d497",
+  "pdk-version": "1.6.1"
 }
