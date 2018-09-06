@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [3.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.1.0) (2018-09-06)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.0.0...3.1.0)
+
+### Added
+
+- pdksync - \(MODULES-7705\) - Bumping stdlib dependency from \< 5.0.0 to \< 6.0.0 [\#310](https://github.com/puppetlabs/puppetlabs-java/pull/310) ([pmcmaw](https://github.com/pmcmaw))
+
 ## [3.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.0.0) (2018-08-13)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/2.4.0...3.0.0)
