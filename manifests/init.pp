@@ -128,13 +128,31 @@ class java(
     }
   }
 
-  anchor { 'java::begin:': }
-  -> package { 'java':
-    ensure          => $version,
-    install_options => $package_options,
-    name            => $use_java_package_name,
+  if $::osfamily == 'windows' {
+    include chocolatey
+
+    $use_package_options = $package_options ? {
+      undef => ['--packageParameters', '"', '/InstallationPath:C:\\Program Files\\Java', '"'],
+      default => $package_options
+    }
+
+    package { 'java':
+      ensure          => $version,
+      install_options => $package_options,
+      name            => $use_java_package_name,
+      provider        => chocolatey,
+    }
   }
+  else {
+    package { 'java':
+      ensure          => $version,
+      install_options => $package_options,
+      name            => $use_java_package_name,
+    }
+  }
+
+  anchor { 'java::begin:': }
+  -> Package['java']
   -> class { 'java::config': }
   -> anchor { 'java::end': }
-
 }

@@ -161,6 +161,10 @@ Pass an entire URL to download the installer from rather than building the compl
 
 Directory hash used by the download.oracle.com site. This value is a 32 character string which is part of the file URL returned by the JDK download site.
 
+##### `seven_zip_path`
+
+Absolute path to directory containing 7z.exe binary (only necessary for Windows hosts)
+
 ### Facts
 
 The java module includes a few facts to describe the version of Java installed on the system:
@@ -205,6 +209,8 @@ Oracle Java is supported on:
 * CentOS 6
 * CentOS 7
 * Red Hat Enterprise Linux (RHEL) 7
+* Windows 10
+* Windows Server 2016
 
 ### Known issues
 
@@ -226,6 +232,11 @@ Package {
   provider => 'pkgng',
 }
 ```
+
+#### Windows
+
+For Windows hosts, you need to have `puppetlabs/chocolatey` and `puppet/windows_env` modules installed.
+
 
 On Puppet 4.0 and later, `pkgng` is included within Puppet and is the default package provider.
 

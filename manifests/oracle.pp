@@ -90,29 +90,33 @@
 # [*jce*]
 # Install Oracles Java Cryptographic Extensions into the JRE or JDK
 #
+# [*seven_zip_path*]
+# Absolute path to directory containing 7z.exe binary (only used for Windows)
+#
 # ### Author
 # mike@marseglia.org
 #
 define java::oracle (
-  $ensure        = 'present',
-  $version       = '8',
-  $version_major = undef,
-  $version_minor = undef,
-  $java_se       = 'jdk',
-  $oracle_url    = 'http://download.oracle.com/otn-pub/java/jdk/',
-  $proxy_server  = undef,
-  $proxy_type    = undef,
-  $url           = undef,
-  $url_hash      = undef,
-  $jce           = false,
+  $ensure         = 'present',
+  $version        = '8',
+  $version_major  = undef,
+  $version_minor  = undef,
+  $java_se        = 'jdk',
+  $oracle_url     = 'http://download.oracle.com/otn-pub/java/jdk/',
+  $proxy_server   = undef,
+  $proxy_type     = undef,
+  $url            = undef,
+  $url_hash       = undef,
+  $jce            = false,
+  $seven_zip_path = 'C:\\ProgramData\\chocolatey\\bin',
 ) {
 
   # archive module is used to download the java package
   include ::archive
 
   # validate java Standard Edition to download
-  if $java_se !~ /(jre|jdk)/ {
-    fail('Java SE must be either jre or jdk.')
+  if $java_se !~ /^(server-jre|jre|jdk)$/ {
+    fail('Java SE must be either jre, server-jre or jdk.')
   }
 
   if $jce {
@@ -122,6 +126,12 @@ define java::oracle (
       '6'     => 'http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip',
       default => undef
     }
+  }
+
+  # needed for special server-jre which folder is named jdk
+  $internal_java_se = $java_se ? {
+    'server-jre' => 'jdk',
+    default      => $java_se
   }
 
   # determine Oracle Java major and minor version, and installation path
@@ -140,7 +150,7 @@ define java::oracle (
         $install_path = "${java_se}1.${1}.0_${2}"
       }
     } else {
-      $install_path = "${java_se}${release_major}${release_minor}"
+      $install_path = "${internal_java_se}${release_major}${release_minor}"
     }
   } else {
     # use default versions if no specific major and minor version parameters are provided
@@ -148,25 +158,25 @@ define java::oracle (
       '6' : {
         $release_major = '6u45'
         $release_minor = 'b06'
-        $install_path = "${java_se}1.6.0_45"
+        $install_path = "${internal_java_se}1.6.0_45"
         $release_hash  = undef
       }
       '7' : {
         $release_major = '7u80'
         $release_minor = 'b15'
-        $install_path = "${java_se}1.7.0_80"
+        $install_path = "${internal_java_se}1.7.0_80"
         $release_hash  = undef
       }
       '8' : {
         $release_major = '8u131'
         $release_minor = 'b11'
-        $install_path = "${java_se}1.8.0_131"
+        $install_path = "${internal_java_se}1.8.0_131"
         $release_hash  = 'd54c1d3a095b4ff2b6607d096fa80163'
       }
       default : {
         $release_major = '8u131'
         $release_minor = 'b11'
-        $install_path = "${java_se}1.8.0_131"
+        $install_path = "${internal_java_se}1.8.0_131"
         $release_hash  = 'd54c1d3a095b4ff2b6607d096fa80163'
       }
     }
@@ -196,6 +206,12 @@ define java::oracle (
       $os = 'linux'
       $destination_dir = '/tmp/'
     }
+    'windows': {
+      $package_type = 'tar.gz'
+      $creates_path = "C:\\Program Files\\Java\\${install_path}"
+      $os = 'windows'
+      $destination_dir = 'C:\\Windows\\Temp\\'
+    }
     default : {
       fail ( "unsupported platform ${$facts['kernel']}" ) }
   }
@@ -210,6 +226,7 @@ define java::oracle (
     'i386' : { $arch = 'i586' }
     'x86_64' : { $arch = 'x64' }
     'amd64' : { $arch = 'x64' }
+    'x64' : { $arch = 'x64' }
     default : {
       fail ("unsupported platform ${$facts['os']['architecture']}")
     }
@@ -253,7 +270,6 @@ define java::oracle (
 
   # full path to the installer
   $destination = "${destination_dir}${package_name}"
-  notice ("Destination is ${destination}")
 
   case $package_type {
     'bin' : {
@@ -266,7 +282,18 @@ define java::oracle (
       $install_command = "rpm --force -iv ${destination}"
     }
     'tar.gz' : {
-      $install_command = "tar -zxf ${destination} -C /usr/lib/jvm"
+      case $facts['kernel'] {
+        'Linux': {
+          $install_command = "tar -zxf ${destination} -C /usr/lib/jvm"
+        }
+        'windows': {
+          $tar = regsubst($destination, '^(.*)\.gz$', '\\1')
+          $install_command = "7z x -aoa -bd -o\"C:\\Program Files\\Java\" ${tar}"
+        }
+        default: {
+          fail ("unsupported platform ${$facts['kernel']}")
+        }
+      }
     }
     default : {
       $install_command = "rpm -iv ${destination}"
@@ -275,12 +302,26 @@ define java::oracle (
 
   case $ensure {
     'present' : {
+      case $facts['kernel'] {
+        'windows' : {
+          $extract_path = 'C:\\Windows\\Temp'
+          $extract = true
+        }
+        'linux' : {
+          $extract_path = '/tmp'
+          $extract = false
+        }
+        default : {
+          fail ("unsupported platform ${$facts['kernel']}")
+        }
+      }
       archive { $destination :
         ensure       => present,
         source       => $source,
         cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
-        extract_path => '/tmp',
-        cleanup      => false,
+        cleanup      => true,
+        extract      => $extract,
+        extract_path => $extract_path,
         creates      => $creates_path,
         proxy_server => $proxy_server,
         proxy_type   => $proxy_type,
@@ -327,6 +368,14 @@ define java::oracle (
             }
           }
         }
+        'windows' : {
+          exec { "Install Oracle java_se ${java_se} ${version}" :
+            path    => $seven_zip_path,
+            command => $install_command,
+            creates => $creates_path,
+            require => Archive[$destination]
+          }
+        }
         default : {
           fail ("unsupported platform ${$facts['kernel']}")
         }
@@ -336,5 +385,4 @@ define java::oracle (
       notice ("Action ${ensure} not supported.")
     }
   }
-
 }

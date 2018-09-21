@@ -2,5 +2,9 @@ fixtures:
   repositories:
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
     archive: "git://github.com/voxpupuli/puppet-archive.git"
+    chocolatey: "git://github.com/puppetlabs/puppetlabs-chocolatey.git"
+    windows_env: "git://github.com/voxpupuli/puppet-windows_env.git"
+    registry: "git://github.com/puppetlabs/puppetlabs-registry.git"
+    powershell: "git://github.com/puppetlabs/puppetlabs-powershell.git"
   symlinks:
     java: "#{source_dir}"

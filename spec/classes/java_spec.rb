@@ -169,6 +169,13 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/') }
   end
 
+  context 'when select default for Windows 10 / Server 2016', if: RSpec::Support::OS.windows? do
+    let(:facts) { { osfamily: 'windows', operatingsystemrelease: '10', architecture: 'x64', choco_install_path: 'C:\ProgramData\chocolatey', chocolateyversion: '0.10.11' } }
+
+    it { is_expected.to contain_package('java').with_name('jdk8') }
+    it { is_expected.to contain_windows_env('JAVA_HOME').with_value('C:\\Program Files\\Java\\jdk1.8.0_131') }
+  end
+
   context 'when select jdk for OpenBSD' do
     let(:facts) { { osfamily: 'OpenBSD', architecture: 'x86_64' } }
 

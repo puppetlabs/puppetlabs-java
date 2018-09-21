@@ -71,6 +71,14 @@ class java::config ( ) {
         }
       }
     }
+    'windows': {
+      if $java::use_java_home != undef {
+        windows_env { 'JAVA_HOME':
+          value     => $java::use_java_home,
+          mergemode => clobber,
+        }
+      }
+    }
     default: {
       # Do nothing.
     }

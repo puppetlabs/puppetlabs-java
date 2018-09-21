@@ -289,6 +289,18 @@ class java::params {
         },
       }
     }
+    'windows': {
+      $java = {
+        'jdk' => {
+          'package' => 'jdk8',
+          'java_home' => 'C:\\Program Files\\Java\\jdk1.8.0_131',
+        },
+        'jre' => {
+          'package' => 'jre8',
+          'java_home' => 'C:\\Program Files\\Java\\jdk1.8.0_131',
+        },
+      }
+    }
     default: { fail("unsupported platform ${::osfamily}") }
   }
 }

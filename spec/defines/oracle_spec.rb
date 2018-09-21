@@ -361,6 +361,72 @@ describe 'java::oracle', type: :define do
       end
     end
   end
+
+  context 'with Windows 10 / 2016 64 bit', if: RSpec::Support::OS.windows? do
+    let(:facts) { { kernel: 'windows', os: { family: 'windows', architecture: 'x64', name: 'windows', release: { full: '10' } }, archive_windir: 'C:\\Windows\\Temp' } }
+
+    context 'when Oracle Java SE 6 JDK' do
+      let(:params) { { ensure: 'present', version: '6', java_se: 'jdk' } }
+      let(:title) { 'jdk6' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jdk-6u45-windows-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('7z x -aoa -bd -o"C:\Program Files\Java" C:\Windows\Temp\jdk-6u45-windows-x64.tar') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[C:\\Windows\\Temp\\jdk-6u45-windows-x64.tar.gz]') }
+    end
+
+    context 'with Oracle Java SE 7 JDK' do
+      let(:params) { { ensure: 'present', version: '7', java_se: 'jdk' } }
+      let(:title) { 'jdk7' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jdk-7u80-windows-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 7').with_command('7z x -aoa -bd -o"C:\Program Files\Java" C:\Windows\Temp\jdk-7u80-windows-x64.tar') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 7').that_requires('Archive[C:\\Windows\\Temp\\jdk-7u80-windows-x64.tar.gz]') }
+    end
+
+    context 'with Oracle Java SE 8 JDK' do
+      let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
+      let(:title) { 'jdk8' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jdk-8u131-windows-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8').with_command('7z x -aoa -bd -o"C:\Program Files\Java" C:\Windows\Temp\jdk-8u131-windows-x64.tar') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8').that_requires('Archive[C:\\Windows\\Temp\\jdk-8u131-windows-x64.tar.gz]') }
+    end
+
+    context 'with Oracle Java SE 6 JRE' do
+      let(:params) { { ensure: 'present', version: '6', java_se: 'jre' } }
+      let(:title) { 'jre6' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jre-6u45-windows-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 6').with_command('7z x -aoa -bd -o"C:\Program Files\Java" C:\Windows\Temp\jre-6u45-windows-x64.tar') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 6').that_requires('Archive[C:\\Windows\\Temp\\jre-6u45-windows-x64.tar.gz]') }
+    end
+
+    context 'when Oracle Java SE 7 JRE' do
+      let(:params) { { ensure: 'present', version: '7', java_se: 'jre' } }
+      let(:title) { 'jre7' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jre-7u80-windows-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 7').with_command('7z x -aoa -bd -o"C:\Program Files\Java" C:\Windows\Temp\jre-7u80-windows-x64.tar') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 7').that_requires('Archive[C:\\Windows\\Temp\\jre-7u80-windows-x64.tar.gz]') }
+    end
+
+    context 'when Oracle Java SE 8 JRE' do
+      let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
+      let(:title) { 'jre8' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jre-8u131-windows-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8').with_command('7z x -aoa -bd -o"C:\Program Files\Java" C:\Windows\Temp\jre-8u131-windows-x64.tar') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8').that_requires('Archive[C:\\Windows\\Temp\\jre-8u131-windows-x64.tar.gz]') }
+    end
+
+    context 'when passing URL to url parameter' do
+      let(:params) { { ensure: 'present', version_major: '8u131', version_minor: 'b11', java_se: 'jdk', url: oracle_url.to_s } }
+      let(:title) { 'jdk8' }
+
+      it { is_expected.to contain_archive('C:\\Windows\\Temp\\jdk-8u131-windows-x64.tar.gz') }
+    end
+  end
+
   describe 'incompatible OSes' do
     [
       {

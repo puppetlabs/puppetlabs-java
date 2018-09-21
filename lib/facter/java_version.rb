@@ -21,7 +21,7 @@ Facter.add(:java_version) do
   # Additionally, facter versions prior to 2.0.1 only support
   # positive matches, so this needs to be done manually in setcode.
   setcode do
-    unless ['darwin'].include? Facter.value(:operatingsystem).downcase
+    unless ['darwin', 'windows'].include? Facter.value(:operatingsystem).downcase
       version = nil
       if Facter::Util::Resolution.which('java')
         Facter::Util::Resolution.exec('java -Xmx12m -version 2>&1').lines.each { |line| version = $LAST_MATCH_INFO[1] if %r{^.+ version \"(.+)\"$} =~ line }
@@ -40,5 +40,21 @@ Facter.add(:java_version) do
       Facter::Util::Resolution.exec('java -Xmx12m -version 2>&1').lines.each { |line| version = $LAST_MATCH_INFO[1] if %r{^.+ version \"(.+)\"$} =~ line }
       version
     end
+  end
+end
+
+Facter.add(:java_version) do
+  confine operatingsystem: 'windows'
+  has_weight 150
+  setcode do
+    version = nil
+    if Facter::Util::Resolution.which('java')
+      Facter::Util::Resolution.exec('java -Xmx12m -version 2>&1').lines.each do |line|
+        if (m = line.match('^.+ version \"(.+)\".*$'))
+          version = m[1]
+        end
+      end
+    end
+    version
   end
 end
