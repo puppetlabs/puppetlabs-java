@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [3.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.2.0) (2018-09-27)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.1.0...3.2.0)
+
+### Added
+
+- pdksync - \(MODULES-6805\) metadata.json shows support for puppet 6 [\#317](https://github.com/puppetlabs/puppetlabs-java/pull/317) ([tphoney](https://github.com/tphoney))
+
 ## [3.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.1.0) (2018-09-06)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.0.0...3.1.0)
