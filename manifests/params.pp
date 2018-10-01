@@ -155,7 +155,7 @@ class java::params {
             },
           }
         }
-        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty', 'artful', 'bionic': {
+        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty', 'artful': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
@@ -168,6 +168,22 @@ class java::params {
               'alternative'      => "java-1.8.0-openjdk-${::architecture}",
               'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
               'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+            }
+          }
+        }
+        'bionic': {
+          $java =  {
+            'jdk' => {
+              'package'          => 'openjdk-11-jdk',
+              'alternative'      => "java-1.11.0-openjdk-${::architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.11.0-openjdk-${::architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.11.0-openjdk-${::architecture}/",
+            },
+            'jre' => {
+              'package'          => 'openjdk-11-jre-headless',
+              'alternative'      => "java-1.11.0-openjdk-${::architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.11.0-openjdk-${::architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.11.0-openjdk-${::architecture}/",
             }
           }
         }
