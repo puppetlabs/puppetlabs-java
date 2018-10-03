@@ -119,7 +119,13 @@ define java::oracle (
     $release_hash  = $url_hash
 
     if $release_major =~ /(\d+)u(\d+)/ {
-      $install_path = "${java_se}1.${1}.0_${2}"
+      # Required for CentOS systems where Java8 update number is >= 171 to ensure
+      # the package is visible to Puppet
+      if $facts['os']['name'] == 'CentOS' and $2 >= '171' {
+        $install_path = "${java_se}1.${1}.0_${2}-amd64"
+      } else {
+        $install_path = "${java_se}1.${1}.0_${2}"
+      }
     } else {
       $install_path = "${java_se}${release_major}${release_minor}"
     }
