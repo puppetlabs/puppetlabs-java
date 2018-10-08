@@ -85,7 +85,7 @@ bogus_alternative = "class { 'java':\n"\
 # change often. Look the parameters up from the Oracle download URLs at https://java.oracle.com and
 # enable the tests:
 
-oracle_enabled = true
+oracle_enabled = false
 oracle_version_major = "8"
 oracle_version_minor = "181"
 oracle_version_build = "13"
