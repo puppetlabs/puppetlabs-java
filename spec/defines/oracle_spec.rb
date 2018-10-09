@@ -95,8 +95,9 @@ describe 'java::oracle', type: :define do
     end
 
     context 'when installing Oracle Java SE 6 JRE with JCE' do
-      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jre'}}
-      let(:title) { 'jre6jce'}
+      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jre' } }
+      let(:title) { 'jre6jce' }
+
       it do
         is_expected.to contain_archive('/tmp/jce-6.zip').with_source('http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip')
         is_expected.to contain_archive('/tmp/jce-6.zip').with_extract_path('/usr/java/jre1.6.0_99-amd64/lib/security')
@@ -104,8 +105,9 @@ describe 'java::oracle', type: :define do
     end
 
     context 'when installing Oracle Java SE 6 JDK with JCE' do
-      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jdk'}}
-      let(:title) { 'jre6jce'}
+      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jdk' } }
+      let(:title) { 'jre6jce' }
+
       it do
         is_expected.to contain_archive('/tmp/jce-6.zip').with_source('http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip')
         is_expected.to contain_archive('/tmp/jce-6.zip').with_extract_path('/usr/java/jdk1.6.0_99-amd64/jre/lib/security')
@@ -171,8 +173,9 @@ describe 'java::oracle', type: :define do
     end
 
     context 'when installing Oracle Java SE 6 JRE with JCE' do
-      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jre'}}
-      let(:title) { 'jre6jce'}
+      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jre' } }
+      let(:title) { 'jre6jce' }
+
       it do
         is_expected.to contain_archive('/tmp/jce-6.zip').with_source('http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip')
         is_expected.to contain_archive('/tmp/jce-6.zip').with_extract_path('/usr/java/jre1.6.0_99-amd64/lib/security')
@@ -180,8 +183,9 @@ describe 'java::oracle', type: :define do
     end
 
     context 'when installing Oracle Java SE 6 JDK with JCE' do
-      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jdk'}}
-      let(:title) { 'jre6jce'}
+      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jdk' } }
+      let(:title) { 'jre6jce' }
+
       it do
         is_expected.to contain_archive('/tmp/jce-6.zip').with_source('http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip')
         is_expected.to contain_archive('/tmp/jce-6.zip').with_extract_path('/usr/java/jdk1.6.0_99-amd64/jre/lib/security')
@@ -254,8 +258,9 @@ describe 'java::oracle', type: :define do
     end
 
     context 'when installing Oracle Java SE 6 JRE with JCE' do
-      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jre'}}
-      let(:title) { 'jre6jce'}
+      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jre' } }
+      let(:title) { 'jre6jce' }
+
       it do
         is_expected.to contain_archive('/tmp/jce-6.zip').with_source('http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip')
         is_expected.to contain_archive('/tmp/jce-6.zip').with_extract_path('/usr/lib/jvm/jre1.6.0_99/lib/security')
@@ -263,8 +268,9 @@ describe 'java::oracle', type: :define do
     end
 
     context 'when installing Oracle Java SE 6 JDK with JCE' do
-      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jdk'}}
-      let(:title) { 'jre6jce'}
+      let(:params) { { ensure: 'present', jce: true, version: '6', version_major: '6u99', version_minor: '99', java_se: 'jdk' } }
+      let(:title) { 'jre6jce' }
+
       it do
         is_expected.to contain_archive('/tmp/jce-6.zip').with_source('http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip')
         is_expected.to contain_archive('/tmp/jce-6.zip').with_extract_path('/usr/lib/jvm/jdk1.6.0_99/jre/lib/security')
