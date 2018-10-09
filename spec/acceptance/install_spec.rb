@@ -86,10 +86,10 @@ bogus_alternative = "class { 'java':\n"\
 # enable the tests:
 
 oracle_enabled = false
-oracle_version_major = "8"
-oracle_version_minor = "181"
-oracle_version_build = "13"
-oracle_hash = "96a7b8442fe848ef90c96a2fad6ed6d1"
+oracle_version_major = '8'
+oracle_version_minor = '181'
+oracle_version_build = '13'
+oracle_hash = '96a7b8442fe848ef90c96a2fad6ed6d1'
 
 install_oracle_jre = <<EOL
   java::oracle {
@@ -216,11 +216,11 @@ end
 
 # Test oracle java installs
 context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
-  install_path = "/usr/lib/jvm"
-  version_suffix = ""
-  if fact('osfamily') == 'RedHat' || fact('osfamily') == 'Amazon' then
-    install_path = "/usr/java"
-    version_suffix = "-amd64"
+  install_path = '/usr/lib/jvm'
+  version_suffix = ''
+  if fact('osfamily') == 'RedHat' || fact('osfamily') == 'Amazon'
+    install_path = '/usr/java'
+    version_suffix = '-amd64'
   end
   it 'installs oracle jdk' do
     apply_manifest(install_oracle_jdk, catch_failures: true)
