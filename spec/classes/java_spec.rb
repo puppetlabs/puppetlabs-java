@@ -69,6 +69,22 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/') }
   end
 
+  context 'when select jdk for Ubuntu xenial (16.04) on ARM' do
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemrelease: '16.04', architecture: 'armv7l' } }
+    let(:params) { { 'distribution' => 'jdk' } }
+
+    it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf/') }
+  end
+
+  context 'when select jdk for Ubuntu xenial (16.04) on ARM64' do
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemrelease: '16.04', architecture: 'aarch64' } }
+    let(:params) { { 'distribution' => 'jdk' } }
+
+    it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64/') }
+  end
+
   context 'when select openjdk for Amazon Linux' do
     let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Amazon', operatingsystemrelease: '3.4.43-43.43.amzn1.x86_64', architecture: 'x86_64' } }
 
