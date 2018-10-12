@@ -269,20 +269,22 @@ define java::oracle (
       }
       case $facts['kernel'] {
         'Linux' : {
-          exec { "Install Oracle java_se ${java_se} ${version}" :
+          case $facts['os']['family'] {
+            'Debian' : {
+              ensure_resource('file', '/usr/lib/jvm', {
+                ensure => directory,
+              })
+              $install_requires = [Archive[$destination], File['/usr/lib/jvm']]
+            }
+            default : {
+              $install_requires = [Archive[$destination]]
+            }
+          }
+          exec { "Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $install_command,
             creates => $creates_path,
-            require => Archive[$destination]
-          }
-          case $facts['os']['family'] {
-            'Debian' : {
-              file{'/usr/lib/jvm':
-                ensure => directory,
-                before => Exec["Install Oracle java_se ${java_se} ${version}"]
-              }
-            }
-            default : { }
+            require => $install_requires
           }
         }
         default : {
