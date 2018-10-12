@@ -183,11 +183,11 @@ describe 'java::oracle', type: :define do
     context 'when installing multiple versions' do
       let(:params) do
         {
-            ensure: 'present',
-            version_major: '8u131',
-            version_minor: 'b11',
-            java_se: 'jdk',
-            url_hash: 'abcdef01234567890',
+          ensure: 'present',
+          version_major: '8u131',
+          version_minor: 'b11',
+          java_se: 'jdk',
+          url_hash: 'abcdef01234567890',
         }
       end
       let(:title) { 'jdk8' }
@@ -276,11 +276,11 @@ describe 'java::oracle', type: :define do
     context 'when installing multiple versions' do
       let(:params) do
         {
-            ensure: 'present',
-            version_major: '8u131',
-            version_minor: 'b11',
-            java_se: 'jdk',
-            url_hash: 'abcdef01234567890',
+          ensure: 'present',
+          version_major: '8u131',
+          version_minor: 'b11',
+          java_se: 'jdk',
+          url_hash: 'abcdef01234567890',
         }
       end
       let(:title) { 'jdk8' }
