@@ -104,7 +104,7 @@ EOL
 
 install_oracle_jdk = <<EOL
   java::oracle {
-    'test_oracle_jre':
+    'test_oracle_jdk':
       version       => '#{oracle_version_major}',
       version_major => '#{oracle_version_major}u#{oracle_version_minor}',
       version_minor => 'b#{oracle_version_build}',
@@ -127,7 +127,7 @@ EOL
 
 install_oracle_jdk_jce = <<EOL
   java::oracle {
-    'test_oracle_jre':
+    'test_oracle_jdk':
       version       => '#{oracle_version_major}',
       version_major => '#{oracle_version_major}u#{oracle_version_minor}',
       version_minor => 'b#{oracle_version_build}',
