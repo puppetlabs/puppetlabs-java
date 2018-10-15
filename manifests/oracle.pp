@@ -322,7 +322,7 @@ define java::oracle (
               proxy_type    => $proxy_type,
               require       => [
                 Package['unzip'],
-                Exec["Install Oracle java_se ${java_se} ${version}"]
+                Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]
               ]
             }
           }
