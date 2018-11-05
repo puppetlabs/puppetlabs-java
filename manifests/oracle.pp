@@ -158,16 +158,16 @@ define java::oracle (
         $release_hash  = undef
       }
       '8' : {
-        $release_major = '8u131'
-        $release_minor = 'b11'
-        $install_path = "${java_se}1.8.0_131"
-        $release_hash  = 'd54c1d3a095b4ff2b6607d096fa80163'
+        $release_major = '8u181'
+        $release_minor = 'b13'
+        $install_path = "${java_se}1.8.0_181"
+        $release_hash  = '96a7b8442fe848ef90c96a2fad6ed6d1'
       }
       default : {
-        $release_major = '8u131'
-        $release_minor = 'b11'
-        $install_path = "${java_se}1.8.0_131"
-        $release_hash  = 'd54c1d3a095b4ff2b6607d096fa80163'
+        $release_major = '8u181'
+        $release_minor = 'b13'
+        $install_path = "${java_se}1.8.0_181"
+        $release_hash  = '96a7b8442fe848ef90c96a2fad6ed6d1'
       }
     }
   }
