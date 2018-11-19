@@ -68,12 +68,6 @@
         "11",
         "12"
       ]
-    },
-    {
-      "operatingsystem": "Solaris",
-      "operatingsystemrelease": [
-        "11"
-      ]
     }
   ],
   "requirements": [
