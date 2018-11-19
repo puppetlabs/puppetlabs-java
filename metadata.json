@@ -73,12 +73,6 @@
         "12 SP1",
         "12 SP2"
       ]
-    },
-    {
-      "operatingsystem": "Solaris",
-      "operatingsystemrelease": [
-        "11"
-      ]
     }
   ],
   "requirements": [
