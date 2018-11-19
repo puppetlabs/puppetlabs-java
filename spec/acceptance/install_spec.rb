@@ -1,5 +1,7 @@
 require 'spec_helper_acceptance'
 
+include Unix::File
+
 # RedHat, CentOS, Scientific, Oracle prior to 5.0  : Sun Java JDK/JRE 1.6
 # RedHat, CentOS, Scientific, Oracle 5.0 < x < 6.3 : OpenJDK Java JDK/JRE 1.6
 # RedHat, CentOS, Scientific, Oracle after 6.3     : OpenJDK Java JDK/JRE 1.7
@@ -79,6 +81,62 @@ bogus_alternative = "class { 'java':\n"\
                     "  java_alternative_path => '/whatever',\n"\
                     '}'
 
+# Oracle installs are disabled by default, because the links to valid oracle installations
+# change often. Look the parameters up from the Oracle download URLs at https://java.oracle.com and
+# enable the tests:
+
+oracle_enabled = false
+oracle_version_major = '8'
+oracle_version_minor = '192'
+oracle_version_build = '12'
+oracle_hash = '750e1c8617c5452694857ad95c3ee230'
+
+install_oracle_jre = <<EOL
+  java::oracle {
+    'test_oracle_jre':
+      version       => '#{oracle_version_major}',
+      version_major => '#{oracle_version_major}u#{oracle_version_minor}',
+      version_minor => 'b#{oracle_version_build}',
+      url_hash      => '#{oracle_hash}',
+      java_se       => 'jre',
+  }
+EOL
+
+install_oracle_jdk = <<EOL
+  java::oracle {
+    'test_oracle_jdk':
+      version       => '#{oracle_version_major}',
+      version_major => '#{oracle_version_major}u#{oracle_version_minor}',
+      version_minor => 'b#{oracle_version_build}',
+      url_hash      => '#{oracle_hash}',
+      java_se       => 'jdk',
+  }
+EOL
+
+install_oracle_jre_jce = <<EOL
+  java::oracle {
+    'test_oracle_jre':
+      version       => '#{oracle_version_major}',
+      version_major => '#{oracle_version_major}u#{oracle_version_minor}',
+      version_minor => 'b#{oracle_version_build}',
+      url_hash      => '#{oracle_hash}',
+      java_se       => 'jre',
+      jce           => true,
+  }
+EOL
+
+install_oracle_jdk_jce = <<EOL
+  java::oracle {
+    'test_oracle_jdk':
+      version       => '#{oracle_version_major}',
+      version_major => '#{oracle_version_major}u#{oracle_version_minor}',
+      version_minor => 'b#{oracle_version_build}',
+      url_hash      => '#{oracle_hash}',
+      java_se       => 'jdk',
+      jce           => true,
+  }
+EOL
+
 context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   it 'installs jre' do
     apply_manifest(java_class_jre, catch_failures: true)
@@ -153,5 +211,39 @@ context 'with failure cases' do
     else
       apply_manifest(bogus_alternative, catch_failures: true)
     end
+  end
+end
+
+# Test oracle java installs
+context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+  install_path = '/usr/lib/jvm'
+  version_suffix = ''
+  if fact('osfamily') == 'RedHat' || fact('osfamily') == 'Amazon'
+    install_path = '/usr/java'
+    version_suffix = '-amd64'
+  end
+  it 'installs oracle jdk' do
+    apply_manifest(install_oracle_jdk, catch_failures: true)
+    apply_manifest(install_oracle_jdk, catch_changes: true)
+    result = shell("test ! -e #{install_path}/jdk1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/jre/lib/security/local_policy.jar")
+    expect(result.exit_code).to eq(0)
+  end
+  it 'installs oracle jre' do
+    apply_manifest(install_oracle_jre, catch_failures: true)
+    apply_manifest(install_oracle_jre, catch_changes: true)
+    result = shell("test ! -e #{install_path}/jre1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/lib/security/local_policy.jar")
+    expect(result.exit_code).to eq(0)
+  end
+  it 'installs oracle jdk with jce' do
+    apply_manifest(install_oracle_jdk_jce, catch_failures: true)
+    apply_manifest(install_oracle_jdk_jce, catch_changes: true)
+    result = shell("test -e #{install_path}/jdk1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/jre/lib/security/local_policy.jar")
+    expect(result.exit_code).to eq(0)
+  end
+  it 'installs oracle jre with jce' do
+    apply_manifest(install_oracle_jre_jce, catch_failures: true)
+    apply_manifest(install_oracle_jre_jce, catch_changes: true)
+    result = shell("test -e #{install_path}/jre1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/lib/security/local_policy.jar")
+    expect(result.exit_code).to eq(0)
   end
 end

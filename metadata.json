@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-java",
-  "version": "3.0.0",
+  "version": "3.2.0",
   "author": "puppetlabs",
   "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache-2.0",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.13.1 < 5.0.0"
+      "version_requirement": ">= 4.13.1 < 6.0.0"
     },
     {
       "name": "puppet/archive",
@@ -73,10 +73,10 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 6.0.0"
+      "version_requirement": ">= 4.7.0 < 7.0.0"
     }
   ],
   "template-url": "https://github.com/puppetlabs/pdk-templates",
-  "template-ref": "1.7.0-0-g57412ed",
+  "template-ref": "heads/master-0-gabccfb1",
   "pdk-version": "1.7.0"
 }

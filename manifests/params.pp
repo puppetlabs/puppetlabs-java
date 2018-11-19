@@ -74,18 +74,23 @@ class java::params {
         'amd64' => 'x64',
         default => $::architecture
       }
+      $openjdk_architecture = $::architecture ? {
+        'aarch64' => 'arm64',
+        'armv7l'  => 'armhf',
+        default   => $::architecture
+      }
       case $::lsbdistcodename {
         'lenny', 'squeeze', 'lucid', 'natty': {
           $java  = {
             'jdk' => {
               'package'          => 'openjdk-6-jdk',
-              'alternative'      => "java-6-openjdk-${::architecture}",
+              'alternative'      => "java-6-openjdk-${openjdk_architecture}",
               'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
             },
             'jre' => {
               'package'          => 'openjdk-6-jre-headless',
-              'alternative'      => "java-6-openjdk-${::architecture}",
+              'alternative'      => "java-6-openjdk-${openjdk_architecture}",
               'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
               'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
             },
@@ -107,15 +112,15 @@ class java::params {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-7-jdk',
-              'alternative'      => "java-1.7.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.7.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${openjdk_architecture}/",
             },
             'jre' => {
               'package'          => 'openjdk-7-jre-headless',
               'alternative'      => "java-1.7.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${::architecture}/",
+              'alternative_path' => "/usr/lib/jvm/java-1.7.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.7.0-openjdk-${openjdk_architecture}/",
             },
             'oracle-jre' => {
               'package'          => 'oracle-j2re1.7',
@@ -155,19 +160,35 @@ class java::params {
             },
           }
         }
-        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty', 'artful', 'bionic': {
+        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty', 'artful': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
-              'alternative'      => "java-1.8.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.8.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${openjdk_architecture}/",
             },
             'jre' => {
               'package'          => 'openjdk-8-jre-headless',
-              'alternative'      => "java-1.8.0-openjdk-${::architecture}",
-              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/bin/java",
-              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${::architecture}/",
+              'alternative'      => "java-1.8.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.8.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.8.0-openjdk-${openjdk_architecture}/",
+            }
+          }
+        }
+        'bionic': {
+          $java =  {
+            'jdk' => {
+              'package'          => 'openjdk-11-jdk',
+              'alternative'      => "java-1.11.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.11.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.11.0-openjdk-${openjdk_architecture}/",
+            },
+            'jre' => {
+              'package'          => 'openjdk-11-jre-headless',
+              'alternative'      => "java-1.11.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.11.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.11.0-openjdk-${openjdk_architecture}/",
             }
           }
         }
