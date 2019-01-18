@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [3.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.3.0) (2019-01-16)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.2.0...3.3.0)
+
+### Added
+
+- \(MODULES-8234\) - Add SLES 15 support [\#336](https://github.com/puppetlabs/puppetlabs-java/pull/336) ([eimlav](https://github.com/eimlav))
+- \(MODULES-8234\) - Upgrade Oracle Java version to 8u192 [\#334](https://github.com/puppetlabs/puppetlabs-java/pull/334) ([eimlav](https://github.com/eimlav))
+- Support for installing JCE. Fixes MODULES-1681 [\#326](https://github.com/puppetlabs/puppetlabs-java/pull/326) ([dploeger](https://github.com/dploeger))
+- MODULES-8044: upgrade Oracle Java 8 to 181, make it the default release [\#314](https://github.com/puppetlabs/puppetlabs-java/pull/314) ([ojongerius](https://github.com/ojongerius))
+
+### Fixed
+
+- pdksync - \(FM-7655\) Fix rubygems-update for ruby \< 2.3 [\#338](https://github.com/puppetlabs/puppetlabs-java/pull/338) ([tphoney](https://github.com/tphoney))
+- \(FM-7520\) - Removing Solaris from the support matrix [\#335](https://github.com/puppetlabs/puppetlabs-java/pull/335) ([pmcmaw](https://github.com/pmcmaw))
+- Optimized code for making java::oracle atomic. Fixes MODULES-8085 [\#330](https://github.com/puppetlabs/puppetlabs-java/pull/330) ([dploeger](https://github.com/dploeger))
+- Fix OpenJDK paths on Debian based OS with ARM [\#329](https://github.com/puppetlabs/puppetlabs-java/pull/329) ([mmoll](https://github.com/mmoll))
+- \(MODULES-7050\) - Fix OracleJDK reinstalling on Puppet runs [\#323](https://github.com/puppetlabs/puppetlabs-java/pull/323) ([eimlav](https://github.com/eimlav))
+- \(MODULES-8025\) Switch default for Ubuntu 18.04 to 11 [\#322](https://github.com/puppetlabs/puppetlabs-java/pull/322) ([baurmatt](https://github.com/baurmatt))
+- MODULES-7819 fix set JAVA\_HOME environments on FreeBSD platform [\#315](https://github.com/puppetlabs/puppetlabs-java/pull/315) ([olevole](https://github.com/olevole))
+
 ## [3.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.2.0) (2018-09-27)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.1.0...3.2.0)
