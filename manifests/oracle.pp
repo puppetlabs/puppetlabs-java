@@ -206,12 +206,17 @@ define java::oracle (
   }
 
   # set java architecture nomenclature
-  case $facts['os']['architecture'] {
+  $os_architecture = $facts['os']['architecture'] ? {
+    undef => $facts['architecture'],
+    default => $facts['os']['architecture']
+  }
+
+  case $os_architecture {
     'i386' : { $arch = 'i586' }
     'x86_64' : { $arch = 'x64' }
     'amd64' : { $arch = 'x64' }
     default : {
-      fail ("unsupported platform ${$facts['os']['architecture']}")
+      fail ("unsupported platform ${$os_architecture}")
     }
   }
 
