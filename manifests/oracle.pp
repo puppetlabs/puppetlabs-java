@@ -90,6 +90,9 @@
 # [*jce*]
 # Install Oracles Java Cryptographic Extensions into the JRE or JDK
 #
+# [*jce_url*]
+# Full URL to the jce zip file
+#
 # ### Author
 # mike@marseglia.org
 #
@@ -105,6 +108,7 @@ define java::oracle (
   $url           = undef,
   $url_hash      = undef,
   $jce           = false,
+  $jce_url       = undef,
 ) {
 
   # archive module is used to download the java package
@@ -116,11 +120,17 @@ define java::oracle (
   }
 
   if $jce {
-    $jce_download = $version ? {
-      '8'     => 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip',
-      '7'     => 'http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip',
-      '6'     => 'http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip',
-      default => undef
+    if $jce_url {
+      $jce_download = $jce_url
+      $cookie = undef
+    } else {
+      $jce_download = $version ? {
+        '8'     => 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip',
+        '7'     => 'http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip',
+        '6'     => 'http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip',
+        default => undef
+      }
+      $cookie = 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
     }
   }
 
@@ -317,7 +327,7 @@ define java::oracle (
             }
             archive { "/tmp/jce-${version}.zip":
               source        => $jce_download,
-              cookie        => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
+              cookie        => $cookie,
               extract       => true,
               extract_path  => $jce_path,
               extract_flags => '-oj',
