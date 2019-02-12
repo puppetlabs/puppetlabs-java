@@ -300,11 +300,7 @@ define java::oracle (
       $install_command = "rpm --force -iv ${destination}"
     }
     'tar.gz' : {
-      if $basedir {
-        $install_command = "tar -zxf ${destination} -C ${basedir}"
-      } else {
-        $install_command = "tar -zxf ${destination} -C /usr/lib/jvm"
-      }
+      $install_command = "tar -zxf ${destination} -C ${_basedir}"
     }
     default : {
       $install_command = "rpm -iv ${destination}"
@@ -327,10 +323,10 @@ define java::oracle (
         'Linux' : {
           case $facts['os']['family'] {
             'Debian' : {
-              ensure_resource('file', '/usr/lib/jvm', {
+              ensure_resource('file', $_basedir, {
                 ensure => directory,
               })
-              $install_requires = [Archive[$destination], File['/usr/lib/jvm']]
+              $install_requires = [Archive[$destination], File[$_basedir]]
             }
             default : {
               $install_requires = [Archive[$destination]]
@@ -338,7 +334,7 @@ define java::oracle (
           }
 
           if $manage_basedir {
-            ensure_resource('file', $basedir, {'ensure' => 'directory', 'before' => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]})
+            ensure_resource('file', $_basedir, {'ensure' => 'directory', 'before' => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]})
           }
 
           exec { "Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}" :
