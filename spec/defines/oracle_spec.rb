@@ -158,8 +158,8 @@ describe 'java::oracle', type: :define do
       let(:title) { 'jdk6' }
 
       it { is_expected.to contain_archive('/tmp/jdk-6u45-linux-x64.tar.gz') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 6').with_command('tar -zxf /tmp/jdk-6u45-linux-x64.tar.gz -C /usr/java') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 6').that_requires('Archive[/tmp/jdk-6u45-linux-x64.tar.gz]') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 6 6u45 b06').with_command('tar -zxf /tmp/jdk-6u45-linux-x64.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 6 6u45 b06').that_requires('Archive[/tmp/jdk-6u45-linux-x64.tar.gz]') }
     end
     context 'when manage_basedir is set to true' do
       let(:params) do
