@@ -70,6 +70,29 @@ java::oracle { 'jdk8' :
 }
 ```
 
+To install Oracle Java to a non-default basedir (defaults: /usr/lib/jvm for Debian; /usr/java for RedHat):
+```puppet
+java::oracle { 'jdk8' :
+  ensure  => 'present',
+  version_major => '8u101',
+  version_minor => 'b13',
+  java_se => 'jdk',
+  basedir => '/custom/java',
+}
+```
+
+To ensure that a custom basedir is a directory before Oracle Java is installed (note: manage separately for custom ownership or perms):
+```puppet
+java::oracle { 'jdk8' :
+  ensure  => 'present',
+  version_major => '8u101',
+  version_minor => 'b13',
+  java_se => 'jdk',
+  manage_basedir => true,
+  basedir => '/custom/java',
+}
+```
+
 ## Reference
 
 ### Classes
