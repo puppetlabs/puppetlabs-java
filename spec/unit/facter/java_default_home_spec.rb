@@ -15,15 +15,15 @@ end
 
 def symlink_and_test(symlink_path, java_home)
   File.symlink(symlink_path, './java_test')
-  Facter::Util::Resolution.expects(:which).with('java').returns('./java_test')
-  File.expects(:realpath).with('./java_test').returns(symlink_path)
+  expect(Facter::Util::Resolution).to receive(:which).with('java').and_return('./java_test')
+  expect(File).to receive(:realpath).with('./java_test').and_return(symlink_path)
   expect(Facter.value(:java_default_home)).to eql java_home
 end
 
 describe 'java_default_home' do
   before(:each) do
     Facter.clear
-    Facter.fact(:kernel).stubs(:value).returns('Linux')
+    allow(Facter.fact(:kernel)).to receive(:value).once.and_return('Linux')
   end
 
   context 'when java found in PATH' do
@@ -46,8 +46,8 @@ describe 'java_default_home' do
 
   context 'when java not present, return nil' do
     it do
-      Facter::Util::Resolution.stubs(:exec)
-      Facter::Util::Resolution.expects(:which).with('java').at_least(1).returns(false)
+      allow(Facter::Util::Resolution).to receive(:exec) # Catch all other calls
+      expect(Facter::Util::Resolution).to receive(:which).with('java').at_least(1).and_return(false)
       expect(Facter.value(:java_default_home)).to be_nil
     end
   end

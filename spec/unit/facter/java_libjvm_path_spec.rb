@@ -3,10 +3,10 @@ require 'spec_helper'
 describe 'java_libjvm_path' do
   before(:each) do
     Facter.clear
-    Facter.fact(:kernel).stubs(:value).returns('Linux')
+    allow(Facter.fact(:kernel)).to receive(:value).once.and_return('Linux')
     java_default_home = '/usr/lib/jvm/java-8-openjdk-amd64'
-    Facter.fact(:java_default_home).stubs(:value).returns(java_default_home)
-    Dir.stubs(:glob).with("#{java_default_home}/jre/lib/**/libjvm.so").returns(['/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so'])
+    allow(Facter.fact(:java_default_home)).to receive(:value).once.and_return(java_default_home)
+    allow(Dir).to receive(:glob).with("#{java_default_home}/jre/lib/**/libjvm.so").and_return(['/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so'])
   end
 
   context 'when on Linux, return libjvm path' do
