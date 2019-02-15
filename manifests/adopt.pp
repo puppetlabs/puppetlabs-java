@@ -214,12 +214,14 @@ define java::adopt (
 
   if ( $version == '8' ) {
     $spacer = '-'
+    $download_folder_prefix = 'jdk'
     $release_minor_url = $release_minor
   } else {
     $spacer = '%2B'
+    $download_folder_prefix = 'jdk-'
     $release_minor_url = $release_minor[1,-1]
   }
-  $source = "https://github.com/AdoptOpenJDK/openjdk${version}-binaries/releases/download/jdk-${release_major}${spacer}${release_minor_url}/${package_name}"
+  $source = "https://github.com/AdoptOpenJDK/openjdk${version}-binaries/releases/download/${download_folder_prefix}${release_major}${spacer}${release_minor_url}/${package_name}"
 
   # full path to the installer
   $destination = "${destination_dir}${package_name}"
