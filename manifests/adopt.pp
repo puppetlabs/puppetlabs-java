@@ -134,7 +134,7 @@ define java::adopt (
       default : {
         $release_major = '8u202'
         $release_minor = 'b08'
-        $install_path = "${java}1.8.0_192"
+        $install_path = "${java}1.8.0_202"
       }
     }
   }
@@ -212,7 +212,7 @@ define java::adopt (
     }
   }
 
-  if ( $version == '8' ) {
+  if ( "${version}" == '8' ) {
     $spacer = '-'
     $download_folder_prefix = 'jdk'
     $release_minor_url = $release_minor
