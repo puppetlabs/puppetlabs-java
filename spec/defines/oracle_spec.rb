@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-oracle_url = 'http://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.tar.gz'
+oracle_url = 'http://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz'
 
 describe 'java::oracle', type: :define do
   context 'with CentOS 64-bit' do
@@ -28,9 +28,9 @@ describe 'java::oracle', type: :define do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jdk-8u192-linux-x64.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u192 b12').with_command('rpm --force -iv /tmp/jdk-8u192-linux-x64.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u192 b12').that_requires('Archive[/tmp/jdk-8u192-linux-x64.rpm]') }
+      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u201 b09').with_command('rpm --force -iv /tmp/jdk-8u201-linux-x64.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u201 b09').that_requires('Archive[/tmp/jdk-8u201-linux-x64.rpm]') }
     end
 
     context 'when Oracle Java SE 6 JRE' do
@@ -55,27 +55,27 @@ describe 'java::oracle', type: :define do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
       let(:title) { 'jre8' }
 
-      it { is_expected.to contain_archive('/tmp/jre-8u192-linux-x64.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u192 b12').with_command('rpm --force -iv /tmp/jre-8u192-linux-x64.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u192 b12').that_requires('Archive[/tmp/jre-8u192-linux-x64.rpm]') }
+      it { is_expected.to contain_archive('/tmp/jre-8u201-linux-x64.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u201 b09').with_command('rpm --force -iv /tmp/jre-8u201-linux-x64.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u201 b09').that_requires('Archive[/tmp/jre-8u201-linux-x64.rpm]') }
     end
 
     context 'when passing URL to url parameter' do
       let(:params) do
         {
           ensure: 'present',
-          version_major: '8u192',
-          version_minor: 'b12',
+          version_major: '8u201',
+          version_minor: 'b09',
           java_se: 'jdk',
-          url: 'http://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.rpm',
+          url: 'http://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm',
           url_hash: 'ignored',
         }
       end
       let(:title) { 'jdk8' }
 
       it {
-        is_expected.to contain_archive('/tmp/jdk-8u192-linux-x64.rpm')
-          .with_source('http://download.oracle.com/otn-pub/java/jdk/8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.rpm')
+        is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.rpm')
+          .with_source('http://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm')
       }
     end
 
@@ -83,17 +83,17 @@ describe 'java::oracle', type: :define do
       let(:params) do
         {
           ensure: 'present',
-          version_major: '8u192',
-          version_minor: 'b12',
+          version_major: '8u201',
+          version_minor: 'b09',
           java_se: 'jdk',
-          url_hash: '750e1c8617c5452694857ad95c3ee230',
+          url_hash: '42970487e3af4f5aa5bca3f542482c60',
         }
       end
       let(:title) { 'jdk8' }
 
       it {
-        is_expected.to contain_archive('/tmp/jdk-8u192-linux-x64.rpm')
-          .with_source('http://download.oracle.com/otn-pub/java/jdk//8u192-b12/750e1c8617c5452694857ad95c3ee230/jdk-8u192-linux-x64.rpm')
+        is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.rpm')
+          .with_source('http://download.oracle.com/otn-pub/java/jdk//8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm')
       }
     end
 
@@ -101,10 +101,10 @@ describe 'java::oracle', type: :define do
       let(:params) do
         {
           ensure: 'present',
-          version_major: '8u192',
-          version_minor: 'b12',
+          version_major: '8u201',
+          version_minor: 'b09',
           java_se: 'jdk',
-          url_hash: '750e1c8617c5452694857ad95c3ee230',
+          url_hash: '42970487e3af4f5aa5bca3f542482c60',
         }
       end
       let(:title) { 'jdk8' }
@@ -202,9 +202,9 @@ describe 'java::oracle', type: :define do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jdk-8u192-linux-i586.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u192 b12').with_command('rpm --force -iv /tmp/jdk-8u192-linux-i586.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u192 b12').that_requires('Archive[/tmp/jdk-8u192-linux-i586.rpm]') }
+      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-i586.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u201 b09').with_command('rpm --force -iv /tmp/jdk-8u201-linux-i586.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u201 b09').that_requires('Archive[/tmp/jdk-8u201-linux-i586.rpm]') }
     end
 
     context 'when selecting Oracle Java SE 6 JRE on RedHat family, 32-bit' do
@@ -229,19 +229,19 @@ describe 'java::oracle', type: :define do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jre-8u192-linux-i586.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u192 b12').with_command('rpm --force -iv /tmp/jre-8u192-linux-i586.rpm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u192 b12').that_requires('Archive[/tmp/jre-8u192-linux-i586.rpm]') }
+      it { is_expected.to contain_archive('/tmp/jre-8u201-linux-i586.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u201 b09').with_command('rpm --force -iv /tmp/jre-8u201-linux-i586.rpm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u201 b09').that_requires('Archive[/tmp/jre-8u201-linux-i586.rpm]') }
     end
 
     context 'when installing multiple versions' do
       let(:params) do
         {
           ensure: 'present',
-          version_major: '8u192',
-          version_minor: 'b12',
+          version_major: '8u201',
+          version_minor: 'b09',
           java_se: 'jdk',
-          url_hash: '750e1c8617c5452694857ad95c3ee230',
+          url_hash: '42970487e3af4f5aa5bca3f542482c60',
         }
       end
       let(:title) { 'jdk8' }
@@ -308,9 +308,9 @@ describe 'java::oracle', type: :define do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jdk' } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jdk-8u192-linux-x64.tar.gz') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u192 b12').with_command('tar -zxf /tmp/jdk-8u192-linux-x64.tar.gz -C /usr/lib/jvm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u192 b12').that_requires('Archive[/tmp/jdk-8u192-linux-x64.tar.gz]') }
+      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u201 b09').with_command('tar -zxf /tmp/jdk-8u201-linux-x64.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jdk 8 8u201 b09').that_requires('Archive[/tmp/jdk-8u201-linux-x64.tar.gz]') }
     end
 
     context 'with Oracle Java SE 6 JRE' do
@@ -335,26 +335,26 @@ describe 'java::oracle', type: :define do
       let(:params) { { ensure: 'present', version: '8', java_se: 'jre' } }
       let(:title) { 'jre8' }
 
-      it { is_expected.to contain_archive('/tmp/jre-8u192-linux-x64.tar.gz') }
-      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u192 b12').with_command('tar -zxf /tmp/jre-8u192-linux-x64.tar.gz -C /usr/lib/jvm') }
-      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u192 b12').that_requires('Archive[/tmp/jre-8u192-linux-x64.tar.gz]') }
+      it { is_expected.to contain_archive('/tmp/jre-8u201-linux-x64.tar.gz') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u201 b09').with_command('tar -zxf /tmp/jre-8u201-linux-x64.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install Oracle java_se jre 8 8u201 b09').that_requires('Archive[/tmp/jre-8u201-linux-x64.tar.gz]') }
     end
 
     context 'when passing URL to url parameter' do
-      let(:params) { { ensure: 'present', version_major: '8u192', version_minor: 'b12', java_se: 'jdk', url: oracle_url.to_s } }
+      let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: oracle_url.to_s } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jdk-8u192-linux-x64.tar.gz') }
+      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
     end
 
     context 'when installing multiple versions' do
       let(:params) do
         {
           ensure: 'present',
-          version_major: '8u192',
-          version_minor: 'b12',
+          version_major: '8u201',
+          version_minor: 'b09',
           java_se: 'jdk',
-          url_hash: '750e1c8617c5452694857ad95c3ee230',
+          url_hash: '42970487e3af4f5aa5bca3f542482c60',
         }
       end
       let(:title) { 'jdk8' }
