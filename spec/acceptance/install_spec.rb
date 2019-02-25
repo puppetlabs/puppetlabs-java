@@ -87,9 +87,9 @@ bogus_alternative = "class { 'java':\n"\
 
 oracle_enabled = false
 oracle_version_major = '8'
-oracle_version_minor = '192'
-oracle_version_build = '12'
-oracle_hash = '750e1c8617c5452694857ad95c3ee230'
+oracle_version_minor = '201'
+oracle_version_build = '09'
+oracle_hash = '42970487e3af4f5aa5bca3f542482c60'
 
 install_oracle_jre = <<EOL
   java::oracle {
