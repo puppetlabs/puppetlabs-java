@@ -175,6 +175,21 @@ describe 'java::oracle', type: :define do
 
       it { is_expected.to contain_file('/usr/java') }
     end
+    context 'when manage_symlink is set to true' do
+      let(:params) do
+        {
+          ensure: 'present',
+          version: '6',
+          java_se: 'jdk',
+          basedir: '/usr/java',
+          manage_symlink: true,
+          symlink_name: 'java_home',
+        }
+      end
+      let(:title) { 'jdk6' }
+
+      it { is_expected.to contain_file('/usr/java/java_home') }
+    end
   end
 
   context 'when on CentOS 32-bit' do

@@ -99,6 +99,12 @@
 # Whether to manage the basedir directory.  Defaults to false.
 # Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 #
+# [*manage_symlink*]
+# Whether to manage a symlink that points to the installation directory.  Defaults to false.
+#
+# [*symlink_name*]
+# The name for the optional symlink in the installation directory.
+#
 # ### Author
 # mike@marseglia.org
 #
@@ -117,6 +123,8 @@ define java::oracle (
   $basedir        = undef,
   $manage_basedir = false,
   $package_type   = undef,
+  $manage_symlink = false,
+  $symlink_name   = undef,
 ) {
 
   # archive module is used to download the java package
@@ -342,6 +350,14 @@ define java::oracle (
             command => $install_command,
             creates => $creates_path,
             require => $install_requires
+          }
+
+          if ($manage_symlink and $symlink_name) {
+            file { "${_basedir}/${symlink_name}":
+              ensure  => link,
+              target  => $creates_path,
+              require => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]
+            }
           }
 
           if ($jce and $jce_download != undef) {
