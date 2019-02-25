@@ -139,15 +139,13 @@ EOL
 
 context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   it 'installs jre' do
-    apply_manifest(java_class_jre, catch_failures: true)
-    apply_manifest(java_class_jre, catch_changes: true)
+    idempotent_apply(default, java_class_jre)
   end
 end
 
 context 'installing java jdk', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   it 'installs jdk' do
-    apply_manifest(java_class, catch_failures: true)
-    apply_manifest(java_class, catch_changes: true)
+    idempotent_apply(default, java_class)
   end
 end
 
@@ -223,26 +221,22 @@ context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.includ
     version_suffix = '-amd64'
   end
   it 'installs oracle jdk' do
-    apply_manifest(install_oracle_jdk, catch_failures: true)
-    apply_manifest(install_oracle_jdk, catch_changes: true)
+    idempotent_apply(default, install_oracle_jdk)
     result = shell("test ! -e #{install_path}/jdk1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/jre/lib/security/local_policy.jar")
     expect(result.exit_code).to eq(0)
   end
   it 'installs oracle jre' do
-    apply_manifest(install_oracle_jre, catch_failures: true)
-    apply_manifest(install_oracle_jre, catch_changes: true)
+    idempotent_apply(default, install_oracle_jre)
     result = shell("test ! -e #{install_path}/jre1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/lib/security/local_policy.jar")
     expect(result.exit_code).to eq(0)
   end
   it 'installs oracle jdk with jce' do
-    apply_manifest(install_oracle_jdk_jce, catch_failures: true)
-    apply_manifest(install_oracle_jdk_jce, catch_changes: true)
+    idempotent_apply(default, install_oracle_jdk_jce)
     result = shell("test -e #{install_path}/jdk1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/jre/lib/security/local_policy.jar")
     expect(result.exit_code).to eq(0)
   end
   it 'installs oracle jre with jce' do
-    apply_manifest(install_oracle_jre_jce, catch_failures: true)
-    apply_manifest(install_oracle_jre_jce, catch_changes: true)
+    idempotent_apply(default, install_oracle_jre_jce)
     result = shell("test -e #{install_path}/jre1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/lib/security/local_policy.jar")
     expect(result.exit_code).to eq(0)
   end
