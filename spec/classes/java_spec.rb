@@ -190,31 +190,26 @@ describe 'java', type: :class do
   describe 'incompatible OSs' do
     [
       {
-        # C14706
         osfamily: 'windows',
         operatingsystem: 'windows',
         operatingsystemrelease: '8.1',
       },
       {
-        # C14707
         osfamily: 'Darwin',
         operatingsystem: 'Darwin',
         operatingsystemrelease: '13.3.0',
       },
       {
-        # C14708
         osfamily: 'AIX',
         operatingsystem: 'AIX',
         operatingsystemrelease: '7100-02-00-000',
       },
       {
-        # C14708
         osfamily: 'AIX',
         operatingsystem: 'AIX',
         operatingsystemrelease: '6100-07-04-1216',
       },
       {
-        # C14708
         osfamily: 'AIX',
         operatingsystem: 'AIX',
         operatingsystemrelease: '5300-12-01-1016',

@@ -398,7 +398,6 @@ describe 'java::oracle', type: :define do
   describe 'incompatible OSes' do
     [
       {
-        # C14706
         kernel: 'Windows',
         os: {
           family: 'Windows',
@@ -409,7 +408,6 @@ describe 'java::oracle', type: :define do
         },
       },
       {
-        # C14707
         kernel: 'Darwin',
         os: {
           family: 'Darwin',
@@ -420,7 +418,6 @@ describe 'java::oracle', type: :define do
         },
       },
       {
-        # C14708
         kernel: 'AIX',
         os: {
           family: 'AIX',
@@ -431,7 +428,6 @@ describe 'java::oracle', type: :define do
         },
       },
       {
-        # C14709
         kernel: 'AIX',
         os: {
           family: 'AIX',
@@ -442,7 +438,6 @@ describe 'java::oracle', type: :define do
         },
       },
       {
-        # C14710
         kernel: 'AIX',
         os: {
           family: 'AIX',

@@ -2,32 +2,6 @@ require 'spec_helper_acceptance'
 
 include Unix::File
 
-# RedHat, CentOS, Scientific, Oracle prior to 5.0  : Sun Java JDK/JRE 1.6
-# RedHat, CentOS, Scientific, Oracle 5.0 < x < 6.3 : OpenJDK Java JDK/JRE 1.6
-# RedHat, CentOS, Scientific, Oracle after 6.3     : OpenJDK Java JDK/JRE 1.7
-# Debian Jesse & Ubuntu 14.04                      : OpenJDK Java JDK/JRE 1.7 or Oracle Java JDK/JRE 1.6
-# Solaris (what versions?)                         : Java JDK/JRE 1.7
-# OpenSuSE                                         : OpenJDK Java JDK/JRE 1.7
-# SLES                                             : IBM Java JDK/JRE 1.6
-
-# C14677
-# C14678
-# C14679
-# C14680
-# C14681
-# C14682
-# C14684
-# C14687
-# C14692
-# C14696
-# C14697
-# C14700 check on solaris 11
-# C14701 check on sles 11
-# C14703
-# C14723 Where is oracle linux 5?
-# C14724 Where is oracle linux 5?
-# C14771 Where is redhat 7? Centos 7?
-
 java_class_jre = "class { 'java':\n"\
                  "  distribution => 'jre',\n"\
                  '}'
@@ -143,9 +117,6 @@ context 'installing java jdk', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfa
   end
 end
 
-# C14704
-# C14705
-# C15006
 context 'oracle', if: (
   (fact('operatingsystem') == 'Ubuntu') && fact('operatingsystemrelease').match(%r{^14\.04})
 ) do
@@ -166,29 +137,22 @@ context 'oracle', if: (
 end
 
 context 'with failure cases' do
-  # C14712
   it 'fails to install java with a blank version' do
     apply_manifest(blank_version, expect_failures: true)
   end
 
-  # C14713
   it 'fails to install java with an incorrect distribution' do
     apply_manifest(incorrect_distro, expect_failures: true)
   end
 
-  # C14714
   it 'fails to install java with a blank distribution' do
     apply_manifest(blank_distro, expect_failures: true)
   end
 
-  # C14715
   it 'fails to install java with an incorrect package' do
     apply_manifest(incorrect_package, expect_failures: true)
   end
 
-  # C14717
-  # C14719
-  # C14725
   it 'fails on debian or RHEL when passed fake java_alternative and path' do
     if fact('osfamily') == 'Debian' || fact('osfamily') == 'RedHat'
       apply_manifest(bogus_alternative, expect_failures: true)
@@ -198,7 +162,6 @@ context 'with failure cases' do
   end
 end
 
-# Test oracle java installs
 context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
   let(:install_path) do
     (fact('osfamily') == 'RedHat') ? '/usr/java' : '/usr/lib/jvm'
