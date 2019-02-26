@@ -47,7 +47,7 @@ describe 'java_default_home' do
   context 'when java not present, return nil' do
     it do
       allow(Facter::Util::Resolution).to receive(:exec) # Catch all other calls
-      expect(Facter::Util::Resolution).to receive(:which).with('java').at_least(1).and_return(false)
+      expect(Facter::Util::Resolution).to receive(:which).with('java').at_least(1).and_return(nil)
       expect(Facter.value(:java_default_home)).to be_nil
     end
   end
