@@ -9,7 +9,7 @@ describe 'java_libjvm_path' do
     allow(Facter.fact(:java_default_home)).to receive(:value).once.and_return(java_default_home)
   end
 
-  context 'whe libjvm exists' do
+  context 'when libjvm exists' do
     it do
       allow(Dir).to receive(:glob).with("#{java_default_home}/jre/lib/**/libjvm.so").and_return(['/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server/libjvm.so'])
       expect(Facter.value(:java_libjvm_path)).to eql '/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server'
