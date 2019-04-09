@@ -1,112 +1,73 @@
 # Defined Type java::oracle
 #
-# Description
-# Installs Oracle Java. By using this module you agree to the Oracle licensing
-# agreement.
+# @summary
+#   Installs Oracle Java. By using this module you agree to the Oracle licensing
+#   agreement.
 #
 # Install one or more versions of Oracle Java.
 #
-# uses the following to download the package and automatically accept
-# the licensing terms.
+# Uses the following to download the package and automatically accept
+# the licensing terms:
+#```
 # wget --no-cookies --no-check-certificate --header \
 # "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
 # "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz"
+#```
 #
-# Parameters
-# [*version*]
-# Version of Java to install, e.g. '7' or '8'. Default values for major and minor
-# versions will be used.
+# @param ensure
+#   Install or remove the package.
 #
-# [*version_major*]
-# Major version which should be installed, e.g. '8u101'. Must be used together with
-# version_minor.
+# @param version
+#   Version of Java to install, e.g. '7' or '8'. Default values for major and minor versions will be used.
 #
-# [*version_minor*]
-# Minor version which should be installed, e.g. 'b12'. Must be used together with
-# version_major.
+# @param version_major
+#   Major version which should be installed, e.g. '8u101'. Must be used together with version_minor.
 #
-# [*java_se*]
-# Type of Java Standard Edition to install, jdk or jre.
+# @param version_minor
+#   Minor version which should be installed, e.g. 'b12'. Must be used together with version_major.
 #
-# [*ensure*]
-# Install or remove the package.
+# @param java_se
+#   Type of Java Standard Edition to install, jdk or jre.
 #
-# [*oracle_url*]
-# Official Oracle URL to download binaries from.
+# @param oracle_url
+#   Official Oracle URL to download binaries from.
 #
-# [*proxy_server*]
-# Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
+# @param proxy_server
+#   Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 #
-# [*proxy_type*]
-# Proxy server type (none|http|https|ftp). (passed to archive)
+# @param proxy_type
+#   Proxy server type (none|http|https|ftp). (passed to archive)
 #
-# Variables
-# [*release_major*]
-# Major version release number for java_se. Used to construct download URL.
+# @param url
+#   Full URL, including oracle_url, release_major, release_minor and package_name, to
+#   download the Oracle java_se installer. Originally present but not used, activated
+#   to workaround MODULES-5058.
 #
-# [*release_minor*]
-# Minor version release number for java_se. Used to construct download URL.
+# @param url_hash
+#   Directory hash used by the download.oracle.com site.  This value is a 32 character string
+#   which is part of the file URL returned by the JDK download site.
 #
-# [*install_path*]
-# Base install path for specified version of java_se. Used to determine if java_se
-# has already been installed.
+# @param jce
+#   Install Oracles Java Cryptographic Extensions into the JRE or JDK
 #
-# [*package_type*]
-# Type of installation package for specified version of java_se. java_se 6 comes
-# in a few installation package flavors and we need to account for them.
-# Optional forced package types: rpm, rpmbin, tar.gz
+# @param basedir
+#   Directory under which the installation will occur. If not set, defaults to
+#   /usr/lib/jvm for Debian and /usr/java for RedHat.
 #
-# [*os*]
-# Oracle java_se OS type.
+# @param manage_basedir
+#   Whether to manage the basedir directory.  Defaults to false.
+#   Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 #
-# [*destination*]
-# Destination directory to save java_se installer to.  Usually /tmp on Linux and
-# C:\TEMP on Windows.
+# @param package_type
+#   Type of installation package for specified version of java_se. java_se 6 comes
+#   in a few installation package flavors and we need to account for them.
+#   Optional forced package types: rpm, rpmbin, tar.gz
 #
-# [*creates_path*]
-# Fully qualified path to java_se after it is installed. Used to determine if
-# java_se is already installed.
+# @param manage_symlink
+#   Whether to manage a symlink that points to the installation directory.  Defaults to false.
 #
-# [*arch*]
-# Oracle java_se architecture type.
-#
-# [*package_name*]
-# Name of the java_se installation package to download from Oracle's website.
-#
-# [*install_command*]
-# Installation command used to install Oracle java_se. Installation commands
-# differ by package_type. 'bin' types are installed via shell command. 'rpmbin'
-# types have the rpms extracted and then forcibly installed. 'rpm' types are
-# forcibly installed.
-#
-# [*url*]
-# Full URL, including oracle_url, release_major, release_minor and package_name, to
-# download the Oracle java_se installer. Originally present but not used, activated
-# to workaround MODULES-5058
-#
-# [*url_hash*]
-# Directory hash used by the download.oracle.com site.  This value is a 32 character string
-# which is part of the file URL returned by the JDK download site.
-#
-# [*jce*]
-# Install Oracles Java Cryptographic Extensions into the JRE or JDK
-#
-# [*basedir*]
-# Directory under which the installation will occur. If not set, defaults to
-# /usr/lib/jvm for Debian and /usr/java for RedHat.
-#
-# [*manage_basedir*]
-# Whether to manage the basedir directory.  Defaults to false.
-# Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
-#
-# [*manage_symlink*]
-# Whether to manage a symlink that points to the installation directory.  Defaults to false.
-#
-# [*symlink_name*]
-# The name for the optional symlink in the installation directory.
-#
-# ### Author
-# mike@marseglia.org
+# @param symlink_name
+#   The name for the optional symlink in the installation directory.
 #
 define java::oracle (
   $ensure         = 'present',
