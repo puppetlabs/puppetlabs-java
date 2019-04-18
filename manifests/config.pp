@@ -1,4 +1,4 @@
-# On Debian systems, if alternatives are set, manually assign them.
+# @api private
 class java::config ( ) {
   case $::osfamily {
     'Debian': {

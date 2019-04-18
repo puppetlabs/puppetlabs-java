@@ -1,15 +1,9 @@
-# Class: java::params
+# @summary
+#   This class builds a hash of JDK/JRE packages and (for Debian)
+#   alternatives.  For wheezy/precise, we provide Oracle JDK/JRE
+#   options, even though those are not in the package repositories.
 #
-# This class builds a hash of JDK/JRE packages and (for Debian)
-# alternatives.  For wheezy/precise, we provide Oracle JDK/JRE
-# options, even though those are not in the package repositories.
-#
-# For more info on how to package Oracle JDK/JRE, see the Debian wiki:
-# http://wiki.debian.org/JavaPackage
-#
-# Because the alternatives system makes it very difficult to tell
-# which Java alternative is enabled, we hard code the path to bin/java
-# for the config class to test if it is enabled.
+# @api private
 class java::params {
 
   case $::osfamily {

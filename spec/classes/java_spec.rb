@@ -53,20 +53,20 @@ describe 'java', type: :class do
     it { is_expected.not_to contain_exec('update-java-alternatives') }
   end
 
-  context 'when select jdk for Ubuntu Vivid (15.04)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'vivid', operatingsystemrelease: '15.04', architecture: 'amd64' } }
+  context 'when select jdk for Ubuntu Trusty (14.04)' do
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemrelease: '14.04', architecture: 'amd64' } }
     let(:params) { { 'distribution' => 'jdk' } }
 
-    it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/') }
+    it { is_expected.to contain_package('java').with_name('openjdk-7-jdk') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/') }
   end
 
-  context 'when select jre for Ubuntu Vivid (15.04)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'vivid', operatingsystemrelease: '15.04', architecture: 'amd64' } }
+  context 'when select jre for Ubuntu Trusty (14.04)' do
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemrelease: '14.04', architecture: 'amd64' } }
     let(:params) { { 'distribution' => 'jre' } }
 
-    it { is_expected.to contain_package('java').with_name('openjdk-8-jre-headless') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/') }
+    it { is_expected.to contain_package('java').with_name('openjdk-7-jre-headless') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/') }
   end
 
   context 'when select jdk for Ubuntu xenial (16.04) on ARM' do
@@ -83,20 +83,6 @@ describe 'java', type: :class do
 
     it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64/') }
-  end
-
-  context 'when select openjdk for Amazon Linux' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Amazon', operatingsystemrelease: '3.4.43-43.43.amzn1.x86_64', architecture: 'x86_64' } }
-
-    it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-x86_64/') }
-  end
-
-  context 'when select passed value for Amazon Linux' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Amazon', operatingsystemrelease: '5.3.4.43-43.43.amzn1.x86_64', architecture: 'x86_64' } }
-    let(:params) { { 'distribution' => 'jre' } }
-
-    it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
   end
 
   context 'when select openjdk for Oracle Linux' do
@@ -169,20 +155,6 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/') }
   end
 
-  context 'when select jdk for OpenBSD' do
-    let(:facts) { { osfamily: 'OpenBSD', architecture: 'x86_64' } }
-
-    it { is_expected.to contain_package('java').with_name('jdk') }
-    it { is_expected.not_to contain_file_line('java-home-environment') }
-  end
-
-  context 'when select jre for OpenBSD' do
-    let(:facts) { { osfamily: 'OpenBSD', architecture: 'x86_64' } }
-    let(:params) { { 'distribution' => 'jre' } }
-
-    it { is_expected.to contain_package('java').with_name('jre') }
-  end
-
   describe 'custom java package' do
     let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'jessie', operatingsystemrelease: '8.6', architecture: 'amd64' } }
 
@@ -218,31 +190,26 @@ describe 'java', type: :class do
   describe 'incompatible OSs' do
     [
       {
-        # C14706
         osfamily: 'windows',
         operatingsystem: 'windows',
         operatingsystemrelease: '8.1',
       },
       {
-        # C14707
         osfamily: 'Darwin',
         operatingsystem: 'Darwin',
         operatingsystemrelease: '13.3.0',
       },
       {
-        # C14708
         osfamily: 'AIX',
         operatingsystem: 'AIX',
         operatingsystemrelease: '7100-02-00-000',
       },
       {
-        # C14708
         osfamily: 'AIX',
         operatingsystem: 'AIX',
         operatingsystemrelease: '6100-07-04-1216',
       },
       {
-        # C14708
         osfamily: 'AIX',
         operatingsystem: 'AIX',
         operatingsystemrelease: '5300-12-01-1016',
