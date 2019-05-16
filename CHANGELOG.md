@@ -2,7 +2,26 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [3.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.3.0) (2019-01-16)
+## [v4.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v4.0.0) (2019-05-16)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.3.0...v4.0.0)
+
+### Changed
+
+- pdksync - \(MODULES-8444\) - Raise lower Puppet bound [\#356](https://github.com/puppetlabs/puppetlabs-java/pull/356) ([david22swan](https://github.com/david22swan))
+
+### Added
+
+- \(FM-7921\) - Implement Puppet Strings [\#353](https://github.com/puppetlabs/puppetlabs-java/pull/353) ([david22swan](https://github.com/david22swan))
+- Update default version & java 8 version from 8u192 to 8u201 [\#347](https://github.com/puppetlabs/puppetlabs-java/pull/347) ([valentinsavenko](https://github.com/valentinsavenko))
+- Add ability to override basedir and package type for oracle java [\#345](https://github.com/puppetlabs/puppetlabs-java/pull/345) ([fraenki](https://github.com/fraenki))
+- MODULES-8613: Add option to set a custom JCE download URL [\#344](https://github.com/puppetlabs/puppetlabs-java/pull/344) ([HielkeJ](https://github.com/HielkeJ))
+
+### Fixed
+
+- MODULES-8698: Fix $install\_path on CentOS with tar.gz package type [\#349](https://github.com/puppetlabs/puppetlabs-java/pull/349) ([fraenki](https://github.com/fraenki))
+
+## [3.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/3.3.0) (2019-01-17)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.2.0...3.3.0)
 
