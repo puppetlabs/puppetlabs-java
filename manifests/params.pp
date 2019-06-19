@@ -170,7 +170,7 @@ class java::params {
             }
           }
         }
-        'bionic', 'cosmic', 'disco', 'eoan': {
+        'bionic', 'cosmic', 'disco', 'buster', 'eoan': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-11-jdk',
