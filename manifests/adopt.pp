@@ -172,6 +172,7 @@ define java::adopt (
 
   } else {
     $_version = $version
+    $_version_int = Numeric($_version)
     # use default versions if no specific major and minor version parameters are provided
     case $version {
       '8' : {
@@ -276,7 +277,7 @@ define java::adopt (
   # jre just replaces jdk with jre in the archive name, but not in the path name!
   # https://github.com/AdoptOpenJDK/openjdk9-binaries/releases/download/jdk-9.0.4%2B11/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz
 
-  if ( "${_version}" == '8' ) {
+  if ( $_version_int == 8 ) {
     $_release_minor_package_name = $release_minor
   } else {
     $_release_minor_package_name = "_${release_minor}"
@@ -293,7 +294,7 @@ define java::adopt (
 
   # naming convention changed after major version 8, setting variables to consider that
   # download_folder_prefix always begins with "jdk", even for jre! see comments for package_name above
-  if ( "${_version}" == '8' ) {
+  if ( $_version_int == 8 ) {
     $spacer = '-'
     $download_folder_prefix = 'jdk'
   } else {

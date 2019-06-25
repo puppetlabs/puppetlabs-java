@@ -49,7 +49,6 @@ describe 'java::adopt', type: :define do
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').that_requires('Archive[/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz]') }
     end
 
-
     context 'when AdoptOpenJDK Java 8 JRE' do
       let(:params) { { ensure: 'present', version: '8', java: 'jre' } }
       let(:title) { 'jre8' }
@@ -249,10 +248,10 @@ describe 'java::adopt', type: :define do
     context 'when installing multiple versions' do
       let(:params) do
         {
-            ensure: 'present',
-            version_major: '8u202',
-            version_minor: 'b08',
-            java: 'jdk',
+          ensure: 'present',
+          version_major: '8u202',
+          version_minor: 'b08',
+          java: 'jdk',
         }
       end
       let(:title) { 'jdk8' }
@@ -271,7 +270,6 @@ describe 'java::adopt', type: :define do
 
       it { is_expected.to compile }
     end
-
   end
   describe 'incompatible OSes' do
     [
