@@ -121,7 +121,7 @@ define java::adopt (
   $proxy_server   = undef,
   $proxy_type     = undef,
   $basedir        = undef,
-  $manage_basedir = false,
+  $manage_basedir = true,
   $package_type   = undef,
 ) {
 
@@ -342,7 +342,12 @@ define java::adopt (
           }
 
           if $manage_basedir {
-            ensure_resource('file', $_basedir, {'ensure' => 'directory', 'before' => Exec["Install AdoptOpenJDK java ${java} ${_version} ${release_major} ${release_minor}"]})
+            if (!defined(File[$_basedir])) {
+              file { $_basedir:
+                ensure => 'directory',
+                before => Exec["Install AdoptOpenJDK java ${java} ${_version} ${release_major} ${release_minor}"],
+              }
+            }
           }
 
           exec { "Install AdoptOpenJDK java ${java} ${_version} ${release_major} ${release_minor}" :
