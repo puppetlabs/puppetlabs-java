@@ -153,18 +153,6 @@ the binaries to a standard directory. Because of that, the path to this location
 is hardcoded in the `java_version` fact. Whenever you upgrade Java to a newer
 version, you have to update the path in this fact.
 
-#### FreeBSD
-
-By default on FreeBSD, Puppet versions prior to 4.0 throw an error saying `pkgng` is not the default provider. To fix this, install the [zleslie/pkgng module](https://forge.puppetlabs.com/zleslie/pkgng) and set it as the default package provider:
-
-```puppet
-Package {
-  provider => 'pkgng',
-}
-```
-
-On Puppet 4.0 and later, `pkgng` is included within Puppet and is the default package provider.
-
 ## Development
 
 Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. To contribute to Puppet projects, see our [module contribution guide.](https://docs.puppetlabs.com/forge/contributing.html)
