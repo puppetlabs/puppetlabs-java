@@ -1,18 +1,8 @@
-# Defined Type java::oracle
+# Defined Type java::download
 #
 # @summary
-#   Installs Oracle Java. By using this module you agree to the Oracle licensing
-#   agreement.
+#   Installs Java from a url location.
 #
-# Install one or more versions of Oracle Java.
-#
-# Uses the following to download the package and automatically accept
-# the licensing terms:
-#```
-# wget --no-cookies --no-check-certificate --header \
-# "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-# "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz"
-#```
 #
 # @param ensure
 #   Install or remove the package.
@@ -29,9 +19,6 @@
 # @param java_se
 #   Type of Java Standard Edition to install, jdk or jre.
 #
-# @param oracle_url
-#   Official Oracle URL to download binaries from.
-#
 # @param proxy_server
 #   Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 #
@@ -39,13 +26,7 @@
 #   Proxy server type (none|http|https|ftp). (passed to archive)
 #
 # @param url
-#   Full URL, including oracle_url, release_major, release_minor and package_name, to
-#   download the Oracle java_se installer. Originally present but not used, activated
-#   to workaround MODULES-5058.
-#
-# @param url_hash
-#   Directory hash used by the download.oracle.com site.  This value is a 32 character string
-#   which is part of the file URL returned by the JDK download site.
+#   Full URL
 #
 # @param jce
 #   Install Oracles Java Cryptographic Extensions into the JRE or JDK
@@ -72,17 +53,15 @@
 # @param symlink_name
 #   The name for the optional symlink in the installation directory.
 #
-define java::oracle (
+define java::download(
   $ensure         = 'present',
   $version        = '8',
   $version_major  = undef,
   $version_minor  = undef,
   $java_se        = 'jdk',
-  $oracle_url     = 'http://download.oracle.com/otn-pub/java/jdk/',
   $proxy_server   = undef,
   $proxy_type     = undef,
   $url            = undef,
-  $url_hash       = undef,
   $jce            = false,
   $jce_url        = undef,
   $basedir        = undef,
@@ -103,25 +82,17 @@ define java::oracle (
   if $jce {
     if $jce_url {
       $jce_download = $jce_url
-      $cookie = undef
     } else {
-      $jce_download = $version ? {
-        '8'     => 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip',
-        '7'     => 'http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip',
-        '6'     => 'http://download.oracle.com/otn-pub/java/jce_policy/6/jce_policy-6.zip',
-        default => undef
-      }
-      $cookie = 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'
+      fail('JCE URL must be specified')
     }
   }
 
-  # determine Oracle Java major and minor version, and installation path
+  # determine Java major and minor version, and installation path
   if $version_major and $version_minor {
 
     $label         = $version_major
     $release_major = $version_major
     $release_minor = $version_minor
-    $release_hash  = $url_hash
 
     if $release_major =~ /(\d+)u(\d+)/ {
       # Required for CentOS systems where Java8 update number is >= 171 to ensure
@@ -143,25 +114,21 @@ define java::oracle (
         $release_major = '6u45'
         $release_minor = 'b06'
         $install_path = "${java_se}1.6.0_45"
-        $release_hash  = undef
       }
       '7' : {
         $release_major = '7u80'
         $release_minor = 'b15'
         $install_path = "${java_se}1.7.0_80"
-        $release_hash  = undef
       }
       '8' : {
         $release_major = '8u201'
         $release_minor = 'b09'
         $install_path = "${java_se}1.8.0_201"
-        $release_hash  = '42970487e3af4f5aa5bca3f542482c60'
       }
       default : {
         $release_major = '8u201'
         $release_minor = 'b09'
         $install_path = "${java_se}1.8.0_201"
-        $release_hash  = '42970487e3af4f5aa5bca3f542482c60'
       }
     }
   }
@@ -235,7 +202,7 @@ define java::oracle (
   # JaveSE 6 distributed in .bin format
   # http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-i586-rpm.bin
   # http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-i586.bin
-  # package name to download from Oracle's website
+  # package name to use in destination directory for the installer
   case $_package_type {
     'bin' : {
       $package_name = "${java_se}-${release_major}-${os}-${arch}.bin"
@@ -258,11 +225,8 @@ define java::oracle (
   if $url {
     $source = $url
   }
-  elsif $release_hash != undef {
-    $source = "${oracle_url}/${release_major}-${release_minor}/${release_hash}/${package_name}"
-  }
   else {
-    $source = "${oracle_url}/${release_major}-${release_minor}/${package_name}"
+    fail('Url must be specified')
   }
 
   # full path to the installer
@@ -292,7 +256,6 @@ define java::oracle (
       archive { $destination :
         ensure       => present,
         source       => $source,
-        cookie       => 'gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie',
         extract_path => '/tmp',
         cleanup      => false,
         creates      => $creates_path,
@@ -339,7 +302,6 @@ define java::oracle (
             }
             archive { "/tmp/jce-${version}.zip":
               source        => $jce_download,
-              cookie        => $cookie,
               extract       => true,
               extract_path  => $jce_path,
               extract_flags => '-oj',
