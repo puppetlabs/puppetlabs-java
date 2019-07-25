@@ -54,7 +54,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jdk for Ubuntu Trusty (14.04)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemrelease: '14.04', architecture: 'amd64' } }
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemmajrelease: '14.04', architecture: 'amd64' } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-7-jdk') }
@@ -62,7 +62,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jre for Ubuntu Trusty (14.04)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemrelease: '14.04', architecture: 'amd64' } }
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemmajrelease: '14.04', architecture: 'amd64' } }
     let(:params) { { 'distribution' => 'jre' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-7-jre-headless') }
@@ -70,7 +70,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jdk for Ubuntu xenial (16.04) on ARM' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemrelease: '16.04', architecture: 'armv7l' } }
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemmajrelease: '16.04', architecture: 'armv7l' } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
@@ -78,7 +78,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jdk for Ubuntu xenial (16.04) on ARM64' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemrelease: '16.04', architecture: 'aarch64' } }
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemmajrelease: '16.04', architecture: 'aarch64' } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
@@ -156,7 +156,7 @@ describe 'java', type: :class do
   end
 
   describe 'custom java package' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'jessie', operatingsystemrelease: '8.6', architecture: 'amd64' } }
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'jessie', operatingsystemmajrelease: '8', architecture: 'amd64' } }
 
     context 'when all params provided' do
       let(:params) do
