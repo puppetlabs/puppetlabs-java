@@ -73,36 +73,8 @@ class java::params {
         'armv7l'  => 'armhf',
         default   => $::architecture
       }
-      case $::lsbdistcodename {
-        'lenny', 'squeeze', 'lucid', 'natty': {
-          $java  = {
-            'jdk' => {
-              'package'          => 'openjdk-6-jdk',
-              'alternative'      => "java-6-openjdk-${openjdk_architecture}",
-              'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
-              'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
-            },
-            'jre' => {
-              'package'          => 'openjdk-6-jre-headless',
-              'alternative'      => "java-6-openjdk-${openjdk_architecture}",
-              'alternative_path' => '/usr/lib/jvm/java-6-openjdk/jre/bin/java',
-              'java_home'        => '/usr/lib/jvm/java-6-openjdk/jre/',
-            },
-            'sun-jre' => {
-              'package'          => 'sun-java6-jre',
-              'alternative'      => 'java-6-sun',
-              'alternative_path' => '/usr/lib/jvm/java-6-sun/jre/bin/java',
-              'java_home'        => '/usr/lib/jvm/java-6-sun/jre/',
-            },
-            'sun-jdk' => {
-              'package'          => 'sun-java6-jdk',
-              'alternative'      => 'java-6-sun',
-              'alternative_path' => '/usr/lib/jvm/java-6-sun/jre/bin/java',
-              'java_home'        => '/usr/lib/jvm/java-6-sun/jre/',
-            },
-          }
-        }
-        'wheezy', 'jessie', 'precise', 'quantal', 'raring', 'saucy', 'trusty', 'utopic': {
+      case $::operatingsystemmajrelease {
+        '7', '8', '14.04': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-7-jdk',
@@ -154,7 +126,7 @@ class java::params {
             },
           }
         }
-        'stretch', 'vivid', 'wily', 'xenial', 'yakkety', 'zesty', 'artful': {
+        '9', '15.04', '15.10', '16.04', '16.10', '17.04', '17.10': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
@@ -170,7 +142,7 @@ class java::params {
             }
           }
         }
-        'bionic', 'cosmic', 'disco', 'buster', 'eoan': {
+        '10', '18.04', '18.10', '19.04', '19.10': {
           $java =  {
             'jdk' => {
               'package'          => 'openjdk-11-jdk',
@@ -186,7 +158,7 @@ class java::params {
             }
           }
         }
-        default: { fail("unsupported release ${::lsbdistcodename}") }
+        default: { fail("unsupported release ${::operatingsystemmajrelease}") }
       }
     }
     'OpenBSD': {
