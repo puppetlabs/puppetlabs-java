@@ -43,52 +43,14 @@ class { 'java' :
 }
 ```
 
-The defined type `java::oracle` installs one or more versions of Oracle Java SE. `java::oracle` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).  By using `java::oracle` you agree to Oracle's licensing terms for Java SE.
+The defined type `java::download` installs one or more versions of Java SE from a remote url. `java::download` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).
 
+To install Java to a non-default basedir (defaults: /usr/lib/jvm for Debian; /usr/java for RedHat):
 ```puppet
-java::oracle { 'jdk6' :
+java::download { 'jdk8' :
   ensure  => 'present',
-  version => '6',
   java_se => 'jdk',
-}
-
-java::oracle { 'jdk8' :
-  ensure  => 'present',
-  version => '8',
-  java_se => 'jdk',
-}
-```
-
-To install a specific release of a Java version, e.g. 8u101-b13, provide both parameters `version_major` and `version_minor` as follows:
-
-```puppet
-java::oracle { 'jdk8' :
-  ensure  => 'present',
-  version_major => '8u101',
-  version_minor => 'b13',
-  java_se => 'jdk',
-}
-```
-
-To install Oracle Java to a non-default basedir (defaults: /usr/lib/jvm for Debian; /usr/java for RedHat):
-```puppet
-java::oracle { 'jdk8' :
-  ensure  => 'present',
-  version_major => '8u101',
-  version_minor => 'b13',
-  java_se => 'jdk',
-  basedir => '/custom/java',
-}
-```
-
-To ensure that a custom basedir is a directory before Oracle Java is installed (note: manage separately for custom ownership or perms):
-```puppet
-java::oracle { 'jdk8' :
-  ensure  => 'present',
-  version_major => '8u101',
-  version_minor => 'b13',
-  java_se => 'jdk',
-  manage_basedir => true,
+  url     => 'http://myjava.repository/java.tgz",
   basedir => '/custom/java',
 }
 ```
