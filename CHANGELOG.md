@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v5.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v5.0.0) (2019-07-29)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v4.1.0...v5.0.0)
+
+### Changed
+
+- \[FM-8320\] Remove Oracle download [\#372](https://github.com/puppetlabs/puppetlabs-java/pull/372) ([carabasdaniel](https://github.com/carabasdaniel))
+
+### Added
+
+- \(FM-8223\) converted to use litmus [\#376](https://github.com/puppetlabs/puppetlabs-java/pull/376) ([tphoney](https://github.com/tphoney))
+- Add buster support, default to 11 [\#369](https://github.com/puppetlabs/puppetlabs-java/pull/369) ([mhjacks](https://github.com/mhjacks))
+- Add support for debian buster [\#364](https://github.com/puppetlabs/puppetlabs-java/pull/364) ([TomRitserveldt](https://github.com/TomRitserveldt))
+
+### Fixed
+
+- \(FM-8343\) use release numbers not lsbdistcodename [\#375](https://github.com/puppetlabs/puppetlabs-java/pull/375) ([tphoney](https://github.com/tphoney))
+- Revert "Add support for debian buster" [\#374](https://github.com/puppetlabs/puppetlabs-java/pull/374) ([tphoney](https://github.com/tphoney))
+
 ## [v4.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/v4.1.0) (2019-05-29)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v4.0.0...v4.1.0)
