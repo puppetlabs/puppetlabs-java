@@ -18,8 +18,7 @@ options, even though those are not in the package repositories.
 
 **Defined types**
 
-* [`java::oracle`](#javaoracle): Installs Oracle Java. By using this module you agree to the Oracle licensing
-agreement.
+* [`java::download`](#javadownload): Installs Java from a url location.
 
 ## Classes
 
@@ -102,23 +101,13 @@ Default value: `undef`
 
 ## Defined types
 
-### java::oracle
+### java::download
 
-Defined Type java::oracle
-
-Install one or more versions of Oracle Java.
-
-Uses the following to download the package and automatically accept
-the licensing terms:
-```
-wget --no-cookies --no-check-certificate --header \
-"Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-"http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.tar.gz"
-```
+Defined Type java::download
 
 #### Parameters
 
-The following parameters are available in the `java::oracle` defined type.
+The following parameters are available in the `java::download` defined type.
 
 ##### `ensure`
 
@@ -160,14 +149,6 @@ Type of Java Standard Edition to install, jdk or jre.
 
 Default value: 'jdk'
 
-##### `oracle_url`
-
-Data type: `Any`
-
-Official Oracle URL to download binaries from.
-
-Default value: 'http://download.oracle.com/otn-pub/java/jdk/'
-
 ##### `proxy_server`
 
 Data type: `Any`
@@ -188,18 +169,7 @@ Default value: `undef`
 
 Data type: `Any`
 
-Full URL, including oracle_url, release_major, release_minor and package_name, to
-download the Oracle java_se installer. Originally present but not used, activated
-to workaround MODULES-5058.
-
-Default value: `undef`
-
-##### `url_hash`
-
-Data type: `Any`
-
-Directory hash used by the download.oracle.com site.  This value is a 32 character string
-which is part of the file URL returned by the JDK download site.
+Full URL
 
 Default value: `undef`
 
@@ -210,6 +180,14 @@ Data type: `Any`
 Install Oracles Java Cryptographic Extensions into the JRE or JDK
 
 Default value: `false`
+
+##### `jce_url`
+
+Data type: `Any`
+
+Full URL to the jce zip file
+
+Default value: `undef`
 
 ##### `basedir`
 
