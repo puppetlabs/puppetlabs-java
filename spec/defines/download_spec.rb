@@ -67,6 +67,18 @@ describe 'java::download', type: :define do
       it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
     end
   end
+
+  context 'with Debian 64-bit' do
+    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Debian', release: { full: '10.0' } } } }
+
+    context 'when passing URL to url parameter' do
+      let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: $url } }
+      let(:title) { 'jdk8' }
+
+      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
+    end
+  end
+
   describe 'incompatible OSes' do
     [
       {
