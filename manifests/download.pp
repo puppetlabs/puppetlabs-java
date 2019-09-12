@@ -98,7 +98,7 @@ define java::download(
       # Required for CentOS systems where Java8 update number is >= 171 to ensure
       # the package is visible to Puppet. This is only true for installations that
       # don't use the tar.gz package type.
-      if $facts['os']['family'] == 'RedHat' and $2 >= '171' and $package_type != 'tar.gz' {
+      if $facts['os']['family'] == 'RedHat' and Numeric($2) >= 171 and $package_type != 'tar.gz' {
         $install_path = "${java_se}1.${1}.0_${2}-amd64"
       } else {
         $install_path = "${java_se}1.${1}.0_${2}"
