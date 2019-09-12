@@ -53,6 +53,22 @@ describe 'java', type: :class do
     it { is_expected.not_to contain_exec('update-java-alternatives') }
   end
 
+  context 'when select jdk for Debian Buster (10.0)' do
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'buster', operatingsystemmajrelease: '10', architecture: 'amd64' } }
+    let(:params) { { 'distribution' => 'jdk' } }
+
+    it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+  end
+
+  context 'when select jre for Debian Buster (10.0)' do
+    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'buster', operatingsystemmajrelease: '10', architecture: 'amd64' } }
+    let(:params) { { 'distribution' => 'jre' } }
+
+    it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+  end
+
   context 'when select jdk for Ubuntu Trusty (14.04)' do
     let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemmajrelease: '14.04', architecture: 'amd64' } }
     let(:params) { { 'distribution' => 'jdk' } }

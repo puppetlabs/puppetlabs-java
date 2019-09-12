@@ -16,7 +16,15 @@ Facter.add(:java_major_version) do
   java_major_version = nil
   setcode do
     java_version = Facter.value(:java_version)
-    java_major_version = java_version.strip.split('_')[0].split('.')[1] unless java_version.nil?
+    unless java_version.nil?
+      # First part > 1, use the first part as major version
+      java_version_first_number = java_version.strip.split('.')[0]
+      java_major_version = if java_version_first_number.to_i > 1
+                             java_version_first_number
+                           else
+                             java_version.strip.split('_')[0].split('.')[1]
+                           end
+    end
   end
   java_major_version
 end

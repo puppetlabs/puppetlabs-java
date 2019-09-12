@@ -24,7 +24,8 @@ Facter.add(:java_version) do
     unless ['darwin'].include? Facter.value(:operatingsystem).downcase
       version = nil
       if Facter::Util::Resolution.which('java')
-        Facter::Util::Resolution.exec('java -Xmx12m -version 2>&1').lines.each { |line| version = $LAST_MATCH_INFO[1] if %r{^.+ version \"(.+)\"$} =~ line }
+        Facter::Util::Resolution.exec('java -Xmx12m -version 2>&1').lines.each { |line| version = $LAST_MATCH_INFO[1] if %r{^.+ version \"(.+)\".*$} =~ line }
+
       end
       version
     end
