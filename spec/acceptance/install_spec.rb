@@ -71,10 +71,6 @@ context 'with failure cases' do
   end
 
   it 'fails on debian or RHEL when passed fake java_alternative and path' do
-    if os[:family] == 'debian' || os[:family] == 'redhat'
-      apply_manifest(bogus_alternative, expect_failures: true)
-    else
-      apply_manifest(bogus_alternative, catch_failures: true)
-    end
+    apply_manifest(bogus_alternative, expect_failures: true)
   end
 end
