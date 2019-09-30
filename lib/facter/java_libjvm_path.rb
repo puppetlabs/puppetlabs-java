@@ -14,7 +14,9 @@ Facter.add(:java_libjvm_path) do
   confine kernel: ['Linux', 'OpenBSD']
   setcode do
     java_default_home = Facter.value(:java_default_home)
-    java_libjvm_file = Dir.glob("#{java_default_home}/**/lib/**/libjvm.so")
+    if java_default_home
+      java_libjvm_file = Dir.glob("#{java_default_home}/**/lib/**/libjvm.so")
+    end
     if java_libjvm_file.nil? || java_libjvm_file.empty?
       nil
     else
