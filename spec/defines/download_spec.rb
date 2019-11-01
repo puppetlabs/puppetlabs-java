@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-url = 'http://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz'
-
 describe 'java::download', type: :define do
+  let(:url) { 'http://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz' }
+
   context 'with CentOS 64-bit' do
     let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '6.0' } } } }
 
@@ -13,7 +13,7 @@ describe 'java::download', type: :define do
           version_major: '8u201',
           version_minor: 'b09',
           java_se: 'jdk',
-          url: $url,
+          url: url,
         }
       end
       let(:title) { 'jdk8' }
@@ -48,7 +48,7 @@ describe 'java::download', type: :define do
           basedir: '/usr/java',
           manage_symlink: true,
           symlink_name: 'java_home',
-          url: $url,
+          url: url,
         }
       end
       let(:title) { 'jdk6' }
@@ -61,7 +61,7 @@ describe 'java::download', type: :define do
     let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '16.04' } } } }
 
     context 'when passing URL to url parameter' do
-      let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: $url } }
+      let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: url } }
       let(:title) { 'jdk8' }
 
       it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
@@ -72,7 +72,7 @@ describe 'java::download', type: :define do
     let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Debian', release: { full: '10.0' } } } }
 
     context 'when passing URL to url parameter' do
-      let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: $url } }
+      let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: url } }
       let(:title) { 'jdk8' }
 
       it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
