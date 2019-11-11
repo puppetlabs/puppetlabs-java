@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v6.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.0.0) (2019-11-11)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v5.0.1...v6.0.0)
+
+### Changed
+
+- pdksync - FM-8499 - remove ubuntu14 support [\#398](https://github.com/puppetlabs/puppetlabs-java/pull/398) ([lionce](https://github.com/lionce))
+
+### Added
+
+- \(FM-8676\) - Support added for CentOS 8 [\#399](https://github.com/puppetlabs/puppetlabs-java/pull/399) ([david22swan](https://github.com/david22swan))
+- FM-8403 - add support Debain10 [\#387](https://github.com/puppetlabs/puppetlabs-java/pull/387) ([lionce](https://github.com/lionce))
+
+### Fixed
+
+- MODULES-10062 - fix acceptance tests on sles [\#397](https://github.com/puppetlabs/puppetlabs-java/pull/397) ([lionce](https://github.com/lionce))
+- we need to check if java\_default\_home has a value before we attempt t… [\#391](https://github.com/puppetlabs/puppetlabs-java/pull/391) ([robmbrooks](https://github.com/robmbrooks))
+- Add support for java 11, the default in debian buster 10 [\#386](https://github.com/puppetlabs/puppetlabs-java/pull/386) ([jhooyberghs](https://github.com/jhooyberghs))
+
+## [v5.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/v5.0.1) (2019-08-05)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v5.0.0...v5.0.1)
+
 ## [v5.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v5.0.0) (2019-07-29)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v4.1.0...v5.0.0)
