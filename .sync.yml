@@ -60,6 +60,9 @@
     sudo: required
     stage: acceptance
   simplecov: true
+  notifications:
+    slack:
+      secure: Wf7Wz3KC0G9ngPiDcOIpSqcCfdvwKQqZdNH/z3GMcj/OipMAdyFSAVnBvikIl7L1c0LMU9ATEpub+jYzViT7RZywaNyer6SRAfs6MIgAYo4xxF/mOnDHAxXeUYAsBXXL4sS3NX2XWMPa9ZWUeuUQKth8O4STWgAX298QZLyYx5k=
 appveyor.yml:
   delete: true
 Gemfile:
