@@ -1,4 +1,5 @@
 require 'spec_helper_acceptance'
+require 'pry'
 
 java_class_jre = "class { 'java':\n"\
                  "  distribution => 'jre',\n"\
@@ -41,7 +42,6 @@ bogus_alternative = "class { 'java':\n"\
                     "  java_alternative_path => '/whatever',\n"\
                     '}'
 
-context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
 # Oracle installs are disabled by default, because the links to valid oracle installations
 # change often. Look the parameters up from the Oracle download URLs at https://java.oracle.com and
 # enable the tests:
@@ -138,7 +138,7 @@ install_adopt_jdk_jre = <<EOL
   }
 EOL
 
-context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
   it 'installs jre' do
     idempotent_apply(java_class_jre)
   end
@@ -176,17 +176,17 @@ context 'with failure cases' do
   end
 end
 
-context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
   let(:install_path) do
-    (fact('osfamily') == 'RedHat') ? '/usr/java' : '/usr/lib/jvm'
+    (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
   end
 
   let(:version_suffix) do
-    (fact('osfamily') == 'RedHat') ? '-amd64' : ''
+    (os[:family] == 'redhat') ? '-amd64' : ''
   end
 
   it 'installs oracle jdk and jre' do
-    idempotent_apply(default, install_oracle_jdk_jre)
+    idempotent_apply(install_oracle_jdk_jre)
     jdk_result = shell("test ! -e #{install_path}/jdk1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/jre/lib/security/local_policy.jar")
     jre_result = shell("test ! -e #{install_path}/jre1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/lib/security/local_policy.jar")
     expect(jdk_result.exit_code).to eq(0)
@@ -194,28 +194,28 @@ context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.includ
   end
 
   it 'installs oracle jdk with jce' do
-    idempotent_apply(default, install_oracle_jdk_jce)
+    idempotent_apply(install_oracle_jdk_jce)
     result = shell("test -e #{install_path}/jdk1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/jre/lib/security/local_policy.jar")
     expect(result.exit_code).to eq(0)
   end
 
   it 'installs oracle jre with jce' do
-    idempotent_apply(default, install_oracle_jre_jce)
+    idempotent_apply(install_oracle_jre_jce)
     result = shell("test -e #{install_path}/jre1.#{oracle_version_major}.0_#{oracle_version_minor}#{version_suffix}/lib/security/local_policy.jar")
     expect(result.exit_code).to eq(0)
   end
 end
 
-context 'java::adopt', if: adopt_enabled, unless: UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+context 'java::adopt', if: adopt_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
   let(:install_path) do
-    (fact('osfamily') == 'RedHat') ? '/usr/java' : '/usr/lib/jvm'
+    (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
   end
 
   let(:version_suffix) do
-    (fact('osfamily') == 'RedHat') ? '-amd64' : ''
+    (os[:family] == 'redhat') ? '-amd64' : ''
   end
 
   it 'installs adopt jdk and jre' do
-    idempotent_apply(default, install_adopt_jdk_jre)
+    idempotent_apply(install_adopt_jdk_jre)
   end
 end
