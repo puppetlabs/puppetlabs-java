@@ -101,7 +101,7 @@ class java(
       $use_java_package_name == undef or $use_java_alternative == undef or
       $use_java_alternative_path == undef or $use_java_home == undef
     ) and (
-      ! has_key($::java::params::java, $distribution)
+      ! has_key($java::params::java, $distribution)
     )) {
     fail("Java distribution ${distribution} is not supported. Missing default values.")
   }
@@ -111,7 +111,7 @@ class java(
     default    => '--jre'
   }
 
-  if $::osfamily == 'Debian' {
+  if $facts['os']['family'] == 'Debian' {
     # Needed for update-java-alternatives
     package { 'java-common':
       ensure => present,

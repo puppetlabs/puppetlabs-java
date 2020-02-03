@@ -1,6 +1,6 @@
 # @api private
 class java::config ( ) {
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian': {
       if $java::use_java_alternative != undef and $java::use_java_alternative_path != undef {
         exec { 'update-java-alternatives':
@@ -26,7 +26,7 @@ class java::config ( ) {
             path    => '/usr/bin:/usr/sbin:/bin:/sbin',
             command => "alternatives --install /usr/bin/java java ${$java::use_java_alternative_path} 20000" ,
             unless  => "alternatives --display java | grep -q ${$java::use_java_alternative_path}",
-            before  => Exec['update-java-alternatives']
+            before  => Exec['update-java-alternatives'],
           }
         }
 
