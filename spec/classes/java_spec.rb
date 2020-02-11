@@ -1,36 +1,36 @@
 require 'spec_helper'
 
 describe 'java', type: :class do
-  context 'when select openjdk for Centos 5.8' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '5.8', architecture: 'x86_64' } }
+  context 'when select openjdk for CentOS 5.8' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '5.8' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.6.0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.6.0/') }
   end
 
-  context 'when select openjdk for Centos 6.3' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '6.3', architecture: 'x86_64' } }
+  context 'when select openjdk for CentOS 6.3' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '6.3' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0/') }
   end
 
-  context 'when select openjdk for Centos 7.1.1503' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '7.1.1503', architecture: 'x86_64' } }
+  context 'when select openjdk for CentOS 7.1.1503' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '7.1.1503' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.8.0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0/') }
   end
 
-  context 'when select openjdk for Centos 6.2' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '6.2', architecture: 'x86_64' } }
+  context 'when select openjdk for CentOS 6.2' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '6.2' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.6.0-openjdk-devel') }
     it { is_expected.not_to contain_exec('update-java-alternatives') }
   end
 
-  context 'when select Oracle JRE with alternatives for Centos 6.3' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '6.3', architecture: 'x86_64' } }
+  context 'when select Oracle JRE with alternatives for CentOS 6.3' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '6.3' }, architecture: 'x86_64' } } }
     let(:params) { { 'package' => 'jre', 'java_alternative' => '/usr/bin/java', 'java_alternative_path' => '/usr/java/jre1.7.0_67/bin/java' } }
 
     it { is_expected.to contain_package('java').with_name('jre') }
@@ -38,23 +38,23 @@ describe 'java', type: :class do
     it { is_expected.to contain_exec('update-java-alternatives').with_command('alternatives --set java /usr/java/jre1.7.0_67/bin/java') }
   end
 
-  context 'when select passed value for Centos 5.3' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '5.3', architecture: 'x86_64' } }
+  context 'when select passed value for CentOS 5.3' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '5.3' }, architecture: 'x86_64' } } }
     let(:params) { { 'package' => 'jdk', 'java_home' => '/usr/local/lib/jre' } }
 
     it { is_expected.to contain_package('java').with_name('jdk') }
     it { is_expected.not_to contain_exec('update-java-alternatives') }
   end
 
-  context 'when select default for Centos 5.3' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Centos', operatingsystemrelease: '5.3', architecture: 'x86_64' } }
+  context 'when select default for CentOS 5.3' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '5.3' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.6.0-openjdk-devel') }
     it { is_expected.not_to contain_exec('update-java-alternatives') }
   end
 
   context 'when select jdk for Debian Buster (10.0)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'buster', operatingsystemmajrelease: '10', architecture: 'amd64' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'buster' }, release: { major: '10' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
@@ -62,7 +62,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jre for Debian Buster (10.0)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'buster', operatingsystemmajrelease: '10', architecture: 'amd64' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'buster' }, release: { major: '10' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jre' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
@@ -70,7 +70,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jdk for Ubuntu Trusty (14.04)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemmajrelease: '14.04', architecture: 'amd64' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'trusty' }, release: { major: '14.04' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-7-jdk') }
@@ -78,7 +78,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jre for Ubuntu Trusty (14.04)' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'trusty', operatingsystemmajrelease: '14.04', architecture: 'amd64' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'trusty' }, release: { major: '14.04' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jre' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-7-jre-headless') }
@@ -86,7 +86,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jdk for Ubuntu xenial (16.04) on ARM' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemmajrelease: '16.04', architecture: 'armv7l' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'xenial' }, release: { major: '16.04' }, architecture: 'armv7l' } } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
@@ -94,7 +94,7 @@ describe 'java', type: :class do
   end
 
   context 'when select jdk for Ubuntu xenial (16.04) on ARM64' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Ubuntu', lsbdistcodename: 'xenial', operatingsystemmajrelease: '16.04', architecture: 'aarch64' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'xenial' }, release: { major: '16.04' }, architecture: 'aarch64' } } }
     let(:params) { { 'distribution' => 'jdk' } }
 
     it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
@@ -102,26 +102,26 @@ describe 'java', type: :class do
   end
 
   context 'when select openjdk for Oracle Linux' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'OracleLinux', operatingsystemrelease: '6.4', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'RedHat', name: 'OracleLinux', release: { full: '6.4' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
   end
 
   context 'when select openjdk for Oracle Linux 6.2' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'OracleLinux', operatingsystemrelease: '6.2', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'RedHat', name: 'OracleLinux', release: { full: '6.2' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1.6.0-openjdk-devel') }
   end
 
   context 'when select passed value for Oracle Linux' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'OracleLinux', operatingsystemrelease: '6.3', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'RedHat', name: 'OracleLinux', release: { full: '6.3' }, architecture: 'x86_64' } } }
     let(:params) { { 'distribution' => 'jre' } }
 
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
   end
 
   context 'when select passed value for Scientific Linux' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'Scientific', operatingsystemrelease: '6.4', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'RedHat', name: 'Scientific', release: { full: '6.4' }, architecture: 'x86_64' } } }
     let(:params) { { 'distribution' => 'jre' } }
 
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
@@ -129,7 +129,7 @@ describe 'java', type: :class do
   end
 
   context 'when select passed value for Scientific Linux CERN (SLC)' do
-    let(:facts) { { osfamily: 'RedHat', operatingsystem: 'SLC', operatingsystemrelease: '6.4', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'RedHat', name: 'SLC', release: { full: '6.4' }, architecture: 'x86_64' } } }
     let(:params) { { 'distribution' => 'jre' } }
 
     it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
@@ -137,47 +137,47 @@ describe 'java', type: :class do
   end
 
   context 'when select default for OpenSUSE 12.3' do
-    let(:facts) { { osfamily: 'Suse', operatingsystem: 'OpenSUSE', operatingsystemrelease: '12.3', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'Suse', name: 'OpenSUSE', release: { major: '12.3' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_7_0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/') }
   end
 
   context 'when select default for SLES 11.3' do
-    let(:facts) { { osfamily: 'Suse', operatingsystem: 'SLES', operatingsystemrelease: '11.3', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '11.3' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_6_0-ibm-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.6.0-ibm-1.6.0/') }
   end
 
   context 'when select default for SLES 11.4' do
-    let(:facts) { { osfamily: 'Suse', operatingsystem: 'SLES', operatingsystemrelease: '11.4', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '11.4' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_7_1-ibm-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.1-ibm-1.7.1/') }
   end
 
   context 'when select default for SLES 12.0' do
-    let(:facts) { { osfamily: 'Suse', operatingsystem: 'SLES', operatingsystemrelease: '12.0', operatingsystemmajrelease: '12', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '12.0', major: '12' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_7_0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/') }
   end
 
   context 'when select default for SLES 12.1' do
-    let(:facts) { { osfamily: 'Suse', operatingsystem: 'SLES', operatingsystemrelease: '12.1', operatingsystemmajrelease: '12', architecture: 'x86_64' } }
+    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '12.1', major: '12' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_8_0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/') }
   end
 
   describe 'custom java package' do
-    let(:facts) { { osfamily: 'Debian', operatingsystem: 'Debian', lsbdistcodename: 'jessie', operatingsystemmajrelease: '8', architecture: 'amd64' } }
+    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'jessie' }, release: { major: '8' }, architecture: 'amd64' } } }
 
     context 'when all params provided' do
       let(:params) do
         {
-          'distribution' => 'custom',
+          'distribution'          => 'custom',
           'package'               => 'custom_jdk',
           'java_alternative'      => 'java-custom_jdk',
           'java_alternative_path' => '/opt/custom_jdk/bin/java',
@@ -206,34 +206,44 @@ describe 'java', type: :class do
   describe 'incompatible OSs' do
     [
       {
-        osfamily: 'windows',
-        operatingsystem: 'windows',
-        operatingsystemrelease: '8.1',
+        os: {
+          family: 'windows',
+          name: 'windows',
+          release: { full: '8.1' },
+        },
       },
       {
-        osfamily: 'Darwin',
-        operatingsystem: 'Darwin',
-        operatingsystemrelease: '13.3.0',
+        os: {
+          family: 'Darwin',
+          name: 'Darwin',
+          release: { full: '13.3.0' },
+        },
       },
       {
-        osfamily: 'AIX',
-        operatingsystem: 'AIX',
-        operatingsystemrelease: '7100-02-00-000',
+        os: {
+          family: 'AIX',
+          name: 'AIX',
+          release: { full: '7100-02-00-000' },
+        },
       },
       {
-        osfamily: 'AIX',
-        operatingsystem: 'AIX',
-        operatingsystemrelease: '6100-07-04-1216',
+        os: {
+          family: 'AIX',
+          name: 'AIX',
+          release: { full: '6100-07-04-1216' },
+        },
       },
       {
-        osfamily: 'AIX',
-        operatingsystem: 'AIX',
-        operatingsystemrelease: '5300-12-01-1016',
+        os: {
+          family: 'AIX',
+          name: 'AIX',
+          release: { full: '5300-12-01-1016' },
+        },
       },
     ].each do |facts|
       let(:facts) { facts }
 
-      it "is_expected.to fail on #{facts[:operatingsystem]} #{facts[:operatingsystemrelease]}" do
+      it "is_expected.to fail on #{facts[:os][:name]} #{facts[:os][:release][:full]}" do
         expect { catalogue }.to raise_error Puppet::Error, %r{unsupported platform}
       end
     end

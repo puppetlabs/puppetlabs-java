@@ -72,7 +72,7 @@ define java::download(
 ) {
 
   # archive module is used to download the java package
-  include ::archive
+  include archive
 
   # validate java Standard Edition to download
   if $java_se !~ /(jre|jdk)/ {
@@ -183,7 +183,7 @@ define java::download(
 
   # set java architecture nomenclature
   $os_architecture = $facts['os']['architecture'] ? {
-    undef => $facts['architecture'],
+    undef => $facts['os']['architecture'],
     default => $facts['os']['architecture']
   }
 
@@ -284,14 +284,14 @@ define java::download(
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $install_command,
             creates => $creates_path,
-            require => $install_requires
+            require => $install_requires,
           }
 
           if ($manage_symlink and $symlink_name) {
             file { "${_basedir}/${symlink_name}":
               ensure  => link,
               target  => $creates_path,
-              require => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]
+              require => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"],
             }
           }
 
@@ -312,7 +312,7 @@ define java::download(
               require       => [
                 Package['unzip'],
                 Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]
-              ]
+              ],
             }
           }
         }
