@@ -16,7 +16,7 @@ describe 'java_major_version' do
 
   context 'when java not present, returns nil' do
     before :each do
-      allow(Facter.fact(:java_version)).to receive(:value).and_return('nil')
+      allow(Facter.fact(:java_version)).to receive(:value).and_return(nil)
     end
     it do
       expect(Facter.fact(:java_major_version).value).to be_nil

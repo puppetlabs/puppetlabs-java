@@ -55,6 +55,56 @@ java::download { 'jdk8' :
 }
 ```
 
+The defined type `java::adopt` installs one or more versions of AdoptOpenJDK Java. `java::adopt` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).
+
+```puppet
+java::adopt { 'jdk8' :
+  ensure  => 'present',
+  version => '8',
+  java => 'jdk',
+}
+
+java::adopt { 'jdk11' :
+  ensure  => 'present',
+  version => '11',
+  java => 'jdk',
+}
+```
+#TODO
+To install a specific release of a AdoptOpenJDK Java version, e.g. 8u202-b08, provide both parameters `version_major` and `version_minor` as follows:
+
+```puppet
+java::adopt { 'jdk8' :
+  ensure  => 'present',
+  version_major => '8u202',
+  version_minor => 'b08',
+  java => 'jdk',
+}
+```
+
+To install AdoptOpenJDK Java to a non-default basedir (defaults: /usr/lib/jvm for Debian; /usr/java for RedHat):
+```puppet
+java::adopt { 'jdk8' :
+  ensure  => 'present',
+  version_major => '8u202',
+  version_minor => 'b08',
+  java => 'jdk',
+  basedir => '/custom/java',
+}
+```
+
+To ensure that a custom basedir is a directory before AdoptOpenJDK Java is installed (note: manage separately for custom ownership or perms):
+```puppet
+java::adopt { 'jdk8' :
+  ensure  => 'present',
+  version_major => '8u202',
+  version_minor => 'b08',
+  java => 'jdk',
+  manage_basedir => true,
+  basedir => '/custom/java',
+}
+```
+
 ## Reference
 
 For information on the classes and types, see the [REFERENCE.md](https://github.com/puppetlabs/puppetlabs-java/blob/master/REFERENCE.md). For information on the facts, see below.
@@ -103,6 +153,13 @@ Oracle Java is supported on:
 * CentOS 6
 * CentOS 7
 * Red Hat Enterprise Linux (RHEL) 7
+
+AdoptOpenJDK Java is supported on:
+
+* CentOS
+* Red Hat Enterprise Linux (RHEL)
+* Amazon Linux
+* Debian
 
 ### Known issues
 
