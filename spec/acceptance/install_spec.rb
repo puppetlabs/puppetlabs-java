@@ -99,7 +99,7 @@ EOL
 # AdoptOpenJDK URLs are quite generic, so tests are enabled by default
 # We need to test version 8 and >8 (here we use 9), because namings are different after version 8
 
-adopt_enabled = true
+adopt_enabled = true unless os[:family].casecmp('SLES').zero?
 adopt_version8_major = '8'
 adopt_version8_minor = '202'
 adopt_version8_build = '08'
