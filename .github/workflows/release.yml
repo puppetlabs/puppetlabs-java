@@ -33,7 +33,7 @@ jobs:
 
     strategy:
       matrix:
-        check: [parallel_spec, 'syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop']
+        check: [spec, 'syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop']
         ruby_version: [2.4.x, 2.5.x]
         puppet_gem_version: [~> 5.0, ~> 6.0]
         exclude:
