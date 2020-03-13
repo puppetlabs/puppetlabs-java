@@ -63,6 +63,7 @@ describe 'java_version' do
 
       it do
         allow(Facter::Util::Resolution).to receive(:exec) # Catch all other calls
+        allow(Facter::Util::Resolution).to receive(:which).and_return(nil)
         expect(Facter.value(:java_version)).to be_nil
       end
     end
