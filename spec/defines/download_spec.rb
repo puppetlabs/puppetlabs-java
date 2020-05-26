@@ -55,6 +55,21 @@ describe 'java::download', type: :define do
 
       it { is_expected.to contain_file('/usr/java/java_home') }
     end
+
+    context 'when manage_symlink is not set' do
+      let(:params) do
+        {
+          ensure: 'present',
+          version: '6',
+          java_se: 'jdk',
+          basedir: '/usr/java',
+          url: url,
+        }
+      end
+      let(:title) { 'jdk6_nosymlink' }
+
+      it { is_expected.not_to contain_file('/usr/java/java_home') }
+    end
   end
 
   context 'with Ubuntu 64-bit' do

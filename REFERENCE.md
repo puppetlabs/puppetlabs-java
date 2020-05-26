@@ -18,7 +18,7 @@ options, even though those are not in the package repositories.
 
 **Defined types**
 
-* [`java::adopt`](#javaadopt): Defined Type java::adopt  Description Installs OpenJDK Java built with AdoptOpenJDK with the Hotspot JVM.  Install one or more versions of Ad
+* [`java::adopt`](#javaadopt): Install one or more versions of AdoptOpenJDK Java.
 * [`java::download`](#javadownload): Installs Java from a url location.
 
 ## Classes
@@ -106,118 +106,6 @@ Default value: `undef`
 
 Defined Type java::adopt
 
-Description
-Installs OpenJDK Java built with AdoptOpenJDK with the Hotspot JVM.
-
-Install one or more versions of AdoptOpenJDK Java.
-
-Currently only Linux RedHat, Amazon and Debian are supported.
-
-Parameters
-[*version*]
-Version of Java to install, e.g. '8' or '9'. Default values for major and minor
-versions will be used.
-
-[*version_major*]
-Major version which should be installed, e.g. '8u101' or '9.0.4'. Must be used together with
-version_minor.
-
-[*version_minor*]
-Minor version which should be installed, e.g. 'b12' (for version = '8') or '11' (for version != '8').
-Must be used together with version_major.
-
-[*java_edition*]
-Type of Java Edition to install, jdk or jre.
-
-[*ensure*]
-Install or remove the package.
-
-[*proxy_server*]
-Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
-
-[*proxy_type*]
-Proxy server type (none|http|https|ftp). (passed to archive)
-
-[*basedir*]
-Directory under which the installation will occur. If not set, defaults to
-/usr/lib/jvm for Debian and /usr/java for RedHat.
-
-[*manage_basedir*]
-Whether to manage the basedir directory.  Defaults to false.
-Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
-
-[*package_type*]
-Type of installation package for specified version of java. java 6 comes
-in a few installation package flavors and we need to account for them.
-Optional forced package types: rpm, rpmbin, tar.gz
-
-Variables
-[*release_major*]
-Major version release number for java. Used to construct download URL.
-
-[*release_minor*]
-Minor version release number for java. Used to construct download URL.
-
-[*install_path*]
-Base install path for specified version of java. Used to determine if java
-has already been installed.
-
-[*os*]
-java OS type.
-
-[*destination*]
-Destination directory to save java installer to.  Usually /tmp on Linux and
-C:\TEMP on Windows.
-
-[*creates_path*]
-Fully qualified path to java after it is installed. Used to determine if
-java is already installed.
-
-[*arch*]
-java architecture type.
-
-[*package_name*]
-Name of the java installation package to download from github.
-
-[*install_command*]
-Installation command used to install java. Installation commands
-differ by package_type. 'bin' types are installed via shell command. 'rpmbin'
-types have the rpms extracted and then forcibly installed. 'rpm' types are
-forcibly installed.
-
-[*spacer*]
-Spacer to be used in github download url. In major version 8 this is a simple dash
-in later versions they use a crazy plus sign, which needs to be used in urlencoded
-format
-
-[*download_folder_prefix*]
-Download folder name begins differently depending on the release. After major release
-8, they have given it a dash. Be aware that even if you want to have a JRE, the folder
-still begins with "jdk"
-
-[*release_minor_url*]
-filled depending on major release. Until major release 8 the minor part needs to be given
-with a 'b' for build, in later versions it is a underscore or a plus sign, which needs
-to be stripped for the download url and is replaced with the given spaces (see above)
-
-[*_package_type*]
-Helper variable which gets filled depending on parameter package_type
-
-[*_basedir*]
-Helper variable which gets filled depending on parameter basedir
-
-[*_version*]
-Helper variable which gets filled depending on parameter version
-
-[*_version_int*]
-Helper variable which gets the value of $_version converted to integer
-
-[*_append_jre*]
-Helper variable which gets filled with the string "-jre" if jre was selected to build the correct install path
-
-[*_release_minor_package_name*]
-Helper variable which gets filled with the right minor string depending on the major version
-
 #### Parameters
 
 The following parameters are available in the `java::adopt` defined type.
@@ -226,7 +114,7 @@ The following parameters are available in the `java::adopt` defined type.
 
 Data type: `Any`
 
-
+Install or remove the package.
 
 Default value: 'present'
 
@@ -234,7 +122,7 @@ Default value: 'present'
 
 Data type: `Any`
 
-
+Version of Java to install, e.g. '8' or '9'. Default values for major and minor versions will be used.
 
 Default value: '8'
 
@@ -242,7 +130,7 @@ Default value: '8'
 
 Data type: `Any`
 
-
+Major version which should be installed, e.g. '8u101' or '9.0.4'. Must be used together with version_minor.
 
 Default value: `undef`
 
@@ -250,7 +138,7 @@ Default value: `undef`
 
 Data type: `Any`
 
-
+Minor version which should be installed, e.g. 'b12' (for version = '8') or '11' (for version != '8'). Must be used together with version_major.
 
 Default value: `undef`
 
@@ -258,7 +146,7 @@ Default value: `undef`
 
 Data type: `Any`
 
-
+Type of Java Standard Edition to install, jdk or jre.
 
 Default value: 'jdk'
 
@@ -266,7 +154,7 @@ Default value: 'jdk'
 
 Data type: `Any`
 
-
+Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
 Default value: `undef`
 
@@ -274,7 +162,7 @@ Default value: `undef`
 
 Data type: `Any`
 
-
+Proxy server type (none|http|https|ftp). (passed to archive)
 
 Default value: `undef`
 
@@ -282,7 +170,8 @@ Default value: `undef`
 
 Data type: `Any`
 
-
+Directory under which the installation will occur. If not set, defaults to
+/usr/lib/jvm for Debian and /usr/java for RedHat.
 
 Default value: `undef`
 
@@ -290,7 +179,8 @@ Default value: `undef`
 
 Data type: `Any`
 
-
+Whether to manage the basedir directory.  Defaults to false.
+Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 
 Default value: `true`
 
@@ -298,7 +188,25 @@ Default value: `true`
 
 Data type: `Any`
 
+Type of installation package for specified version of java_se. java_se 6 comes
+in a few installation package flavors and we need to account for them.
+Optional forced package types: rpm, rpmbin, tar.gz
 
+Default value: `undef`
+
+##### `manage_symlink`
+
+Data type: `Any`
+
+Whether to manage a symlink that points to the installation directory.  Defaults to false.
+
+Default value: `false`
+
+##### `symlink_name`
+
+Data type: `Any`
+
+The name for the optional symlink in the installation directory.
 
 Default value: `undef`
 

@@ -4,6 +4,29 @@ describe 'java::adopt', type: :define do
   context 'with CentOS 64-bit' do
     let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '6.0' } } } }
 
+    context 'when manage_symlink is set to true' do
+      let(:params) do
+        {
+          ensure: 'present',
+          version: '11',
+          java: 'jdk',
+          basedir: '/usr/java',
+          manage_symlink: true,
+          symlink_name: 'java_home',
+        }
+      end
+      let(:title) { 'jdk11_symlink' }
+
+      it { is_expected.to contain_file('/usr/java/java_home') }
+    end
+
+    context 'when manage_symlink is not set' do
+      let(:params) { { ensure: 'present', version: '11', java: 'jdk' } }
+      let(:title) { 'jdk11_nosymlink' }
+
+      it { is_expected.not_to contain_file('/usr/java/java_home') }
+    end
+
     context 'when AdoptOpenJDK Java 8 JDK' do
       let(:params) { { ensure: 'present', version: '8', java: 'jdk' } }
       let(:title) { 'jdk8' }
