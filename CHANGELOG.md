@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v6.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.2.0) (2020-05-27)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.2.0...v6.2.0)
+
+### Added
+
+- \(MODULES-10681\) Add option to manage symlink to java::adopt [\#429](https://github.com/puppetlabs/puppetlabs-java/pull/429) ([fraenki](https://github.com/fraenki))
+- \(IAC-746\) - Add ubuntu 20.04 support [\#428](https://github.com/puppetlabs/puppetlabs-java/pull/428) ([david22swan](https://github.com/david22swan))
+
 ## [v6.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.2.0) (2020-02-18)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.1.0...v6.2.0)
@@ -48,6 +57,7 @@ All notable changes to this project will be documented in this file. The format 
 
 - \(FM-8223\) converted to use litmus [\#376](https://github.com/puppetlabs/puppetlabs-java/pull/376) ([tphoney](https://github.com/tphoney))
 - Add buster support, default to 11 [\#369](https://github.com/puppetlabs/puppetlabs-java/pull/369) ([mhjacks](https://github.com/mhjacks))
+- Add support for debian buster [\#364](https://github.com/puppetlabs/puppetlabs-java/pull/364) ([TomRitserveldt](https://github.com/TomRitserveldt))
 
 ### Fixed
 
@@ -72,7 +82,6 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
-- Add support for debian buster [\#364](https://github.com/puppetlabs/puppetlabs-java/pull/364) ([TomRitserveldt](https://github.com/TomRitserveldt))
 - \(FM-7921\) - Implement Puppet Strings [\#353](https://github.com/puppetlabs/puppetlabs-java/pull/353) ([david22swan](https://github.com/david22swan))
 - Update default version & java 8 version from 8u192 to 8u201 [\#347](https://github.com/puppetlabs/puppetlabs-java/pull/347) ([valentinsavenko](https://github.com/valentinsavenko))
 - Add ability to override basedir and package type for oracle java [\#345](https://github.com/puppetlabs/puppetlabs-java/pull/345) ([fraenki](https://github.com/fraenki))
