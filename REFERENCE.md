@@ -20,6 +20,7 @@ options, even though those are not in the package repositories.
 
 * [`java::adopt`](#javaadopt): Install one or more versions of AdoptOpenJDK Java.
 * [`java::download`](#javadownload): Installs Java from a url location.
+* [`java::sap`](#javasap): Install one or more versions of SAPJVM or Sapmachine
 
 ## Classes
 
@@ -325,6 +326,96 @@ in a few installation package flavors and we need to account for them.
 Optional forced package types: rpm, rpmbin, tar.gz
 
 Default value: `undef`
+
+##### `manage_symlink`
+
+Data type: `Any`
+
+Whether to manage a symlink that points to the installation directory.  Defaults to false.
+
+Default value: `false`
+
+##### `symlink_name`
+
+Data type: `Any`
+
+The name for the optional symlink in the installation directory.
+
+Default value: `undef`
+
+### java::sap
+
+Defined Type java::sap
+
+#### Parameters
+
+The following parameters are available in the `java::sap` defined type.
+
+##### `ensure`
+
+Data type: `Any`
+
+Install or remove the package.
+
+Default value: 'present'
+
+##### `version`
+
+Data type: `Any`
+
+Version of Java to install, e.g. '8' or '9'. Default values for full versions will be used.
+
+Default value: '8'
+
+##### `version_full`
+
+Data type: `Any`
+
+Major version which should be installed, e.g. '8.1.063' or '11.0.7'. If used, "version" parameter is ignored.
+
+Default value: `undef`
+
+##### `java`
+
+Data type: `Any`
+
+Type of Java Edition to install, jdk or jre.
+
+Default value: 'jdk'
+
+##### `proxy_server`
+
+Data type: `Any`
+
+Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
+
+Default value: `undef`
+
+##### `proxy_type`
+
+Data type: `Any`
+
+Proxy server type (none|http|https|ftp). (passed to archive)
+
+Default value: `undef`
+
+##### `basedir`
+
+Data type: `Any`
+
+Directory under which the installation will occur. If not set, defaults to
+/usr/lib/jvm for Debian and /usr/java for RedHat.
+
+Default value: `undef`
+
+##### `manage_basedir`
+
+Data type: `Any`
+
+Whether to manage the basedir directory.  Defaults to false.
+Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
+
+Default value: `true`
 
 ##### `manage_symlink`
 

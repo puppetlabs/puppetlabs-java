@@ -138,6 +138,55 @@ install_adopt_jdk_jre = <<EOL
   }
 EOL
 
+sap_enabled = true
+sap_version7 = '7'
+sap_version7_full = '7.1.070'
+sap_version8 = '8'
+sap_version8_full = '8.1.063'
+sap_version11 = '11'
+sap_version11_full = '11.0.7'
+sap_version14 = '14'
+sap_version14_full = '14.0.1'
+
+install_sap_jdk_jre = <<EOL
+  java::sap {
+    'test_sap_jdk_version7':
+      version       => '#{sap_version7}',
+      version_full  => '#{sap_version7_full}',
+      java          => 'jdk',
+  }
+  java::sap {
+    'test_sap_jdk_version8':
+      version       => '#{sap_version8}',
+      version_full  => '#{sap_version8_full}',
+      java          => 'jdk',
+  }
+  java::sap {
+    'test_sap_jre_version11':
+      version       => '#{sap_version11}',
+      version_full  => '#{sap_version11_full}',
+      java          => 'jre',
+  }
+  java::sap {
+    'test_sap_jdk_version11':
+      version       => '#{sap_version11}',
+      version_full  => '#{sap_version11_full}',
+      java          => 'jdk',
+  }
+  java::sap {
+    'test_sap_jre_version14':
+      version       => '#{sap_version14}',
+      version_full  => '#{sap_version14_full}',
+      java          => 'jre',
+  }
+  java::sap {
+    'test_sap_jdk_version14':
+      version       => '#{sap_version14}',
+      version_full  => '#{sap_version14_full}',
+      java          => 'jdk',
+  }
+EOL
+
 context 'installing java jre', unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
   it 'installs jre' do
     idempotent_apply(java_class_jre)
@@ -217,5 +266,15 @@ context 'java::adopt', if: adopt_enabled, unless: UNSUPPORTED_PLATFORMS.include?
 
   it 'installs adopt jdk and jre' do
     idempotent_apply(install_adopt_jdk_jre)
+  end
+end
+
+context 'java::adopt', if: sap_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+  let(:install_path) do
+    (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
+  end
+
+  it 'installs adopt jdk and jre' do
+    idempotent_apply(install_sap_jdk_jre)
   end
 end

@@ -55,6 +55,8 @@ java::download { 'jdk8' :
 }
 ```
 
+## AdoptOpenJDK
+
 The defined type `java::adopt` installs one or more versions of AdoptOpenJDK Java. `java::adopt` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).
 
 ```puppet
@@ -70,7 +72,7 @@ java::adopt { 'jdk11' :
   java => 'jdk',
 }
 ```
-#TODO
+
 To install a specific release of a AdoptOpenJDK Java version, e.g. 8u202-b08, provide both parameters `version_major` and `version_minor` as follows:
 
 ```puppet
@@ -99,6 +101,58 @@ java::adopt { 'jdk8' :
   ensure  => 'present',
   version_major => '8u202',
   version_minor => 'b08',
+  java => 'jdk',
+  manage_basedir => true,
+  basedir => '/custom/java',
+}
+```
+
+## SAP Java (sapjvm / sapmachine)
+
+SAP also offers JVM distributions. They are mostly required for their SAP products. In earlier versions it is called "sapjvm", in newer versions they call it "sapmachine".
+
+The defined type `java::sap` installs one or more versions of sapjvm (if version 7 or 8) or sapmachine (if version > 8) Java. `java::sap` depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).
+By using this defined type with versions 7 or 8 you agree with the EULA presented at https://tools.hana.ondemand.com/developer-license-3_1.txt!
+
+```puppet
+java::sap { 'sapjvm8' :
+  ensure  => 'present',
+  version => '8',
+  java => 'jdk',
+}
+
+java::sap { 'sapmachine11' :
+  ensure  => 'present',
+  version => '11',
+  java => 'jdk',
+}
+```
+
+To install a specific release of a SAP Java version, e.g. sapjvm 8.1.063, provide parameter `version_full`:
+
+```puppet
+java::sap { 'jdk8' :
+  ensure  => 'present',
+  version_full => '8.1.063',
+  java => 'jdk',
+}
+```
+
+To install SAP Java to a non-default basedir (defaults: /usr/lib/jvm for Debian; /usr/java for RedHat):
+```puppet
+java::adopt { 'sapjvm8' :
+  ensure  => 'present',
+  version_full => '8.1.063',
+  java => 'jdk',
+  basedir => '/custom/java',
+}
+```
+
+To ensure that a custom basedir is a directory before SAP Java is installed (note: manage separately for custom ownership or perms):
+```puppet
+java::adopt { 'sapjvm8' :
+  ensure  => 'present',
+  version_full => '8.1.063',
   java => 'jdk',
   manage_basedir => true,
   basedir => '/custom/java',
@@ -160,6 +214,17 @@ AdoptOpenJDK Java is supported on:
 * Red Hat Enterprise Linux (RHEL)
 * Amazon Linux
 * Debian
+
+SAP Java 7 and 8 (=sapjvm) are supported (by SAP) on:
+
+* SLES 12, 15
+* Oracle Linux 7, 8
+* Red Hat Enterprise Linux (RHEL) 7, 8
+
+(however installations on other distributions mostly also work well)
+
+For SAP Java > 8 (=sapmachine) please refer to the OpenJDK list as it is based on OpenJDK and has no special requirements.
+
 
 ### Known issues
 
