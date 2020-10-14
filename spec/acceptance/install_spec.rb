@@ -269,7 +269,7 @@ context 'java::adopt', if: adopt_enabled, unless: UNSUPPORTED_PLATFORMS.include?
   end
 end
 
-context 'java::adopt', if: sap_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+context 'java::adopt', if: sap_enabled  && ['RedHat', 'Amazon', 'Debian'].include?(os[:family]), unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
   let(:install_path) do
     (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
   end
