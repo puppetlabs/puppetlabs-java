@@ -31,14 +31,14 @@ describe 'java::sap', type: :define do
       let(:params) { { ensure: 'present', version: '7', java: 'jdk' } }
       let(:title) { 'jdk7' }
 
-      it { is_expected.to contain_archive('/tmp/sapjvm-7.1.070-linux-x64.zip') }
+      it { is_expected.to contain_archive('/tmp/sapjvm-7.1.072-linux-x64.zip') }
     end
 
     context 'when sapjvm 8' do
       let(:params) { { ensure: 'present', version: '8', java: 'jdk' } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/sapjvm-8.1.063-linux-x64.zip') }
+      it { is_expected.to contain_archive('/tmp/sapjvm-8.1.065-linux-x64.zip') }
     end
 
     context 'when sapmachine 11 jdk' do
@@ -104,7 +104,7 @@ describe 'java::sap', type: :define do
       end
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/sapjvm-8.1.063-linux-x64.zip') }
+      it { is_expected.to contain_archive('/tmp/sapjvm-8.1.065-linux-x64.zip') }
     end
     context 'when manage_basedir is set to true' do
       let(:params) do
@@ -129,14 +129,14 @@ describe 'java::sap', type: :define do
       let(:params) { { ensure: 'present', version: '7', java: 'jdk' } }
       let(:title) { 'jdk7' }
 
-      it { is_expected.to contain_archive('/tmp/sapjvm-7.1.070-linux-x64.zip') }
+      it { is_expected.to contain_archive('/tmp/sapjvm-7.1.072-linux-x64.zip') }
     end
 
     context 'when sapjvm 8' do
       let(:params) { { ensure: 'present', version: '8', java: 'jdk' } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/sapjvm-8.1.063-linux-x64.zip') }
+      it { is_expected.to contain_archive('/tmp/sapjvm-8.1.065-linux-x64.zip') }
     end
 
     context 'when sapmachine 11 jdk' do
