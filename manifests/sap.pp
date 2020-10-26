@@ -70,13 +70,13 @@ define java::sap (
     # use default versions if full version parameter is not provided
     case $version {
       '7' : {
-        $_version_full = '7.1.070'
+        $_version_full = '7.1.072'
         if ($java != 'jdk') {
           fail('java parameter is not jdk. jre is not supported on version 7')
         }
       }
       '8' : {
-        $_version_full = '8.1.063'
+        $_version_full = '8.1.065'
         if ($java != 'jdk') {
           fail('java parameter is not jdk. jre is not supported on version 8')
         }
@@ -140,7 +140,7 @@ define java::sap (
   }
 
   # download links look like this (examples):
-  # https://tools.hana.ondemand.com/additional/sapjvm-8.1.063-linux-x64.zip
+  # https://tools.hana.ondemand.com/additional/sapjvm-8.1.065-linux-x64.zip
   # https://github.com/SAP/SapMachine/releases/download/sapmachine-11.0.7/sapmachine-jre-11.0.7_linux-x64_bin.tar.gz
   # https://github.com/SAP/SapMachine/releases/download/sapmachine-11.0.7/sapmachine-jdk-11.0.7_linux-x64_bin.tar.gz
   # https://github.com/SAP/SapMachine/releases/download/sapmachine-14.0.1/sapmachine-jdk-14.0.1_linux-x64_bin.tar.gz
