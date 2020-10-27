@@ -194,7 +194,7 @@ OpenJDK is supported on:
 * Oracle Linux 6, 7
 * Scientific Linux 6
 * Debian 8, 9
-* Ubuntu 14.04, 16.04, 18.04
+* Ubuntu 14.04, 16.04, 18.04, 20.04
 * Solaris 11
 * SLES 11, 12
 
