@@ -161,7 +161,7 @@ java::adopt { 'sapjvm8' :
 
 ## Reference
 
-For information on the classes and types, see the [REFERENCE.md](https://github.com/puppetlabs/puppetlabs-java/blob/master/REFERENCE.md). For information on the facts, see below.
+For information on the classes and types, see the [REFERENCE.md](https://github.com/puppetlabs/puppetlabs-java/blob/main/REFERENCE.md). For information on the facts, see below.
 
 ### Facts
 
@@ -177,7 +177,7 @@ The java module includes a few facts to describe the version of Java installed o
 
 ## Limitations
 
-For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-java/blob/master/metadata.json)
+For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-java/blob/main/metadata.json)
 
 This module cannot guarantee installation of Java versions that are not available on platform repositories.
 
