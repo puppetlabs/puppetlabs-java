@@ -2,9 +2,22 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v6.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.2.0) (2020-05-27)
+## [v6.4.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.3.0) (2020-11-09)
 
-[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.2.0...v6.2.0)
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.3.0...v6.3.0)
+
+### Added
+
+- Add support for SAP Java \(sapjvm / sapmachine\) [\#433](https://github.com/puppetlabs/puppetlabs-java/pull/433) ([timdeluxe](https://github.com/timdeluxe))
+
+### Fixed
+
+- \[IAC-1208\] - Add the good links for solving the 404 error and exclude sles [\#443](https://github.com/puppetlabs/puppetlabs-java/pull/443) ([daianamezdrea](https://github.com/daianamezdrea))
+- \(IAC-993\) - Removal of inappropriate terminology [\#439](https://github.com/puppetlabs/puppetlabs-java/pull/439) ([david22swan](https://github.com/david22swan))
+
+## [v6.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.3.0) (2020-05-27)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.2.0...v6.3.0)
 
 ### Added
 
