@@ -47,6 +47,8 @@ Gemfile:
     - gem: bolt
       version: '2.32.0'
       condition: Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.5.0')
+    - gem: scanf
+      condition: Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.7.0')
 spec/spec_helper.rb:
   mock_with: ":rspec"
   coverage_report: true
