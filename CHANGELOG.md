@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v6.4.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.3.0) (2020-11-09)
+## [v6.5.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.5.0) (2020-12-16)
 
-[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.3.0...v6.3.0)
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.4.0...v6.5.0)
+
+### Added
+
+- pdksync - \(feat\) Add support for Puppet 7 [\#454](https://github.com/puppetlabs/puppetlabs-java/pull/454) ([daianamezdrea](https://github.com/daianamezdrea))
+
+## [v6.4.0](https://github.com/puppetlabs/puppetlabs-java/tree/v6.4.0) (2020-11-09)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.3.0...v6.4.0)
 
 ### Added
 
