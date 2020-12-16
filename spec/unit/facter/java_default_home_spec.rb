@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 java_7_path = '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java'

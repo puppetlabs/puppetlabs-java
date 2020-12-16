@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: java_version
 #
 # Purpose: get full java version string

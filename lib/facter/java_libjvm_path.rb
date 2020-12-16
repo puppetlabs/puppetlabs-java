@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: java_libjvm_path
 #
 # Purpose: get path to libjvm.so

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: java_default_home
 #
 # Purpose: get absolute path of java system home
