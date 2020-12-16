@@ -37,7 +37,7 @@ Facter.add(:java_version) do
   confine operatingsystem: 'Darwin'
   has_weight 100
   setcode do
-    unless %r{Unable to find any JVMs matching version} =~ Facter::Util::Resolution.exec('/usr/libexec/java_home --failfast 2>&1')
+    unless Facter::Util::Resolution.exec('/usr/libexec/java_home --failfast 2>&1').include?('Unable to find any JVMs matching version')
       version = nil
       Facter::Util::Resolution.exec('java -Xmx12m -version 2>&1').lines.each { |line| version = Regexp.last_match(1) if %r{^.+ version \"(.+)\"} =~ line }
       version
