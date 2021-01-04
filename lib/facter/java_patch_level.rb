@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: java_patch_level
 #
 # Purpose: get Java's patch level

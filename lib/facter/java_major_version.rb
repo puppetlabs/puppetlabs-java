@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: java_major_version
 #
 # Purpose: get Java's major version

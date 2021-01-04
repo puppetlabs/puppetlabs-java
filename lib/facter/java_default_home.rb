@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Fact: java_default_home
 #
 # Purpose: get absolute path of java system home
@@ -19,7 +21,7 @@ Facter.add(:java_default_home) do
       nil
     else
       java_path = File.realpath(java_bin)
-      java_default_home = if java_path =~ %r{/jre/}
+      java_default_home = if %r{/jre/}.match?(java_path)
                             File.dirname(File.dirname(File.dirname(java_path)))
                           else
                             File.dirname(File.dirname(java_path))
