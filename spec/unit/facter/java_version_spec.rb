@@ -32,9 +32,9 @@ describe 'java_version' do
     end
     context 'when on Darwin' do
       before(:each) do
-        allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('Darwin')
+        allow(Facter.fact(:kernel)).to receive(:value).and_return('Darwin')
       end
-      let(:facts) { { operatingsystem: 'Darwin' } }
+      let(:facts) { { kernel: 'Darwin' } }
 
       it do
         expect(Facter::Util::Resolution).to receive(:exec).with('/usr/libexec/java_home --failfast 2>&1').and_return('/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home')
@@ -71,9 +71,9 @@ describe 'java_version' do
     end
     context 'when on Darwin' do
       before(:each) do
-        allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('Darwin')
+        allow(Facter.fact(:kernel)).to receive(:value).and_return('Darwin')
       end
-      let(:facts) { { operatingsystem: 'Darwin' } }
+      let(:facts) { { kernel: 'Darwin' } }
 
       it do
         expect(Facter::Util::Resolution).to receive(:exec).with('/usr/libexec/java_home --failfast 2>&1').at_least(1).and_return('Unable to find any JVMs matching version "(null)".')
