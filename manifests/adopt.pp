@@ -24,6 +24,9 @@
 # @param proxy_type
 #   Proxy server type (none|http|https|ftp). (passed to archive)
 #
+# @param url
+#   Full URL
+#
 # @param basedir
 #   Directory under which the installation will occur. If not set, defaults to
 #   /usr/lib/jvm for Debian and /usr/java for RedHat.
@@ -51,6 +54,7 @@ define java::adopt (
   $java           = 'jdk',
   $proxy_server   = undef,
   $proxy_type     = undef,
+  $url            = undef,
   $basedir        = undef,
   $manage_basedir = true,
   $package_type   = undef,
@@ -234,7 +238,15 @@ define java::adopt (
     $spacer = '%2B'
     $download_folder_prefix = 'jdk-'
   }
-  $source = "https://github.com/AdoptOpenJDK/openjdk${_version}-binaries/releases/download/${download_folder_prefix}${release_major}${spacer}${release_minor}/${package_name}"
+
+  # if complete URL is provided, use this value for source in archive resource
+  if $url {
+    $source = $url
+  }
+  else {
+    $source = "https://github.com/AdoptOpenJDK/openjdk${_version}-binaries/releases/download/${download_folder_prefix}${release_major}${spacer}${release_minor}/${package_name}"
+    notice ("Default source url : ${source}")
+  }
 
   # full path to the installer
   $destination = "${destination_dir}${package_name}"
