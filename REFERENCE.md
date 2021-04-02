@@ -127,6 +127,7 @@ The following parameters are available in the `java::adopt` defined type:
 * [`java`](#java)
 * [`proxy_server`](#proxy_server)
 * [`proxy_type`](#proxy_type)
+* [`url`](#url)
 * [`basedir`](#basedir)
 * [`manage_basedir`](#manage_basedir)
 * [`package_type`](#package_type)
@@ -186,6 +187,14 @@ Default value: ``undef``
 Data type: `Any`
 
 Proxy server type (none|http|https|ftp). (passed to archive)
+
+Default value: ``undef``
+
+##### <a name="url"></a>`url`
+
+Data type: `Any`
+
+Full URL
 
 Default value: ``undef``
 
@@ -481,4 +490,3 @@ Data type: `Any`
 The name for the optional symlink in the installation directory.
 
 Default value: ``undef``
-
