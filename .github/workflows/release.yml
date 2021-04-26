@@ -14,8 +14,6 @@ jobs:
           ref: ${{ github.ref }}
           clean: true
           fetch-depth: 0
-      - name: Prepare package
-        run: mkdir /github/workspace/pkg
       - name: Get Version
         id: gv
         run: |
@@ -39,6 +37,8 @@ jobs:
         with:
           ref: ${{ github.ref }}
           clean: true
+      - name: Prepare package
+        run: mkdir /github/workspace/pkg
       - name: "PDK Build"
         uses: docker://puppet/pdk:nightly
         with:
