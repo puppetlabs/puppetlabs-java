@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v7.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/v7.0.1) (2021-04-17)
+## [v7.0.2](https://github.com/puppetlabs/puppetlabs-java/tree/v7.0.2) (2021-04-26)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.0.1...v7.0.2)
+
+### Fixed
+
+- add url parameter for adoptopenjdk [\#473](https://github.com/puppetlabs/puppetlabs-java/pull/473) ([cbobinec](https://github.com/cbobinec))
+
+## [v7.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/v7.0.1) (2021-04-19)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.0.0...v7.0.1)
 
