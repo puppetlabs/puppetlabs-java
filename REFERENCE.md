@@ -490,3 +490,4 @@ Data type: `Any`
 The name for the optional symlink in the installation directory.
 
 Default value: ``undef``
+
