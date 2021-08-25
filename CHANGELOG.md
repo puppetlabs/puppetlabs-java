@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v7.1.1](https://github.com/puppetlabs/puppetlabs-java/tree/v7.1.1) (2021-08-25)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.1.0...v7.1.1)
+
+### Fixed
+
+- \(IAC-1741\) Allow stdlib v8.0.0 [\#491](https://github.com/puppetlabs/puppetlabs-java/pull/491) ([david22swan](https://github.com/david22swan))
+
 ## [v7.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/v7.1.0) (2021-08-12)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.0.2...v7.1.0)
