@@ -9,7 +9,7 @@ class java::params {
   case $facts['os']['family'] {
     'RedHat': {
       case $facts['os']['name'] {
-        'Rocky', 'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC', 'CloudLinux': {
+       'Alma', 'Rocky', 'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC', 'CloudLinux': {
           if (versioncmp($facts['os']['release']['full'], '5.0') < 0) {
             $jdk_package = 'java-1.6.0-sun-devel'
             $jre_package = 'java-1.6.0-sun'
