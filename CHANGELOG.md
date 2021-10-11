@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v7.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/v7.3.0) (2021-10-11)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.2.0...v7.3.0)
+
+### Added
+
+- pdksync - \(IAC-1753\) - Add Support for AlmaLinux 8 [\#500](https://github.com/puppetlabs/puppetlabs-java/pull/500) ([david22swan](https://github.com/david22swan))
+- pdksync - \(IAC-1751\) - Add Support for Rocky 8 [\#499](https://github.com/puppetlabs/puppetlabs-java/pull/499) ([david22swan](https://github.com/david22swan))
+
+### Fixed
+
+- pdksync - \(IAC-1598\) - Remove Support for Debian 8 [\#498](https://github.com/puppetlabs/puppetlabs-java/pull/498) ([david22swan](https://github.com/david22swan))
+
 ## [v7.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/v7.2.0) (2021-09-20)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.1.1...v7.2.0)
