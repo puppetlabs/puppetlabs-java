@@ -107,6 +107,56 @@ java::adopt { 'jdk8' :
 }
 ```
 
+## Adoptium Temurin
+
+Adoptium Temurin is the successor of AdoptOpenJDK and is supported using the defined type `java::adoptium`. It depends on [puppet/archive](https://github.com/voxpupuli/puppet-archive).
+
+The `java::adoptium` defined type expects a major, minor, patch and build version to download the specific release. It doesn't support jre downloads as the other distributions.
+
+```puppet
+java::adoptium { 'jdk16' :
+  ensure  => 'present',
+  version_major => '16',
+  version_minor => '0',
+  version_patch => '2',
+  version_build => '7',
+}
+java::adoptium { 'jdk17' :
+  ensure  => 'present',
+  version_major => '17',
+  version_minor => '0',
+  version_patch => '1',
+  version_build => '12',
+}
+```
+
+To install Adoptium to a non-default basedir (defaults: /usr/lib/jvm for Debian; /usr/java for RedHat):
+
+```puppet
+java::adoptium { 'jdk7' :
+  ensure  => 'present',
+  version_major => '17',
+  version_minor => '0',
+  version_patch => '1',
+  version_build => '12',
+  basedir => '/custom/java',
+}
+```
+
+To ensure that a custom basedir is a directory before Adoptium is installed (note: manage separately for custom ownership or perms):
+
+```puppet
+java::adoptium { 'jdk8' :
+  ensure  => 'present',
+  version_major => '17',
+  version_minor => '0',
+  version_patch => '1',
+  version_build => '12',
+  manage_basedir => true,
+  basedir => '/custom/java',
+}
+```
+
 ## SAP Java (sapjvm / sapmachine)
 
 SAP also offers JVM distributions. They are mostly required for their SAP products. In earlier versions it is called "sapjvm", in newer versions they call it "sapmachine".
@@ -215,6 +265,13 @@ AdoptOpenJDK Java is supported on:
 * Amazon Linux
 * Debian
 
+Adoptium Temurin Java is supported on:
+
+* CentOS
+* Red Hat Enterprise Linux (RHEL)
+* Amazon Linux
+* Debian
+
 SAP Java 7 and 8 (=sapjvm) are supported (by SAP) on:
 
 * SLES 12, 15
@@ -224,7 +281,6 @@ SAP Java 7 and 8 (=sapjvm) are supported (by SAP) on:
 (however installations on other distributions mostly also work well)
 
 For SAP Java > 8 (=sapmachine) please refer to the OpenJDK list as it is based on OpenJDK and has no special requirements.
-
 
 ### Known issues
 

@@ -140,6 +140,27 @@ install_adopt_jdk_jre = <<EOL
   }
 EOL
 
+# Adoptium
+
+adoptium_enabled = true unless os[:family].casecmp('SLES').zero?
+
+install_adoptium_jdk = <<EOL
+  java::adoptium {
+    'test_adoptium_jdk_version16':
+      version_major => '16',
+      version_minor => '0',
+      version_patch => '2',
+      version_build => '7',
+  }
+  java::adoptium {
+    'test_adoptium_jdk_version17':
+      version_major => '17',
+      version_minor => '0',
+      version_patch => '1',
+      version_build => '12',
+  }
+EOL
+
 sap_enabled = true
 sap_version7 = '7'
 sap_version7_full = '7.1.072'
@@ -272,7 +293,21 @@ describe 'installing' do
     end
   end
 
-  context 'java::adopt', if: sap_enabled && ['Sles'].include?(os[:family]), unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+  context 'java::adoptium', if: adoptium_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+    let(:install_path) do
+      (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
+    end
+
+    let(:version_suffix) do
+      (os[:family] == 'redhat') ? '-amd64' : ''
+    end
+
+    it 'installs adopt jdk and jre' do
+      idempotent_apply(install_adoptium_jdk)
+    end
+  end
+
+  context 'java::sap', if: sap_enabled && ['Sles'].include?(os[:family]), unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
     let(:install_path) do
       (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
     end
