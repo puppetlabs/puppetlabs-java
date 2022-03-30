@@ -239,18 +239,14 @@ This module is officially [supported](https://forge.puppetlabs.com/supported) fo
 
 OpenJDK is supported on:
 
-* Red Hat Enterprise Linux (RHEL) 5, 6, 7
-* CentOS 5, 6, 7
+* Red Hat Enterprise Linux (RHEL) 6, 7
+* CentOS 6, 7
 * Oracle Linux 6, 7
 * Scientific Linux 6
-* Debian 8, 9
-* Ubuntu 14.04, 16.04, 18.04, 20.04
+* Debian 9
+* Ubuntu 18.04, 20.04
 * Solaris 11
 * SLES 11, 12
-
-Sun Java is supported on:
-
-* Debian 6
 
 Oracle Java is supported on:
 

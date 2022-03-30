@@ -71,36 +71,20 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
   end
 
-  context 'when select jdk for Ubuntu Trusty (14.04)' do
-    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'trusty' }, release: { major: '14.04' }, architecture: 'amd64' } } }
+  context 'when select jdk for Ubuntu Bionic (18.04)' do
+    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'bionic' }, release: { major: '18.04' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jdk' } }
 
-    it { is_expected.to contain_package('java').with_name('openjdk-7-jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/') }
+    it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
   end
 
-  context 'when select jre for Ubuntu Trusty (14.04)' do
-    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'trusty' }, release: { major: '14.04' }, architecture: 'amd64' } } }
+  context 'when select jre for Ubuntu Bionic (18.04)' do
+    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'bionic' }, release: { major: '18.04' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jre' } }
 
-    it { is_expected.to contain_package('java').with_name('openjdk-7-jre-headless') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64/') }
-  end
-
-  context 'when select jdk for Ubuntu xenial (16.04) on ARM' do
-    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'xenial' }, release: { major: '16.04' }, architecture: 'armv7l' } } }
-    let(:params) { { 'distribution' => 'jdk' } }
-
-    it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-armhf/') }
-  end
-
-  context 'when select jdk for Ubuntu xenial (16.04) on ARM64' do
-    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'xenial' }, release: { major: '16.04' }, architecture: 'aarch64' } } }
-    let(:params) { { 'distribution' => 'jdk' } }
-
-    it { is_expected.to contain_package('java').with_name('openjdk-8-jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64/') }
+    it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
   end
 
   context 'when select openjdk for Oracle Linux' do
@@ -174,7 +158,7 @@ describe 'java', type: :class do
   end
 
   describe 'custom java package' do
-    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'jessie' }, release: { major: '8' }, architecture: 'amd64' } } }
+    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'bullseye' }, release: { major: '11' }, architecture: 'amd64' } } }
 
     context 'when all params provided' do
       let(:params) do

@@ -178,7 +178,7 @@ describe 'java::adopt', type: :define do
   end
 
   context 'with Ubuntu 64-bit' do
-    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '16.04' } } } }
+    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '18.04' } } } }
 
     context 'when AdoptOpenJDK Java 8 JDK' do
       let(:params) { { ensure: 'present', version: '8', java: 'jdk' } }

@@ -143,7 +143,7 @@ describe 'java::adoptium', type: :define do
   end
 
   context 'with Ubuntu 64-bit' do
-    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '16.04' } } } }
+    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '18.04' } } } }
 
     context 'when Adoptium Temurin Java 16 JDK' do
       let(:params) do
