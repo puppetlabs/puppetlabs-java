@@ -125,7 +125,7 @@ describe 'java::sap', type: :define do
   end
 
   context 'with Ubuntu 64-bit' do
-    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '16.04' } } } }
+    let(:facts) { { kernel: 'Linux', os: { family: 'Debian', architecture: 'amd64', name: 'Ubuntu', release: { full: '18.04' } } } }
 
     context 'when sapjvm 7' do
       let(:params) { { ensure: 'present', version: '7', java: 'jdk' } }
