@@ -55,7 +55,6 @@ define java::adoptium (
   $manage_symlink = false,
   $symlink_name   = undef,
 ) {
-
   # archive module is used to download the java package
   include ::archive
 
@@ -80,14 +79,16 @@ define java::adoptium (
           }
         }
         default : {
-          fail ("unsupported platform ${$facts['os']['name']}") }
+          fail ("unsupported platform ${$facts['os']['name']}")
+        }
       }
 
       $creates_path = "${_basedir}/${install_path}"
       $os = 'linux_hotspot'
     }
     default : {
-      fail ( "unsupported platform ${$facts['kernel']}" ) }
+      fail ( "unsupported platform ${$facts['kernel']}" )
+    }
   }
 
   # set java architecture nomenclature
@@ -143,8 +144,9 @@ define java::adoptium (
           case $facts['os']['family'] {
             'Debian' : {
               ensure_resource('file', $_basedir, {
-                ensure => directory,
-              })
+                  ensure => directory,
+                }
+              )
               $install_requires = [Archive[$destination], File[$_basedir]]
             }
             default : {
@@ -165,7 +167,7 @@ define java::adoptium (
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => "tar -zxf ${destination} -C ${_basedir}",
             creates => $creates_path,
-            require => $install_requires
+            require => $install_requires,
           }
 
           if ($manage_symlink and $symlink_name) {
@@ -175,7 +177,6 @@ define java::adoptium (
               require => Exec["Install Adoptium Temurin java ${version_major} ${version_minor} ${version_patch} ${version_build}"],
             }
           }
-
         }
         default : {
           fail ("unsupported platform ${$facts['kernel']}")
@@ -186,5 +187,4 @@ define java::adoptium (
       notice ("Action ${ensure} not supported.")
     }
   }
-
 }

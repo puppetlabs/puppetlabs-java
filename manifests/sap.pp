@@ -47,7 +47,6 @@ define java::sap (
   $manage_symlink = false,
   $symlink_name   = undef,
 ) {
-
   # archive module is used to download the java package
   include ::archive
 
@@ -58,12 +57,9 @@ define java::sap (
 
   # determine version and installation path
   if $version_full {
-
     $_version_array = $version_full.scanf('%i')
     $_version_int = $_version_array[0]
-
     $_version_full = $version_full
-
   } else {
     $_version = $version
     $_version_int = Numeric($_version)
@@ -121,13 +117,14 @@ define java::sap (
           }
         }
         default : {
-          fail ("unsupported os family ${$facts['os']['name']}") }
+          fail ("unsupported os family ${$facts['os']['name']}")
+        }
       }
-
       $creates_path = "${_basedir}/${_creates_folder}"
     }
     default : {
-      fail ( "unsupported platform ${$facts['kernel']}" ) }
+      fail ( "unsupported platform ${$facts['kernel']}" )
+    }
   }
 
   $_os_architecture = $facts['os']['architecture'] ? {
@@ -184,7 +181,7 @@ define java::sap (
     'present' : {
       case $facts['kernel'] {
         'Linux' : {
-          if ($manage_basedir or $facts['os']['family'] == 'Debian'){
+          if ($manage_basedir or $facts['os']['family'] == 'Debian') {
             if (!defined(File[$_basedir])) {
               file { $_basedir:
                 ensure => 'directory',
@@ -212,7 +209,6 @@ define java::sap (
               require => Archive["/tmp/${archive_filename}"],
             }
           }
-
         }
         default : {
           fail ("unsupported platform ${$facts['kernel']}")
@@ -223,5 +219,4 @@ define java::sap (
       notice ("Action ${ensure} not supported.")
     }
   }
-
 }

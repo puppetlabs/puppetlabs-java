@@ -5,7 +5,6 @@
 #
 # @api private
 class java::params {
-
   case $facts['os']['family'] {
     'RedHat': {
       case $facts['os']['name'] {
@@ -75,7 +74,7 @@ class java::params {
       }
       case $facts['os']['release']['major'] {
         '9': {
-          $java =  {
+          $java = {
             'jdk' => {
               'package'          => 'openjdk-8-jdk',
               'alternative'      => "java-1.8.0-openjdk-${openjdk_architecture}",
@@ -91,7 +90,7 @@ class java::params {
           }
         }
         '10', '11', '18.04', '18.10', '19.04', '19.10', '20.04': {
-          $java =  {
+          $java = {
             'jdk' => {
               'package'          => 'openjdk-11-jdk',
               'alternative'      => "java-1.11.0-openjdk-${openjdk_architecture}",

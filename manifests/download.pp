@@ -53,7 +53,7 @@
 # @param symlink_name
 #   The name for the optional symlink in the installation directory.
 #
-define java::download(
+define java::download (
   $ensure         = 'present',
   $version        = '8',
   $version_major  = undef,
@@ -70,7 +70,6 @@ define java::download(
   $manage_symlink = false,
   $symlink_name   = undef,
 ) {
-
   # archive module is used to download the java package
   include archive
 
@@ -89,7 +88,6 @@ define java::download(
 
   # determine Java major and minor version, and installation path
   if $version_major and $version_minor {
-
     $label         = $version_major
     $release_major = $version_major
     $release_minor = $version_minor
@@ -165,7 +163,8 @@ define java::download(
           }
         }
         default : {
-          fail ("unsupported platform ${$facts['os']['name']}") }
+          fail ("unsupported platform ${$facts['os']['name']}")
+        }
       }
 
       $creates_path = "${_basedir}/${install_path}"
@@ -173,7 +172,8 @@ define java::download(
       $destination_dir = '/tmp/'
     }
     default : {
-      fail ( "unsupported platform ${$facts['kernel']}" ) }
+      fail ( "unsupported platform ${$facts['kernel']}" )
+    }
   }
 
   # Install required unzip packages for jce
@@ -267,8 +267,9 @@ define java::download(
           case $facts['os']['family'] {
             'Debian' : {
               ensure_resource('file', $_basedir, {
-                ensure => directory,
-              })
+                  ensure => directory,
+                }
+              )
               $install_requires = [Archive[$destination], File[$_basedir]]
             }
             default : {
@@ -277,7 +278,7 @@ define java::download(
           }
 
           if $manage_basedir {
-            ensure_resource('file', $_basedir, {'ensure' => 'directory', 'before' => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]})
+            ensure_resource('file', $_basedir, { 'ensure' => 'directory', 'before' => Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"] })
           }
 
           exec { "Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}" :

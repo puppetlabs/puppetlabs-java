@@ -35,7 +35,7 @@
 #    The path to where the JRE is installed. This will be set as an
 #    environment variable.
 #
-class java(
+class java (
   String $distribution                                              = 'jdk',
   Pattern[/present|installed|latest|^[.+_0-9a-zA-Z:~-]+$/] $version = 'present',
   Optional[String] $package                                         = undef,
@@ -56,7 +56,6 @@ class java(
     default => $package,
   }
 
-
   ## Weird logic........
   ## If $java_alternative is set, use that.
   ## Elsif the DEFAULT package is being used, then use $default_alternative.
@@ -76,8 +75,8 @@ class java(
   $use_java_alternative_path = $java_alternative_path ? {
     undef                   => $use_java_package_name ? {
       $default_package_name => has_key($java::params::java, $distribution) ? {
-      default               => $java::params::java[$distribution]['alternative_path'],
-      false                 => undef,
+        default               => $java::params::java[$distribution]['alternative_path'],
+        false                 => undef,
       },
       default               => undef,
     },
@@ -102,7 +101,7 @@ class java(
       $use_java_alternative_path == undef or $use_java_home == undef
     ) and (
       ! has_key($java::params::java, $distribution)
-    )) {
+  )) {
     fail("Java distribution ${distribution} is not supported. Missing default values.")
   }
 
@@ -127,5 +126,4 @@ class java(
   }
   -> class { 'java::config': }
   -> anchor { 'java::end': }
-
 }

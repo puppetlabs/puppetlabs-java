@@ -61,7 +61,6 @@ define java::adopt (
   $manage_symlink = false,
   $symlink_name   = undef,
 ) {
-
   # archive module is used to download the java package
   include ::archive
 
@@ -72,7 +71,6 @@ define java::adopt (
 
   # determine AdoptOpenJDK Java major and minor version, and installation path
   if $version_major and $version_minor {
-
     $release_major = $version_major
     $release_minor = $version_minor
 
@@ -106,7 +104,6 @@ define java::adopt (
     } else {
       fail ("unsupported version ${_version}")
     }
-
   } else {
     $_version = $version
     $_version_int = Numeric($_version)
@@ -176,7 +173,8 @@ define java::adopt (
           }
         }
         default : {
-          fail ("unsupported platform ${$facts['os']['name']}") }
+          fail ("unsupported platform ${$facts['os']['name']}")
+        }
       }
 
       $creates_path = "${_basedir}/${install_path}"
@@ -184,7 +182,8 @@ define java::adopt (
       $destination_dir = '/tmp/'
     }
     default : {
-      fail ( "unsupported platform ${$facts['kernel']}" ) }
+      fail ( "unsupported platform ${$facts['kernel']}" )
+    }
   }
 
   # set java architecture nomenclature
@@ -277,8 +276,9 @@ define java::adopt (
           case $facts['os']['family'] {
             'Debian' : {
               ensure_resource('file', $_basedir, {
-                ensure => directory,
-              })
+                  ensure => directory,
+                }
+              )
               $install_requires = [Archive[$destination], File[$_basedir]]
             }
             default : {
@@ -299,7 +299,7 @@ define java::adopt (
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
             command => $install_command,
             creates => $creates_path,
-            require => $install_requires
+            require => $install_requires,
           }
 
           if ($manage_symlink and $symlink_name) {
@@ -309,7 +309,6 @@ define java::adopt (
               require => Exec["Install AdoptOpenJDK java ${java} ${_version} ${release_major} ${release_minor}"],
             }
           }
-
         }
         default : {
           fail ("unsupported platform ${$facts['kernel']}")
@@ -320,5 +319,4 @@ define java::adopt (
       notice ("Action ${ensure} not supported.")
     }
   }
-
 }
