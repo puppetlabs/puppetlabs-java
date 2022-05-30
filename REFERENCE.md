@@ -20,6 +20,7 @@ options, even though those are not in the package repositories.
 ### Defined types
 
 * [`java::adopt`](#javaadopt): Install one or more versions of AdoptOpenJDK Java.
+* [`java::adoptium`](#javaadoptium): Install one or more versions of Adoptium Temurin OpenJDK (former AdoptOpenJDK).
 * [`java::download`](#javadownload): Installs Java from a url location.
 * [`java::sap`](#javasap): Install one or more versions of SAPJVM or Sapmachine
 
@@ -225,6 +226,125 @@ in a few installation package flavors and we need to account for them.
 Optional forced package types: rpm, rpmbin, tar.gz
 
 Default value: ``undef``
+
+##### <a name="manage_symlink"></a>`manage_symlink`
+
+Data type: `Any`
+
+Whether to manage a symlink that points to the installation directory.  Defaults to false.
+
+Default value: ``false``
+
+##### <a name="symlink_name"></a>`symlink_name`
+
+Data type: `Any`
+
+The name for the optional symlink in the installation directory.
+
+Default value: ``undef``
+
+### <a name="javaadoptium"></a>`java::adoptium`
+
+Defined Type java::adoptium
+
+#### Parameters
+
+The following parameters are available in the `java::adoptium` defined type:
+
+* [`ensure`](#ensure)
+* [`version_major`](#version_major)
+* [`version_minor`](#version_minor)
+* [`version_patch`](#version_patch)
+* [`version_build`](#version_build)
+* [`proxy_server`](#proxy_server)
+* [`proxy_type`](#proxy_type)
+* [`url`](#url)
+* [`basedir`](#basedir)
+* [`manage_basedir`](#manage_basedir)
+* [`manage_symlink`](#manage_symlink)
+* [`symlink_name`](#symlink_name)
+
+##### <a name="ensure"></a>`ensure`
+
+Data type: `Any`
+
+Install or remove the package.
+
+Default value: `'present'`
+
+##### <a name="version_major"></a>`version_major`
+
+Data type: `Any`
+
+Major version which should be installed, e.g. '16' or '17'
+
+Default value: ``undef``
+
+##### <a name="version_minor"></a>`version_minor`
+
+Data type: `Any`
+
+Minor version which should be installed, e.g. '0'
+
+Default value: ``undef``
+
+##### <a name="version_patch"></a>`version_patch`
+
+Data type: `Any`
+
+Minor version which should be installed, e.g. '2'
+
+Default value: ``undef``
+
+##### <a name="version_build"></a>`version_build`
+
+Data type: `Any`
+
+Build version which should be installed, e.g. '07'
+
+Default value: ``undef``
+
+##### <a name="proxy_server"></a>`proxy_server`
+
+Data type: `Any`
+
+Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
+
+Default value: ``undef``
+
+##### <a name="proxy_type"></a>`proxy_type`
+
+Data type: `Any`
+
+Proxy server type (none|http|https|ftp). (passed to archive)
+
+Default value: ``undef``
+
+##### <a name="url"></a>`url`
+
+Data type: `Any`
+
+Full URL
+
+Default value: ``undef``
+
+##### <a name="basedir"></a>`basedir`
+
+Data type: `Any`
+
+Directory under which the installation will occur. If not set, defaults to
+/usr/lib/jvm for Debian and /usr/java for RedHat.
+
+Default value: ``undef``
+
+##### <a name="manage_basedir"></a>`manage_basedir`
+
+Data type: `Any`
+
+Whether to manage the basedir directory.  Defaults to false.
+Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
+
+Default value: ``true``
 
 ##### <a name="manage_symlink"></a>`manage_symlink`
 

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v8.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/v8.1.0) (2022-05-30)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v8.0.0...v8.1.0)
+
+### Added
+
+- feat: added support for aarch64 architecture download [\#516](https://github.com/puppetlabs/puppetlabs-java/pull/516) ([0Rick0](https://github.com/0Rick0))
+
 ## [v8.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v8.0.0) (2022-04-05)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.3.0...v8.0.0)
@@ -16,8 +24,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Fixed
 
-- pdksync - \(IAC-1787\) Remove Support for CentOS 6 [\#503](https://github.com/puppetlabs/puppetlabs-java/pull/503) ([david22swan](https://github.com/david22swan))
 - pdksync - \(GH-iac-334\) Remove Support for Ubuntu 14.04/16.04 [\#505](https://github.com/puppetlabs/puppetlabs-java/pull/505) ([david22swan](https://github.com/david22swan))
+- pdksync - \(IAC-1787\) Remove Support for CentOS 6 [\#503](https://github.com/puppetlabs/puppetlabs-java/pull/503) ([david22swan](https://github.com/david22swan))
 
 ## [v7.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/v7.3.0) (2021-10-11)
 
