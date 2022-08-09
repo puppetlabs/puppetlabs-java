@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v8.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/v8.2.0) (2022-08-09)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v8.1.0...v8.2.0)
+
+### Added
+
+- pdksync - \(GH-cat-11\) Certify Support for Ubuntu 22.04 [\#522](https://github.com/puppetlabs/puppetlabs-java/pull/522) ([david22swan](https://github.com/david22swan))
+- Make ubuntu 22.04 also default to openjdk-11 [\#519](https://github.com/puppetlabs/puppetlabs-java/pull/519) ([rswarts](https://github.com/rswarts))
+- pdksync - \(GH-cat-12\) Add Support for Redhat 9 [\#518](https://github.com/puppetlabs/puppetlabs-java/pull/518) ([david22swan](https://github.com/david22swan))
+
 ## [v8.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/v8.1.0) (2022-05-30)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v8.0.0...v8.1.0)
