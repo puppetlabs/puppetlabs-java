@@ -253,10 +253,10 @@ define java::adopt (
 
   case $_package_type {
     'tar.gz' : {
-      $install_command = "tar -zxf ${destination} -C ${_basedir}"
+      $install_command = ['tar', '-zxf', $destination, '-C', $_basedir]
     }
     default : {
-      $install_command = "tar -zxf ${destination} -C ${_basedir}"
+      $install_command = ['tar', '-zxf', $destination, '-C', $_basedir]
     }
   }
 

@@ -237,19 +237,19 @@ define java::download (
 
   case $_package_type {
     'bin' : {
-      $install_command = "sh ${destination}"
+      $install_command = ['sh', $destination]
     }
     'rpmbin' : {
-      $install_command = "sh ${destination} -x; rpm --force -iv sun*.rpm; rpm --force -iv ${java_se}*.rpm"
+      $install_command = ['sh', $destination, '-x;', 'rpm', '--force', '-iv', 'sun*.rpm;', 'rpm', '--force', '-iv', "${java_se}*.rpm"]
     }
     'rpm' : {
-      $install_command = "rpm --force -iv ${destination}"
+      $install_command = ['rpm', '--force', '-iv', $destination]
     }
     'tar.gz' : {
-      $install_command = "tar -zxf ${destination} -C ${_basedir}"
+      $install_command = ['tar', '-zxf', $destination, '-C', $_basedir]
     }
     default : {
-      $install_command = "rpm -iv ${destination}"
+      $install_command = ['rpm', '-iv', $destination]
     }
   }
 

@@ -163,9 +163,11 @@ define java::adoptium (
             }
           }
 
+          $install_adoptium = ['tar', '-zxf', $destination, '-C', $_basedir]
+
           exec { "Install Adoptium Temurin java ${version_major} ${version_minor} ${version_patch} ${version_build}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
-            command => "tar -zxf ${destination} -C ${_basedir}",
+            command => $install_adoptium,
             creates => $creates_path,
             require => $install_requires,
           }
