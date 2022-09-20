@@ -34,7 +34,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk8' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command('tar -zxf /tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command(['tar', '-zxf', '/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').that_requires('Archive[/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz]') }
     end
 
@@ -43,7 +43,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk9' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 9 9.0.4 11').with_command('tar -zxf /tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 9 9.0.4 11').with_command(['tar', '-zxf', '/tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 9 9.0.4 11').that_requires('Archive[/tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz]') }
     end
 
@@ -52,7 +52,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk10' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 10 10.0.2 13').with_command('tar -zxf /tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 10 10.0.2 13').with_command(['tar', '-zxf', '/tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 10 10.0.2 13').that_requires('Archive[/tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz]') }
     end
 
@@ -61,7 +61,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk11' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 11 11.0.2 9').with_command('tar -zxf /tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 11 11.0.2 9').with_command(['tar', '-zxf', '/tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 11 11.0.2 9').that_requires('Archive[/tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz]') }
     end
 
@@ -70,7 +70,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk12' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').with_command('tar -zxf /tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').with_command(['tar', '-zxf', '/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').that_requires('Archive[/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz]') }
     end
 
@@ -79,7 +79,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre8' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 8 8u202 b08').with_command('tar -zxf /tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 8 8u202 b08').with_command(['tar', '-zxf', '/tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 8 8u202 b08').that_requires('Archive[/tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz]') }
     end
 
@@ -88,7 +88,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre9' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 9 9.0.4 11').with_command('tar -zxf /tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 9 9.0.4 11').with_command(['tar', '-zxf', '/tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 9 9.0.4 11').that_requires('Archive[/tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz]') }
     end
 
@@ -97,7 +97,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre11' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 10 10.0.2 13').with_command('tar -zxf /tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 10 10.0.2 13').with_command(['tar', '-zxf', '/tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 10 10.0.2 13').that_requires('Archive[/tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz]') }
     end
 
@@ -106,7 +106,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre11' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 11 11.0.2 9').with_command('tar -zxf /tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 11 11.0.2 9').with_command(['tar', '-zxf', '/tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 11 11.0.2 9').that_requires('Archive[/tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz]') }
     end
 
@@ -115,7 +115,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre12' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 12 12.0.1 12').with_command('tar -zxf /tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 12 12.0.1 12').with_command(['tar', '-zxf', '/tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 12 12.0.1 12').that_requires('Archive[/tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz]') }
     end
 
@@ -158,7 +158,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk8' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command('tar -zxf /tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz -C /usr/java') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command(['tar', '-zxf', '/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').that_requires('Archive[/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz]') }
     end
     context 'when manage_basedir is set to true' do
@@ -185,7 +185,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk8' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command('tar -zxf /tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command(['tar', '-zxf', '/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').that_requires('Archive[/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz]') }
     end
 
@@ -194,7 +194,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk9' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 9 9.0.4 11').with_command('tar -zxf /tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 9 9.0.4 11').with_command(['tar', '-zxf', '/tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 9 9.0.4 11').that_requires('Archive[/tmp/OpenJDK9U-jdk_x64_linux_hotspot_9.0.4_11.tar.gz]') }
     end
 
@@ -203,7 +203,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk10' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 10 10.0.2 13').with_command('tar -zxf /tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 10 10.0.2 13').with_command(['tar', '-zxf', '/tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 10 10.0.2 13').that_requires('Archive[/tmp/OpenJDK10U-jdk_x64_linux_hotspot_10.0.2_13.tar.gz]') }
     end
 
@@ -212,7 +212,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk11' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 11 11.0.2 9').with_command('tar -zxf /tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 11 11.0.2 9').with_command(['tar', '-zxf', '/tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 11 11.0.2 9').that_requires('Archive[/tmp/OpenJDK11U-jdk_x64_linux_hotspot_11.0.2_9.tar.gz]') }
     end
 
@@ -221,7 +221,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk12' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').with_command('tar -zxf /tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').with_command(['tar', '-zxf', '/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 12 12.0.1 12').that_requires('Archive[/tmp/OpenJDK12U-jdk_x64_linux_hotspot_12.0.1_12.tar.gz]') }
     end
 
@@ -230,7 +230,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre8' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 8 8u202 b08').with_command('tar -zxf /tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 8 8u202 b08').with_command(['tar', '-zxf', '/tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 8 8u202 b08').that_requires('Archive[/tmp/OpenJDK8U-jre_x64_linux_hotspot_8u202b08.tar.gz]') }
     end
 
@@ -239,7 +239,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre9' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 9 9.0.4 11').with_command('tar -zxf /tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 9 9.0.4 11').with_command(['tar', '-zxf', '/tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 9 9.0.4 11').that_requires('Archive[/tmp/OpenJDK9U-jre_x64_linux_hotspot_9.0.4_11.tar.gz]') }
     end
 
@@ -248,7 +248,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre11' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 10 10.0.2 13').with_command('tar -zxf /tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 10 10.0.2 13').with_command(['tar', '-zxf', '/tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 10 10.0.2 13').that_requires('Archive[/tmp/OpenJDK10U-jre_x64_linux_hotspot_10.0.2_13.tar.gz]') }
     end
 
@@ -257,7 +257,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre11' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 11 11.0.2 9').with_command('tar -zxf /tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 11 11.0.2 9').with_command(['tar', '-zxf', '/tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 11 11.0.2 9').that_requires('Archive[/tmp/OpenJDK11U-jre_x64_linux_hotspot_11.0.2_9.tar.gz]') }
     end
 
@@ -266,7 +266,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jre12' }
 
       it { is_expected.to contain_archive('/tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz') }
-      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 12 12.0.1 12').with_command('tar -zxf /tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz -C /usr/lib/jvm') }
+      it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 12 12.0.1 12').with_command(['tar', '-zxf', '/tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jre 12 12.0.1 12').that_requires('Archive[/tmp/OpenJDK12U-jre_x64_linux_hotspot_12.0.1_12.tar.gz]') }
     end
 
