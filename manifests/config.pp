@@ -4,7 +4,7 @@ class java::config ( ) {
     'Debian': {
       if $java::use_java_alternative != undef and $java::use_java_alternative_path != undef {
         $command_debian = ['update-java-alternatives', '--set', $java::use_java_alternative, $java::jre_flag]
-        $unless_debian = ["test /etc/alternatives/java -ef '${java::use_java_alternative_path}'"]
+        $unless_debian = [['test', '/etc/alternatives/java', '-ef', $java::use_java_alternative_path]]
 
         exec { 'update-java-alternatives':
           path    => '/usr/bin:/usr/sbin:/bin:/sbin',
@@ -26,17 +26,17 @@ class java::config ( ) {
         # For the stanard packages java::params needs these added.
         if $java::use_java_package_name != $java::default_package_name {
           $command_redhat = ['alternatives', '--install', '/usr/bin/java', 'java', $java::use_java_alternative_path, '20000']
-          $unless_redhat = ["alternatives --display java | grep -q ${java::use_java_alternative_path}"]
+          $unless_redhat = "alternatives --display java | grep -q ${java::use_java_alternative_path}"
 
           exec { 'create-java-alternatives':
             path    => '/usr/bin:/usr/sbin:/bin:/sbin',
             command => $command_redhat,
-            unless  => $unless_redhat,
+            unless  => shell_escape($unless_redhat),
             before  => Exec['update-java-alternatives'],
           }
         }
         $command_default = ['alternatives', '--set', 'java', $java::use_java_alternative_path]
-        $unless_default = ["test /etc/alternatives/java -ef '${java::use_java_alternative_path}'"]
+        $unless_default = [['test', '/etc/alternatives/java', '-ef', $java::use_java_alternative_path]]
 
         exec { 'update-java-alternatives':
           path    => '/usr/bin:/usr/sbin',
