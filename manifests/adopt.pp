@@ -251,14 +251,7 @@ define java::adopt (
   $destination = "${destination_dir}${package_name}"
   notice ("Destination is ${destination}")
 
-  case $_package_type {
-    'tar.gz' : {
-      $install_command = "tar -zxf ${destination} -C ${_basedir}"
-    }
-    default : {
-      $install_command = "tar -zxf ${destination} -C ${_basedir}"
-    }
-  }
+  $install_command = ['tar', '-zxf', $destination, '-C', $_basedir]
 
   case $ensure {
     'present' : {
