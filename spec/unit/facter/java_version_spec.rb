@@ -21,12 +21,13 @@ describe 'java_version' do
     context 'on OpenBSD', with_env: true do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('OpenBSD')
+        allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
       let(:facts) { { operatingsystem: 'OpenBSD' } }
 
       it do
-        expect(Facter::Util::Resolution).to receive(:which).with('java').and_return('/usr/local/jdk-1.7.0/jre/bin/java')
-        expect(Facter::Util::Resolution).to receive(:exec).with('java -Xmx12m -version 2>&1').and_return(openjdk_7_output)
+        expect(Facter::Core::Execution).to receive(:which).with('java').and_return('/usr/local/jdk-1.7.0/jre/bin/java')
+        expect(Facter::Core::Execution).to receive(:execute).with('java -Xmx12m -version 2>&1').and_return(openjdk_7_output)
         expect(Facter.value(:java_version)).to eq('1.7.0_71')
       end
     end
@@ -37,20 +38,21 @@ describe 'java_version' do
       let(:facts) { { kernel: 'Darwin' } }
 
       it do
-        expect(Facter::Util::Resolution).to receive(:exec).with('/usr/libexec/java_home --failfast 2>&1').and_return('/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home')
-        expect(Facter::Util::Resolution).to receive(:exec).with('java -Xmx12m -version 2>&1').and_return(jdk_7_hotspot_output)
-        expect(Facter.value(:java_version)).to eql '1.7.0_71'
+        expect(Facter::Core::Execution).to receive(:execute).with('/usr/libexec/java_home --failfast', { on_fail: false }).and_return('/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home')
+        expect(Facter::Core::Execution).to receive(:execute).with('java -Xmx12m -version 2>&1').and_return(jdk_7_hotspot_output)
+        expect(Facter.value(:java_version)).to eq('1.7.0_71')
       end
     end
     context 'when on other systems' do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('MyOS')
+        allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
       let(:facts) { { operatingsystem: 'MyOS' } }
 
       it do
-        expect(Facter::Util::Resolution).to receive(:which).with('java').and_return('/path/to/java')
-        expect(Facter::Util::Resolution).to receive(:exec).with('java -Xmx12m -version 2>&1').and_return(jdk_7_hotspot_output)
+        expect(Facter::Core::Execution).to receive(:which).with('java').and_return('/path/to/java')
+        expect(Facter::Core::Execution).to receive(:execute).with('java -Xmx12m -version 2>&1').and_return(jdk_7_hotspot_output)
         expect(Facter.value(:java_version)).to eq('1.7.0_71')
       end
     end
@@ -60,12 +62,13 @@ describe 'java_version' do
     context 'on OpenBSD', with_env: true do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('OpenBSD')
+        allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
       let(:facts) { { operatingsystem: 'OpenBSD' } }
 
       it do
-        allow(Facter::Util::Resolution).to receive(:exec) # Catch all other calls
-        allow(Facter::Util::Resolution).to receive(:which).and_return(nil)
+        allow(Facter::Core::Execution).to receive(:execute) # Catch all other calls
+        allow(Facter::Core::Execution).to receive(:which).and_return(nil)
         expect(Facter.value(:java_version)).to be_nil
       end
     end
@@ -76,18 +79,19 @@ describe 'java_version' do
       let(:facts) { { kernel: 'Darwin' } }
 
       it do
-        expect(Facter::Util::Resolution).to receive(:exec).with('/usr/libexec/java_home --failfast 2>&1').at_least(1).and_return('Unable to find any JVMs matching version "(null)".')
+        expect(Facter::Core::Execution).to receive(:execute).with('/usr/libexec/java_home --failfast', { on_fail: false }).at_least(1).and_return(false)
         expect(Facter.value(:java_version)).to be_nil
       end
     end
     context 'when on other systems' do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('MyOS')
+        allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
       let(:facts) { { operatingsystem: 'MyOS' } }
 
       it do
-        expect(Facter::Util::Resolution).to receive(:which).at_least(1).with('java').and_return(false)
+        expect(Facter::Core::Execution).to receive(:which).at_least(1).with('java').and_return(false)
         expect(Facter.value(:java_version)).to be_nil
       end
     end
