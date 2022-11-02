@@ -21,7 +21,7 @@ describe 'java::download', type: :define do
       let(:title) { 'jdk8' }
 
       it {
-        is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.rpm')
+        is_expected.to contain_archive('/tmp/jdk-8-8u201-b09-linux-x64.rpm')
       }
     end
 
@@ -81,7 +81,7 @@ describe 'java::download', type: :define do
       let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: url } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
+      it { is_expected.to contain_archive('/tmp/jdk-8-8u201-b09-linux-x64.tar.gz') }
     end
   end
 
@@ -92,7 +92,7 @@ describe 'java::download', type: :define do
       let(:params) { { ensure: 'present', version_major: '8u201', version_minor: 'b09', java_se: 'jdk', url: url } }
       let(:title) { 'jdk8' }
 
-      it { is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.tar.gz') }
+      it { is_expected.to contain_archive('/tmp/jdk-8-8u201-b09-linux-x64.tar.gz') }
     end
   end
 
