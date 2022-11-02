@@ -21,7 +21,7 @@ describe 'java::download', type: :define do
       let(:title) { 'jdk8' }
 
       it {
-        is_expected.to contain_archive('/tmp/jdk-8u201-linux-x64.rpm')
+        is_expected.to contain_archive('/tmp/jdk-8-8u201-b09-linux-x64.rpm')
       }
     end
 
