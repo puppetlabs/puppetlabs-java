@@ -207,19 +207,19 @@ define java::download (
   # package name to use in destination directory for the installer
   case $_package_type {
     'bin' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.bin"
+      $package_name = "${java_se}-${version}-${release_major}-${release_minor}-${os}-${arch}.bin"
     }
     'rpmbin' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}-rpm.bin"
+      $package_name = "${java_se}-${version}-${release_major}-${release_minor}-${os}-${arch}-rpm.bin"
     }
     'rpm' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
+      $package_name = "${java_se}-${version}-${release_major}-${release_minor}-${os}-${arch}.rpm"
     }
     'tar.gz' : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.tar.gz"
+      $package_name = "${java_se}-${version}-${release_major}-${release_minor}-${os}-${arch}.tar.gz"
     }
     default : {
-      $package_name = "${java_se}-${release_major}-${os}-${arch}.rpm"
+      $package_name = "${java_se}-${version}-${release_major}-${release_minor}-${os}-${arch}.rpm"
     }
   }
 
