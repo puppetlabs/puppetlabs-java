@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v9.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v9.0.0) (2022-11-23)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v8.2.0...v9.0.0)
+
+### Changed
+
+- \(CONT-263\) Update minimum required puppet version [\#535](https://github.com/puppetlabs/puppetlabs-java/pull/535) ([LukasAud](https://github.com/LukasAud))
+
+### Fixed
+
+- \(CONT-173\) - Updating deprecated facter instances [\#531](https://github.com/puppetlabs/puppetlabs-java/pull/531) ([jordanbreen28](https://github.com/jordanbreen28))
+- pdksync - \(CONT-189\) Remove support for RedHat6 / OracleLinux6 / Scientific6 [\#530](https://github.com/puppetlabs/puppetlabs-java/pull/530) ([david22swan](https://github.com/david22swan))
+- pdksync - \(CONT-130\) - Dropping Support for Debian 9 [\#527](https://github.com/puppetlabs/puppetlabs-java/pull/527) ([jordanbreen28](https://github.com/jordanbreen28))
+- Hardening manifests [\#525](https://github.com/puppetlabs/puppetlabs-java/pull/525) ([LukasAud](https://github.com/LukasAud))
+
+### UNCATEGORIZED PRS; LABEL THEM ON GITHUB
+
+- Update package naming to differentiate between minor versions [\#534](https://github.com/puppetlabs/puppetlabs-java/pull/534) ([sd-z](https://github.com/sd-z))
+
 ## [v8.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/v8.2.0) (2022-08-09)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v8.1.0...v8.2.0)
