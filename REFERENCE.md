@@ -19,10 +19,10 @@ options, even though those are not in the package repositories.
 
 ### Defined types
 
-* [`java::adopt`](#javaadopt): Install one or more versions of AdoptOpenJDK Java.
-* [`java::adoptium`](#javaadoptium): Install one or more versions of Adoptium Temurin OpenJDK (former AdoptOpenJDK).
-* [`java::download`](#javadownload): Installs Java from a url location.
-* [`java::sap`](#javasap): Install one or more versions of SAPJVM or Sapmachine
+* [`java::adopt`](#java--adopt): Install one or more versions of AdoptOpenJDK Java.
+* [`java::adoptium`](#java--adoptium): Install one or more versions of Adoptium Temurin OpenJDK (former AdoptOpenJDK).
+* [`java::download`](#java--download): Installs Java from a url location.
+* [`java::sap`](#java--sap): Install one or more versions of SAPJVM or Sapmachine
 
 ## Classes
 
@@ -34,15 +34,15 @@ This module manages the Java runtime package
 
 The following parameters are available in the `java` class:
 
-* [`distribution`](#distribution)
-* [`version`](#version)
-* [`package`](#package)
-* [`package_options`](#package_options)
-* [`java_alternative`](#java_alternative)
-* [`java_alternative_path`](#java_alternative_path)
-* [`java_home`](#java_home)
+* [`distribution`](#-java--distribution)
+* [`version`](#-java--version)
+* [`package`](#-java--package)
+* [`package_options`](#-java--package_options)
+* [`java_alternative`](#-java--java_alternative)
+* [`java_alternative_path`](#-java--java_alternative_path)
+* [`java_home`](#-java--java_home)
 
-##### <a name="distribution"></a>`distribution`
+##### <a name="-java--distribution"></a>`distribution`
 
 Data type: `String`
 
@@ -52,7 +52,7 @@ implementations available (eg: OpenJDK vs Oracle JDK).
 
 Default value: `'jdk'`
 
-##### <a name="version"></a>`version`
+##### <a name="-java--version"></a>`version`
 
 Data type: `Pattern[/present|installed|latest|^[.+_0-9a-zA-Z:~-]+$/]`
 
@@ -61,25 +61,25 @@ that java is present, and does not require a specific version.
 
 Default value: `'present'`
 
-##### <a name="package"></a>`package`
+##### <a name="-java--package"></a>`package`
 
 Data type: `Optional[String]`
 
 The name of the java package. This is configurable in case a non-standard
 java package is desired.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="package_options"></a>`package_options`
+##### <a name="-java--package_options"></a>`package_options`
 
 Data type: `Optional[Array]`
 
 Array of strings to pass installation options to the 'package' Puppet resource.
 Options available depend on the 'package' provider for the target OS.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="java_alternative"></a>`java_alternative`
+##### <a name="-java--java_alternative"></a>`java_alternative`
 
 Data type: `Optional[String]`
 
@@ -89,9 +89,9 @@ If you specify a particular package, you will almost always also
 want to specify which java_alternative to choose. If you set
 this, you also need to set the path below.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="java_alternative_path"></a>`java_alternative_path`
+##### <a name="-java--java_alternative_path"></a>`java_alternative_path`
 
 Data type: `Optional[String]`
 
@@ -100,20 +100,20 @@ alternatives system makes it difficult to verify which
 alternative is actually enabled, this is required to ensure the
 correct JVM is enabled.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="java_home"></a>`java_home`
+##### <a name="-java--java_home"></a>`java_home`
 
 Data type: `Optional[String]`
 
 The path to where the JRE is installed. This will be set as an
 environment variable.
 
-Default value: ``undef``
+Default value: `undef`
 
 ## Defined types
 
-### <a name="javaadopt"></a>`java::adopt`
+### <a name="java--adopt"></a>`java::adopt`
 
 Defined Type java::adopt
 
@@ -121,21 +121,21 @@ Defined Type java::adopt
 
 The following parameters are available in the `java::adopt` defined type:
 
-* [`ensure`](#ensure)
-* [`version`](#version)
-* [`version_major`](#version_major)
-* [`version_minor`](#version_minor)
-* [`java`](#java)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`url`](#url)
-* [`basedir`](#basedir)
-* [`manage_basedir`](#manage_basedir)
-* [`package_type`](#package_type)
-* [`manage_symlink`](#manage_symlink)
-* [`symlink_name`](#symlink_name)
+* [`ensure`](#-java--adopt--ensure)
+* [`version`](#-java--adopt--version)
+* [`version_major`](#-java--adopt--version_major)
+* [`version_minor`](#-java--adopt--version_minor)
+* [`java`](#-java--adopt--java)
+* [`proxy_server`](#-java--adopt--proxy_server)
+* [`proxy_type`](#-java--adopt--proxy_type)
+* [`url`](#-java--adopt--url)
+* [`basedir`](#-java--adopt--basedir)
+* [`manage_basedir`](#-java--adopt--manage_basedir)
+* [`package_type`](#-java--adopt--package_type)
+* [`manage_symlink`](#-java--adopt--manage_symlink)
+* [`symlink_name`](#-java--adopt--symlink_name)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-java--adopt--ensure"></a>`ensure`
 
 Data type: `Any`
 
@@ -143,7 +143,7 @@ Install or remove the package.
 
 Default value: `'present'`
 
-##### <a name="version"></a>`version`
+##### <a name="-java--adopt--version"></a>`version`
 
 Data type: `Any`
 
@@ -151,23 +151,23 @@ Version of Java to install, e.g. '8' or '9'. Default values for major and minor 
 
 Default value: `'8'`
 
-##### <a name="version_major"></a>`version_major`
+##### <a name="-java--adopt--version_major"></a>`version_major`
 
 Data type: `Any`
 
 Major version which should be installed, e.g. '8u101' or '9.0.4'. Must be used together with version_minor.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="version_minor"></a>`version_minor`
+##### <a name="-java--adopt--version_minor"></a>`version_minor`
 
 Data type: `Any`
 
 Minor version which should be installed, e.g. 'b12' (for version = '8') or '11' (for version != '8'). Must be used together with version_major.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="java"></a>`java`
+##### <a name="-java--adopt--java"></a>`java`
 
 Data type: `Any`
 
@@ -175,49 +175,49 @@ Type of Java Standard Edition to install, jdk or jre.
 
 Default value: `'jdk'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-java--adopt--proxy_server"></a>`proxy_server`
 
 Data type: `Any`
 
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-java--adopt--proxy_type"></a>`proxy_type`
 
 Data type: `Any`
 
 Proxy server type (none|http|https|ftp). (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="url"></a>`url`
+##### <a name="-java--adopt--url"></a>`url`
 
 Data type: `Any`
 
 Full URL
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="basedir"></a>`basedir`
+##### <a name="-java--adopt--basedir"></a>`basedir`
 
 Data type: `Any`
 
 Directory under which the installation will occur. If not set, defaults to
 /usr/lib/jvm for Debian and /usr/java for RedHat.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_basedir"></a>`manage_basedir`
+##### <a name="-java--adopt--manage_basedir"></a>`manage_basedir`
 
 Data type: `Any`
 
 Whether to manage the basedir directory.  Defaults to false.
 Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="package_type"></a>`package_type`
+##### <a name="-java--adopt--package_type"></a>`package_type`
 
 Data type: `Any`
 
@@ -225,25 +225,25 @@ Type of installation package for specified version of java_se. java_se 6 comes
 in a few installation package flavors and we need to account for them.
 Optional forced package types: rpm, rpmbin, tar.gz
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_symlink"></a>`manage_symlink`
+##### <a name="-java--adopt--manage_symlink"></a>`manage_symlink`
 
 Data type: `Any`
 
 Whether to manage a symlink that points to the installation directory.  Defaults to false.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_name"></a>`symlink_name`
+##### <a name="-java--adopt--symlink_name"></a>`symlink_name`
 
 Data type: `Any`
 
 The name for the optional symlink in the installation directory.
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="javaadoptium"></a>`java::adoptium`
+### <a name="java--adoptium"></a>`java::adoptium`
 
 Defined Type java::adoptium
 
@@ -251,20 +251,20 @@ Defined Type java::adoptium
 
 The following parameters are available in the `java::adoptium` defined type:
 
-* [`ensure`](#ensure)
-* [`version_major`](#version_major)
-* [`version_minor`](#version_minor)
-* [`version_patch`](#version_patch)
-* [`version_build`](#version_build)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`url`](#url)
-* [`basedir`](#basedir)
-* [`manage_basedir`](#manage_basedir)
-* [`manage_symlink`](#manage_symlink)
-* [`symlink_name`](#symlink_name)
+* [`ensure`](#-java--adoptium--ensure)
+* [`version_major`](#-java--adoptium--version_major)
+* [`version_minor`](#-java--adoptium--version_minor)
+* [`version_patch`](#-java--adoptium--version_patch)
+* [`version_build`](#-java--adoptium--version_build)
+* [`proxy_server`](#-java--adoptium--proxy_server)
+* [`proxy_type`](#-java--adoptium--proxy_type)
+* [`url`](#-java--adoptium--url)
+* [`basedir`](#-java--adoptium--basedir)
+* [`manage_basedir`](#-java--adoptium--manage_basedir)
+* [`manage_symlink`](#-java--adoptium--manage_symlink)
+* [`symlink_name`](#-java--adoptium--symlink_name)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-java--adoptium--ensure"></a>`ensure`
 
 Data type: `Any`
 
@@ -272,97 +272,97 @@ Install or remove the package.
 
 Default value: `'present'`
 
-##### <a name="version_major"></a>`version_major`
+##### <a name="-java--adoptium--version_major"></a>`version_major`
 
 Data type: `Any`
 
 Major version which should be installed, e.g. '16' or '17'
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="version_minor"></a>`version_minor`
+##### <a name="-java--adoptium--version_minor"></a>`version_minor`
 
 Data type: `Any`
 
 Minor version which should be installed, e.g. '0'
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="version_patch"></a>`version_patch`
+##### <a name="-java--adoptium--version_patch"></a>`version_patch`
 
 Data type: `Any`
 
 Minor version which should be installed, e.g. '2'
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="version_build"></a>`version_build`
+##### <a name="-java--adoptium--version_build"></a>`version_build`
 
 Data type: `Any`
 
 Build version which should be installed, e.g. '07'
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-java--adoptium--proxy_server"></a>`proxy_server`
 
 Data type: `Any`
 
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-java--adoptium--proxy_type"></a>`proxy_type`
 
 Data type: `Any`
 
 Proxy server type (none|http|https|ftp). (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="url"></a>`url`
+##### <a name="-java--adoptium--url"></a>`url`
 
 Data type: `Any`
 
 Full URL
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="basedir"></a>`basedir`
+##### <a name="-java--adoptium--basedir"></a>`basedir`
 
 Data type: `Any`
 
 Directory under which the installation will occur. If not set, defaults to
 /usr/lib/jvm for Debian and /usr/java for RedHat.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_basedir"></a>`manage_basedir`
+##### <a name="-java--adoptium--manage_basedir"></a>`manage_basedir`
 
 Data type: `Any`
 
 Whether to manage the basedir directory.  Defaults to false.
 Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_symlink"></a>`manage_symlink`
+##### <a name="-java--adoptium--manage_symlink"></a>`manage_symlink`
 
 Data type: `Any`
 
 Whether to manage a symlink that points to the installation directory.  Defaults to false.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_name"></a>`symlink_name`
+##### <a name="-java--adoptium--symlink_name"></a>`symlink_name`
 
 Data type: `Any`
 
 The name for the optional symlink in the installation directory.
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="javadownload"></a>`java::download`
+### <a name="java--download"></a>`java::download`
 
 Defined Type java::download
 
@@ -370,23 +370,23 @@ Defined Type java::download
 
 The following parameters are available in the `java::download` defined type:
 
-* [`ensure`](#ensure)
-* [`version`](#version)
-* [`version_major`](#version_major)
-* [`version_minor`](#version_minor)
-* [`java_se`](#java_se)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`url`](#url)
-* [`jce`](#jce)
-* [`jce_url`](#jce_url)
-* [`basedir`](#basedir)
-* [`manage_basedir`](#manage_basedir)
-* [`package_type`](#package_type)
-* [`manage_symlink`](#manage_symlink)
-* [`symlink_name`](#symlink_name)
+* [`ensure`](#-java--download--ensure)
+* [`version`](#-java--download--version)
+* [`version_major`](#-java--download--version_major)
+* [`version_minor`](#-java--download--version_minor)
+* [`java_se`](#-java--download--java_se)
+* [`proxy_server`](#-java--download--proxy_server)
+* [`proxy_type`](#-java--download--proxy_type)
+* [`url`](#-java--download--url)
+* [`jce`](#-java--download--jce)
+* [`jce_url`](#-java--download--jce_url)
+* [`basedir`](#-java--download--basedir)
+* [`manage_basedir`](#-java--download--manage_basedir)
+* [`package_type`](#-java--download--package_type)
+* [`manage_symlink`](#-java--download--manage_symlink)
+* [`symlink_name`](#-java--download--symlink_name)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-java--download--ensure"></a>`ensure`
 
 Data type: `Any`
 
@@ -394,7 +394,7 @@ Install or remove the package.
 
 Default value: `'present'`
 
-##### <a name="version"></a>`version`
+##### <a name="-java--download--version"></a>`version`
 
 Data type: `Any`
 
@@ -402,23 +402,23 @@ Version of Java to install, e.g. '7' or '8'. Default values for major and minor 
 
 Default value: `'8'`
 
-##### <a name="version_major"></a>`version_major`
+##### <a name="-java--download--version_major"></a>`version_major`
 
 Data type: `Any`
 
 Major version which should be installed, e.g. '8u101'. Must be used together with version_minor.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="version_minor"></a>`version_minor`
+##### <a name="-java--download--version_minor"></a>`version_minor`
 
 Data type: `Any`
 
 Minor version which should be installed, e.g. 'b12'. Must be used together with version_major.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="java_se"></a>`java_se`
+##### <a name="-java--download--java_se"></a>`java_se`
 
 Data type: `Any`
 
@@ -426,65 +426,65 @@ Type of Java Standard Edition to install, jdk or jre.
 
 Default value: `'jdk'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-java--download--proxy_server"></a>`proxy_server`
 
 Data type: `Any`
 
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-java--download--proxy_type"></a>`proxy_type`
 
 Data type: `Any`
 
 Proxy server type (none|http|https|ftp). (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="url"></a>`url`
+##### <a name="-java--download--url"></a>`url`
 
 Data type: `Any`
 
 Full URL
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="jce"></a>`jce`
+##### <a name="-java--download--jce"></a>`jce`
 
 Data type: `Any`
 
 Install Oracles Java Cryptographic Extensions into the JRE or JDK
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="jce_url"></a>`jce_url`
+##### <a name="-java--download--jce_url"></a>`jce_url`
 
 Data type: `Any`
 
 Full URL to the jce zip file
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="basedir"></a>`basedir`
+##### <a name="-java--download--basedir"></a>`basedir`
 
 Data type: `Any`
 
 Directory under which the installation will occur. If not set, defaults to
 /usr/lib/jvm for Debian and /usr/java for RedHat.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_basedir"></a>`manage_basedir`
+##### <a name="-java--download--manage_basedir"></a>`manage_basedir`
 
 Data type: `Any`
 
 Whether to manage the basedir directory.  Defaults to false.
 Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="package_type"></a>`package_type`
+##### <a name="-java--download--package_type"></a>`package_type`
 
 Data type: `Any`
 
@@ -492,25 +492,25 @@ Type of installation package for specified version of java_se. java_se 6 comes
 in a few installation package flavors and we need to account for them.
 Optional forced package types: rpm, rpmbin, tar.gz
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_symlink"></a>`manage_symlink`
+##### <a name="-java--download--manage_symlink"></a>`manage_symlink`
 
 Data type: `Any`
 
 Whether to manage a symlink that points to the installation directory.  Defaults to false.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_name"></a>`symlink_name`
+##### <a name="-java--download--symlink_name"></a>`symlink_name`
 
 Data type: `Any`
 
 The name for the optional symlink in the installation directory.
 
-Default value: ``undef``
+Default value: `undef`
 
-### <a name="javasap"></a>`java::sap`
+### <a name="java--sap"></a>`java::sap`
 
 Defined Type java::sap
 
@@ -518,18 +518,18 @@ Defined Type java::sap
 
 The following parameters are available in the `java::sap` defined type:
 
-* [`ensure`](#ensure)
-* [`version`](#version)
-* [`version_full`](#version_full)
-* [`java`](#java)
-* [`proxy_server`](#proxy_server)
-* [`proxy_type`](#proxy_type)
-* [`basedir`](#basedir)
-* [`manage_basedir`](#manage_basedir)
-* [`manage_symlink`](#manage_symlink)
-* [`symlink_name`](#symlink_name)
+* [`ensure`](#-java--sap--ensure)
+* [`version`](#-java--sap--version)
+* [`version_full`](#-java--sap--version_full)
+* [`java`](#-java--sap--java)
+* [`proxy_server`](#-java--sap--proxy_server)
+* [`proxy_type`](#-java--sap--proxy_type)
+* [`basedir`](#-java--sap--basedir)
+* [`manage_basedir`](#-java--sap--manage_basedir)
+* [`manage_symlink`](#-java--sap--manage_symlink)
+* [`symlink_name`](#-java--sap--symlink_name)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-java--sap--ensure"></a>`ensure`
 
 Data type: `Any`
 
@@ -537,7 +537,7 @@ Install or remove the package.
 
 Default value: `'present'`
 
-##### <a name="version"></a>`version`
+##### <a name="-java--sap--version"></a>`version`
 
 Data type: `Any`
 
@@ -545,15 +545,15 @@ Version of Java to install, e.g. '8' or '9'. Default values for full versions wi
 
 Default value: `'8'`
 
-##### <a name="version_full"></a>`version_full`
+##### <a name="-java--sap--version_full"></a>`version_full`
 
 Data type: `Any`
 
 Major version which should be installed, e.g. '8.1.063' or '11.0.7'. If used, "version" parameter is ignored.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="java"></a>`java`
+##### <a name="-java--sap--java"></a>`java`
 
 Data type: `Any`
 
@@ -561,53 +561,53 @@ Type of Java Edition to install, jdk or jre.
 
 Default value: `'jdk'`
 
-##### <a name="proxy_server"></a>`proxy_server`
+##### <a name="-java--sap--proxy_server"></a>`proxy_server`
 
 Data type: `Any`
 
 Specify a proxy server, with port number if needed. ie: https://example.com:8080. (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="proxy_type"></a>`proxy_type`
+##### <a name="-java--sap--proxy_type"></a>`proxy_type`
 
 Data type: `Any`
 
 Proxy server type (none|http|https|ftp). (passed to archive)
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="basedir"></a>`basedir`
+##### <a name="-java--sap--basedir"></a>`basedir`
 
 Data type: `Any`
 
 Directory under which the installation will occur. If not set, defaults to
 /usr/lib/jvm for Debian and /usr/java for RedHat.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_basedir"></a>`manage_basedir`
+##### <a name="-java--sap--manage_basedir"></a>`manage_basedir`
 
 Data type: `Any`
 
 Whether to manage the basedir directory.  Defaults to false.
 Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_symlink"></a>`manage_symlink`
+##### <a name="-java--sap--manage_symlink"></a>`manage_symlink`
 
 Data type: `Any`
 
 Whether to manage a symlink that points to the installation directory.  Defaults to false.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="symlink_name"></a>`symlink_name`
+##### <a name="-java--sap--symlink_name"></a>`symlink_name`
 
 Data type: `Any`
 
 The name for the optional symlink in the installation directory.
 
-Default value: ``undef``
+Default value: `undef`
 
