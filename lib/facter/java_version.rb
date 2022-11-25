@@ -16,9 +16,9 @@
 Facter.add(:java_version) do
   setcode do
     if ['darwin'].include? Facter.value(:kernel).downcase
-      return unless Facter::Core::Execution.execute('/usr/libexec/java_home --failfast', { on_fail: false })
+      return nil unless Facter::Core::Execution.execute('/usr/libexec/java_home --failfast', { on_fail: false })
     else
-      return unless Facter::Core::Execution.which('java')
+      return nil unless Facter::Core::Execution.which('java')
     end
     version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
     version[%r{\"(.*?)\"}, 1] if version
