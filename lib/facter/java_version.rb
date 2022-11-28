@@ -19,10 +19,8 @@ Facter.add(:java_version) do
       if Facter::Core::Execution.execute('/usr/libexec/java_home --failfast', { on_fail: false })
         version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
       end
-    else
-      unless Facter::Core::Execution.which('java').nil?
-        version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
-      end
+    elsif Facter::Core::Execution.which('java')
+      version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
     end
     version[%r{\"(.*?)\"}, 1] if version
   end
