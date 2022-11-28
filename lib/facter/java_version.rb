@@ -16,11 +16,12 @@
 Facter.add(:java_version) do
   setcode do
     if ['darwin'].include? Facter.value(:kernel).downcase
-      return nil unless Facter::Core::Execution.execute('/usr/libexec/java_home --failfast', { on_fail: false })
-    else
-      return nil unless Facter::Core::Execution.which('java')
+      if Facter::Core::Execution.execute('/usr/libexec/java_home --failfast', { on_fail: false })
+        version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
+      end
+    elsif Facter::Core::Execution.which('java')
+      version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
     end
-    version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
     version[%r{\"(.*?)\"}, 1] if version
   end
 end
