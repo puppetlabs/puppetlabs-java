@@ -52,7 +52,7 @@ define java::adopt (
   String[1]         $version        = '8',
   Optional[String]  $version_major  = undef,
   Optional[String]  $version_minor  = undef,
-  String            $java           = 'jdk',
+  String[1]         $java           = 'jdk',
   Optional[String]  $proxy_server   = undef,
   Optional[String]  $proxy_type     = undef,
   Optional[String]  $url            = undef,
