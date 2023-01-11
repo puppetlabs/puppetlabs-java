@@ -13,7 +13,8 @@
 #   Major version which should be installed, e.g. '8u101' or '9.0.4'. Must be used together with version_minor.
 #
 # @param version_minor
-#   Minor version which should be installed, e.g. 'b12' (for version = '8') or '11' (for version != '8'). Must be used together with version_major.
+#   Minor version which should be installed, e.g. 'b12' (for version = '8') or '11' (for version != '8'). 
+#   Must be used together with version_major.
 #
 # @param java
 #   Type of Java Standard Edition to install, jdk or jre.
@@ -32,7 +33,7 @@
 #   /usr/lib/jvm for Debian and /usr/java for RedHat.
 #
 # @param manage_basedir
-#   Whether to manage the basedir directory.  Defaults to false.
+#   Whether to manage the basedir directory.
 #   Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 #
 # @param package_type
@@ -47,22 +48,22 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::adopt (
-  $ensure         = 'present',
-  $version        = '8',
-  $version_major  = undef,
-  $version_minor  = undef,
-  $java           = 'jdk',
-  $proxy_server   = undef,
-  $proxy_type     = undef,
-  $url            = undef,
-  $basedir        = undef,
-  $manage_basedir = true,
-  $package_type   = undef,
-  $manage_symlink = false,
-  $symlink_name   = undef,
+  String[1]         $ensure         = 'present',
+  String[1]         $version        = '8',
+  Optional[String]  $version_major  = undef,
+  Optional[String]  $version_minor  = undef,
+  String            $java           = 'jdk',
+  Optional[String]  $proxy_server   = undef,
+  Optional[String]  $proxy_type     = undef,
+  Optional[String]  $url            = undef,
+  Optional[String]  $basedir        = undef,
+  Boolean           $manage_basedir = true,
+  Optional[String]  $package_type   = undef,
+  Boolean           $manage_symlink = false,
+  Optional[String]  $symlink_name   = undef,
 ) {
   # archive module is used to download the java package
-  include ::archive
+  include archive
 
   # validate java Standard Edition to download
   if $java !~ /(jre|jdk)/ {
@@ -188,7 +189,6 @@ define java::adopt (
 
   # set java architecture nomenclature
   $os_architecture = $facts['os']['architecture'] ? {
-    undef => $facts['architecture'],
     default => $facts['os']['architecture']
   }
 

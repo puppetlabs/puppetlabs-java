@@ -42,21 +42,21 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::adoptium (
-  $ensure         = 'present',
-  $version_major  = undef,
-  $version_minor  = undef,
-  $version_patch  = undef,
-  $version_build  = undef,
-  $proxy_server   = undef,
-  $proxy_type     = undef,
-  $url            = undef,
-  $basedir        = undef,
-  $manage_basedir = true,
-  $manage_symlink = false,
-  $symlink_name   = undef,
+  String[1]                                       $ensure         = 'present',
+  Optional[String]                                $version_major  = undef,
+  Optional[String]                                $version_minor  = undef,
+  Optional[String]                                $version_patch  = undef,
+  Optional[String]                                $version_build  = undef,
+  Optional[String]                                $proxy_server   = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']]  $proxy_type     = undef,
+  Optional[String]                                $url            = undef,
+  Optional[String]                                $basedir        = undef,
+  Boolean                                         $manage_basedir = true,
+  Boolean                                         $manage_symlink = false,
+  Optional[String]                                $symlink_name   = undef,
 ) {
   # archive module is used to download the java package
-  include ::archive
+  include archive
 
   $install_path = "jdk-${version_major}.${version_minor}.${version_patch}+${version_build}"
 
@@ -93,7 +93,6 @@ define java::adoptium (
 
   # set java architecture nomenclature
   $os_architecture = $facts['os']['architecture'] ? {
-    undef => $facts['architecture'],
     default => $facts['os']['architecture']
   }
 
