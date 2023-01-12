@@ -36,7 +36,7 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::sap (
-  String[1]                                       $ensure         = 'present',
+  Enum['present']                                 $ensure         = 'present',
   String[1]                                       $version        = '8',
   Optional[String]                                $version_full   = undef,
   String[1]                                       $java           = 'jdk',

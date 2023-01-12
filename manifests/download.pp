@@ -54,7 +54,7 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::download (
-  String[1]                                       $ensure         = 'present',
+  Enum['present']                                 $ensure         = 'present',
   String[1]                                       $version        = '8',
   Optional[String]                                $version_major  = undef,
   Optional[String]                                $version_minor  = undef,

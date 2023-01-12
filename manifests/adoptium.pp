@@ -42,7 +42,7 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::adoptium (
-  String[1]                                       $ensure         = 'present',
+  Enum['present']                                 $ensure         = 'present',
   Optional[String]                                $version_major  = undef,
   Optional[String]                                $version_minor  = undef,
   Optional[String]                                $version_patch  = undef,
