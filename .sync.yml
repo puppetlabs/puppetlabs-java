@@ -29,9 +29,3 @@ spec/spec_helper.rb:
   unmanaged: false
 .travis.yml:
   delete: true
-Rakefile:
-  extra_disabled_lint_checks:
-    - parameter_types
-    - relative_classname_inclusion
-    - legacy_facts
-    - anchor_resource

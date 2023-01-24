@@ -26,7 +26,7 @@
 #   /usr/lib/jvm for Debian and /usr/java for RedHat.
 #
 # @param manage_basedir
-#   Whether to manage the basedir directory.  Defaults to false.
+#   Whether to manage the basedir directory.
 #   Note: /usr/lib/jvm is managed for Debian by default, separate from this parameter.
 #
 # @param manage_symlink
@@ -36,19 +36,19 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::sap (
-  $ensure         = 'present',
-  $version        = '8',
-  $version_full   = undef,
-  $java           = 'jdk',
-  $proxy_server   = undef,
-  $proxy_type     = undef,
-  $basedir        = undef,
-  $manage_basedir = true,
-  $manage_symlink = false,
-  $symlink_name   = undef,
+  Enum['present']                                 $ensure         = 'present',
+  String[1]                                       $version        = '8',
+  Optional[String]                                $version_full   = undef,
+  String[1]                                       $java           = 'jdk',
+  Optional[String]                                $proxy_server   = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']]  $proxy_type     = undef,
+  Optional[String]                                $basedir        = undef,
+  Boolean                                         $manage_basedir = true,
+  Boolean                                         $manage_symlink = false,
+  Optional[String]                                $symlink_name   = undef,
 ) {
   # archive module is used to download the java package
-  include ::archive
+  include archive
 
   # validate java edition to download
   if $java !~ /(jre|jdk)/ {
@@ -128,7 +128,6 @@ define java::sap (
   }
 
   $_os_architecture = $facts['os']['architecture'] ? {
-    undef => $facts['architecture'],
     default => $facts['os']['architecture']
   }
 

@@ -42,11 +42,6 @@ def changelog_future_release
 end
 
 PuppetLint.configuration.send('disable_relative')
-PuppetLint.configuration.send('disable_parameter_types')
-PuppetLint.configuration.send('disable_relative_classname_inclusion')
-PuppetLint.configuration.send('disable_legacy_facts')
-PuppetLint.configuration.send('disable_anchor_resource')
-
 
 if Bundler.rubygems.find_name('github_changelog_generator').any?
   GitHubChangelogGenerator::RakeTask.new :changelog do |config|

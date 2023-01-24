@@ -54,21 +54,21 @@
 #   The name for the optional symlink in the installation directory.
 #
 define java::download (
-  $ensure         = 'present',
-  $version        = '8',
-  $version_major  = undef,
-  $version_minor  = undef,
-  $java_se        = 'jdk',
-  $proxy_server   = undef,
-  $proxy_type     = undef,
-  $url            = undef,
-  $jce            = false,
-  $jce_url        = undef,
-  $basedir        = undef,
-  $manage_basedir = false,
-  $package_type   = undef,
-  $manage_symlink = false,
-  $symlink_name   = undef,
+  Enum['present']                                 $ensure         = 'present',
+  String[1]                                       $version        = '8',
+  Optional[String]                                $version_major  = undef,
+  Optional[String]                                $version_minor  = undef,
+  String[1]                                       $java_se        = 'jdk',
+  Optional[String]                                $proxy_server   = undef,
+  Optional[Enum['none', 'http', 'https', 'ftp']]  $proxy_type     = undef,
+  Optional[String]                                $url            = undef,
+  Boolean                                         $jce            = false,
+  Optional[String]                                $jce_url        = undef,
+  Optional[String]                                $basedir        = undef,
+  Boolean                                         $manage_basedir = false,
+  Optional[String]                                $package_type   = undef,
+  Boolean                                         $manage_symlink = false,
+  Optional[String]                                $symlink_name   = undef,
 ) {
   # archive module is used to download the java package
   include archive

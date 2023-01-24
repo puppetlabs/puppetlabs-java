@@ -1,5 +1,1 @@
 --relative
---no-parameter_types-check
---no-relative_classname_inclusion-check
---no-legacy_facts-check
---no-anchor_resource-check
