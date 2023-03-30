@@ -36,8 +36,22 @@ describe 'java', type: :class do
     let(:params) { { 'package' => 'jre', 'java_alternative' => '/usr/bin/java', 'java_alternative_path' => '/usr/java/jre1.7.0_67/bin/java' } }
 
     it { is_expected.to contain_package('java').with_name('jre') }
-    it { is_expected.to contain_exec('create-java-alternatives').with_command(['alternatives', '--install', '/usr/bin/java', 'java', '/usr/java/jre1.7.0_67/bin/java', '20000']) }
+    it {
+      is_expected.to contain_exec('create-java-alternatives').with(
+      {
+        command: ['alternatives', '--install', '/usr/bin/java', 'java', '/usr/java/jre1.7.0_67/bin/java', '20000'],
+        unless: 'alternatives --display java | grep -q /usr/java/jre1.7.0_67/bin/java',
+      },
+    )
+    }
     it { is_expected.to contain_exec('update-java-alternatives').with_command(['alternatives', '--set', 'java', '/usr/java/jre1.7.0_67/bin/java']) }
+  end
+
+  context 'when select Malicious JRE with alternatives for CentOS 6.3' do
+    let(:facts) { { os: { family: 'RedHat', name: 'CentOS', release: { full: '6.3' }, architecture: 'x86_64' } } }
+    let(:params) { { 'package' => 'jre', 'java_alternative' => '/usr/bin/java', 'java_alternative_path' => '/usr/java ; rm -rf /etc' } }
+
+    it { is_expected.to contain_exec('create-java-alternatives').with_unless('alternatives --display java | grep -q /usr/java\\ \\;\\ rm\\ -rf\\ /etc') }
   end
 
   context 'when select passed value for CentOS 5.3' do
