@@ -43,12 +43,6 @@ RSpec/NoExpectationExample:
     - 'spec/acceptance/install_spec.rb'
     - 'spec/unit/facter/java_default_home_spec.rb'
 
-# Offense count: 8
-RSpec/StubbedMock:
-  Exclude:
-    - 'spec/unit/facter/java_default_home_spec.rb'
-    - 'spec/unit/facter/java_version_spec.rb'
-
 # Offense count: 1
 Style/MixinUsage:
   Exclude:
