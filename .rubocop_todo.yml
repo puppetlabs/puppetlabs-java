@@ -16,12 +16,6 @@ Naming/HeredocDelimiterNaming:
     - 'spec/defines/adoptium_spec.rb'
     - 'spec/defines/sap_spec.rb'
 
-# Offense count: 1
-# This cop supports unsafe autocorrection (--autocorrect-all).
-Performance/StringInclude:
-  Exclude:
-    - 'lib/facter/java_default_home.rb'
-
 # Offense count: 8
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without
