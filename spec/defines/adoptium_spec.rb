@@ -16,7 +16,7 @@ describe 'java::adoptium', type: :define do
           version_build: '7',
           basedir: '/usr/java',
           manage_symlink: true,
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk16_symlink' }
@@ -33,7 +33,7 @@ describe 'java::adoptium', type: :define do
           version_patch: '2',
           version_build: '7',
           basedir: '/usr/java',
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk16_nosymlink' }
@@ -50,7 +50,7 @@ describe 'java::adoptium', type: :define do
           version_patch: '2',
           version_build: '7',
           basedir: '/usr/java',
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk16' }
@@ -69,7 +69,7 @@ describe 'java::adoptium', type: :define do
           version_patch: '1',
           version_build: '12',
           basedir: '/usr/java',
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk17' }
@@ -86,13 +86,13 @@ describe 'java::adoptium', type: :define do
           version_major: '16',
           version_minor: '0',
           version_patch: '2',
-          version_build: '7',
+          version_build: '7'
         }
       end
       let(:title) { 'jdk16' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::adoptium {
           'jdk17':
             ensure        => 'present',
@@ -101,7 +101,7 @@ describe 'java::adoptium', type: :define do
             version_patch => '1',
             version_build => '12',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }
@@ -115,7 +115,7 @@ describe 'java::adoptium', type: :define do
           version_minor: '0',
           version_patch: '2',
           version_build: '7',
-          basedir: '/usr/java',
+          basedir: '/usr/java'
         }
       end
       let(:title) { 'jdk16' }
@@ -124,6 +124,7 @@ describe 'java::adoptium', type: :define do
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').with_command(['tar', '-zxf', '/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').that_requires('Archive[/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz]') }
     end
+
     context 'when manage_basedir is set to true' do
       let(:params) do
         {
@@ -133,7 +134,7 @@ describe 'java::adoptium', type: :define do
           version_patch: '2',
           version_build: '7',
           basedir: '/usr/java',
-          manage_basedir: true,
+          manage_basedir: true
         }
       end
       let(:title) { 'jdk16' }
@@ -153,7 +154,7 @@ describe 'java::adoptium', type: :define do
           version_minor: '0',
           version_patch: '2',
           version_build: '7',
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk16' }
@@ -171,7 +172,7 @@ describe 'java::adoptium', type: :define do
           version_minor: '0',
           version_patch: '1',
           version_build: '12',
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk17' }
@@ -188,13 +189,13 @@ describe 'java::adoptium', type: :define do
           version_major: '16',
           version_minor: '0',
           version_patch: '2',
-          version_build: '7',
+          version_build: '7'
         }
       end
       let(:title) { 'jdk16' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::adoptium {
           'jdk17':
             ensure        => 'present',
@@ -203,7 +204,7 @@ describe 'java::adoptium', type: :define do
             version_patch => '1',
             version_build => '12',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }
@@ -217,7 +218,7 @@ describe 'java::adoptium', type: :define do
           version_minor: '0',
           version_patch: '2',
           version_build: '7',
-          basedir: '/usr/lib/jvm',
+          basedir: '/usr/lib/jvm'
         }
       end
       let(:title) { 'jdk16' }
@@ -226,6 +227,7 @@ describe 'java::adoptium', type: :define do
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').with_command(['tar', '-zxf', '/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').that_requires('Archive[/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz]') }
     end
+
     context 'when manage_basedir is set to true' do
       let(:params) do
         {
@@ -235,7 +237,7 @@ describe 'java::adoptium', type: :define do
           version_patch: '2',
           version_build: '7',
           basedir: '/usr/lib/jvm',
-          manage_basedir: true,
+          manage_basedir: true
         }
       end
       let(:title) { 'jdk16' }
@@ -252,9 +254,9 @@ describe 'java::adoptium', type: :define do
           family: 'Windows',
           name: 'Windows',
           release: {
-            full: '8.1',
-          },
-        },
+            full: '8.1'
+          }
+        }
       },
       {
         kernel: 'Darwin',
@@ -262,9 +264,9 @@ describe 'java::adoptium', type: :define do
           family: 'Darwin',
           name: 'Darwin',
           release: {
-            full: '13.3.0',
-          },
-        },
+            full: '13.3.0'
+          }
+        }
       },
       {
         kernel: 'AIX',
@@ -272,9 +274,9 @@ describe 'java::adoptium', type: :define do
           family: 'AIX',
           name: 'AIX',
           release: {
-            full: '7100-02-00-000',
-          },
-        },
+            full: '7100-02-00-000'
+          }
+        }
       },
       {
         kernel: 'AIX',
@@ -282,9 +284,9 @@ describe 'java::adoptium', type: :define do
           family: 'AIX',
           name: 'AIX',
           release: {
-            full: '6100-07-04-1216',
-          },
-        },
+            full: '6100-07-04-1216'
+          }
+        }
       },
       {
         kernel: 'AIX',
@@ -292,9 +294,9 @@ describe 'java::adoptium', type: :define do
           family: 'AIX',
           name: 'AIX',
           release: {
-            full: '5300-12-01-1016',
-          },
-        },
+            full: '5300-12-01-1016'
+          }
+        }
       },
     ].each do |facts|
       let(:facts) { facts }

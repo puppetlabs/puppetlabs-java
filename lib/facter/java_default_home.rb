@@ -21,7 +21,7 @@ Facter.add(:java_default_home) do
       nil
     else
       java_path = File.realpath(java_bin)
-      java_default_home = if %r{/jre/}.match?(java_path)
+      java_default_home = if java_path.include?('/jre/')
                             File.dirname(File.dirname(File.dirname(java_path)))
                           else
                             File.dirname(File.dirname(java_path))

@@ -8,17 +8,16 @@ java_8_path = '/usr/lib/jvm/oracle-java8-jre-amd64/bin/java'
 java_8_home = '/usr/lib/jvm/oracle-java8-jre-amd64'
 
 def unlink_and_delete(filename)
-  if File.symlink?(filename)
-    File.unlink(filename)
-  end
+  File.unlink(filename) if File.symlink?(filename)
   return unless File.exist?(filename)
+
   File.delete(filename)
 end
 
 def symlink_and_test(symlink_path, java_home)
   File.symlink(symlink_path, './java_test')
-  expect(Facter::Core::Execution).to receive(:which).with('java').and_return('./java_test')
-  expect(File).to receive(:realpath).with('./java_test').and_return(symlink_path)
+  allow(Facter::Core::Execution).to receive(:which).with('java').and_return('./java_test')
+  allow(File).to receive(:realpath).with('./java_test').and_return(symlink_path)
   expect(Facter.value(:java_default_home)).to eql java_home
 end
 
@@ -32,7 +31,7 @@ describe 'java_default_home' do
     context 'when java is in /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java' do
       it do
         unlink_and_delete('./java_test')
-        symlink_and_test(java_7_path, java_7_home)
+        expect { symlink_and_test(java_7_path, java_7_home) }.not_to raise_error
         unlink_and_delete('./java_test')
       end
     end
@@ -40,7 +39,7 @@ describe 'java_default_home' do
     context 'when java is in /usr/lib/jvm/oracle-java8-jre-amd64/bin/java' do
       it do
         unlink_and_delete('./java_test')
-        symlink_and_test(java_8_path, java_8_home)
+        expect { symlink_and_test(java_8_path, java_8_home) }.not_to raise_error
         unlink_and_delete('./java_test')
       end
     end

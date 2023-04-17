@@ -11,6 +11,7 @@ describe 'java_patch_level' do
     before :each do
       allow(Facter.fact(:java_version)).to receive(:value).and_return('1.7.0_71')
     end
+
     it do
       expect(Facter.fact(:java_patch_level).value).to eq('71')
     end
@@ -20,6 +21,7 @@ describe 'java_patch_level' do
     before :each do
       allow(Facter.fact(:java_version)).to receive(:value).and_return('nil')
     end
+
     it do
       expect(Facter.fact(:java_patch_level).value).to be_nil
     end
