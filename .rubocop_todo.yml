@@ -35,14 +35,6 @@ RSpec/NamedSubject:
     - 'spec/classes/java_spec.rb'
     - 'spec/defines/download_spec.rb'
 
-# Offense count: 12
-# Configuration parameters: AllowedPatterns.
-# AllowedPatterns: ^expect_, ^assert_
-RSpec/NoExpectationExample:
-  Exclude:
-    - 'spec/acceptance/install_spec.rb'
-    - 'spec/unit/facter/java_default_home_spec.rb'
-
 # Offense count: 1
 Style/MixinUsage:
   Exclude:
