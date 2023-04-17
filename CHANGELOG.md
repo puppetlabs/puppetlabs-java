@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v9.0.1) (2023-04-17)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v9.0.1...v9.0.1)
+
+### Changed
+
+- \(CONT-784\) Add Support for Puppet 8 / Drop Support for Puppet 6 [\#548](https://github.com/puppetlabs/puppetlabs-java/pull/548) ([david22swan](https://github.com/david22swan))
+
+### Added
+
+- \(CONT-356\) Syntax update [\#543](https://github.com/puppetlabs/puppetlabs-java/pull/543) ([LukasAud](https://github.com/LukasAud))
+
+### Fixed
+
+- Fix shell\_escape of unless command [\#550](https://github.com/puppetlabs/puppetlabs-java/pull/550) ([traylenator](https://github.com/traylenator))
+
 ## [v9.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/v9.0.1) (2022-11-29)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v9.0.0...v9.0.1)
@@ -9,6 +25,7 @@ All notable changes to this project will be documented in this file. The format 
 ### Fixed
 
 - 538-unresolved-fact-fix [\#540](https://github.com/puppetlabs/puppetlabs-java/pull/540) ([jordanbreen28](https://github.com/jordanbreen28))
+- Unresolved fact fix [\#539](https://github.com/puppetlabs/puppetlabs-java/pull/539) ([jordanbreen28](https://github.com/jordanbreen28))
 
 ## [v9.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v9.0.0) (2022-11-23)
 
