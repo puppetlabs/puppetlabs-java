@@ -10,18 +10,18 @@ java_class_jre = "class { 'java':\n  " \
 java_class = "class { 'java': }"
 
 _sources = "file_line { 'non-free source':\n  " \
-          "path  => '/etc/apt/sources.list',\n  " \
-          "match => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main\",\n  " \
-          "line  => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main non-free\",\n" \
-          '}'
+           "path  => '/etc/apt/sources.list',\n  " \
+           "match => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main\",\n  " \
+           "line  => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main non-free\",\n" \
+           '}'
 
 _sun_jre = "class { 'java':\n  " \
-          "distribution => 'sun-jre',\n" \
-          '}'
+           "distribution => 'sun-jre',\n" \
+           '}'
 
 _sun_jdk = "class { 'java':\n  " \
-          "distribution => 'sun-jdk',\n" \
-          '}'
+           "distribution => 'sun-jdk',\n" \
+           '}'
 
 blank_version = "class { 'java':\n  " \
                 "version => '',\n" \

@@ -6,14 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 3
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented
-Layout/LineEndStringConcatenationIndentation:
-  Exclude:
-    - 'spec/acceptance/install_spec.rb'
-
 # Offense count: 12
 # Configuration parameters: ForbiddenDelimiters.
 # ForbiddenDelimiters: (?i-mx:(^|\s)(EO[A-Z]{1}|END)(\s|$))
@@ -29,14 +21,6 @@ Naming/HeredocDelimiterNaming:
 Performance/StringInclude:
   Exclude:
     - 'lib/facter/java_default_home.rb'
-
-# Offense count: 1
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be, be_nil
-RSpec/BeNil:
-  Exclude:
-    - 'spec/unit/facter/java_libjvm_path_spec.rb'
 
 # Offense count: 8
 # Configuration parameters: Prefixes, AllowedPatterns.
@@ -63,32 +47,6 @@ RSpec/DescribeClass:
     - 'spec/defines/sap_spec.rb'
     - 'spec/unit/facter/java_default_home_spec.rb'
     - 'spec/unit/facter/java_libjvm_path_spec.rb'
-    - 'spec/unit/facter/java_major_version_spec.rb'
-    - 'spec/unit/facter/java_patch_level_spec.rb'
-    - 'spec/unit/facter/java_version_spec.rb'
-
-# Offense count: 2
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterExample:
-  Exclude:
-    - 'spec/classes/java_spec.rb'
-
-# Offense count: 11
-# This cop supports safe autocorrection (--autocorrect).
-RSpec/EmptyLineAfterExampleGroup:
-  Exclude:
-    - 'spec/classes/java_spec.rb'
-    - 'spec/defines/adopt_spec.rb'
-    - 'spec/defines/adoptium_spec.rb'
-    - 'spec/defines/sap_spec.rb'
-    - 'spec/unit/facter/java_version_spec.rb'
-
-# Offense count: 10
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: AllowConsecutiveOneLiners.
-RSpec/EmptyLineAfterHook:
-  Exclude:
     - 'spec/unit/facter/java_major_version_spec.rb'
     - 'spec/unit/facter/java_patch_level_spec.rb'
     - 'spec/unit/facter/java_version_spec.rb'

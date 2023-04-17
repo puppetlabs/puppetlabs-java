@@ -36,6 +36,7 @@ describe 'java', type: :class do
     let(:params) { { 'package' => 'jre', 'java_alternative' => '/usr/bin/java', 'java_alternative_path' => '/usr/java/jre1.7.0_67/bin/java' } }
 
     it { is_expected.to contain_package('java').with_name('jre') }
+
     it {
       is_expected.to contain_exec('create-java-alternatives').with(
         {
@@ -44,6 +45,7 @@ describe 'java', type: :class do
         },
       )
     }
+
     it { is_expected.to contain_exec('update-java-alternatives').with_command(['alternatives', '--set', 'java', '/usr/java/jre1.7.0_67/bin/java']) }
   end
 
@@ -189,6 +191,7 @@ describe 'java', type: :class do
       it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/opt/custom_jdk') }
       it { is_expected.to contain_exec('update-java-alternatives').with_command(['update-java-alternatives', '--set', 'java-custom_jdk', '--jre']) }
     end
+
     context 'with missing parameters' do
       let(:params) do
         {

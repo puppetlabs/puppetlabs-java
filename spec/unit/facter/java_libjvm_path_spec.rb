@@ -22,7 +22,7 @@ describe 'java_libjvm_path' do
   context 'when libjvm does not exist' do
     it do
       allow(Dir).to receive(:glob).with("#{java_default_home}/lib/**/libjvm.so").and_return([])
-      expect(Facter.value(:java_libjvm_path)).to be nil
+      expect(Facter.value(:java_libjvm_path)).to be_nil
     end
   end
 end

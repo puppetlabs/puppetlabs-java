@@ -161,6 +161,7 @@ describe 'java::adopt', type: :define do
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').with_command(['tar', '-zxf', '/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install AdoptOpenJDK java jdk 8 8u202 b08').that_requires('Archive[/tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u202b08.tar.gz]') }
     end
+
     context 'when manage_basedir is set to true' do
       let(:params) do
         {
@@ -296,6 +297,7 @@ describe 'java::adopt', type: :define do
       it { is_expected.to compile }
     end
   end
+
   describe 'incompatible OSes' do
     [
       {

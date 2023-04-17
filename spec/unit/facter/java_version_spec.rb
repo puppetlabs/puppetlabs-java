@@ -23,6 +23,7 @@ describe 'java_version' do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('OpenBSD')
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
+
       let(:facts) { { operatingsystem: 'OpenBSD' } }
 
       it do
@@ -31,10 +32,12 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to eq('1.7.0_71')
       end
     end
+
     context 'when on Darwin' do
       before(:each) do
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Darwin')
       end
+
       let(:facts) { { kernel: 'Darwin' } }
 
       it do
@@ -43,11 +46,13 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to eq('1.7.0_71')
       end
     end
+
     context 'when on other systems' do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('MyOS')
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
+
       let(:facts) { { operatingsystem: 'MyOS' } }
 
       it do
@@ -64,6 +69,7 @@ describe 'java_version' do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('OpenBSD')
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
+
       let(:facts) { { operatingsystem: 'OpenBSD' } }
 
       it do
@@ -72,10 +78,12 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to be_nil
       end
     end
+
     context 'when on Darwin' do
       before(:each) do
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Darwin')
       end
+
       let(:facts) { { kernel: 'Darwin' } }
 
       it do
@@ -83,11 +91,13 @@ describe 'java_version' do
         expect(Facter.value(:java_version)).to be_nil
       end
     end
+
     context 'when on other systems' do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('MyOS')
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
       end
+
       let(:facts) { { operatingsystem: 'MyOS' } }
 
       it do

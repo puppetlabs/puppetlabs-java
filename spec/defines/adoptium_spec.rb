@@ -124,6 +124,7 @@ describe 'java::adoptium', type: :define do
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').with_command(['tar', '-zxf', '/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz', '-C', '/usr/java']) }
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').that_requires('Archive[/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz]') }
     end
+
     context 'when manage_basedir is set to true' do
       let(:params) do
         {
@@ -226,6 +227,7 @@ describe 'java::adoptium', type: :define do
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').with_command(['tar', '-zxf', '/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz', '-C', '/usr/lib/jvm']) }
       it { is_expected.to contain_exec('Install Adoptium Temurin java 16 0 2 7').that_requires('Archive[/tmp/OpenJDK16U-jdk_x64_linux_hotspot_16.0.2_7.tar.gz]') }
     end
+
     context 'when manage_basedir is set to true' do
       let(:params) do
         {

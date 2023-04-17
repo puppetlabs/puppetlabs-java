@@ -108,6 +108,7 @@ describe 'java::sap', type: :define do
 
       it { is_expected.to contain_archive('/tmp/sapjvm-8.1.065-linux-x64.zip') }
     end
+
     context 'when manage_basedir is set to true' do
       let(:params) do
         {
@@ -193,6 +194,7 @@ describe 'java::sap', type: :define do
       it { is_expected.to compile }
     end
   end
+
   describe 'incompatible OSes' do
     [
       {
