@@ -131,7 +131,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk8' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::adopt {
           'jdk8172':
             ensure        => 'present',
@@ -139,7 +139,7 @@ describe 'java::adopt', type: :define do
             version_minor => 'b11',
             java          => 'jdk',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }
@@ -283,7 +283,7 @@ describe 'java::adopt', type: :define do
       let(:title) { 'jdk8' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::adopt {
           'jdk8172':
             ensure        => 'present',
@@ -291,7 +291,7 @@ describe 'java::adopt', type: :define do
             version_minor => 'b11',
             java          => 'jdk',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }

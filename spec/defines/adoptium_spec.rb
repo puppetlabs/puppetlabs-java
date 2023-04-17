@@ -92,7 +92,7 @@ describe 'java::adoptium', type: :define do
       let(:title) { 'jdk16' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::adoptium {
           'jdk17':
             ensure        => 'present',
@@ -101,7 +101,7 @@ describe 'java::adoptium', type: :define do
             version_patch => '1',
             version_build => '12',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }
@@ -195,7 +195,7 @@ describe 'java::adoptium', type: :define do
       let(:title) { 'jdk16' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::adoptium {
           'jdk17':
             ensure        => 'present',
@@ -204,7 +204,7 @@ describe 'java::adoptium', type: :define do
             version_patch => '1',
             version_build => '12',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }

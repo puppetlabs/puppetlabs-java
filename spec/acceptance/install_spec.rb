@@ -54,7 +54,7 @@ oracle_version_minor = '201'
 oracle_version_build = '09'
 oracle_hash = '42970487e3af4f5aa5bca3f542482c60'
 
-install_oracle_jdk_jre = <<EOL
+install_oracle_jdk_jre = <<MANIFEST
   java::oracle {
     'test_oracle_jre':
       version       => '#{oracle_version_major}',
@@ -71,9 +71,9 @@ install_oracle_jdk_jre = <<EOL
       url_hash      => '#{oracle_hash}',
       java_se       => 'jdk',
   }
-EOL
+MANIFEST
 
-install_oracle_jre_jce = <<EOL
+install_oracle_jre_jce = <<MANIFEST
   java::oracle {
     'test_oracle_jre':
       version       => '#{oracle_version_major}',
@@ -84,9 +84,9 @@ install_oracle_jre_jce = <<EOL
       jce           => true,
   }
 
-EOL
+MANIFEST
 
-install_oracle_jdk_jce = <<EOL
+install_oracle_jdk_jce = <<MANIFEST
   java::oracle {
     'test_oracle_jdk':
       version       => '#{oracle_version_major}',
@@ -96,7 +96,7 @@ install_oracle_jdk_jce = <<EOL
       java_se       => 'jdk',
       jce           => true,
   }
-EOL
+MANIFEST
 
 # AdoptOpenJDK URLs are quite generic, so tests are enabled by default
 # We need to test version 8 and >8 (here we use 9), because namings are different after version 8
@@ -109,7 +109,7 @@ adopt_version9_major = '9'
 adopt_version9_full = '9.0.4'
 adopt_version9_build = '11'
 
-install_adopt_jdk_jre = <<EOL
+install_adopt_jdk_jre = <<MANIFEST
   java::adopt {
     'test_adopt_jre_version8':
       version       => '#{adopt_version8_major}',
@@ -138,13 +138,13 @@ install_adopt_jdk_jre = <<EOL
       version_minor => '#{adopt_version9_build}',
       java          => 'jdk',
   }
-EOL
+MANIFEST
 
 # Adoptium
 
 adoptium_enabled = true unless os[:family].casecmp('SLES').zero?
 
-install_adoptium_jdk = <<EOL
+install_adoptium_jdk = <<MANIFEST
   java::adoptium {
     'test_adoptium_jdk_version16':
       version_major => '16',
@@ -159,7 +159,7 @@ install_adoptium_jdk = <<EOL
       version_patch => '1',
       version_build => '12',
   }
-EOL
+MANIFEST
 
 sap_enabled = true
 sap_version7 = '7'
@@ -171,7 +171,7 @@ sap_version11_full = '11.0.7'
 sap_version14 = '14'
 sap_version14_full = '14.0.1'
 
-install_sap_jdk_jre = <<EOL
+install_sap_jdk_jre = <<MANIFEST
   java::sap {
     'test_sap_jdk_version7':
       version       => '#{sap_version7}',
@@ -208,7 +208,7 @@ install_sap_jdk_jre = <<EOL
       version_full  => '#{sap_version14_full}',
       java          => 'jdk',
   }
-EOL
+MANIFEST
 
 describe 'installing' do
   context 'installing java jre' do

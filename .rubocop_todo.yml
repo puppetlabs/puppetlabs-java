@@ -6,16 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 12
-# Configuration parameters: ForbiddenDelimiters.
-# ForbiddenDelimiters: (?i-mx:(^|\s)(EO[A-Z]{1}|END)(\s|$))
-Naming/HeredocDelimiterNaming:
-  Exclude:
-    - 'spec/acceptance/install_spec.rb'
-    - 'spec/defines/adopt_spec.rb'
-    - 'spec/defines/adoptium_spec.rb'
-    - 'spec/defines/sap_spec.rb'
-
 # Offense count: 8
 # Configuration parameters: Prefixes, AllowedPatterns.
 # Prefixes: when, with, without

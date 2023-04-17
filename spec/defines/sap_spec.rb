@@ -82,14 +82,14 @@ describe 'java::sap', type: :define do
       let(:title) { 'jdk1107' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::sap {
           'jdk1106':
             ensure       => 'present',
             version_full => '11.0.6',
             java         => 'jdk',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }
@@ -181,14 +181,14 @@ describe 'java::sap', type: :define do
       let(:title) { 'jdk1107' }
 
       let(:pre_condition) do
-        <<-EOL
+        <<-MANIFEST
         java::sap {
           'jdk1106':
             ensure       => 'present',
             version_full => '11.0.6',
             java         => 'jdk',
         }
-        EOL
+        MANIFEST
       end
 
       it { is_expected.to compile }
