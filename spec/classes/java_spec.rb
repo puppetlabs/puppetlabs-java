@@ -39,10 +39,8 @@ describe 'java', type: :class do
 
     it {
       expect(subject).to contain_exec('create-java-alternatives').with(
-        {
-          command: ['alternatives', '--install', '/usr/bin/java', 'java', '/usr/java/jre1.7.0_67/bin/java', '20000'],
-          unless: 'alternatives --display java | grep -q /usr/java/jre1.7.0_67/bin/java'
-        },
+        { command: ['alternatives', '--install', '/usr/bin/java', 'java', '/usr/java/jre1.7.0_67/bin/java', '20000'],
+          unless: 'alternatives --display java | grep -q /usr/java/jre1.7.0_67/bin/java' },
       )
     }
 

@@ -27,11 +27,6 @@ RSpec/DescribeClass:
     - 'spec/unit/facter/java_patch_level_spec.rb'
     - 'spec/unit/facter/java_version_spec.rb'
 
-# Offense count: 1
-# Configuration parameters: CountAsOne.
-RSpec/ExampleLength:
-  Max: 6
-
 # Offense count: 3
 # Configuration parameters: EnforcedStyle, IgnoreSharedExamples.
 # SupportedStyles: always, named_only
