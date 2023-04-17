@@ -3,7 +3,9 @@ fixtures:
     archive: "https://github.com/voxpupuli/puppet-archive.git"
     facts: 'https://github.com/puppetlabs/puppetlabs-facts.git'
     stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
-    puppet_agent: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
+    puppet_agent: 
+      repo: 'https://github.com/puppetlabs/puppetlabs-puppet_agent.git'
+      ref: v4.13.0
     provision: 'https://github.com/puppetlabs/provision.git'
   symlinks:
     java: "#{source_dir}"
