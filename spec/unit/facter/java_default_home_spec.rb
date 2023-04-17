@@ -12,6 +12,7 @@ def unlink_and_delete(filename)
     File.unlink(filename)
   end
   return unless File.exist?(filename)
+
   File.delete(filename)
 end
 

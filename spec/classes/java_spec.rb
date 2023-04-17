@@ -38,11 +38,11 @@ describe 'java', type: :class do
     it { is_expected.to contain_package('java').with_name('jre') }
     it {
       is_expected.to contain_exec('create-java-alternatives').with(
-      {
-        command: ['alternatives', '--install', '/usr/bin/java', 'java', '/usr/java/jre1.7.0_67/bin/java', '20000'],
-        unless: 'alternatives --display java | grep -q /usr/java/jre1.7.0_67/bin/java',
-      },
-    )
+        {
+          command: ['alternatives', '--install', '/usr/bin/java', 'java', '/usr/java/jre1.7.0_67/bin/java', '20000'],
+          unless: 'alternatives --display java | grep -q /usr/java/jre1.7.0_67/bin/java',
+        },
+      )
     }
     it { is_expected.to contain_exec('update-java-alternatives').with_command(['alternatives', '--set', 'java', '/usr/java/jre1.7.0_67/bin/java']) }
   end
@@ -177,11 +177,11 @@ describe 'java', type: :class do
     context 'when all params provided' do
       let(:params) do
         {
-          'distribution'          => 'custom',
-          'package'               => 'custom_jdk',
-          'java_alternative'      => 'java-custom_jdk',
+          'distribution' => 'custom',
+          'package' => 'custom_jdk',
+          'java_alternative' => 'java-custom_jdk',
           'java_alternative_path' => '/opt/custom_jdk/bin/java',
-          'java_home'             => '/opt/custom_jdk',
+          'java_home' => '/opt/custom_jdk',
         }
       end
 

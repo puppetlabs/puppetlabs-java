@@ -3,45 +3,45 @@
 require 'spec_helper_acceptance'
 require 'pry'
 
-java_class_jre = "class { 'java':\n"\
-                 "  distribution => 'jre',\n"\
+java_class_jre = "class { 'java':\n  " \
+                 "distribution => 'jre',\n" \
                  '}'
 
 java_class = "class { 'java': }"
 
-_sources = "file_line { 'non-free source':\n"\
-          "  path  => '/etc/apt/sources.list',\n"\
-          "  match => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main\",\n"\
-          "  line  => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main non-free\",\n"\
+_sources = "file_line { 'non-free source':\n  " \
+          "path  => '/etc/apt/sources.list',\n  " \
+          "match => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main\",\n  " \
+          "line  => \"deb http://osmirror.delivery.puppetlabs.net/debian/ ${::lsbdistcodename} main non-free\",\n" \
           '}'
 
-_sun_jre = "class { 'java':\n"\
-          "  distribution => 'sun-jre',\n"\
+_sun_jre = "class { 'java':\n  " \
+          "distribution => 'sun-jre',\n" \
           '}'
 
-_sun_jdk = "class { 'java':\n"\
-          "  distribution => 'sun-jdk',\n"\
+_sun_jdk = "class { 'java':\n  " \
+          "distribution => 'sun-jdk',\n" \
           '}'
 
-blank_version = "class { 'java':\n"\
-                "  version => '',\n"\
+blank_version = "class { 'java':\n  " \
+                "version => '',\n" \
                 '}'
 
-incorrect_distro = "class { 'java':\n"\
-                   "  distribution => 'xyz',\n"\
+incorrect_distro = "class { 'java':\n  " \
+                   "distribution => 'xyz',\n" \
                    '}'
 
-blank_distro = "class { 'java':\n"\
-               "  distribution => '',\n"\
+blank_distro = "class { 'java':\n  " \
+               "distribution => '',\n" \
                '}'
 
-incorrect_package = "class { 'java':\n"\
-                    "  package => 'xyz',\n"\
+incorrect_package = "class { 'java':\n  " \
+                    "package => 'xyz',\n" \
                     '}'
 
-bogus_alternative = "class { 'java':\n"\
-                    "  java_alternative      => 'whatever',\n"\
-                    "  java_alternative_path => '/whatever',\n"\
+bogus_alternative = "class { 'java':\n  " \
+                    "java_alternative      => 'whatever',\n  " \
+                    "java_alternative_path => '/whatever',\n" \
                     '}'
 
 # Oracle installs are disabled by default, because the links to valid oracle installations

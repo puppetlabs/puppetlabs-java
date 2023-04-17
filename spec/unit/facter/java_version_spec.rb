@@ -2,14 +2,14 @@
 
 require 'spec_helper'
 
-openjdk_7_output = "Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true\n"\
-                   "openjdk version \"1.7.0_71\"\n"\
-                   "OpenJDK Runtime Environment (build 1.7.0_71-b14)\n"\
+openjdk_7_output = "Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true\n" \
+                   "openjdk version \"1.7.0_71\"\n" \
+                   "OpenJDK Runtime Environment (build 1.7.0_71-b14)\n" \
                    "OpenJDK 64-Bit Server VM (build 24.71-b01, mixed mode)\n"
 
-jdk_7_hotspot_output = "Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true\n"\
-                       "java version \"1.7.0_71\"\n"\
-                       "Java(TM) SE Runtime Environment (build 1.7.0_71-b14)\n"\
+jdk_7_hotspot_output = "Picked up JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true\n" \
+                       "java version \"1.7.0_71\"\n" \
+                       "Java(TM) SE Runtime Environment (build 1.7.0_71-b14)\n" \
                        "Java HotSpot(TM) 64-Bit Server VM (build 24.71-b01, mixed mode)\n"
 
 describe 'java_version' do
