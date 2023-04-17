@@ -18,7 +18,7 @@ describe 'java_version' do
   end
 
   context 'when java present, returns java version' do
-    context 'on OpenBSD', with_env: true do
+    context 'when on OpenBSD', with_env: true do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('OpenBSD')
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')
@@ -64,7 +64,7 @@ describe 'java_version' do
   end
 
   context 'when java not present, returns nil' do
-    context 'on OpenBSD', with_env: true do
+    context 'when on OpenBSD', with_env: true do
       before(:each) do
         allow(Facter.fact(:operatingsystem)).to receive(:value).and_return('OpenBSD')
         allow(Facter.fact(:kernel)).to receive(:value).and_return('Linux')

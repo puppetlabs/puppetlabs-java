@@ -6,14 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 8
-# Configuration parameters: Prefixes, AllowedPatterns.
-# Prefixes: when, with, without
-RSpec/ContextWording:
-  Exclude:
-    - 'spec/acceptance/install_spec.rb'
-    - 'spec/unit/facter/java_version_spec.rb'
-
 # Offense count: 11
 # Configuration parameters: IgnoredMetadata.
 RSpec/DescribeClass:

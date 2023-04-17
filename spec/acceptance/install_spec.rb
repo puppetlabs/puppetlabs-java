@@ -211,19 +211,19 @@ install_sap_jdk_jre = <<MANIFEST
 MANIFEST
 
 describe 'installing' do
-  context 'installing java jre' do
+  context 'when installing java jre' do
     it 'installs jre' do
       idempotent_apply(java_class_jre)
     end
   end
 
-  context 'installing java jdk' do
+  context 'when installing java jdk' do
     it 'installs jdk' do
       idempotent_apply(java_class)
     end
   end
 
-  context 'with failure cases' do
+  context 'when with failure cases' do
     it 'fails to install java with a blank version' do
       apply_manifest(blank_version, expect_failures: true)
     end
@@ -249,7 +249,7 @@ describe 'installing' do
     end
   end
 
-  context 'java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+  context 'when java::oracle', if: oracle_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
     let(:install_path) do
       (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
     end
@@ -279,7 +279,7 @@ describe 'installing' do
     end
   end
 
-  context 'java::adopt', if: adopt_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+  context 'when java::adopt', if: adopt_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
     let(:install_path) do
       (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
     end
@@ -293,7 +293,7 @@ describe 'installing' do
     end
   end
 
-  context 'java::adoptium', if: adoptium_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+  context 'when java::adoptium', if: adoptium_enabled, unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
     let(:install_path) do
       (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
     end
@@ -307,7 +307,7 @@ describe 'installing' do
     end
   end
 
-  context 'java::sap', if: sap_enabled && ['Sles'].include?(os[:family]), unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
+  context 'when java::sap', if: sap_enabled && ['Sles'].include?(os[:family]), unless: UNSUPPORTED_PLATFORMS.include?(os[:family]) do
     let(:install_path) do
       (os[:family] == 'redhat') ? '/usr/java' : '/usr/lib/jvm'
     end
