@@ -8,9 +8,7 @@ java_8_path = '/usr/lib/jvm/oracle-java8-jre-amd64/bin/java'
 java_8_home = '/usr/lib/jvm/oracle-java8-jre-amd64'
 
 def unlink_and_delete(filename)
-  if File.symlink?(filename)
-    File.unlink(filename)
-  end
+  File.unlink(filename) if File.symlink?(filename)
   return unless File.exist?(filename)
 
   File.delete(filename)

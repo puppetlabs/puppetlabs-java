@@ -22,6 +22,6 @@ Facter.add(:java_version) do
     elsif Facter::Core::Execution.which('java')
       version = Facter::Core::Execution.execute('java -Xmx12m -version 2>&1').lines.find { |line| line.include?('version') }
     end
-    version[%r{\"(.*?)\"}, 1] if version
+    version[%r{"(.*?)"}, 1] if version
   end
 end

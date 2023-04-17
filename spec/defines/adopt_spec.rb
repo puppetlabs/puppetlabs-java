@@ -14,7 +14,7 @@ describe 'java::adopt', type: :define do
           java: 'jdk',
           basedir: '/usr/java',
           manage_symlink: true,
-          symlink_name: 'java_home',
+          symlink_name: 'java_home'
         }
       end
       let(:title) { 'jdk11_symlink' }
@@ -125,7 +125,7 @@ describe 'java::adopt', type: :define do
           ensure: 'present',
           version_major: '8u202',
           version_minor: 'b08',
-          java: 'jdk',
+          java: 'jdk'
         }
       end
       let(:title) { 'jdk8' }
@@ -152,7 +152,7 @@ describe 'java::adopt', type: :define do
           version: '8',
           java: 'jdk',
           basedir: '/usr/java',
-          package_type: 'tar.gz',
+          package_type: 'tar.gz'
         }
       end
       let(:title) { 'jdk8' }
@@ -169,7 +169,7 @@ describe 'java::adopt', type: :define do
           version: '8',
           java: 'jdk',
           basedir: '/usr/java',
-          manage_basedir: true,
+          manage_basedir: true
         }
       end
       let(:title) { 'jdk8' }
@@ -277,7 +277,7 @@ describe 'java::adopt', type: :define do
           ensure: 'present',
           version_major: '8u202',
           version_minor: 'b08',
-          java: 'jdk',
+          java: 'jdk'
         }
       end
       let(:title) { 'jdk8' }
@@ -306,9 +306,9 @@ describe 'java::adopt', type: :define do
           family: 'Windows',
           name: 'Windows',
           release: {
-            full: '8.1',
-          },
-        },
+            full: '8.1'
+          }
+        }
       },
       {
         kernel: 'Darwin',
@@ -316,9 +316,9 @@ describe 'java::adopt', type: :define do
           family: 'Darwin',
           name: 'Darwin',
           release: {
-            full: '13.3.0',
-          },
-        },
+            full: '13.3.0'
+          }
+        }
       },
       {
         kernel: 'AIX',
@@ -326,9 +326,9 @@ describe 'java::adopt', type: :define do
           family: 'AIX',
           name: 'AIX',
           release: {
-            full: '7100-02-00-000',
-          },
-        },
+            full: '7100-02-00-000'
+          }
+        }
       },
       {
         kernel: 'AIX',
@@ -336,9 +336,9 @@ describe 'java::adopt', type: :define do
           family: 'AIX',
           name: 'AIX',
           release: {
-            full: '6100-07-04-1216',
-          },
-        },
+            full: '6100-07-04-1216'
+          }
+        }
       },
       {
         kernel: 'AIX',
@@ -346,9 +346,9 @@ describe 'java::adopt', type: :define do
           family: 'AIX',
           name: 'AIX',
           release: {
-            full: '5300-12-01-1016',
-          },
-        },
+            full: '5300-12-01-1016'
+          }
+        }
       },
     ].each do |facts|
       let(:facts) { facts }
