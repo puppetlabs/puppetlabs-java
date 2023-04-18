@@ -31,7 +31,7 @@ describe 'java_default_home' do
     context 'when java is in /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java' do
       it do
         unlink_and_delete('./java_test')
-        expect { symlink_and_test(java_7_path, java_7_home) }.not_to raise_error
+        symlink_and_test(java_7_path, java_7_home)
         unlink_and_delete('./java_test')
       end
     end
@@ -39,7 +39,7 @@ describe 'java_default_home' do
     context 'when java is in /usr/lib/jvm/oracle-java8-jre-amd64/bin/java' do
       it do
         unlink_and_delete('./java_test')
-        expect { symlink_and_test(java_8_path, java_8_home) }.not_to raise_error
+        symlink_and_test(java_8_path, java_8_home)
         unlink_and_delete('./java_test')
       end
     end
