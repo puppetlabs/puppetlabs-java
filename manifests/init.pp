@@ -46,7 +46,7 @@ class java (
 ) {
   contain java::params
 
-  $default_package_name = has_key($java::params::java, $distribution) ? {
+  $default_package_name = $distribution in $java::params::java ? {
     false   => undef,
     default => $java::params::java[$distribution]['package'],
   }
@@ -62,7 +62,7 @@ class java (
   ## Else undef
   $use_java_alternative = $java_alternative ? {
     undef                   => $use_java_package_name ? {
-      $default_package_name => has_key($java::params::java, $distribution) ? {
+      $default_package_name => $distribution in $java::params::java ? {
         default => $java::params::java[$distribution]['alternative'],
         false => undef,
       },
@@ -74,7 +74,7 @@ class java (
   ## Same logic as $java_alternative above.
   $use_java_alternative_path = $java_alternative_path ? {
     undef                   => $use_java_package_name ? {
-      $default_package_name => has_key($java::params::java, $distribution) ? {
+      $default_package_name => $distribution in $java::params::java ? {
         default               => $java::params::java[$distribution]['alternative_path'],
         false                 => undef,
       },
@@ -85,7 +85,7 @@ class java (
 
   $use_java_home = $java_home ? {
     undef                   => $use_java_package_name ? {
-      $default_package_name => has_key($java::params::java, $distribution) ? {
+      $default_package_name => $distribution in $java::params::java ? {
         default             => $java::params::java[$distribution]['java_home'],
         false               => undef,
       },
@@ -100,7 +100,7 @@ class java (
       $use_java_package_name == undef or $use_java_alternative == undef or
       $use_java_alternative_path == undef or $use_java_home == undef
     ) and (
-      ! has_key($java::params::java, $distribution)
+      !($distribution in $java::params::java)
   )) {
     fail("Java distribution ${distribution} is not supported. Missing default values.")
   }
