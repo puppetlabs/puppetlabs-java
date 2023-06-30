@@ -144,14 +144,14 @@ describe 'java', type: :class do
   end
 
   context 'when selecting default for SLES 11.3' do
-    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '11.3' }, architecture: 'x86_64' } } }
+    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '11.3', major: '11', minor: '3' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_6_0-ibm-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.6.0-ibm-1.6.0/') }
   end
 
   context 'when selecting default for SLES 11.4' do
-    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '11.4' }, architecture: 'x86_64' } } }
+    let(:facts) { { os: { family: 'Suse', name: 'SLES', release: { full: '11.4', major: '11', minor: '4' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_7_1-ibm-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.1-ibm-1.7.1/') }
