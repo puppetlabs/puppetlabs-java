@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.1.1](https://github.com/puppetlabs/puppetlabs-java/tree/v10.1.1) - 2023-07-03
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v10.1.0...v10.1.1)
+
 ## [v10.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/v10.1.0) - 2023-06-20
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v10.0.0...v10.1.0)
@@ -332,14 +336,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Add support for Ubuntu artful (17.10) and bionic (18.04 to be) [#270](https://github.com/puppetlabs/puppetlabs-java/pull/270) ([mhjacks](https://github.com/mhjacks))
 
-### Other
-
-- 2.3.0PreRelease [#277](https://github.com/puppetlabs/puppetlabs-java/pull/277) ([david22swan](https://github.com/david22swan))
-- Mergeback [#274](https://github.com/puppetlabs/puppetlabs-java/pull/274) ([david22swan](https://github.com/david22swan))
-- MODULE-6105: Move `.sync.yml` travis configuration under `.travis.yml:` [#273](https://github.com/puppetlabs/puppetlabs-java/pull/273) ([](https://github.com/))
-- MODULES-4179 Updated Oracle Java supported list [#272](https://github.com/puppetlabs/puppetlabs-java/pull/272) ([davinhanlon](https://github.com/davinhanlon))
-- Cleanup ruby code via rubocop [#271](https://github.com/puppetlabs/puppetlabs-java/pull/271) ([willmeek](https://github.com/willmeek))
-
 ## [2.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/2.2.0) - 2017-11-20
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/2.1.1...2.2.0)
@@ -360,16 +356,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Add support for CloudLinux [#251](https://github.com/puppetlabs/puppetlabs-java/pull/251) ([shaleenx](https://github.com/shaleenx))
 
-### Other
+### Fixed
 
-- allow latest archive version as dependency [#261](https://github.com/puppetlabs/puppetlabs-java/pull/261) ([bastelfreak](https://github.com/bastelfreak))
 - (FACT-1754) search for matching line with java version [#257](https://github.com/puppetlabs/puppetlabs-java/pull/257) ([shuebnersr](https://github.com/shuebnersr))
-- Support for Ubuntu 17.04 Zesty Zapus [#255](https://github.com/puppetlabs/puppetlabs-java/pull/255) ([Andor](https://github.com/Andor))
-- Removing Debian 6 [#254](https://github.com/puppetlabs/puppetlabs-java/pull/254) ([pmcmaw](https://github.com/pmcmaw))
-- (MODULES-5501) - Remove unsupported Ubuntu [#253](https://github.com/puppetlabs/puppetlabs-java/pull/253) ([pmcmaw](https://github.com/pmcmaw))
-- (MODULES-5187) msync puppet 5 and ruby 2.4 [#249](https://github.com/puppetlabs/puppetlabs-java/pull/249) ([eputnam](https://github.com/eputnam))
-- 2.1.0 mergeback [#246](https://github.com/puppetlabs/puppetlabs-java/pull/246) ([hunner](https://github.com/hunner))
-- #MODULES-4069: Fail when required params are not available in params. [#203](https://github.com/puppetlabs/puppetlabs-java/pull/203) ([vStone](https://github.com/vStone))
 
 ## [2.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/2.1.0) - 2017-06-22
 
@@ -382,11 +371,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Fixed
 
 - replace validate_* calls with datatypes & minor fixes [#223](https://github.com/puppetlabs/puppetlabs-java/pull/223) ([bastelfreak](https://github.com/bastelfreak))
-
-### Other
-
-- MODULES-5047 - Update java::oracle class to work with new download URLs [#236](https://github.com/puppetlabs/puppetlabs-java/pull/236) ([HelenCampbell](https://github.com/HelenCampbell))
-- MODULES-5058 Allow a complete URL to be passed to the java::oracle class [#234](https://github.com/puppetlabs/puppetlabs-java/pull/234) ([spynappels](https://github.com/spynappels))
 - Bugfix/modules 4368 java default home invalid fact [#215](https://github.com/puppetlabs/puppetlabs-java/pull/215) ([vStone](https://github.com/vStone))
 
 ## [2.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/2.0.0) - 2017-05-30
@@ -405,38 +389,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - (MODULES-4751) Fix Archive Order of Operations [#225](https://github.com/puppetlabs/puppetlabs-java/pull/225) ([bstopp](https://github.com/bstopp))
 - Fix naming of version_major and version_minor parameters [#196](https://github.com/puppetlabs/puppetlabs-java/pull/196) ([gzurowski](https://github.com/gzurowski))
 
-### Other
-
-- fixed formatting errors + made various minor changes [#230](https://github.com/puppetlabs/puppetlabs-java/pull/230) ([jbondpdx](https://github.com/jbondpdx))
-- (MODULES-4892) Update metadata [#227](https://github.com/puppetlabs/puppetlabs-java/pull/227) ([chsnell](https://github.com/chsnell))
-- Update OpenJDK packages to 1.8.0 for SLES 12 service packs [#226](https://github.com/puppetlabs/puppetlabs-java/pull/226) ([hlmartin](https://github.com/hlmartin))
-- [MODULES-4736] Increase Xmx setting for java_version fact [#224](https://github.com/puppetlabs/puppetlabs-java/pull/224) ([vchepkov](https://github.com/vchepkov))
-- [msync] 786266 Implement puppet-module-gems, a45803 Remove metadata.json from locales config [#222](https://github.com/puppetlabs/puppetlabs-java/pull/222) ([wilson208](https://github.com/wilson208))
-- Support for Ubuntu 16.10 - Yakkety Yak [#221](https://github.com/puppetlabs/puppetlabs-java/pull/221) ([traylenator](https://github.com/traylenator))
-- [MODULES-4528] Replace Puppet.version.to_f version comparison from spec_helper.rb [#219](https://github.com/puppetlabs/puppetlabs-java/pull/219) ([wilson208](https://github.com/wilson208))
-- [MODULES-4556] Remove PE requirement from metadata.json [#218](https://github.com/puppetlabs/puppetlabs-java/pull/218) ([wilson208](https://github.com/wilson208))
-- Support SLC operatingsystem [#217](https://github.com/puppetlabs/puppetlabs-java/pull/217) ([traylenator](https://github.com/traylenator))
-- pinning to archive 1.2.0, for puppet 3 compat [#216](https://github.com/puppetlabs/puppetlabs-java/pull/216) ([tphoney](https://github.com/tphoney))
-- (MODULES-4098) Sync the rest of the files [#212](https://github.com/puppetlabs/puppetlabs-java/pull/212) ([hunner](https://github.com/hunner))
-- [MODULES-4224] Implement beaker-module_install_helper [#211](https://github.com/puppetlabs/puppetlabs-java/pull/211) ([wilson208](https://github.com/wilson208))
-- (MODULES-4097) Sync travis.yml [#210](https://github.com/puppetlabs/puppetlabs-java/pull/210) ([hunner](https://github.com/hunner))
-- (FM-5972) gettext and spec.opts [#208](https://github.com/puppetlabs/puppetlabs-java/pull/208) ([eputnam](https://github.com/eputnam))
-- (MODULES-3631) msync Gemfile for 1.9 frozen strings [#207](https://github.com/puppetlabs/puppetlabs-java/pull/207) ([hunner](https://github.com/hunner))
-- (MODULES-4081) uses /etc/profile for solaris [#205](https://github.com/puppetlabs/puppetlabs-java/pull/205) ([eputnam](https://github.com/eputnam))
-- (MODULES-3704) Update gemfile template to be identical [#204](https://github.com/puppetlabs/puppetlabs-java/pull/204) ([hunner](https://github.com/hunner))
-- MODULES-4050: Check if jre is in the path before subsubdir. [#202](https://github.com/puppetlabs/puppetlabs-java/pull/202) ([vStone](https://github.com/vStone))
-- mocha version update [#201](https://github.com/puppetlabs/puppetlabs-java/pull/201) ([eputnam](https://github.com/eputnam))
-- java::oracle Do not download archive if already installed [#200](https://github.com/puppetlabs/puppetlabs-java/pull/200) ([edestecd](https://github.com/edestecd))
-- (MODULES-3983) Update parallel_tests for ruby 2.0.0 [#198](https://github.com/puppetlabs/puppetlabs-java/pull/198) ([pmcmaw](https://github.com/pmcmaw))
-- Update modulesync_config [51f469d] [#194](https://github.com/puppetlabs/puppetlabs-java/pull/194) ([DavidS](https://github.com/DavidS))
-- Update documentation about parameters major_version and minor_version [#193](https://github.com/puppetlabs/puppetlabs-java/pull/193) ([gzurowski](https://github.com/gzurowski))
-- Allow targeting specific major/minor Oracle JDK versions [#192](https://github.com/puppetlabs/puppetlabs-java/pull/192) ([gzurowski](https://github.com/gzurowski))
-- support java on debian stretch [#191](https://github.com/puppetlabs/puppetlabs-java/pull/191) ([bodik](https://github.com/bodik))
-- Update modulesync_config [a3fe424] [#190](https://github.com/puppetlabs/puppetlabs-java/pull/190) ([DavidS](https://github.com/DavidS))
-- Support recent java versions > 8u99 built with make-jpkg 0.53 [#187](https://github.com/puppetlabs/puppetlabs-java/pull/187) ([jinnko](https://github.com/jinnko))
-- (MODULES-3581) modulesync [067d08a] [#183](https://github.com/puppetlabs/puppetlabs-java/pull/183) ([DavidS](https://github.com/DavidS))
-- Update SLES 11sp4 packages to Java 1.7.1 [#178](https://github.com/puppetlabs/puppetlabs-java/pull/178) ([tylerjl](https://github.com/tylerjl))
-
 ## [1.6.0](https://github.com/puppetlabs/puppetlabs-java/tree/1.6.0) - 2016-06-13
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/1.5.0...1.6.0)
@@ -445,13 +397,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fix typo in documentation for class oracle [#170](https://github.com/puppetlabs/puppetlabs-java/pull/170) ([gerhardsam](https://github.com/gerhardsam))
 - Fix up rspec deprecation warnings. [#166](https://github.com/puppetlabs/puppetlabs-java/pull/166) ([alexharv074](https://github.com/alexharv074))
-
-### Other
-
-- minor edit on new text [#176](https://github.com/puppetlabs/puppetlabs-java/pull/176) ([jbondpdx](https://github.com/jbondpdx))
-- Update java package for SLES 11.4 [#171](https://github.com/puppetlabs/puppetlabs-java/pull/171) ([jonnytdevops](https://github.com/jonnytdevops))
-- Update to newest modulesync_configs [9ca280f] [#169](https://github.com/puppetlabs/puppetlabs-java/pull/169) ([DavidS](https://github.com/DavidS))
-- 1.5.x mergeback [#167](https://github.com/puppetlabs/puppetlabs-java/pull/167) ([bmjen](https://github.com/bmjen))
 
 ## [1.5.0](https://github.com/puppetlabs/puppetlabs-java/tree/1.5.0) - 2016-04-12
 
@@ -469,16 +414,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fix typo in README.markdown [#165](https://github.com/puppetlabs/puppetlabs-java/pull/165) ([alexharv074](https://github.com/alexharv074))
 
-### Other
-
-- Use java 8 as the default on RHEL > 7.0 [#160](https://github.com/puppetlabs/puppetlabs-java/pull/160) ([jyaworski](https://github.com/jyaworski))
-- Update metadata to note Debian 8 support [#158](https://github.com/puppetlabs/puppetlabs-java/pull/158) ([DavidS](https://github.com/DavidS))
-- (FM-4046) Update to current msync configs [006831f] [#157](https://github.com/puppetlabs/puppetlabs-java/pull/157) ([DavidS](https://github.com/DavidS))
-- Allow tildes in version to support webupd8team's packages [#156](https://github.com/puppetlabs/puppetlabs-java/pull/156) ([joerayme](https://github.com/joerayme))
-- (FM-4049) update to modulesync_configs [#154](https://github.com/puppetlabs/puppetlabs-java/pull/154) ([DavidS](https://github.com/DavidS))
-- Can now pass options to package provider [#151](https://github.com/puppetlabs/puppetlabs-java/pull/151) ([tux-o-matic](https://github.com/tux-o-matic))
-- 1.4.x Mergeback [#150](https://github.com/puppetlabs/puppetlabs-java/pull/150) ([HelenCampbell](https://github.com/HelenCampbell))
-
 ## [1.4.3](https://github.com/puppetlabs/puppetlabs-java/tree/1.4.3) - 2015-12-07
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/1.4.2...1.4.3)
@@ -488,10 +423,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add support for Ubuntu 15.10 [#147](https://github.com/puppetlabs/puppetlabs-java/pull/147) ([oc243](https://github.com/oc243))
 - add two facts: libjvm and java executable paths [#117](https://github.com/puppetlabs/puppetlabs-java/pull/117) ([faxm0dem](https://github.com/faxm0dem))
 
-### Other
-
-- update fixtures.yml to use git instead of http [#145](https://github.com/puppetlabs/puppetlabs-java/pull/145) ([bmjen](https://github.com/bmjen))
-
 ## [1.4.2](https://github.com/puppetlabs/puppetlabs-java/tree/1.4.2) - 2015-10-07
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/1.4.1...1.4.2)
@@ -500,12 +431,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fix rspec deprecation warnings. .should -> expect().to [#141](https://github.com/puppetlabs/puppetlabs-java/pull/141) ([vStone](https://github.com/vStone))
 
-### Other
-
-- Update 1.4.x with master changes [#143](https://github.com/puppetlabs/puppetlabs-java/pull/143) ([hunner](https://github.com/hunner))
-- (MODULES-2637) Checks java actually installed [#142](https://github.com/puppetlabs/puppetlabs-java/pull/142) ([DavidS](https://github.com/DavidS))
-- mergeback 1.4.x [#137](https://github.com/puppetlabs/puppetlabs-java/pull/137) ([hunner](https://github.com/hunner))
-
 ## [1.4.1](https://github.com/puppetlabs/puppetlabs-java/tree/1.4.1) - 2015-07-15
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/1.4.0...1.4.1)
@@ -513,10 +438,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - Add OEL operatingsystem to java::params [#135](https://github.com/puppetlabs/puppetlabs-java/pull/135) ([zreichert](https://github.com/zreichert))
-
-### Other
-
-- Merge 1.4.x to master [#134](https://github.com/puppetlabs/puppetlabs-java/pull/134) ([underscorgan](https://github.com/underscorgan))
 
 ## [1.4.0](https://github.com/puppetlabs/puppetlabs-java/tree/1.4.0) - 2015-07-08
 
@@ -533,20 +454,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Fix incorrect metadata [#133](https://github.com/puppetlabs/puppetlabs-java/pull/133) ([hunner](https://github.com/hunner))
 - (MODULES-2095) fixes create-java-alternatives command [#128](https://github.com/puppetlabs/puppetlabs-java/pull/128) ([bmjen](https://github.com/bmjen))
 - Fix Fedora 21+ package name [#104](https://github.com/puppetlabs/puppetlabs-java/pull/104) ([cottsay](https://github.com/cottsay))
-
-### Other
-
-- updates metadata.json to include support for PE up to 2015.2.x [#132](https://github.com/puppetlabs/puppetlabs-java/pull/132) ([bmjen](https://github.com/bmjen))
-- re-orders case statements in manifests to workaround PUP-4520. [#127](https://github.com/puppetlabs/puppetlabs-java/pull/127) ([bmjen](https://github.com/bmjen))
-- Install update-java-alternatives on Debian for the java::config class [#126](https://github.com/puppetlabs/puppetlabs-java/pull/126) ([danielparks](https://github.com/danielparks))
-- Updated travisci file to remove allow_failures on Puppet 4 [#121](https://github.com/puppetlabs/puppetlabs-java/pull/121) ([jonnytdevops](https://github.com/jonnytdevops))
-- Modulesync updates [#118](https://github.com/puppetlabs/puppetlabs-java/pull/118) ([underscorgan](https://github.com/underscorgan))
-- Edits to param descriptions and other small changes in the README. [#113](https://github.com/puppetlabs/puppetlabs-java/pull/113) ([jtappa](https://github.com/jtappa))
-- Extend Limitations section [#110](https://github.com/puppetlabs/puppetlabs-java/pull/110) ([antaflos](https://github.com/antaflos))
-- Improve java_version fact maintainability [#107](https://github.com/puppetlabs/puppetlabs-java/pull/107) ([elyscape](https://github.com/elyscape))
-- (MODULES-1749) Update java_version fact with maximum memory size [#106](https://github.com/puppetlabs/puppetlabs-java/pull/106) ([petems](https://github.com/petems))
-- Pin rspec gems [#105](https://github.com/puppetlabs/puppetlabs-java/pull/105) ([cmurphy](https://github.com/cmurphy))
-- Merge 1.3.x to master [#100](https://github.com/puppetlabs/puppetlabs-java/pull/100) ([underscorgan](https://github.com/underscorgan))
 
 ## [1.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/1.3.0) - 2015-01-20
 
@@ -566,16 +473,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Acceptance test fix for wheezy [#96](https://github.com/puppetlabs/puppetlabs-java/pull/96) ([underscorgan](https://github.com/underscorgan))
 - Test fix for RHEL with alternatives [#94](https://github.com/puppetlabs/puppetlabs-java/pull/94) ([underscorgan](https://github.com/underscorgan))
 
-### Other
-
-- Use --jre-headless instead of --jre [#97](https://github.com/puppetlabs/puppetlabs-java/pull/97) ([electrical](https://github.com/electrical))
-- Sync with modulesync [#95](https://github.com/puppetlabs/puppetlabs-java/pull/95) ([cmurphy](https://github.com/cmurphy))
-- Sync files with modulesync [#93](https://github.com/puppetlabs/puppetlabs-java/pull/93) ([underscorgan](https://github.com/underscorgan))
-- MODULES-1570 Java Version facts [#92](https://github.com/puppetlabs/puppetlabs-java/pull/92) ([petems](https://github.com/petems))
-- variable best practice (stop yelling at me linter) [#91](https://github.com/puppetlabs/puppetlabs-java/pull/91) ([justinstoller](https://github.com/justinstoller))
-- Merge 1.2.x [#86](https://github.com/puppetlabs/puppetlabs-java/pull/86) ([underscorgan](https://github.com/underscorgan))
-- cosmetic: default in last position [#76](https://github.com/puppetlabs/puppetlabs-java/pull/76) ([PierreR](https://github.com/PierreR))
-
 ## [1.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/1.2.0) - 2014-11-10
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/1.1.2...1.2.0)
@@ -584,13 +481,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fix syntax [#77](https://github.com/puppetlabs/puppetlabs-java/pull/77) ([PierreR](https://github.com/PierreR))
 
-### Other
-
-- Remove misleading changelog, no readme changes done [#85](https://github.com/puppetlabs/puppetlabs-java/pull/85) ([cyberious](https://github.com/cyberious))
-- Fixed issue with installing stdlib on certain platforms due to ssl issues [#82](https://github.com/puppetlabs/puppetlabs-java/pull/82) ([cyberious](https://github.com/cyberious))
-- Remove puppet_module_install in favor of copy_module_to [#79](https://github.com/puppetlabs/puppetlabs-java/pull/79) ([cyberious](https://github.com/cyberious))
-- place default case last in selectors [#64](https://github.com/puppetlabs/puppetlabs-java/pull/64) ([kian](https://github.com/kian))
-
 ## [1.1.2](https://github.com/puppetlabs/puppetlabs-java/tree/1.1.2) - 2014-09-03
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/1.1.1...1.1.2)
@@ -598,18 +488,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - Add metadata.json and remove Modulefile [#65](https://github.com/puppetlabs/puppetlabs-java/pull/65) ([hunner](https://github.com/hunner))
-
-### Other
-
-- OEL 5 is trying to use up2date which doesn't work [#78](https://github.com/puppetlabs/puppetlabs-java/pull/78) ([hunner](https://github.com/hunner))
-- Ah hah, got it [#75](https://github.com/puppetlabs/puppetlabs-java/pull/75) ([hunner](https://github.com/hunner))
-- Maybe spec filters work like this [#74](https://github.com/puppetlabs/puppetlabs-java/pull/74) ([hunner](https://github.com/hunner))
-- Spec typo [#73](https://github.com/puppetlabs/puppetlabs-java/pull/73) ([hunner](https://github.com/hunner))
-- Misplaced comma [#72](https://github.com/puppetlabs/puppetlabs-java/pull/72) ([hunner](https://github.com/hunner))
-- Remove sci 7 from metadata [#71](https://github.com/puppetlabs/puppetlabs-java/pull/71) ([hunner](https://github.com/hunner))
-- Update spec_helper for consistency [#69](https://github.com/puppetlabs/puppetlabs-java/pull/69) ([underscorgan](https://github.com/underscorgan))
-- Make deb work [#67](https://github.com/puppetlabs/puppetlabs-java/pull/67) ([hunner](https://github.com/hunner))
-- Java readme [#62](https://github.com/puppetlabs/puppetlabs-java/pull/62) ([jbondpdx](https://github.com/jbondpdx))
 
 ## [1.1.1](https://github.com/puppetlabs/puppetlabs-java/tree/1.1.1) - 2014-05-02
 
@@ -633,13 +511,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fix travis script. [#36](https://github.com/puppetlabs/puppetlabs-java/pull/36) ([apenney](https://github.com/apenney))
 
-### Other
-
-- plus signs are valid in debian/ubuntu package versions [#50](https://github.com/puppetlabs/puppetlabs-java/pull/50) ([CpuID](https://github.com/CpuID))
-- Update params.pp [#44](https://github.com/puppetlabs/puppetlabs-java/pull/44) ([jengels](https://github.com/jengels))
-- Support Scientific Linux [#38](https://github.com/puppetlabs/puppetlabs-java/pull/38) ([brettporter](https://github.com/brettporter))
-- CHANGELOG for 1.0.1 [#35](https://github.com/puppetlabs/puppetlabs-java/pull/35) ([brettporter](https://github.com/brettporter))
-
 ## [1.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/1.0.1) - 2013-08-01
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/0.3.0...1.0.1)
@@ -655,12 +526,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Fixes for centos versions [#24](https://github.com/puppetlabs/puppetlabs-java/pull/24) ([garethr](https://github.com/garethr))
 
-### Other
-
-- Update fedora java [#34](https://github.com/puppetlabs/puppetlabs-java/pull/34) ([haus](https://github.com/haus))
-- Update version to 1.0.0 [#31](https://github.com/puppetlabs/puppetlabs-java/pull/31) ([brettporter](https://github.com/brettporter))
-- Support multiple JVM, and Debian alternatives. [#28](https://github.com/puppetlabs/puppetlabs-java/pull/28) ([mrwacky42](https://github.com/mrwacky42))
-
 ## [0.3.0](https://github.com/puppetlabs/puppetlabs-java/tree/0.3.0) - 2013-05-08
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/0.2.0...0.3.0)
@@ -670,10 +535,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 - Add special case for fedora operating systems, where java is installable... [#23](https://github.com/puppetlabs/puppetlabs-java/pull/23) ([haus](https://github.com/haus))
 - Adding java::package_suse class [#22](https://github.com/puppetlabs/puppetlabs-java/pull/22) ([sschneid](https://github.com/sschneid))
 
-### Other
-
-- Reduce complexity [#25](https://github.com/puppetlabs/puppetlabs-java/pull/25) ([reidmv](https://github.com/reidmv))
-
 ## [0.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/0.2.0) - 2012-11-15
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v0.1.5...0.2.0)
@@ -682,14 +543,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - Add Solaris support [#18](https://github.com/puppetlabs/puppetlabs-java/pull/18) ([sschneid](https://github.com/sschneid))
 - 4 - Add license file. [#8](https://github.com/puppetlabs/puppetlabs-java/pull/8) ([kbarber](https://github.com/kbarber))
-
-### Other
-
-- Use osfamily instead of operatingsystem to determine package [#14](https://github.com/puppetlabs/puppetlabs-java/pull/14) ([eshamow](https://github.com/eshamow))
-- Moves debain packages to openjdk. [#13](https://github.com/puppetlabs/puppetlabs-java/pull/13) ([ody](https://github.com/ody))
-- Allow distributions starting with string `java` [#11](https://github.com/puppetlabs/puppetlabs-java/pull/11) ([ccaum](https://github.com/ccaum))
-- 9 - remove empty metadata.json from repo to avoid errors when using from  [#10](https://github.com/puppetlabs/puppetlabs-java/pull/10) ([kbarber](https://github.com/kbarber))
-- 5 - Provide a preseed file that preseeds license signing for java package [#7](https://github.com/puppetlabs/puppetlabs-java/pull/7) ([kbarber](https://github.com/kbarber))
 
 ## [v0.1.5](https://github.com/puppetlabs/puppetlabs-java/tree/v0.1.5) - 2011-06-16
 
