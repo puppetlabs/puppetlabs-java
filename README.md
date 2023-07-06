@@ -35,6 +35,7 @@ class { 'java':
 }
 ```
 
+
 To install the latest patch version of Java 8 on CentOS
 
 ```puppet
