@@ -85,6 +85,14 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
   end
 
+  context 'when selecting jre for Debian Bookworm (12.0)' do
+    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'bookworm' }, release: { major: '12' }, architecture: 'amd64' } } }
+    let(:params) { { 'distribution' => 'jre' } }
+
+    it { is_expected.to contain_package('java').with_name('openjdk-17-jre-headless') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64/') }
+  end
+
   context 'when selecting jdk for Ubuntu Bionic (18.04)' do
     let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'bionic' }, release: { major: '18.04' }, architecture: 'amd64' } } }
     let(:params) { { 'distribution' => 'jdk' } }

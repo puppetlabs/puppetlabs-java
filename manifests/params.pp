@@ -89,6 +89,22 @@ class java::params {
             },
           }
         }
+        '12': {
+          $java = {
+            'jdk' => {
+              'package'          => 'openjdk-17-jdk',
+              'alternative'      => "java-1.17.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.17.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.17.0-openjdk-${openjdk_architecture}/",
+            },
+            'jre' => {
+              'package'          => 'openjdk-17-jre-headless',
+              'alternative'      => "java-1.17.0-openjdk-${openjdk_architecture}",
+              'alternative_path' => "/usr/lib/jvm/java-1.17.0-openjdk-${openjdk_architecture}/bin/java",
+              'java_home'        => "/usr/lib/jvm/java-1.17.0-openjdk-${openjdk_architecture}/",
+            },
+          }
+        }
         '10', '11', '18.04', '18.10', '19.04', '19.10', '20.04', '22.04': {
           $java = {
             'jdk' => {
