@@ -115,8 +115,8 @@ class java (
   if ($facts['os']['family'] in ['SLES', 'SUSE']) and (versioncmp($facts['os']['release']['major'], '15') >= 0 and versioncmp($facts['os']['release']['minor'], '3') == 1) {
     exec { 'Enable legacy repos':
       path    => '/bin:/usr/bin/:/sbin:/usr/sbin',
-      command => 'SUSEConnect --product sle-module-legacy/15.4/x86_64',
-      unless  => 'SUSEConnect --status-text | grep sle-module-legacy/15.4/x86_64',
+      command => 'SUSEConnect --product sle-module-legacy/15.5/x86_64',
+      unless  => 'SUSEConnect --status-text | grep sle-module-legacy/15.5/x86_64',
     }
   }
 
