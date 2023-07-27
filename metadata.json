@@ -1,6 +1,6 @@
 {
   "name": "puppetlabs-java",
-  "version": "10.1.1",
+  "version": "10.1.2",
   "author": "puppetlabs",
   "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache-2.0",
