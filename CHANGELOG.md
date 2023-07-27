@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v10.1.2](https://github.com/puppetlabs/puppetlabs-java/tree/v10.1.2) - 2023-07-27
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v10.1.1...v10.1.2)
+
+### Fixed
+
+- (CAT-1250)-updating legacy SUSE repo name [#570](https://github.com/puppetlabs/puppetlabs-java/pull/570) ([praj1001](https://github.com/praj1001))
+
 ## [v10.1.1](https://github.com/puppetlabs/puppetlabs-java/tree/v10.1.1) - 2023-07-03
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v10.1.0...v10.1.1)
