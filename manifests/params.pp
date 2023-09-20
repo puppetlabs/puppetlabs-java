@@ -9,19 +9,8 @@ class java::params {
     'RedHat': {
       case $facts['os']['name'] {
         'AlmaLinux', 'Rocky', 'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC', 'CloudLinux': {
-          if (versioncmp($facts['os']['release']['full'], '5.0') < 0) {
-            $jdk_package = 'java-1.6.0-sun-devel'
-            $jre_package = 'java-1.6.0-sun'
-            $java_home   = '/usr/lib/jvm/java-1.6.0-sun/jre/'
-          }
-          # See cde7046 for why >= 5.0 < 6.3
-          elsif (versioncmp($facts['os']['release']['full'], '6.3') < 0) {
-            $jdk_package = 'java-1.6.0-openjdk-devel'
-            $jre_package = 'java-1.6.0-openjdk'
-            $java_home   = '/usr/lib/jvm/java-1.6.0/'
-          }
           # See PR#160 / c8e46b5 for why >= 6.3 < 7.1
-          elsif (versioncmp($facts['os']['release']['full'], '7.1') < 0) {
+          if (versioncmp($facts['os']['release']['full'], '7.1') < 0) {
             $jdk_package = 'java-1.7.0-openjdk-devel'
             $jre_package = 'java-1.7.0-openjdk'
             $java_home   = '/usr/lib/jvm/java-1.7.0/'
