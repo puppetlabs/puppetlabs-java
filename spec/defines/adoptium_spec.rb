@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'java::adoptium', type: :define do
   context 'with CentOS 64-bit' do
-    let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '6.0' } } } }
+    let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '7.0' } } } }
 
     context 'when manage_symlink is set to true' do
       let(:params) do

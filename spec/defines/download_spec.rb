@@ -6,7 +6,7 @@ describe 'java::download', type: :define do
   let(:url) { 'http://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz' }
 
   context 'with CentOS 64-bit' do
-    let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '6.0' } } } }
+    let(:facts) { { kernel: 'Linux', os: { family: 'RedHat', architecture: 'x86_64', name: 'CentOS', release: { full: '7.0' } } } }
 
     context 'when passing URL to url parameter' do
       let(:params) do
