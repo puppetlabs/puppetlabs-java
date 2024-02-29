@@ -10,49 +10,54 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0/') }
   end
 
-  context 'when selecting jdk for Debian Buster (10.0)' do
+  context 'on Debian Buster (10.0)' do
     let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'buster' }, release: { major: '10' }, architecture: 'amd64' } } }
-    let(:params) { { 'distribution' => 'jdk' } }
 
-    it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+    context 'when selecting jdk' do
+      let(:params) { { 'distribution' => 'jdk' } }
+
+      it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+    end
+
+    context 'when selecting jre' do
+      let(:params) { { 'distribution' => 'jre' } }
+
+      it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+    end
   end
 
-  context 'when selecting jre for Debian Buster (10.0)' do
-    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'buster' }, release: { major: '10' }, architecture: 'amd64' } } }
-    let(:params) { { 'distribution' => 'jre' } }
-
-    it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
-  end
-
-  context 'when selecting jdk for Ubuntu Bionic (18.04)' do
+  context 'on Ubuntu Bionic (18.04)' do
     let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'bionic' }, release: { major: '18.04' }, architecture: 'amd64' } } }
-    let(:params) { { 'distribution' => 'jdk' } }
 
-    it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+    context 'when selecting jdk' do
+      let(:params) { { 'distribution' => 'jdk' } }
+
+      it { is_expected.to contain_package('java').with_name('openjdk-11-jdk') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+    end
+
+    context 'when selecting jre' do
+      let(:params) { { 'distribution' => 'jre' } }
+
+      it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
+    end
   end
 
-  context 'when selecting jre for Ubuntu Bionic (18.04)' do
-    let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'bionic' }, release: { major: '18.04' }, architecture: 'amd64' } } }
-    let(:params) { { 'distribution' => 'jre' } }
-
-    it { is_expected.to contain_package('java').with_name('openjdk-11-jre-headless') }
-    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64/') }
-  end
-
-  context 'when selecting openjdk for Oracle Linux' do
+  context 'on Oracle Linux 7.0' do
     let(:facts) { { os: { family: 'RedHat', name: 'OracleLinux', release: { full: '7.0' }, architecture: 'x86_64' } } }
 
-    it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
-  end
+    context 'when selecting openjdk' do
+      it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk-devel') }
+    end
 
-  context 'when selecting passed value for Oracle Linux' do
-    let(:facts) { { os: { family: 'RedHat', name: 'OracleLinux', release: { full: '7.0' }, architecture: 'x86_64' } } }
-    let(:params) { { 'distribution' => 'jre' } }
+    context 'when selecting passed value for Oracle Linux' do
+      let(:params) { { 'distribution' => 'jre' } }
 
-    it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
+      it { is_expected.to contain_package('java').with_name('java-1.7.0-openjdk') }
+    end
   end
 
   context 'when selecting passed value for Scientific Linux' do
