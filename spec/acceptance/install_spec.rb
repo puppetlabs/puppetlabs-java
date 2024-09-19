@@ -99,31 +99,24 @@ install_oracle_jdk_jce = <<MANIFEST
 MANIFEST
 
 # AdoptOpenJDK URLs are quite generic, so tests are enabled by default
-# We need to test version 8 and >8 (here we use 9), because namings are different after version 8
+# We need to test version 9 and 10
 
 adopt_enabled = true unless os[:family].casecmp('SLES').zero?
-adopt_version8_major = '8'
-adopt_version8_minor = '202'
-adopt_version8_build = '08'
 adopt_version9_major = '9'
-adopt_version9_full = '9.0.4'
-adopt_version9_build = '11'
+case os[:arch]
+when 'aarch64', 'arm64'
+  adopt_version9_full = '9'
+  adopt_version9_build = '181'
+else
+  adopt_version9_full = '9.0.4'
+  adopt_version9_build = '11'
+end
+
+adopt_version10_major = '10'
+adopt_version10_full = '10.0.2'
+adopt_version10_build = '13.1'
 
 install_adopt_jdk_jre = <<MANIFEST
-  java::adopt {
-    'test_adopt_jre_version8':
-      version       => '#{adopt_version8_major}',
-      version_major => '#{adopt_version8_major}u#{adopt_version8_minor}',
-      version_minor => 'b#{adopt_version8_build}',
-      java          => 'jre',
-  }
-  java::adopt {
-    'test_adopt_jdk_version8':
-      version       => '#{adopt_version8_major}',
-      version_major => '#{adopt_version8_major}u#{adopt_version8_minor}',
-      version_minor => 'b#{adopt_version8_build}',
-      java          => 'jdk',
-  }
   java::adopt {
     'test_adopt_jre_version9':
       version       => '#{adopt_version9_major}',
@@ -136,6 +129,20 @@ install_adopt_jdk_jre = <<MANIFEST
       version       => '#{adopt_version9_major}',
       version_major => '#{adopt_version9_full}',
       version_minor => '#{adopt_version9_build}',
+      java          => 'jdk',
+  }
+  java::adopt {
+    'test_adopt_jre_version10':
+      version       => '#{adopt_version10_major}',
+      version_major => '#{adopt_version10_full}',
+      version_minor => '#{adopt_version10_build}',
+      java          => 'jre',
+  }
+  java::adopt {
+    'test_adopt_jdk_version10':
+      version       => '#{adopt_version10_major}',
+      version_major => '#{adopt_version10_full}',
+      version_minor => '#{adopt_version10_build}',
       java          => 'jdk',
   }
 MANIFEST
@@ -161,7 +168,7 @@ install_adoptium_jdk = <<MANIFEST
   }
 MANIFEST
 
-sap_enabled = true
+sap_enabled = (os[:arch] == 'x86_64' || os[:arch] == 'amd64')
 sap_version7 = '7'
 sap_version7_full = '7.1.072'
 sap_version8 = '8'

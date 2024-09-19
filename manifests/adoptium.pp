@@ -100,6 +100,8 @@ define java::adoptium (
     'i386' : { $arch = 'x86-32' }
     'x86_64' : { $arch = 'x64' }
     'amd64' : { $arch = 'x64' }
+    'arm64' : { $arch = 'aarch64' }
+    'aarch64' : { $arch = 'aarch64' }
     default : {
       fail ("unsupported platform ${$os_architecture}")
     }

@@ -120,7 +120,11 @@ class java::params {
     'Suse': {
       case $facts['os']['name'] {
         'SLES': {
-          if (versioncmp($facts['os']['release']['full'], '12.1') >= 0) {
+          if (versioncmp($facts['os']['release']['full'], '15.5') >= 0) {
+            $jdk_package = 'java-11-openjdk-devel'
+            $jre_package = 'java-11-openjdk'
+            $java_home   = '/usr/lib64/jvm/java-11-openjdk-11/'
+          } elsif (versioncmp($facts['os']['release']['full'], '12.1') >= 0) {
             $jdk_package = 'java-1_8_0-openjdk-devel'
             $jre_package = 'java-1_8_0-openjdk'
             $java_home   = '/usr/lib64/jvm/java-1.8.0-openjdk-1.8.0/'

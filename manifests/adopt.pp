@@ -196,6 +196,8 @@ define java::adopt (
     'i386' : { $arch = 'x86-32' }
     'x86_64' : { $arch = 'x64' }
     'amd64' : { $arch = 'x64' }
+    'arm64' : { $arch = 'aarch64' }
+    'aarch64' : { $arch = 'aarch64' }
     default : {
       fail ("unsupported platform ${$os_architecture}")
     }
@@ -216,7 +218,7 @@ define java::adopt (
   if ( $_version_int == 8 ) {
     $_release_minor_package_name = $release_minor
   } else {
-    $_release_minor_package_name = "_${release_minor}"
+    $_release_minor_package_name = "_${release_minor.split(/\./)[0]}"
   }
 
   case $_package_type {
