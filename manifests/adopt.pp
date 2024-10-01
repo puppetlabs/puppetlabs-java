@@ -216,7 +216,7 @@ define java::adopt (
   if ( $_version_int == 8 ) {
     $_release_minor_package_name = $release_minor
   } else {
-    $_release_minor_package_name = "_${release_minor}"
+    $_release_minor_package_name = "_${release_minor.split(/\./)[0]}"
   }
 
   case $_package_type {
@@ -250,8 +250,6 @@ define java::adopt (
   # full path to the installer
   $destination = "${destination_dir}${package_name}"
   notice ("Destination is ${destination}")
-
-  $install_command = ['tar', '-zxf', $destination, '-C', $_basedir]
 
   case $ensure {
     'present' : {
@@ -287,6 +285,8 @@ define java::adopt (
               }
             }
           }
+
+          $install_command = ['tar', '-zxf', $destination, '-C', $_basedir]
 
           exec { "Install AdoptOpenJDK java ${java} ${_version} ${release_major} ${release_minor}" :
             path    => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin',
