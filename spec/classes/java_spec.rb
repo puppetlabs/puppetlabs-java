@@ -95,7 +95,7 @@ describe 'java', type: :class do
   end
 
   context 'when selecting default for OpenSUSE 12.3' do
-    let(:facts) { { os: { family: 'Suse', name: 'OpenSUSE', release: { major: '12.3' }, architecture: 'x86_64' } } }
+    let(:facts) { { os: { family: 'Suse', name: 'OpenSUSE', release: { full: '12.3', major: '12', minor: '3' }, architecture: 'x86_64' } } }
 
     it { is_expected.to contain_package('java').with_name('java-1_7_0-openjdk-devel') }
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib64/jvm/java-1.7.0-openjdk-1.7.0/') }
