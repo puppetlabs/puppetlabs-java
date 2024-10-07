@@ -5,11 +5,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
-## [v11.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v11.0.0) - 2024-04-15
+## [v11.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/v11.0.1) - 2024-10-07
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v11.0.0...v11.0.1)
+
+### Fixed
+
+- (CAT-2051): Fixed SUSEConnect command so that java installation succeeds on SLES-15 [#601](https://github.com/puppetlabs/puppetlabs-java/pull/601) ([span786](https://github.com/span786))
+
+## [v11.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v11.0.0) - 2024-04-16
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v10.1.2...v11.0.0)
 
 ### Changed
+
 - [CAT-1427] : Removing RedHat/Scientific/OracleLinux 6 [#576](https://github.com/puppetlabs/puppetlabs-java/pull/576) ([rajat-puppet](https://github.com/rajat-puppet))
 
 ### Added
@@ -42,6 +51,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v9.0.1...v10.0.0)
 
 ### Changed
+
 - (CONT-784) Add Support for Puppet 8 / Drop Support for Puppet 6 [#548](https://github.com/puppetlabs/puppetlabs-java/pull/548) ([david22swan](https://github.com/david22swan))
 
 ### Added
@@ -66,6 +76,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v8.2.0...v9.0.0)
 
 ### Changed
+
 - (CONT-263) Update minimum required puppet version [#535](https://github.com/puppetlabs/puppetlabs-java/pull/535) ([LukasAud](https://github.com/LukasAud))
 
 ### Fixed
@@ -99,6 +110,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v7.3.0...v8.0.0)
 
 ### Changed
+
 - (GH-C&T-7) Remove code specific to unsupported OSs [#507](https://github.com/puppetlabs/puppetlabs-java/pull/507) ([david22swan](https://github.com/david22swan))
 
 ### Added
@@ -172,6 +184,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v6.5.0...v7.0.0)
 
 ### Changed
+
 - pdksync - Remove Puppet 5 from testing and bump minimal version to 6.0.0 [#463](https://github.com/puppetlabs/puppetlabs-java/pull/463) ([carabasdaniel](https://github.com/carabasdaniel))
 
 ### Fixed
@@ -247,6 +260,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v4.1.0...v5.0.0)
 
 ### Changed
+
 - [FM-8320] Remove Oracle download [#372](https://github.com/puppetlabs/puppetlabs-java/pull/372) ([carabasdaniel](https://github.com/carabasdaniel))
 
 ### Added
@@ -273,6 +287,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/3.3.0...v4.0.0)
 
 ### Changed
+
 - pdksync - (MODULES-8444) - Raise lower Puppet bound [#356](https://github.com/puppetlabs/puppetlabs-java/pull/356) ([david22swan](https://github.com/david22swan))
 
 ### Added
@@ -328,6 +343,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/2.4.0...3.0.0)
 
 ### Changed
+
 - [FM-6963] Removal of unsupported OS from java [#295](https://github.com/puppetlabs/puppetlabs-java/pull/295) ([david22swan](https://github.com/david22swan))
 
 ### Added
@@ -415,7 +431,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Fixed
 
 - Fix typo in documentation for class oracle [#170](https://github.com/puppetlabs/puppetlabs-java/pull/170) ([gerhardsam](https://github.com/gerhardsam))
-- Fix up rspec deprecation warnings. [#166](https://github.com/puppetlabs/puppetlabs-java/pull/166) ([alexharv074](https://github.com/alexharv074))
+- Fix up rspec deprecation warnings. [#166](https://github.com/puppetlabs/puppetlabs-java/pull/166) ([alex-harvey-z3q](https://github.com/alex-harvey-z3q))
 
 ## [1.5.0](https://github.com/puppetlabs/puppetlabs-java/tree/1.5.0) - 2016-04-12
 
@@ -431,7 +447,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ### Fixed
 
-- Fix typo in README.markdown [#165](https://github.com/puppetlabs/puppetlabs-java/pull/165) ([alexharv074](https://github.com/alexharv074))
+- Fix typo in README.markdown [#165](https://github.com/puppetlabs/puppetlabs-java/pull/165) ([alex-harvey-z3q](https://github.com/alex-harvey-z3q))
 
 ## [1.4.3](https://github.com/puppetlabs/puppetlabs-java/tree/1.4.3) - 2015-12-07
 
