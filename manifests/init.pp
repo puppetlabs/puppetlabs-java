@@ -110,13 +110,12 @@ class java (
     default    => '--jre'
   }
 
-  # Enable legacy repo to install net-tools-deprecated package
-  # If SUSE OS major version is >= 15 and minor version is > 3
-  if ($facts['os']['family'] in ['SLES', 'SUSE']) and (versioncmp($facts['os']['release']['major'], '15') >= 0 and versioncmp($facts['os']['release']['minor'], '3') == 1) {
+  # If the OS is SLES >= 15.3, enable the legacy repo to install net-tools-deprecated package
+  if ($facts['os']['family'] in ['SLES', 'SUSE']) and (versioncmp($facts['os']['release']['full'], '15.3') >= 0) {
     exec { 'Enable legacy repos':
       path    => '/bin:/usr/bin/:/sbin:/usr/sbin',
-      command => 'SUSEConnect --product sle-module-legacy/15.5/x86_64',
-      unless  => 'SUSEConnect --status-text | grep sle-module-legacy/15.5/x86_64',
+      command => "SUSEConnect --product sle-module-legacy/${facts['os']['release']['full']}/x86_64",
+      unless  => "SUSEConnect --status-text | grep sle-module-legacy/${facts['os']['release']['full']}/x86_64",
     }
   }
 
