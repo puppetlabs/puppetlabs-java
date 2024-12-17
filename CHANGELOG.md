@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v11.1.0](https://github.com/puppetlabs/puppetlabs-java/tree/v11.1.0) - 2024-12-17
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v11.0.1...v11.1.0)
+
+### Fixed
+
+- (CAT-2158) Upgrade rexml to address CVE-2024-49761 [#605](https://github.com/puppetlabs/puppetlabs-java/pull/605) ([amitkarsale](https://github.com/amitkarsale))
+
+### Other
+
+- Add support for Ubuntu 24.04 [#600](https://github.com/puppetlabs/puppetlabs-java/pull/600) ([choffee](https://github.com/choffee))
+
 ## [v11.0.1](https://github.com/puppetlabs/puppetlabs-java/tree/v11.0.1) - 2024-10-07
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v11.0.0...v11.0.1)
