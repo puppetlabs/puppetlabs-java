@@ -131,6 +131,8 @@ class java (
     ensure          => $version,
     install_options => $package_options,
     name            => $use_java_package_name,
+    before          => Class['java::config'],
   }
-  -> class { 'java::config': }
+
+  contain java::config # NB evalutation order is important here as the config class relies on variables from the base class having been set before it's evaluated.
 }
