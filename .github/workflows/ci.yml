@@ -16,5 +16,5 @@ jobs:
     uses: "puppetlabs/cat-github-actions/.github/workflows/module_acceptance.yml@main"
     secrets: "inherit"
     with:
-      runs_on: "ubuntu-20.04"
+      runs_on: "ubuntu-24.04"
       flags: "--exclude-platforms '[\"Ubuntu-24.04-arm\", \"Ubuntu-22.04-arm\", \"RedHat-9-arm\", \"Debian-12-arm\"]'"
