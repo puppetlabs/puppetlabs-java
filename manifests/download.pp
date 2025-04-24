@@ -28,11 +28,23 @@
 # @param url
 #   Full URL
 #
+# @param username
+#   Username for the URL
+#
+# @param password
+#   Password for the URL
+#
 # @param jce
 #   Install Oracles Java Cryptographic Extensions into the JRE or JDK
 #
 # @param jce_url
 #   Full URL to the jce zip file
+# 
+# @param jce_username
+#   Username for the JCE URL
+#
+# @param jce_password
+#   Password for the JCE URL
 #
 # @param basedir
 #   Directory under which the installation will occur. If not set, defaults to
@@ -62,8 +74,12 @@ define java::download (
   Optional[String]                                $proxy_server   = undef,
   Optional[Enum['none', 'http', 'https', 'ftp']]  $proxy_type     = undef,
   Optional[String]                                $url            = undef,
+  Optional[String]                                $username       = undef,
+  Optional[String]                                $password       = undef,
   Boolean                                         $jce            = false,
   Optional[String]                                $jce_url        = undef,
+  Optional[String]                                $jce_username   = undef,
+  Optional[String]                                $jce_password   = undef,
   Optional[String]                                $basedir        = undef,
   Boolean                                         $manage_basedir = false,
   Optional[String]                                $package_type   = undef,
@@ -258,6 +274,8 @@ define java::download (
       archive { $destination :
         ensure       => present,
         source       => $source,
+        username     => $username,
+        password     => $password,
         extract_path => '/tmp',
         cleanup      => false,
         creates      => $creates_path,
@@ -309,6 +327,8 @@ define java::download (
               extract_path  => $jce_path,
               extract_flags => '-oj',
               creates       => "${jce_path}/US_export_policy.jar",
+              username      => $jce_username,
+              password      => $jce_password,
               cleanup       => false,
               proxy_server  => $proxy_server,
               proxy_type    => $proxy_type,
