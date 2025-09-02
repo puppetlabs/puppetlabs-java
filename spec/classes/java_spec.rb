@@ -46,6 +46,24 @@ describe 'java', type: :class do
     end
   end
 
+  context 'on Debian Trixie (13)' do
+    let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'trixie' }, release: { major: '13' }, architecture: 'amd64' } } }
+
+    context 'when selecting jdk' do
+      let(:params) { { 'distribution' => 'jdk' } }
+
+      it { is_expected.to contain_package('java').with_name('openjdk-21-jdk') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64/') }
+    end
+
+    context 'when selecting jre' do
+      let(:params) { { 'distribution' => 'jre' } }
+
+      it { is_expected.to contain_package('java').with_name('openjdk-21-jre-headless') }
+      it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64/') }
+    end
+  end
+
   context 'on Ubuntu Bionic (18.04)' do
     let(:facts) { { os: { family: 'Debian', name: 'Ubuntu', lsb: { distcodename: 'bionic' }, release: { major: '18.04' }, architecture: 'amd64' } } }
 
