@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v12.0.0](https://github.com/puppetlabs/puppetlabs-java/tree/v12.0.0) - 2026-06-28
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v11.2.0...v12.0.0)
+
+### Changed
+
+- (CAT-2376) Puppetcore update [#614](https://github.com/puppetlabs/puppetlabs-java/pull/614) ([LukasAud](https://github.com/LukasAud))
+
+### Added
+
+- (CAT-2152) Add support for Centos9 [#606](https://github.com/puppetlabs/puppetlabs-java/pull/606) ([skyamgarp](https://github.com/skyamgarp))
+
+### Other
+
+- (MODULES-11840) Allow puppetlabs/stdlib 10.x [#626](https://github.com/puppetlabs/puppetlabs-java/pull/626) ([imaqsood](https://github.com/imaqsood))
+- Add support for Debian 13 (trixie) [#613](https://github.com/puppetlabs/puppetlabs-java/pull/613) ([mika](https://github.com/mika))
+- Configure Mend for GitHub.com [#608](https://github.com/puppetlabs/puppetlabs-java/pull/608) ([mend-for-github-com](https://github.com/mend-for-github-com))
+- Feat: Allow to download from a login/password protected URL [#588](https://github.com/puppetlabs/puppetlabs-java/pull/588) ([JGodin-C2C](https://github.com/JGodin-C2C))
+
 ## [v11.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/v11.2.0) - 2025-07-18
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v11.1.0...v11.2.0)

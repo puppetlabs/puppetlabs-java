@@ -379,8 +379,12 @@ The following parameters are available in the `java::download` defined type:
 * [`proxy_server`](#-java--download--proxy_server)
 * [`proxy_type`](#-java--download--proxy_type)
 * [`url`](#-java--download--url)
+* [`username`](#-java--download--username)
+* [`password`](#-java--download--password)
 * [`jce`](#-java--download--jce)
 * [`jce_url`](#-java--download--jce_url)
+* [`jce_username`](#-java--download--jce_username)
+* [`jce_password`](#-java--download--jce_password)
 * [`basedir`](#-java--download--basedir)
 * [`manage_basedir`](#-java--download--manage_basedir)
 * [`package_type`](#-java--download--package_type)
@@ -451,6 +455,22 @@ Full URL
 
 Default value: `undef`
 
+##### <a name="-java--download--username"></a>`username`
+
+Data type: `Optional[String]`
+
+Username for the URL
+
+Default value: `undef`
+
+##### <a name="-java--download--password"></a>`password`
+
+Data type: `Optional[String]`
+
+Password for the URL
+
+Default value: `undef`
+
 ##### <a name="-java--download--jce"></a>`jce`
 
 Data type: `Boolean`
@@ -464,6 +484,22 @@ Default value: `false`
 Data type: `Optional[String]`
 
 Full URL to the jce zip file
+
+Default value: `undef`
+
+##### <a name="-java--download--jce_username"></a>`jce_username`
+
+Data type: `Optional[String]`
+
+Username for the JCE URL
+
+Default value: `undef`
+
+##### <a name="-java--download--jce_password"></a>`jce_password`
+
+Data type: `Optional[String]`
+
+Password for the JCE URL
 
 Default value: `undef`
 
