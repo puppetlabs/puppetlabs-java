@@ -10,6 +10,13 @@ describe 'java', type: :class do
     it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-1.8.0/') }
   end
 
+  context 'when selecting openjdk for RedHat 10' do
+    let(:facts) { { os: { family: 'RedHat', name: 'RedHat', release: { full: '10.0', major: '10' }, architecture: 'x86_64' } } }
+
+    it { is_expected.to contain_package('java').with_name('java-21-openjdk-devel') }
+    it { is_expected.to contain_file_line('java-home-environment').with_line('JAVA_HOME=/usr/lib/jvm/java-21-openjdk/') }
+  end
+
   context 'on Debian Buster (10.0)' do
     let(:facts) { { os: { family: 'Debian', name: 'Debian', lsb: { distcodename: 'buster' }, release: { major: '10' }, architecture: 'amd64' } } }
 
