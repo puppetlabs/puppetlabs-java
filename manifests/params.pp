@@ -11,13 +11,22 @@ class java::params {
         'AlmaLinux', 'Rocky', 'RedHat', 'CentOS', 'OracleLinux', 'Scientific', 'OEL', 'SLC', 'CloudLinux': {
           # See PR#160 / c8e46b5 for why >= 6.3 < 7.1
           if (versioncmp($facts['os']['release']['full'], '7.1') < 0) {
-            $openjdk = '1.7.0'
+            $openjdk     = '1.7.0'
+            $jdk_package = "java-${openjdk}-openjdk-devel"
+            $jre_package = "java-${openjdk}-openjdk"
+            $java_home   = "/usr/lib/jvm/java-${openjdk}/"
+          } elsif (versioncmp($facts['os']['release']['full'], '10') >= 0) {
+            # RHEL 10 dropped java-1.8.0-openjdk; default to the current LTS.
+            $openjdk     = '21'
+            $jdk_package = "java-${openjdk}-openjdk-devel"
+            $jre_package = "java-${openjdk}-openjdk"
+            $java_home   = "/usr/lib/jvm/java-${openjdk}-openjdk/"
           } else {
-            $openjdk = '1.8.0'
+            $openjdk     = '1.8.0'
+            $jdk_package = "java-${openjdk}-openjdk-devel"
+            $jre_package = "java-${openjdk}-openjdk"
+            $java_home   = "/usr/lib/jvm/java-${openjdk}/"
           }
-          $jdk_package = "java-${openjdk}-openjdk-devel"
-          $jre_package = "java-${openjdk}-openjdk"
-          $java_home   = "/usr/lib/jvm/java-${openjdk}/"
         }
         'Fedora': {
           if (versioncmp($facts['os']['release']['full'], '21') < 0) {
