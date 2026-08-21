@@ -334,7 +334,7 @@ define java::download (
               proxy_type    => $proxy_type,
               require       => [
                 Package['unzip'],
-                Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"]
+                Exec["Install Oracle java_se ${java_se} ${version} ${release_major} ${release_minor}"],
               ],
             }
           }
