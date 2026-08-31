@@ -67,7 +67,7 @@ class java::params {
         default   => $facts['os']['architecture']
       }
       case $facts['os']['release']['major'] {
-        '13': {
+        '13', '26.04': {
           $openjdk = 21
         }
         '12', '24.04': {
