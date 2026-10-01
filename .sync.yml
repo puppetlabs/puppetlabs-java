@@ -22,3 +22,7 @@ spec/spec_helper.rb:
   unmanaged: false
 .travis.yml:
   delete: true
+Gemfile:
+  overrides:
+    - gem: 'puppet_litmus'
+      version: '~> 2.0'
