@@ -5,13 +5,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v12.2.0](https://github.com/puppetlabs/puppetlabs-java/tree/v12.2.0) - 2026-10-19
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v12.1.1...v12.2.0)
+
+### Added
+
+- puppet/archive: Allow 9.x [#636](https://github.com/puppetlabs/puppetlabs-java/pull/636) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v12.1.1](https://github.com/puppetlabs/puppetlabs-java/tree/v12.1.1) - 2026-10-16
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-java/compare/v12.1.0...v12.1.1)
 
-### Fixed
+### Added
 
-- (MODULES-11982) Stagger nightly cron to 00:50 UTC [#634](https://github.com/puppetlabs/puppetlabs-java/pull/634) ([imaqsood](https://github.com/imaqsood))
 - [PR #623]: Acceptance Test PR - Add support for Ubuntu 26.04 [#628](https://github.com/puppetlabs/puppetlabs-java/pull/628) ([span786](https://github.com/span786))
 
 ### Other
