@@ -22,9 +22,9 @@ Facter.add(:java_default_home) do
     else
       java_path = File.realpath(java_bin)
       java_default_home = if java_path.include?('/jre/')
-                            File.dirname(File.dirname(File.dirname(java_path)))
+                            File.dirname(java_path, 3)
                           else
-                            File.dirname(File.dirname(java_path))
+                            File.dirname(java_path, 2)
                           end
     end
   end

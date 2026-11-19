@@ -202,7 +202,7 @@ describe 'java', type: :class do
           'package' => 'custom_jdk',
           'java_alternative' => 'java-custom_jdk',
           'java_alternative_path' => '/opt/custom_jdk/bin/java',
-          'java_home' => '/opt/custom_jdk'
+          'java_home' => '/opt/custom_jdk',
         }
       end
 
@@ -215,7 +215,7 @@ describe 'java', type: :class do
       let(:params) do
         {
           'distribution' => 'custom',
-          'package' => 'custom_jdk'
+          'package' => 'custom_jdk',
         }
       end
 
@@ -231,36 +231,36 @@ describe 'java', type: :class do
         os: {
           family: 'windows',
           name: 'windows',
-          release: { full: '8.1' }
-        }
+          release: { full: '8.1' },
+        },
       },
       {
         os: {
           family: 'Darwin',
           name: 'Darwin',
-          release: { full: '13.3.0' }
-        }
+          release: { full: '13.3.0' },
+        },
       },
       {
         os: {
           family: 'AIX',
           name: 'AIX',
-          release: { full: '7100-02-00-000' }
-        }
+          release: { full: '7100-02-00-000' },
+        },
       },
       {
         os: {
           family: 'AIX',
           name: 'AIX',
-          release: { full: '6100-07-04-1216' }
-        }
+          release: { full: '6100-07-04-1216' },
+        },
       },
       {
         os: {
           family: 'AIX',
           name: 'AIX',
-          release: { full: '5300-12-01-1016' }
-        }
+          release: { full: '5300-12-01-1016' },
+        },
       },
     ].each do |facts|
       let(:facts) { facts }
